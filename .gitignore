@@ -1,0 +1,41 @@
+# Compiled source #
+###################
+*.pyc
+*.pyc.orig
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE Files #
+#############
+.idea/**
+
+
+# Other #
+#########
+static/node_modules/**
+static/bower_components/**
+static/.sass-cache
+static/.sass-cache/**
