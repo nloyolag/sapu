@@ -9,7 +9,7 @@ class Institution (django.db.models.Model):
 
     #phone, address, email, contact_point, name
 
-class Proyect_Type (django.db.models.Model):
+class Project_Type (django.db.models.Model):
 
     #name, description
 
