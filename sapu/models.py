@@ -21,7 +21,10 @@ class Permission (django.db.models.Model):
 
 class Employee (django.db.models.Model):
 
-    # stage
+    stage = django.db.models.ManyToManyField(Stage,
+                                             blank=True,
+                                             related_name="stages",
+                                             verbose_name=u"Etapas")
 
     user = django.db.models.OneToOneField(django.contrib.auth.models.User,
                                           on_delete=django.db.models.PROTECT,
@@ -46,12 +49,12 @@ class Comment (django.db.models.Model):
 
     stage = django.db.models.ForeignKey(Stage,
                                         on_delete=django.db.models.PROTECT,
-                                        related_name="tasks",
+                                        related_name="comments",
                                         verbose_name=u"Etapa")
 
     employee = django.db.models.ForeignKey(Employee,
                                            on_delete=django.db.models.PROTECT,
-                                           related_name="tasks",
+                                           related_name="comments",
                                            verbose_name=u"Empleado")
 
     title = django.db.models.CharField(max_length=255, verbose_name=u"Título")
