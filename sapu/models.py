@@ -7,17 +7,36 @@ import datetime
 
 class Institution (django.db.models.Model):
 
-    #phone, address, email, contact_point, name
+    phone = django.db.models.CharField(max_length=255, verbose_name=u"Teléfono")
+
+    address = django.db.models.CharField(max_length=255, verbose_name=u"Dirección")
+    #email (EmailField)
+    contact_point = django.db.models.CharField(max_length=255, verbose_name=u"Punto de Contacto")
+    name = django.db.models.CharField(max_length=255, verbose_name=u"Nombre")
 
 class ProjectType (django.db.models.Model):
 
-    #name, description
+    name = django.db.models.CharField(max_length=255, verbose_name=u"Nombre")
+
+    description = django.db.models.TextField(verbose_name=u"Descripción")
 
 class Permission (django.db.models.Model):
 
-    #title, folio, description
+    title = django.db.models.CharField(unique=True, max_length=255, verbose_name=u"Titulo")
 
-    #folio = django.db.models.CharField(unique=True, max_length=255, verbose_name=u"Folio")
+    description = django.db.models.TextField(verbose_name=u"Descripción")
+
+    folio = django.db.models.CharField(unique=True, max_length=255, verbose_name=u"Folio")
+
+    institution = django.db.models.ForeignKey(Institution,
+                                        on_delete=django.db.models.PROTECT,
+                                        related_name="institution",
+                                        verbose_name=u"Institución")
+
+    project = django.db.models.ForeignKey(Project,
+                                        on_delete=django.db.models.PROTECT,
+                                        related_name="project",
+                                        verbose_name=u"Proyecto")
 
 class Employee (django.db.models.Model):
 
