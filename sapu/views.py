@@ -41,6 +41,11 @@ def login_render_view(request):
 
 
 @django.contrib.auth.decorators.login_required
+def projects_render_view(request):
+    pass
+
+
+@django.contrib.auth.decorators.login_required
 def users_render_view(request):
     pass
 
