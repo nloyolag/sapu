@@ -5,6 +5,7 @@ import django.contrib.auth.models
 import django.db.models
 import datetime
 
+
 class Institution (django.db.models.Model):
 
     phone = django.db.models.CharField(max_length=255, verbose_name=u"Teléfono")
@@ -14,11 +15,13 @@ class Institution (django.db.models.Model):
     contact_point = django.db.models.CharField(max_length=255, verbose_name=u"Punto de Contacto")
     name = django.db.models.CharField(max_length=255, verbose_name=u"Nombre")
 
+
 class ProjectType (django.db.models.Model):
 
     name = django.db.models.CharField(max_length=255, verbose_name=u"Nombre")
 
     description = django.db.models.TextField(verbose_name=u"Descripción")
+
 
 class Permission (django.db.models.Model):
 
@@ -39,7 +42,7 @@ class Permission (django.db.models.Model):
                                         verbose_name=u"Proyecto")
 
 
-class Stage(django.db.models.Model)
+class Stage (django.db.models.Model):
     name = django.db.models.CharField(max_length=255)
     description = django.db.models.CharField(max_length=255, verbose_name="Descripción")
     number = django.db.models.IntegerField(verbose_name="Número")
@@ -56,7 +59,7 @@ class Stage(django.db.models.Model)
         return unicode(self.name)
 
 
-class State(django.db.models.Model)
+class State (django.db.models.Model):
     name = django.db.models.CharField(max_length=20)
     description = django.db.models.CharField(max_length=255, verbose_name="Descripción")
     color = django.db.models.CharField(max_length=7)
@@ -133,7 +136,6 @@ class Employee (django.db.models.Model):
         return unicode(self.user.username)
 
 
-
 class Comment (django.db.models.Model):
 
     stage = django.db.models.ForeignKey(Stage,
@@ -161,7 +163,6 @@ class Comment (django.db.models.Model):
     def __unicode__(self):
 
         return unicode(self.title)
-
 
 
 class Task (django.db.models.Model):
