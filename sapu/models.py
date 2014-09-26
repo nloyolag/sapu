@@ -38,6 +38,76 @@ class Permission (django.db.models.Model):
                                         related_name="project",
                                         verbose_name=u"Proyecto")
 
+
+class Stage(django.db.models.Model)
+    name = django.db.models.CharField(max_length=255)
+    description = django.db.models.CharField(max_length=255, verbose_name="Descripción")
+    number = django.db.models.IntegerField(verbose_name="Número")
+    deadline = \
+        django.db.models.DateTimeField(verbose_name=u"Fecha Límite")
+
+    class Meta:
+
+        verbose_name = u"Etapa"
+        verbose_name_plural = u"Etapas"
+
+    def __unicode__(self):
+
+        return unicode(self.name)
+
+
+class State(django.db.models.Model)
+    name = django.db.models.CharField(max_length=20)
+    description = django.db.models.CharField(max_length=255, verbose_name="Descripción")
+    color = django.db.models.CharField(max_length=7)
+
+    class Meta:
+
+        verbose_name = u"Estado"
+        verbose_name_plural = u"Estados"
+
+    def __unicode__(self):
+
+        return unicode(self.name)
+
+
+class Project (django.db.models.Model):
+    project_id = django.db.models.CharField(max_length=255, verbose_name=u"ID de Proyecto")
+    deadline = django.db.models.DateTimeField(verbose_name=u"Fecha límite")
+    name = django.db.models.CharField(max_length=150,
+                                      verbose_name=u"Proyecto")
+    photo= django.db.models.ImageField(upload_to="photos/projects",
+                                        verbose_name=u"Foto") 
+    description = django.db.models.CharField(max_length=255,
+                                               verbose_name="Descripción")
+    folio = django.db.models.CharField( max_length=255, verbose_name=u"Folio de oficio de solicitud")
+
+    class Meta:
+
+        verbose_name = u"Estado"
+        verbose_name_plural = u"Estados"
+
+    def __unicode__(self):
+
+        return unicode(self.name)
+
+
+#class Role
+#    employee = django.db.models.ForeignKey(Employee,
+#                                           on_delete=django.db.models.PROTECT,
+#                                           verbose_name=u"Usuario")
+#    description = django.db.models.CharField(max_length=255,
+#                                               verbose_name="Descripción")
+#    name = django.db.models.CharField(max_length=50,
+#                                               verbose_name="Tipo de Rol")
+
+
+#class Privilege(django.db.models.Model)
+#   name = django.db.models.CharField(max_length = 20, verbose_name="Privilegio")
+    #PENDING
+    #action = associated methods
+
+
 class Employee (django.db.models.Model):
 
     stage = django.db.models.ManyToManyField(Stage,
