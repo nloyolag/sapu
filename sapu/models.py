@@ -6,6 +6,27 @@ import django.db.models
 import datetime
 
 
+class Project (django.db.models.Model):
+    project_id = django.db.models.CharField(max_length=255, verbose_name=u"ID de Proyecto")
+    deadline = django.db.models.DateTimeField(verbose_name=u"Fecha límite")
+    name = django.db.models.CharField(max_length=150,
+                                      verbose_name=u"Proyecto")
+    photo= django.db.models.ImageField(upload_to="photos/projects",
+                                       verbose_name=u"Foto")
+    description = django.db.models.CharField(max_length=255,
+                                             verbose_name="Descripción")
+    folio = django.db.models.CharField( max_length=255, verbose_name=u"Folio de oficio de solicitud")
+
+    class Meta:
+
+        verbose_name = u"Proyecto"
+        verbose_name_plural = u"Proyectos"
+
+    def __unicode__(self):
+
+        return unicode(self.name)
+
+
 class Institution (django.db.models.Model):
 
     phone = django.db.models.CharField(max_length=255, verbose_name=u"Teléfono")
@@ -15,12 +36,29 @@ class Institution (django.db.models.Model):
     contact_point = django.db.models.CharField(max_length=255, verbose_name=u"Punto de Contacto")
     name = django.db.models.CharField(max_length=255, verbose_name=u"Nombre")
 
+    class Meta:
+
+        verbose_name = u"Institución"
+        verbose_name_plural = u"Instituciones"
+
+    def __unicode__(self):
+
+        return unicode(self.name)
+
 
 class ProjectType (django.db.models.Model):
 
     name = django.db.models.CharField(max_length=255, verbose_name=u"Nombre")
-
     description = django.db.models.TextField(verbose_name=u"Descripción")
+
+    class Meta:
+
+        verbose_name = u"Tipo de Proyecto"
+        verbose_name_plural = u"Tipos de Proyecto"
+
+    def __unicode__(self):
+
+        return unicode(self.name)
 
 
 class Permission (django.db.models.Model):
@@ -32,14 +70,23 @@ class Permission (django.db.models.Model):
     folio = django.db.models.CharField(unique=True, max_length=255, verbose_name=u"Folio")
 
     institution = django.db.models.ForeignKey(Institution,
-                                        on_delete=django.db.models.PROTECT,
-                                        related_name="institution",
-                                        verbose_name=u"Institución")
+                                              on_delete=django.db.models.PROTECT,
+                                              related_name="institution",
+                                              verbose_name=u"Institución")
 
     project = django.db.models.ForeignKey(Project,
-                                        on_delete=django.db.models.PROTECT,
-                                        related_name="project",
-                                        verbose_name=u"Proyecto")
+                                          on_delete=django.db.models.PROTECT,
+                                          related_name="project",
+                                          verbose_name=u"Proyecto")
+
+    class Meta:
+
+        verbose_name = u"Permiso"
+        verbose_name_plural = u"Permisos"
+
+    def __unicode__(self):
+
+        return unicode(self.title)
 
 
 class Stage (django.db.models.Model):
@@ -63,27 +110,6 @@ class State (django.db.models.Model):
     name = django.db.models.CharField(max_length=20)
     description = django.db.models.CharField(max_length=255, verbose_name="Descripción")
     color = django.db.models.CharField(max_length=7)
-
-    class Meta:
-
-        verbose_name = u"Estado"
-        verbose_name_plural = u"Estados"
-
-    def __unicode__(self):
-
-        return unicode(self.name)
-
-
-class Project (django.db.models.Model):
-    project_id = django.db.models.CharField(max_length=255, verbose_name=u"ID de Proyecto")
-    deadline = django.db.models.DateTimeField(verbose_name=u"Fecha límite")
-    name = django.db.models.CharField(max_length=150,
-                                      verbose_name=u"Proyecto")
-    photo= django.db.models.ImageField(upload_to="photos/projects",
-                                        verbose_name=u"Foto") 
-    description = django.db.models.CharField(max_length=255,
-                                               verbose_name="Descripción")
-    folio = django.db.models.CharField( max_length=255, verbose_name=u"Folio de oficio de solicitud")
 
     class Meta:
 

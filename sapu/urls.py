@@ -9,6 +9,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
     #ex: /admin/
+    url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', include(admin.site.urls)),
 
     #
@@ -39,13 +40,13 @@ urlpatterns = patterns('',
     url(r'^proyectos/$', views.projects_render_view, name='projects'),
 
     # ex: /usuarios/
-    url(r'^usuarios/$', views.users_render_view, name='projects'),
+    url(r'^usuarios/$', views.users_render_view, name='users'),
 
     # ex: /instituciones/
-    url(r'^instituciones/$', views.institutions_render_view, name='projects'),
+    url(r'^instituciones/$', views.institutions_render_view, name='institutions'),
 
     # ex: /tipos-de-proyecto/
-    url(r'^tipos-de-proyecto/$', views.project_type_render_view, name='projects'),
+    url(r'^tipos-de-proyecto/$', views.project_type_render_view, name='project-type'),
 
     # ex: /proyectos/132/
     url(r'^proyectos/(?P<project_id>\d+)/$', views.stages_render_view, name='stages'),

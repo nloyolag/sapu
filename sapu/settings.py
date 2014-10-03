@@ -32,7 +32,6 @@ TEMPLATE_DIRS = (
     TEMPLATE_PATH,
 )
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -50,6 +49,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'sapu.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sapu_db',
+        'USER': 'sapu_db',
+        'PASSWORD': 'master',
+        'HOST': '',
+        'PORT': ''
     }
 }
 
@@ -101,3 +105,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_URL = '/sapu/login/'
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.request',
+)
