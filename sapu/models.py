@@ -11,11 +11,29 @@ class Project (django.db.models.Model):
     deadline = django.db.models.DateTimeField(verbose_name=u"Fecha límite")
     name = django.db.models.CharField(max_length=150,
                                       verbose_name=u"Proyecto")
-    photo= django.db.models.ImageField(upload_to="photos/projects",
-                                       verbose_name=u"Foto")
+
+    photo = django.db.models.ImageField(upload_to="photos/projects",
+                                        verbose_name=u"Foto")
+
     description = django.db.models.CharField(max_length=255,
                                              verbose_name="Descripción")
-    folio = django.db.models.CharField( max_length=255, verbose_name=u"Folio de oficio de solicitud")
+
+    folio = django.db.models.CharField(max_length=255, verbose_name=u"Folio de oficio de solicitud")
+
+    institution = django.db.models.ForeignKey(Institution,
+                                              on_delete=django.db.models.PROTECT,
+                                              related_name="institution",
+                                              verbose_name=u"Institución")
+
+    project_type = django.db.models.ForeignKey(ProjectType,
+                                               on_delete=django.db.models.PROTECT,
+                                               related_name="project_type",
+                                               verbose_name=u"Tipo de Proyecto")
+
+    state = django.db.models.ForeignKey(State,
+                                        on_delete=django.db.models.PROTECT,
+                                        related_name="state",
+                                        verbose_name=u"Estado")
 
     class Meta:
 
@@ -30,9 +48,9 @@ class Project (django.db.models.Model):
 class Institution (django.db.models.Model):
 
     phone = django.db.models.CharField(max_length=255, verbose_name=u"Teléfono")
-
     address = django.db.models.CharField(max_length=255, verbose_name=u"Dirección")
-    #email (EmailField)
+    email = django.db.models.EmailField(verbose_name=u"Email")
+    is_client = django.db.models.BooleanField(verbose_name=u"¿Es cliente?")
     contact_point = django.db.models.CharField(max_length=255, verbose_name=u"Punto de Contacto")
     name = django.db.models.CharField(max_length=255, verbose_name=u"Nombre")
 
@@ -64,11 +82,8 @@ class ProjectType (django.db.models.Model):
 class Permission (django.db.models.Model):
 
     title = django.db.models.CharField(unique=True, max_length=255, verbose_name=u"Titulo")
-
     description = django.db.models.TextField(verbose_name=u"Descripción")
-
     folio = django.db.models.CharField(unique=True, max_length=255, verbose_name=u"Folio")
-
     institution = django.db.models.ForeignKey(Institution,
                                               on_delete=django.db.models.PROTECT,
                                               related_name="institution",
@@ -95,6 +110,21 @@ class Stage (django.db.models.Model):
     number = django.db.models.IntegerField(verbose_name="Número")
     deadline = \
         django.db.models.DateTimeField(verbose_name=u"Fecha Límite")
+
+    employee = django.db.models.ManyToManyField(Employee,
+                                                blank=True,
+                                                related_name="employees",
+                                                verbose_name=u"Empleados")
+
+    project = django.db.models.ForeignKey(Project,
+                                          on_delete=django.db.models.PROTECT,
+                                          related_name="project",
+                                          verbose_name=u"Proyecto")
+
+    state = django.db.models.ForeignKey(State,
+                                        on_delete=django.db.models.PROTECT,
+                                        related_name="state",
+                                        verbose_name=u"Estado")
 
     class Meta:
 
@@ -139,11 +169,6 @@ class State (django.db.models.Model):
 
 class Employee (django.db.models.Model):
 
-    stage = django.db.models.ManyToManyField(Stage,
-                                             blank=True,
-                                             related_name="stages",
-                                             verbose_name=u"Etapas")
-
     user = django.db.models.OneToOneField(django.contrib.auth.models.User,
                                           on_delete=django.db.models.PROTECT,
                                           related_name="employee",
@@ -175,9 +200,7 @@ class Comment (django.db.models.Model):
                                            verbose_name=u"Empleado")
 
     title = django.db.models.CharField(max_length=255, verbose_name=u"Título")
-
     description = django.db.models.TextField(verbose_name=u"Descripción")
-
     date =\
         django.db.models.DateTimeField(verbose_name=u"Fecha")
 
