@@ -97,7 +97,36 @@ def action_logout(request):
 
 
 def login_render_view(request):
-    pass
+
+    if request.user.is_authenticated():
+        return django.http.HttpResponseRedirect(
+            django.core.urlresolvers.reverse('dashboard'))
+
+    template_variables = {}
+
+    redirect_url = request.GET.get('next', settings.LOGIN_REDIRECT_URL)
+    form_redirect =\
+        forms.FormRedirect(
+            initial={'redirect_url': redirect_url})
+
+    template_variables['form_redirect'] = form_redirect
+
+    # Create an empty login form
+    form_login = django.contrib.auth.forms.AuthenticationForm()
+    form_login.fields['username'].widget.attrs['placeholder'] =\
+        globals.FIELD__USERNAME
+
+    form_login.fields['password'].widget.attrs['placeholder'] =\
+        globals.FIELD__PASSWORD
+
+    template_variables['form_login'] = form_login
+    template_context =\
+        django.template.context.RequestContext(request, template_variables)
+
+    return django.shortcuts.render_to_response(
+        globals.TEMPLATE__LOGIN,
+        template_context
+    )
 
 
 @django.contrib.auth.decorators.login_required
