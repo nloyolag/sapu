@@ -105,6 +105,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_URL = '/sapu/login/'
+LOGIN_REDIRECT_URL = "/"
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
