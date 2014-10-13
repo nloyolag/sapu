@@ -138,7 +138,6 @@ def projects_render_view(request):
             project_query = form_search_project.cleaned_data['name']
 
     template_variables = {}
-    employee = models.Employee.objects.get(user=request.user)
 
     #TODO Order Projects By States, not deadlines
 
