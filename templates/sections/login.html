@@ -4,5 +4,34 @@
 
 {% block content %}
 
+ <div class="login-outer">
+    <div class="login-inner">
+        <div class="login-content login">
+
+            <h1>SAPU</h1>
+
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <form action="{% url 'views.action_login' %}" method="POST">
+                <div>
+                    {% csrf_token %}
+                    {{ form_redirect.redirect_url }}
+                    {{ form_login.username }}
+                    {{ form_login.password }}
+
+                    <button type="submit">Entrar</button>
+                </div>
+            </form>
+
+        </div> <!-- .login-content .login -->
+    </div> <!-- .login-inner -->
+</div> <!-- .login-outer -->
+
 
 {% endblock %}

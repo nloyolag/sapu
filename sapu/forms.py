@@ -10,6 +10,20 @@ import models
 import globals
 
 
+class FormRedirect(django.forms.Form):
+    redirect_url = django.forms.CharField(widget=django.forms.HiddenInput)
+
+
+class FormSearchProject(django.forms.Form):
+    name = django.forms.CharField(
+        required=False,
+        widget=django.forms.TextInput(
+            attrs={
+                'placeholder': u"Buscar " + globals.FIELD__PROJECT}
+        )
+    )
+
+
 class ModelFormProject(django.forms.ModelForm):
 
     #def __init__(self, *args, **kwargs):

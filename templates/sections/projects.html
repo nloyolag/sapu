@@ -4,5 +4,36 @@
 
 {% block main-content %}
 
+<div class="projects-outer">
+    <div class="projects-inner">
+
+            <h1>PROYECTOS</h1>
+
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <form action="{% url 'views.projects_render_view' %}" method="POST">
+                <div>
+                    {% csrf_token %}
+                    {{ form_search_project.name }}
+
+                    <button type="submit"><i class="icon-search"></i></button>
+                </div>
+            </form>
+
+            {% for project in projects %}
+                <div class="single-project">
+                    <h3>{{ project.name }}</h3>
+                </div>
+            {% endfor  %}
+
+    </div> <!-- .projects-inner -->
+</div> <!-- .projects-outer -->
+
 
 {% endblock %}

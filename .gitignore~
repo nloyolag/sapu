@@ -39,4 +39,3 @@ static/node_modules/**
 static/bower_components/**
 static/.sass-cache
 static/.sass-cache/**
-media/**
