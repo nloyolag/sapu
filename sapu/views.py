@@ -143,8 +143,9 @@ def projects_render_view(request):
 
     if project_query:
 
+        print project_query
         projects = models.Project.objects\
-            .filter(name__contains=project_query)\
+            .filter(name__icontains=project_query)\
             .order_by('-deadline')
 
         template_variables['projects'] = projects
