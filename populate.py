@@ -354,6 +354,740 @@ def populate():
     project1.photo = 'photos/projects/test.jpg'
     project1.save()
 
+    # 2
+    project2 = add_project(
+        project_id=u"A2",
+        deadline=datetime1,
+        name=u"Bandodromo",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type1,
+        institution=institution1,
+        state=on_time
+    )
+
+    project2.photo = 'photos/projects/test.jpg'
+    project2.save()
+
+    # 3
+    project3 = add_project(
+        project_id=u"A3",
+        deadline=datetime1,
+        name=u"Escultura del gobernador del estado de 1956",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type1,
+        institution=institution1,
+        state=on_time
+    )
+
+    project3.photo = 'photos/projects/test.jpg'
+    project3.save()
+
+    # 4
+    project4 = add_project(
+        project_id=u"A4",
+        deadline=datetime1,
+        name=u"Banquetas de avenida universidad",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type1,
+        institution=institution1,
+        state=on_time
+    )
+
+    project4.photo = 'photos/projects/test.jpg'
+    project4.save()
+
+    # 5
+    project5 = add_project(
+        project_id=u"A5",
+        deadline=datetime1,
+        name=u"Alameda",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type1,
+        institution=institution1,
+        state=on_time
+    )
+
+    project5.photo = 'photos/projects/test.jpg'
+    project5.save()
+
+    # 6
+    project6 = add_project(
+        project_id=u"A6",
+        deadline=datetime1,
+        name=u"Carretera a Tlalpan",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type1,
+        institution=institution1,
+        state=on_time
+    )
+
+    project6.photo = 'photos/projects/test.jpg'
+    project6.save()
+
+    # 7
+    project7 = add_project(
+        project_id=u"A7",
+        deadline=datetime1,
+        name=u"Fachada de convento de San Antonio",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type1,
+        institution=institution1,
+        state=on_time
+    )
+
+    project7.photo = 'photos/projects/test.jpg'
+    project7.save()
+
+    # 8
+    project8 = add_project(
+        project_id=u"A8",
+        deadline=datetime1,
+        name=u"Banqueta de calle vicente guerrero",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type1,
+        institution=institution1,
+        state=on_time
+    )
+
+    project8.photo = 'photos/projects/test.jpg'
+    project8.save()
+
+    # 9
+    project9 = add_project(
+        project_id=u"A9",
+        deadline=datetime1,
+        name=u"Escultura de Francisco Cervantes",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type1,
+        institution=institution1,
+        state=on_time
+    )
+
+    project9.photo = 'photos/projects/test.jpg'
+    project9.save()
+
+    # 10
+    project10 = add_project(
+        project_id=u"A10",
+        deadline=datetime1,
+        name=u"Escultura de gato",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type1,
+        institution=institution1,
+        state=on_time
+    )
+
+    project10.photo = 'photos/projects/test.jpg'
+    project10.save()
+
+    # 11
+    project11 = add_project(
+        project_id=u"A11",
+        deadline=datetime1,
+        name=u"Lienzo Charro",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type2,
+        institution=institution2,
+        state=on_time
+    )
+
+    project11.photo = 'photos/projects/test.jpg'
+    project11.save()
+
+    # 12
+    project12 = add_project(
+        project_id=u"A12",
+        deadline=datetime1,
+        name=u"Bandodromo",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type2,
+        institution=institution2,
+        state=on_time
+    )
+
+    project12.photo = 'photos/projects/test.jpg'
+    project12.save()
+
+    # 13
+    project13 = add_project(
+        project_id=u"A13",
+        deadline=datetime1,
+        name=u"Escultura del gobernador del estado de 1956",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type2,
+        institution=institution2,
+        state=on_time
+    )
+
+    project13.photo = 'photos/projects/test.jpg'
+    project13.save()
+
+    # 14
+    project14 = add_project(
+        project_id=u"A14",
+        deadline=datetime1,
+        name=u"Banquetas de avenida universidad",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type2,
+        institution=institution2,
+        state=on_time
+    )
+
+    project14.photo = 'photos/projects/test.jpg'
+    project14.save()
+
+    # 15
+    project15 = add_project(
+        project_id=u"A15",
+        deadline=datetime1,
+        name=u"Alameda",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type2,
+        institution=institution2,
+        state=on_time
+    )
+
+    project15.photo = 'photos/projects/test.jpg'
+    project15.save()
+
+    # 16
+    project16 = add_project(
+        project_id=u"A16",
+        deadline=datetime1,
+        name=u"Carretera a Tlalpan",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type2,
+        institution=institution2,
+        state=on_time
+    )
+
+    project16.photo = 'photos/projects/test.jpg'
+    project16.save()
+
+    # 17
+    project17 = add_project(
+        project_id=u"A17",
+        deadline=datetime1,
+        name=u"Fachada de convento de San Antonio",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type2,
+        institution=institution2,
+        state=on_time
+    )
+
+    project17.photo = 'photos/projects/test.jpg'
+    project17.save()
+
+    # 18
+    project18 = add_project(
+        project_id=u"A18",
+        deadline=datetime1,
+        name=u"Banqueta de calle vicente guerrero",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type2,
+        institution=institution2,
+        state=on_time
+    )
+
+    project18.photo = 'photos/projects/test.jpg'
+    project18.save()
+
+    # 19
+    project19 = add_project(
+        project_id=u"A19",
+        deadline=datetime1,
+        name=u"Escultura de Francisco Cervantes",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type2,
+        institution=institution2,
+        state=on_time
+    )
+
+    project19.photo = 'photos/projects/test.jpg'
+    project19.save()
+
+    # 20
+    project20 = add_project(
+        project_id=u"A20",
+        deadline=datetime1,
+        name=u"Escultura de gato",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type2,
+        institution=institution2,
+        state=on_time
+    )
+
+    project20.photo = 'photos/projects/test.jpg'
+    project20.save()
+
+    # 21
+    project21 = add_project(
+        project_id=u"A21",
+        deadline=datetime1,
+        name=u"Lienzo Charro",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type3,
+        institution=institution3,
+        state=on_time
+    )
+
+    project21.photo = 'photos/projects/test.jpg'
+    project21.save()
+
+    # 22
+    project22 = add_project(
+        project_id=u"A22",
+        deadline=datetime1,
+        name=u"Bandodromo",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type3,
+        institution=institution3,
+        state=on_time
+    )
+
+    project22.photo = 'photos/projects/test.jpg'
+    project22.save()
+
+    # 23
+    project23 = add_project(
+        project_id=u"A23",
+        deadline=datetime1,
+        name=u"Escultura del gobernador del estado de 1956",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type3,
+        institution=institution3,
+        state=on_time
+    )
+
+    project23.photo = 'photos/projects/test.jpg'
+    project23.save()
+
+    # 24
+    project24 = add_project(
+        project_id=u"A24",
+        deadline=datetime1,
+        name=u"Banquetas de avenida universidad",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type3,
+        institution=institution3,
+        state=on_time
+    )
+
+    project24.photo = 'photos/projects/test.jpg'
+    project24.save()
+
+    # 25
+    project25 = add_project(
+        project_id=u"A25",
+        deadline=datetime1,
+        name=u"Alameda",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type3,
+        institution=institution3,
+        state=on_time
+    )
+
+    project25.photo = 'photos/projects/test.jpg'
+    project25.save()
+
+    # 26
+    project26 = add_project(
+        project_id=u"A26",
+        deadline=datetime1,
+        name=u"Carretera a Tlalpan",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type3,
+        institution=institution3,
+        state=on_time
+    )
+
+    project26.photo = 'photos/projects/test.jpg'
+    project26.save()
+
+    # 27
+    project27 = add_project(
+        project_id=u"A27",
+        deadline=datetime1,
+        name=u"Fachada de convento de San Antonio",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type3,
+        institution=institution3,
+        state=on_time
+    )
+
+    project27.photo = 'photos/projects/test.jpg'
+    project27.save()
+
+    # 28
+    project28 = add_project(
+        project_id=u"A28",
+        deadline=datetime1,
+        name=u"Banqueta de calle vicente guerrero",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type3,
+        institution=institution3,
+        state=on_time
+    )
+
+    project28.photo = 'photos/projects/test.jpg'
+    project28.save()
+
+    # 29
+    project29 = add_project(
+        project_id=u"A29",
+        deadline=datetime1,
+        name=u"Escultura de Francisco Cervantes",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type3,
+        institution=institution3,
+        state=on_time
+    )
+
+    project29.photo = 'photos/projects/test.jpg'
+    project29.save()
+
+    # 30
+    project30 = add_project(
+        project_id=u"A30",
+        deadline=datetime1,
+        name=u"Escultura de gato",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type3,
+        institution=institution3,
+        state=on_time
+    )
+
+    project30.photo = 'photos/projects/test.jpg'
+    project30.save()
+
+    # 31
+    project31 = add_project(
+        project_id=u"A31",
+        deadline=datetime1,
+        name=u"Lienzo Charro",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type4,
+        institution=institution4,
+        state=on_time
+    )
+
+    project31.photo = 'photos/projects/test.jpg'
+    project31.save()
+
+    # 32
+    project32 = add_project(
+        project_id=u"A32",
+        deadline=datetime1,
+        name=u"Bandodromo",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type4,
+        institution=institution4,
+        state=on_time
+    )
+
+    project32.photo = 'photos/projects/test.jpg'
+    project32.save()
+
+    # 33
+    project33 = add_project(
+        project_id=u"A33",
+        deadline=datetime1,
+        name=u"Escultura del gobernador del estado de 1956",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type4,
+        institution=institution4,
+        state=on_time
+    )
+
+    project33.photo = 'photos/projects/test.jpg'
+    project33.save()
+
+    # 34
+    project34 = add_project(
+        project_id=u"A34",
+        deadline=datetime1,
+        name=u"Banquetas de avenida universidad",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type4,
+        institution=institution4,
+        state=on_time
+    )
+
+    project34.photo = 'photos/projects/test.jpg'
+    project34.save()
+
+    # 35
+    project35 = add_project(
+        project_id=u"A35",
+        deadline=datetime1,
+        name=u"Alameda",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type4,
+        institution=institution4,
+        state=on_time
+    )
+
+    project35.photo = 'photos/projects/test.jpg'
+    project35.save()
+
+    # 36
+    project36 = add_project(
+        project_id=u"A36",
+        deadline=datetime1,
+        name=u"Carretera a Tlalpan",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type4,
+        institution=institution4,
+        state=on_time
+    )
+
+    project36.photo = 'photos/projects/test.jpg'
+    project36.save()
+
+    # 37
+    project37 = add_project(
+        project_id=u"A37",
+        deadline=datetime1,
+        name=u"Fachada de convento de San Antonio",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type4,
+        institution=institution4,
+        state=on_time
+    )
+
+    project37.photo = 'photos/projects/test.jpg'
+    project37.save()
+
+    # 38
+    project38 = add_project(
+        project_id=u"A38",
+        deadline=datetime1,
+        name=u"Banqueta de calle vicente guerrero",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type4,
+        institution=institution4,
+        state=on_time
+    )
+
+    project38.photo = 'photos/projects/test.jpg'
+    project38.save()
+
+    # 39
+    project39 = add_project(
+        project_id=u"A39",
+        deadline=datetime1,
+        name=u"Escultura de Francisco Cervantes",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type4,
+        institution=institution4,
+        state=on_time
+    )
+
+    project39.photo = 'photos/projects/test.jpg'
+    project39.save()
+
+    # 40
+    project40 = add_project(
+        project_id=u"A40",
+        deadline=datetime1,
+        name=u"Escultura de gato",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type4,
+        institution=institution4,
+        state=on_time
+    )
+
+    project40.photo = 'photos/projects/test.jpg'
+    project40.save()
+
+    # 41
+    project41 = add_project(
+        project_id=u"A41",
+        deadline=datetime1,
+        name=u"Lienzo Charro",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type5,
+        institution=institution5,
+        state=on_time
+    )
+
+    project41.photo = 'photos/projects/test.jpg'
+    project41.save()
+
+    # 42
+    project42 = add_project(
+        project_id=u"A42",
+        deadline=datetime1,
+        name=u"Bandodromo",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type5,
+        institution=institution5,
+        state=on_time
+    )
+
+    project42.photo = 'photos/projects/test.jpg'
+    project42.save()
+
+    # 43
+    project43 = add_project(
+        project_id=u"A43",
+        deadline=datetime1,
+        name=u"Escultura del gobernador del estado de 1956",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type5,
+        institution=institution5,
+        state=on_time
+    )
+
+    project43.photo = 'photos/projects/test.jpg'
+    project43.save()
+
+    # 44
+    project44 = add_project(
+        project_id=u"A44",
+        deadline=datetime1,
+        name=u"Banquetas de avenida universidad",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type5,
+        institution=institution5,
+        state=on_time
+    )
+
+    project44.photo = 'photos/projects/test.jpg'
+    project44.save()
+
+    # 45
+    project45 = add_project(
+        project_id=u"A45",
+        deadline=datetime1,
+        name=u"Alameda",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type5,
+        institution=institution5,
+        state=on_time
+    )
+
+    project45.photo = 'photos/projects/test.jpg'
+    project45.save()
+
+    # 46
+    project46 = add_project(
+        project_id=u"A46",
+        deadline=datetime1,
+        name=u"Carretera a Tlalpan",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type5,
+        institution=institution5,
+        state=on_time
+    )
+
+    project46.photo = 'photos/projects/test.jpg'
+    project46.save()
+
+    # 47
+    project47 = add_project(
+        project_id=u"A47",
+        deadline=datetime1,
+        name=u"Fachada de convento de San Antonio",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type5,
+        institution=institution5,
+        state=on_time
+    )
+
+    project47.photo = 'photos/projects/test.jpg'
+    project47.save()
+
+    # 48
+    project48 = add_project(
+        project_id=u"A48",
+        deadline=datetime1,
+        name=u"Banqueta de calle vicente guerrero",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type5,
+        institution=institution5,
+        state=on_time
+    )
+
+    project48.photo = 'photos/projects/test.jpg'
+    project48.save()
+
+    # 49
+    project49 = add_project(
+        project_id=u"A49",
+        deadline=datetime1,
+        name=u"Escultura de Francisco Cervantes",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type5,
+        institution=institution5,
+        state=on_time
+    )
+
+    project49.photo = 'photos/projects/test.jpg'
+    project49.save()
+
+    # 50
+    project50 = add_project(
+        project_id=u"A50",
+        deadline=datetime1,
+        name=u"Escultura de gato",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type5,
+        institution=institution5,
+        state=on_time
+    )
+
+    project50.photo = 'photos/projects/test.jpg'
+    project50.save()
 
     ###############################################################################
     #
