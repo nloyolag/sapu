@@ -4,6 +4,9 @@
 
 import os
 
+#Django imports
+
+import datetime
 
 def populate():
 
@@ -19,7 +22,7 @@ def populate():
     ###############################################################################
 
     # 1
-    add_institution(
+    institution1 = add_institution(
         name=u"INAH",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -29,7 +32,7 @@ def populate():
     )
 
     # 2
-    add_institution(
+    institution2 = add_institution(
         name=u"CEA",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -39,7 +42,7 @@ def populate():
     )
 
     # 3
-    add_institution(
+    institution3 = add_institution(
         name=u"CFE",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -49,7 +52,7 @@ def populate():
     )
 
     # 4
-    add_institution(
+    institution4 = add_institution(
         name=u"Gobierno Municipal",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -59,7 +62,7 @@ def populate():
     )
 
     # 5
-    add_institution(
+    institution5 = add_institution(
         name=u"Gobierno Estatal del Estado de Querétaro el cual es un nombre muy largo a probar",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -223,34 +226,33 @@ def populate():
     #  Project Types
     #
     ###############################################################################
-    # 10 Registers
 
     #1
-    add_project_type(
+    project_type1 = add_project_type(
         name=u"Banqueta",
         description=u"Obra especificada para creación de nuevas banquetas"
     )
 
     #2
-    add_project_type(
+    project_type2 = add_project_type(
         name=u"Escultura",
         description=u"Obra especificada para creación de nuevas banquetas"
     )
 
     #3
-    add_project_type(
+    project_type3 = add_project_type(
         name=u"Obra pública",
         description=u"Obra especificada para creación de nuevas banquetas"
     )
 
     #4
-    add_project_type(
+    project_type4 = add_project_type(
         name=u"Restauración",
         description=u"Obra especificada para creación de nuevas banquetas"
     )
 
     #5
-    add_project_type(
+    project_type5 = add_project_type(
         name=u"Edificio de gran formato",
         description=u"Obra especificada para creación de nuevas banquetas"
     )
@@ -292,28 +294,28 @@ def populate():
     ###############################################################################
 
     # on_time
-    add_state(
+    on_time = add_state(
         name=u"En tiempo",
         description=u"El elemento se encuentra desarrollandose y a tiempo con respecto la fecha de entrega.",
         color=u"#95C0FC"
     )
 
     # delayed
-    add_state(
+    delayed = add_state(
         name=u"Retrasado",
         description=u"El elemento se encuentra desarrollandose pero está retradado.",
         color=u"#F3F163"
     )
 
     # cancelled
-    add_state(
+    cancelled = add_state(
         name=u"Cancelado",
         description=u"El elemento no se terminó o ha sido pospuesto.",
         color=u"#E47F91"
     )
 
     # completed
-    add_state(
+    completed = add_state(
         name=u"Terminado",
         description=u"El elemento ha sido terminado",
         color=u"#6CE6A5"
@@ -334,6 +336,23 @@ def populate():
     ###############################################################################
     # REQUIRES: Institution, ProjectType, State
     # 50 Registers
+
+    datetime1 = datetime.datetime.now()
+
+    # 1
+    project1 = add_project(
+        project_id=u"A1",
+        deadline=datetime1,
+        name=u"Lienzo Charro",
+        description=u"Enorme proyecto municipal de gran interes publico",
+        folio=u"A739232",
+        project_type=project_type1,
+        institution=institution1,
+        state=on_time
+    )
+
+    project1.photo = 'photos/projects/test.jpg'
+    project1.save()
 
 
     ###############################################################################
@@ -382,30 +401,29 @@ def populate():
     for state in State.objects.all():
         print "Inserted State - {0}".format(str(state))
 
-    for employee in Employee.objects.all():
-        print "Inserted Employee - {0}".format(str(employee))
+    # for employee in Employee.objects.all():
+    #     print "Inserted Employee - {0}".format(str(employee))
 
     for project in Institution.objects.all():
         print "Inserted Project - {0}".format(str(project))
 
-        for permission in Permission.objects.filter(project=project):
-            print "    Inserted Permission - {0}".format(str(permission))
-
-        for stage in Stage.objects.filter(project=project):
-            print "    Inserted Stage - {0}".format(str(stage))
-
-            for comment in Comment.objects.filter(stage=stage):
-                print "        Comment - {0}".format(str(comment))
-
-            for task in Task.objects.filter(stage=stage):
-                print "        Task - {0}".format(str(task))
+        # for permission in Permission.objects.filter(project=project):
+        #     print "    Inserted Permission - {0}".format(str(permission))
+        #
+        # for stage in Stage.objects.filter(project=project):
+        #     print "    Inserted Stage - {0}".format(str(stage))
+        #
+        #     for comment in Comment.objects.filter(stage=stage):
+        #         print "        Comment - {0}".format(str(comment))
+        #
+        #     for task in Task.objects.filter(stage=stage):
+        #         print "        Task - {0}".format(str(task))
 
 
 def add_project(
         project_id,
         deadline,
         name,
-        photo,
         description,
         folio,
         project_type,
@@ -415,7 +433,6 @@ def add_project(
     p = Project.objects.get_or_create(project_id=project_id,
                                       deadline=deadline,
                                       name=name,
-                                      photo=photo,
                                       description=description,
                                       folio=folio,
                                       project_type=project_type,

@@ -133,7 +133,7 @@ def projects_render_view(request):
     if request.method == "POST":
 
         form_search_project = forms.FormSearchProject(request.POST)
-        if form_search_project .is_valid():
+        if form_search_project.is_valid():
 
             project_query = form_search_project.cleaned_data['name']
 
@@ -143,7 +143,6 @@ def projects_render_view(request):
 
     if project_query:
 
-        print project_query
         projects = models.Project.objects\
             .filter(name__icontains=project_query)\
             .order_by('-deadline')
