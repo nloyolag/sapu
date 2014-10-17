@@ -1099,86 +1099,453 @@ def populate():
 
     #1
     permission1 = add_permission(
-        title = u"INA",
-        description = u"Permiso del INA",
-        folio = u"0001",
-        institution = institution1,
-        project = project1
+        title=u"Permiso INAH",
+        description=u"Permiso emitido por el INAH",
+        folio="0001",
+        institution=institution1,
+        project=project1
     )
 
     #2
-    permission1 = add_permission(
-        title=u"CFE",
-        description=u"Permiso del CFE",
-        folio=u"0002",
+    permission2 = add_permission(
+        title=u"Permiso CEA",
+        description=u"Permiso emitido por el CEA",
+        folio="0002",
         institution=institution2,
         project=project1
     )
 
+    #3
+    permission3 = add_permission(
+        title=u"Permiso CFE",
+        description=u"Permiso emitido por el CFE",
+        folio="0003",
+        institution=institution3,
+        project=project1
+    )
+
+    #4
+    permission4 = add_permission(
+        title=u"Permiso Municipio",
+        description=u"Permiso emitido por el municipio",
+        folio="0004",
+        institution=institution4,
+        project=project1
+    )
+
+    #5
+    permission5 = add_permission(
+        title=u"Permiso Estado",
+        description=u"Permiso emitido por el estado",
+        folio="0005",
+        institution=institution5,
+        project=project1
+    )
+
+    #6
+    permission6 = add_permission(
+        title=u"Permiso Federal",
+        description=u"Permiso emitido por la Federación",
+        folio="0006",
+        institution=institution6,
+        project=project1
+    )
+
+    #7
+    permission7 = add_permission(
+        title=u"Permiso Qbit",
+        description=u"Permiso emitido por el Qbit",
+        folio="0007",
+        institution=institution7,
+        project=project1
+    )
+
+    #8
+    permission8 = add_permission(
+        title=u"Permiso Museo de la Ciudad",
+        description=u"Permiso emitido por el Museo de la Ciudad",
+        folio="0008",
+        institution=institution8,
+        project=project1
+    )
+
+    #9
+    permission9 = add_permission(
+        title=u"Permiso ITESM",
+        description=u"Permiso emitido por el ITESM",
+        folio="0009",
+        institution=institution9,
+        project=project1
+    )
+
+    #10
+    permission10 = add_permission(
+        title=u"Permiso ITAM",
+        description=u"Permiso emitido por el ITAM",
+        folio="0010",
+        institution=institution10,
+        project=project1
+    )
+
+    #11
+    permission11 = add_permission(
+        title=u"Permiso INAH",
+        description=u"Permiso emitido por el INAH",
+        folio="0011",
+        institution=institution1,
+        project=project2
+    )
+
+    #12
+    permission12 = add_permission(
+        title=u"Permiso CEA",
+        description=u"Permiso emitido por el CEA",
+        folio="0012",
+        institution=institution2,
+        project=project2
+    )
+
+    #13
+    permission13 = add_permission(
+        title=u"Permiso CFE",
+        description=u"Permiso emitido por el CFE",
+        folio="0013",
+        institution=institution3,
+        project=project2
+    )
+
+    #14
+    permission4 = add_permission(
+        title=u"Permiso Municipio",
+        description=u"Permiso emitido por el municipio",
+        folio="0004",
+        institution=institution4,
+        project=project2
+    )
+
+    #15
+    permission5 = add_permission(
+        title=u"Permiso Estado",
+        description=u"Permiso emitido por el estado",
+        folio="0015",
+        institution=institution5,
+        project=project2
+    )
+
+    #16
+    permission6 = add_permission(
+        title=u"Permiso Federal",
+        description=u"Permiso emitido por la Federación",
+        folio="0016",
+        institution=institution6,
+        project=project2
+    )
+
+    #17
+    permission17 = add_permission(
+        title=u"Permiso Qbit",
+        description=u"Permiso emitido por el Qbit",
+        folio="0017",
+        institution=institution7,
+        project=project2
+    )
+
+    #18
+    permission8 = add_permission(
+        title=u"Permiso Museo de la Ciudad",
+        description=u"Permiso emitido por el Museo de la Ciudad",
+        folio="0018",
+        institution=institution8,
+        project=project2
+    )
+
+    #19
+    permission19 = add_permission(
+        title=u"Permiso ITESM",
+        description=u"Permiso emitido por el ITESM",
+        folio="0009",
+        institution=institution9,
+        project=project2
+    )
+
+    #20
+    permission10 = add_permission(
+        title=u"Permiso ITAM",
+        description=u"Permiso emitido por el ITAM",
+        folio="0020",
+        institution=institution10,
+        project=project2
+    )
+
+    #21
     permission1 = add_permission(
-        title=
-        description=
-        folio=
-        institution=
-        project=
+        title=u"Permiso INAH",
+        description=u"Permiso emitido por el INAH",
+        folio="0021",
+        institution=institution1,
+        project=project3
     )
 
-        permission1 = add_permission(
-        title=
-        description=
-        folio=
-        institution=
-        project=
+    #22
+    permission2 = add_permission(
+        title=u"Permiso CEA",
+        description=u"Permiso emitido por el CEA",
+        folio="0022",
+        institution=institution2,
+        project=project3
     )
 
-        permission1 = add_permission(
-        title=
-        description=
-        folio=
-        institution=
-        project=
+    #23
+    permission3 = add_permission(
+        title=u"Permiso CFE",
+        description=u"Permiso emitido por el CFE",
+        folio="0023",
+        institution=institution3,
+        project=project3
     )
 
-        permission1 = add_permission(
-        title=
-        description=
-        folio=
-        institution=
-        project=
+    #24
+    permission24 = add_permission(
+        title=u"Permiso Municipio",
+        description=u"Permiso emitido por el municipio",
+        folio="0024",
+        institution=institution4,
+        project=project3
     )
 
-        permission1 = add_permission(
-        title=
-        description=
-        folio=
-        institution=
-        project=
+    #25
+    permission25 = add_permission(
+        title=u"Permiso Estado",
+        description=u"Permiso emitido por el estado",
+        folio="0025",
+        institution=institution5,
+        project=project3
     )
 
-        permission1 = add_permission(
-        title=
-        description=
-        folio=
-        institution=
-        project=
+    #26
+    permission26 = add_permission(
+        title=u"Permiso Federal",
+        description=u"Permiso emitido por la Federación",
+        folio="0026",
+        institution=institution6,
+        project=project3
     )
 
-        permission1 = add_permission(
-        title=
-        description=
-        folio=
-        institution=
-        project=
+    #27
+    permission27 = add_permission(
+        title=u"Permiso Qbit",
+        description=u"Permiso emitido por el Qbit",
+        folio="0027",
+        institution=institution7,
+        project=project3
     )
 
-        permission1 = add_permission(
-        title=
-        description=
-        folio=
-        institution=
-        project=
+    #28
+    permission28 = add_permission(
+        title=u"Permiso Museo de la Ciudad",
+        description=u"Permiso emitido por el Museo de la Ciudad",
+        folio="0028",
+        institution=institution8,
+        project=project3
     )
 
+    #29
+    permission29 = add_permission(
+        title=u"Permiso ITESM",
+        description=u"Permiso emitido por el ITESM",
+        folio="0029",
+        institution=institution9,
+        project=project3
+    )
+
+    #30
+    permission30 = add_permission(
+        title=u"Permiso ITAM",
+        description=u"Permiso emitido por el ITAM",
+        folio="0030",
+        institution=institution10,
+        project=project3
+    )
+
+    #31
+    permission31 = add_permission(
+        title=u"Permiso INAH",
+        description=u"Permiso emitido por el INAH",
+        folio="0031",
+        institution=institution1,
+        project=project4
+    )
+
+    #32
+    permission32 = add_permission(
+        title=u"Permiso CEA",
+        description=u"Permiso emitido por el CEA",
+        folio="0032",
+        institution=institution2,
+        project=project4
+    )
+
+    #33
+    permission33 = add_permission(
+        title=u"Permiso CFE",
+        description=u"Permiso emitido por el CFE",
+        folio="0033",
+        institution=institution3,
+        project=project4
+    )
+
+    #34
+    permission34 = add_permission(
+        title=u"Permiso Municipio",
+        description=u"Permiso emitido por el municipio",
+        folio="0034",
+        institution=institution4,
+        project=project4
+    )
+
+    #35
+    permission35 = add_permission(
+        title=u"Permiso Estado",
+        description=u"Permiso emitido por el estado",
+        folio="0035",
+        institution=institution5,
+        project=project4
+    )
+
+    #36
+    permission36 = add_permission(
+        title=u"Permiso Federal",
+        description=u"Permiso emitido por la Federación",
+        folio="0036",
+        institution=institution6,
+        project=project4
+    )
+
+    #37
+    permission37 = add_permission(
+        title=u"Permiso Qbit",
+        description=u"Permiso emitido por el Qbit",
+        folio="0037",
+        institution=institution7,
+        project=project4
+    )
+
+    #38
+    permission38 = add_permission(
+        title=u"Permiso Museo de la Ciudad",
+        description=u"Permiso emitido por el Museo de la Ciudad",
+        folio="0038",
+        institution=institution8,
+        project=project4
+    )
+
+    #39
+    permission39 = add_permission(
+        title=u"Permiso ITESM",
+        description=u"Permiso emitido por el ITESM",
+        folio="0039",
+        institution=institution9,
+        project=project4
+    )
+
+    #40
+    permission40 = add_permission(
+        title=u"Permiso ITAM",
+        description=u"Permiso emitido por el ITAM",
+        folio="0040",
+        institution=institution10,
+        project=project4
+    )
+
+    #41
+    permission41 = add_permission(
+        title=u"Permiso INAH",
+        description=u"Permiso emitido por el INAH",
+        folio="0041",
+        institution=institution1,
+        project=project5
+    )
+
+    #42
+    permission42 = add_permission(
+        title=u"Permiso CEA",
+        description=u"Permiso emitido por el CEA",
+        folio="0042",
+        institution=institution2,
+        project=project5
+    )
+
+    #43
+    permission43 = add_permission(
+        title=u"Permiso CFE",
+        description=u"Permiso emitido por el CFE",
+        folio="0043",
+        institution=institution3,
+        project=project5
+    )
+
+    #44
+    permission44 = add_permission(
+        title=u"Permiso Municipio",
+        description=u"Permiso emitido por el municipio",
+        folio="0044",
+        institution=institution4,
+        project=project5
+    )
+
+    #45
+    permission45 = add_permission(
+        title=u"Permiso Estado",
+        description=u"Permiso emitido por el estado",
+        folio="0045",
+        institution=institution5,
+        project=project5
+    )
+
+    #46
+    permission46 = add_permission(
+        title=u"Permiso Federal",
+        description=u"Permiso emitido por la Federación",
+        folio="0046",
+        institution=institution6,
+        project=project5
+    )
+
+    #47
+    permission47 = add_permission(
+        title=u"Permiso Qbit",
+        description=u"Permiso emitido por el Qbit",
+        folio="0047",
+        institution=institution7,
+        project=project5
+    )
+
+    #48
+    permission48 = add_permission(
+        title=u"Permiso Museo de la Ciudad",
+        description=u"Permiso emitido por el Museo de la Ciudad",
+        folio="0048",
+        institution=institution8,
+        project=project5
+    )
+
+    #49
+    permission49 = add_permission(
+        title=u"Permiso ITESM",
+        description=u"Permiso emitido por el ITESM",
+        folio="0049",
+        institution=institution9,
+        project=project5
+    )
+
+    #50
+    permission10 = add_permission(
+        title=u"Permiso ITAM",
+        description=u"Permiso emitido por el ITAM",
+        folio="0050",
+        institution=institution10,
+        project=project5
+    )
     ###############################################################################
     #
     #  Stages
