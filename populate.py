@@ -73,7 +73,7 @@ def populate():
     )
 
     # 6
-    add_institution(
+    institution6 = add_institution(
         name=u"Gobierno Federal",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -83,7 +83,7 @@ def populate():
     )
 
     # 7
-    add_institution(
+    institution7 = add_institution(
         name=u"Qbit",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -93,7 +93,7 @@ def populate():
     )
 
     # 8
-    add_institution(
+    institution8 = add_institution(
         name=u"Museo de la ciudad",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -103,7 +103,7 @@ def populate():
     )
 
     # 9
-    add_institution(
+    institution9 = add_institution(
         name=u"Tec de Monterrey",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -113,7 +113,7 @@ def populate():
     )
 
     # 10
-    add_institution(
+    institution10 = add_institution(
         name=u"ITAM",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -123,7 +123,7 @@ def populate():
     )
 
     # 11
-    add_institution(
+    institution11 = add_institution(
         name=u"Delegación Centro Histórico",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -133,7 +133,7 @@ def populate():
     )
 
     # 12
-    add_institution(
+    institution12 = add_institution(
         name=u"Six Flags",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -143,7 +143,7 @@ def populate():
     )
 
     # 13
-    add_institution(
+    institution13 = add_institution(
         name=u"Nintendo",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -153,7 +153,7 @@ def populate():
     )
 
     # 14
-    add_institution(
+    institution14 = add_institution(
         name=u"Sony",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -163,7 +163,7 @@ def populate():
     )
 
     # 15
-    add_institution(
+    institution15 = add_institution(
         name=u"Mariachi Games",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -173,7 +173,7 @@ def populate():
     )
 
     # 16
-    add_institution(
+    institution16 = add_institution(
         name=u"Rdio",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -183,7 +183,7 @@ def populate():
     )
 
     # 17
-    add_institution(
+    institution17 = add_institution(
         name=u"Spotify",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -193,7 +193,7 @@ def populate():
     )
 
     # 18
-    add_institution(
+    institution18 = add_institution(
         name=u"Microsoft",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -203,7 +203,7 @@ def populate():
     )
 
     # 19
-    add_institution(
+    institution19 = add_institution(
         name=u"Apple",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -213,7 +213,7 @@ def populate():
     )
 
     # 20
-    add_institution(
+    institution20 = add_institution(
         name=u"Asus",
         phone=u"4423302576",
         address=u"Vicente Guerrero Norte no. 20",
@@ -1111,6 +1111,87 @@ def populate():
     # REQUIRES: Institution, Project
     # 50 Registers
 
+    #1
+    permission1 = add_permission(
+        title = u"INA",
+        description = u"Permiso del INA",
+        folio = u"0001",
+        institution = institution1,
+        project = project1
+    )
+
+    #2
+    permission1 = add_permission(
+        title=u"CFE",
+        description=u"Permiso del CFE",
+        folio=u"0002",
+        institution=institution2,
+        project=project1
+    )
+
+    permission1 = add_permission(
+        title=
+        description=
+        folio=
+        institution=
+        project=
+    )
+
+        permission1 = add_permission(
+        title=
+        description=
+        folio=
+        institution=
+        project=
+    )
+
+        permission1 = add_permission(
+        title=
+        description=
+        folio=
+        institution=
+        project=
+    )
+
+        permission1 = add_permission(
+        title=
+        description=
+        folio=
+        institution=
+        project=
+    )
+
+        permission1 = add_permission(
+        title=
+        description=
+        folio=
+        institution=
+        project=
+    )
+
+        permission1 = add_permission(
+        title=
+        description=
+        folio=
+        institution=
+        project=
+    )
+
+        permission1 = add_permission(
+        title=
+        description=
+        folio=
+        institution=
+        project=
+    )
+
+        permission1 = add_permission(
+        title=
+        description=
+        folio=
+        institution=
+        project=
+    )
 
     ###############################################################################
     #
