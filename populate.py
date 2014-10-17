@@ -8,6 +8,7 @@ import os
 
 import datetime
 
+
 def populate():
 
     #TODO Fill population script
@@ -327,6 +328,19 @@ def populate():
     #
     ###############################################################################
     # 10 Registers
+
+    #1
+
+    #employee1 = add_employee(
+
+     #   from django.contrib.auth.models import User
+     #   user1 = User.objects.create_user('Armando', 'armando@sapu.com','armando')
+     #   photo1 = 'photos/users/test.jpg'
+     #  employee = Employee(user=user1, photo=photo1)
+    #)
+
+    #user1.save()
+
 
 
     ###############################################################################
@@ -1106,7 +1120,16 @@ def populate():
     # REQUIRES: State, Project, Employee
     # 50 Registers / 5 per project (Los que alcancen)
 
-
+    #1
+    stage1_project1 = add_stage(
+        name = 'Investigación',
+        description = 'Se hará levantamiento de medidas en la localidad y se',
+        #number
+        #deadline
+        #state
+        #project
+        #employee
+    )
     ###############################################################################
     #
     #  Comments
