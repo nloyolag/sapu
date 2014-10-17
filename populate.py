@@ -1102,8 +1102,8 @@ def populate():
         title = u"INA",
         description = u"Permiso del INA",
         folio = u"0001",
-        institution = project,
-        project
+        institution = institution1,
+        project = project1
     )
 
     #2
