@@ -1382,7 +1382,7 @@ def populate():
     permission19 = add_permission(
         title=u"Permiso ITESM",
         description=u"Permiso emitido por el ITESM",
-        folio="0009",
+        folio="0019",
         institution=institution9,
         project=project2
     )
@@ -2239,6 +2239,457 @@ def populate():
     # REQUIRES: Stage, Employee
     # 50 Registers / 2 per stage (Los que alcancen)
 
+    datetime1 = datetime.datetime.now()
+
+    #1
+    comment1 = add_comment(
+        title=u"Enviar solicitud",
+        description=u"Enviar la solicitud de permiso al instituto",
+        date=datetime1,
+        employee=employee1,
+        stage=stage1
+    )
+
+    #2
+    comment2 = add_comment(
+        title=u"Pedir materiales",
+        description=u"Enviar el pedido de materiales al distribuidor autorizado",
+        date=datetime1,
+        employee=employee2,
+        stage=stage1
+    )
+
+    #3
+    comment3 = add_comment(
+        title=u"Reunirse con el director",
+        description=u"Asistir a la reunion con el director del lugar",
+        date=datetime1,
+        employee=employee1,
+        stage=stage2
+    )
+
+    #4
+    comment4 = add_comment(
+        title=u"Delegar asignaciones",
+        description=u"Establecer asignaciones de trabajo a los empleados",
+        date=datetime1,
+        employee=employee2,
+        stage=stage2
+    )
+
+    #5
+    comment5 = add_comment(
+        title=u"Reportar avances",
+        description=u"Reportar los avances del proyecto hasta este punto",
+        date=datetime1,
+        employee=employee1,
+        stage=stage3
+    )
+
+    #6
+    comment6 = add_comment(
+        title=u"Hacer planos",
+        description=u"Hacer la propuesta de los planos del proyecto",
+        date=datetime1,
+        employee=employee2,
+        stage=stage3
+    )
+
+    #7
+    comment7 = add_comment(
+        title=u"Reportar avances",
+        description=u"Reportar los avances del proyecto hasta este punto",
+        date=datetime1,
+        employee=employee1,
+        stage=stage4
+    )
+
+    #8
+    comment8 = add_comment(
+        title=u"Instalar tuberias",
+        description=u"Realizar las instalaciones de las tuberias",
+        date=datetime1,
+        employee=employee2,
+        stage=stage4
+    )
+
+    #9
+    comment9 = add_comment(
+        title=u"Instalar cables",
+        description=u"Instalar los cables de luz",
+        date=datetime1,
+        employee=employee1,
+        stage=stage5
+    )
+
+    #10
+    comment10 = add_comment(
+        title=u"Limpiar",
+        description=u"Dejar limpio el lugar",
+        date=datetime1,
+        employee=employee2,
+        stage=stage5
+    )
+
+    #11
+    comment11 = add_comment(
+        title=u"Enviar solicitud",
+        description=u"Enviar la solicitud de permiso al instituto",
+        date=datetime1,
+        employee=employee1,
+        stage=stage6
+    )
+
+    #12
+    comment12 = add_comment(
+        title=u"Pedir materiales",
+        description=u"Enviar el pedido de materiales al distribuidor autorizado",
+        date=datetime1,
+        employee=employee2,
+        stage=stage6
+    )
+
+    #13
+    comment13 = add_comment(
+        title=u"Reunirse con el director",
+        description=u"Asistir a la reunion con el director del lugar",
+        date=datetime1,
+        employee=employee1,
+        stage=stage7
+    )
+
+    #14
+    comment14 = add_comment(
+        title=u"Delegar asignaciones",
+        description=u"Establecer asignaciones de trabajo a los empleados",
+        date=datetime1,
+        employee=employee2,
+        stage=stage7
+    )
+
+    #15
+    comment15 = add_comment(
+        title=u"Reportar avances",
+        description=u"Reportar los avances del proyecto hasta este punto",
+        date=datetime1,
+        employee=employee1,
+        stage=stage8
+    )
+
+    #16
+    comment16 = add_comment(
+        title=u"Hacer planos",
+        description=u"Hacer la propuesta de los planos del proyecto",
+        date=datetime1,
+        employee=employee2,
+        stage=stage8
+    )
+
+    #17
+    comment17 = add_comment(
+        title=u"Reportar avances",
+        description=u"Reportar los avances del proyecto hasta este punto",
+        date=datetime1,
+        employee=employee1,
+        stage=stage9
+    )
+
+    #18
+    comment18 = add_comment(
+        title=u"Instalar tuberias",
+        description=u"Realizar las instalaciones de las tuberias",
+        date=datetime1,
+        employee=employee2,
+        stage=stage9
+    )
+
+    #19
+    comment19 = add_comment(
+        title=u"Instalar cables",
+        description=u"Instalar los cables de luz",
+        date=datetime1,
+        employee=employee1,
+        stage=stage10
+    )
+
+    #20
+    comment20 = add_comment(
+        title=u"Limpiar",
+        description=u"Dejar limpio el lugar",
+        date=datetime1,
+        employee=employee2,
+        stage=stage10
+    )
+
+    #21
+    comment21 = add_comment(
+        title=u"Limpiar",
+        description=u"Dejar limpio el lugar",
+        date=datetime1,
+        employee=employee2,
+        stage=stage11
+    )
+
+    #22
+    comment22 = add_comment(
+        title=u"Enviar solicitud",
+        description=u"Enviar la solicitud de permiso al instituto",
+        date=datetime1,
+        employee=employee1,
+        stage=stage11
+    )
+
+    #23
+    comment23 = add_comment(
+        title=u"Pedir materiales",
+        description=u"Enviar el pedido de materiales al distribuidor autorizado",
+        date=datetime1,
+        employee=employee2,
+        stage=stage12
+    )
+
+    #24
+    comment24 = add_comment(
+        title=u"Reunirse con el director",
+        description=u"Asistir a la reunion con el director del lugar",
+        date=datetime1,
+        employee=employee1,
+        stage=stage12
+    )
+
+    #25
+    comment25 = add_comment(
+        title=u"Delegar asignaciones",
+        description=u"Establecer asignaciones de trabajo a los empleados",
+        date=datetime1,
+        employee=employee2,
+        stage=stage13
+    )
+
+    #26
+    comment26 = add_comment(
+        title=u"Reportar avances",
+        description=u"Reportar los avances del proyecto hasta este punto",
+        date=datetime1,
+        employee=employee1,
+        stage=stage13
+    )
+
+    #27
+    comment27 = add_comment(
+        title=u"Hacer planos",
+        description=u"Hacer la propuesta de los planos del proyecto",
+        date=datetime1,
+        employee=employee2,
+        stage=stage14
+    )
+
+    #28
+    comment28 = add_comment(
+        title=u"Reportar avances",
+        description=u"Reportar los avances del proyecto hasta este punto",
+        date=datetime1,
+        employee=employee1,
+        stage=stage14
+    )
+
+    #29
+    comment29 = add_comment(
+        title=u"Instalar tuberias",
+        description=u"Realizar las instalaciones de las tuberias",
+        date=datetime1,
+        employee=employee2,
+        stage=stage15
+    )
+
+    #30
+    comment30 = add_comment(
+        title=u"Instalar cables",
+        description=u"Instalar los cables de luz",
+        date=datetime1,
+        employee=employee1,
+        stage=stage15
+    )
+
+    #31
+    comment31 = add_comment(
+        title=u"Limpiar",
+        description=u"Dejar limpio el lugar",
+        date=datetime1,
+        employee=employee2,
+        stage=stage16
+    )
+
+    #32
+    comment32 = add_comment(
+        title=u"Enviar solicitud",
+        description=u"Enviar la solicitud de permiso al instituto",
+        date=datetime1,
+        employee=employee1,
+        stage=stage16
+    )
+
+    #33
+    comment33 = add_comment(
+        title=u"Pedir materiales",
+        description=u"Enviar el pedido de materiales al distribuidor autorizado",
+        date=datetime1,
+        employee=employee2,
+        stage=stage17
+    )
+
+    #34
+    comment34 = add_comment(
+        title=u"Reunirse con el director",
+        description=u"Asistir a la reunion con el director del lugar",
+        date=datetime1,
+        employee=employee1,
+        stage=stage17
+    )
+
+    #35
+    comment35 = add_comment(
+        title=u"Delegar asignaciones",
+        description=u"Establecer asignaciones de trabajo a los empleados",
+        date=datetime1,
+        employee=employee2,
+        stage=stage18
+    )
+
+    #36
+    comment36 = add_comment(
+        title=u"Reportar avances",
+        description=u"Reportar los avances del proyecto hasta este punto",
+        date=datetime1,
+        employee=employee1,
+        stage=stage18
+    )
+
+    #37
+    comment37 = add_comment(
+        title=u"Hacer planos",
+        description=u"Hacer la propuesta de los planos del proyecto",
+        date=datetime1,
+        employee=employee2,
+        stage=stage19
+    )
+
+    #38
+    comment38 = add_comment(
+        title=u"Reportar avances",
+        description=u"Reportar los avances del proyecto hasta este punto",
+        date=datetime1,
+        employee=employee1,
+        stage=stage19
+    )
+
+    #39
+    comment39 = add_comment(
+        title=u"Instalar tuberias",
+        description=u"Realizar las instalaciones de las tuberias",
+        date=datetime1,
+        employee=employee2,
+        stage=stage20
+    )
+
+    #40
+    comment40 = add_comment(
+        title=u"Instalar cables",
+        description=u"Instalar los cables de luz",
+        date=datetime1,
+        employee=employee1,
+        stage=stage20
+    )
+
+    #41
+    comment41 = add_comment(
+        title=u"Limpiar",
+        description=u"Dejar limpio el lugar",
+        date=datetime1,
+        employee=employee2,
+        stage=stage21
+    )
+
+    #42
+    comment42 = add_comment(
+        title=u"Enviar solicitud",
+        description=u"Enviar la solicitud de permiso al instituto",
+        date=datetime1,
+        employee=employee1,
+        stage=stage21
+    )
+
+    #43
+    comment43 = add_comment(
+        title=u"Pedir materiales",
+        description=u"Enviar el pedido de materiales al distribuidor autorizado",
+        date=datetime1,
+        employee=employee2,
+        stage=stage22
+    )
+
+    #44
+    comment44 = add_comment(
+        title=u"Reunirse con el director",
+        description=u"Asistir a la reunion con el director del lugar",
+        date=datetime1,
+        employee=employee1,
+        stage=stage22
+    )
+
+    #45
+    comment45 = add_comment(
+        title=u"Delegar asignaciones",
+        description=u"Establecer asignaciones de trabajo a los empleados",
+        date=datetime1,
+        employee=employee2,
+        stage=stage23
+    )
+
+    #46
+    comment46 = add_comment(
+        title=u"Reportar avances",
+        description=u"Reportar los avances del proyecto hasta este punto",
+        date=datetime1,
+        employee=employee1,
+        stage=stage23
+    )
+
+    #47
+    comment47 = add_comment(
+        title=u"Hacer planos",
+        description=u"Hacer la propuesta de los planos del proyecto",
+        date=datetime1,
+        employee=employee2,
+        stage=stage24
+    )
+
+    #48
+    comment48 = add_comment(
+        title=u"Reportar avances",
+        description=u"Reportar los avances del proyecto hasta este punto",
+        date=datetime1,
+        employee=employee1,
+        stage=stage24
+    )
+
+    #49
+    comment49 = add_comment(
+        title=u"Instalar tuberias",
+        description=u"Realizar las instalaciones de las tuberias",
+        date=datetime1,
+        employee=employee2,
+        stage=stage25
+    )
+
+    #50
+    comment50 = add_comment(
+        title=u"Instalar cables",
+        description=u"Instalar los cables de luz",
+        date=datetime1,
+        employee=employee1,
+        stage=stage25
+    )
 
     ###############################################################################
     #
