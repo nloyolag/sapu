@@ -124,7 +124,7 @@ class Employee (django.db.models.Model):
     user = django.db.models.OneToOneField(django.contrib.auth.models.User,
                                           on_delete=django.db.models.PROTECT,
                                           related_name="employee",
-                                          verbose_name=u"Usuario")
+                                          verbose_name=u"Usuario") #use CASCADE instead of PROTECT
 
     photo = django.db.models.ImageField(upload_to="photos/users",
                                         verbose_name=u"Foto")
