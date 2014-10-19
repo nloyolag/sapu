@@ -1,4 +1,5 @@
 #coding:utf-8
+#!/usr/bin/python
 
 #Python imports
 
@@ -7,11 +8,16 @@ import datetime
 
 #Django imports
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group, Permission
+from django.contrib.contenttypes.models import ContentType
+
+#SAPU imports
+
+from permissions import create_permissions
+import sapu.models
 
 
 def populate():
-    #TODO Add multiple employees to stage
 
     ###############################################################################
     #
@@ -329,102 +335,118 @@ def populate():
 
     #1
     employee1 = add_employee(
-        user1=User.objects.create_user('Armando', 'armando@sapu.com', 'armando'),
+        user=User.objects.create_user('Armando', 'armando@sapu.com', 'armando'),
         photo=photo_test
     )
+
+    Group.objects.get(name='Administrator').user_set.add(employee1.user)
     employee1.save()
 
     #2
     employee2 = add_employee(
-        user2=User.objects.create_user('Baltasar', 'baltasar@sapu.com','baltasar'),
+        user=User.objects.create_user('Baltasar', 'baltasar@sapu.com', 'baltasar'),
         photo=photo_test
     )
+
+    Group.objects.get(name='Administrator').user_set.add(employee2.user)
     employee2.save()
 
     #3
     employee3 = add_employee(
-        user3=User.objects.create_user('Carlos', 'carlos@sapu.com','carlos'),
+        user=User.objects.create_user('Carlos', 'carlos@sapu.com', 'carlos'),
         photo=photo_test
     )
+
+    Group.objects.get(name='Administrator').user_set.add(employee3.user)
     employee3.save()
 
     #4
     employee4 = add_employee(
-        user4=User.objects.create_user('Daniel', 'daniel@sapu.com','daniel'),
+        user=User.objects.create_user('Daniel', 'daniel@sapu.com', 'daniel'),
         photo=photo_test
     )
+
+    Group.objects.get(name='ProjectManager').user_set.add(employee4.user)
+    employee4.save()
 
     #5
     employee5 = add_employee(
-        user5=User.objects.create_user('Eleazar', 'eleazar@sapu.com','eleazar'),
+        user=User.objects.create_user('Eleazar', 'eleazar@sapu.com', 'eleazar'),
         photo=photo_test
     )
 
+    Group.objects.get(name='ProjectManager').user_set.add(employee5.user)
     employee5.save()
 
     #6
     employee6 = add_employee(
-        user6=User.objects.create_user('Felipe', 'felipe@sapu.com','felipe'),
+        user=User.objects.create_user('Felipe', 'felipe@sapu.com', 'felipe'),
         photo=photo_test
     )
+
+    Group.objects.get(name='ProjectManager').user_set.add(employee6.user)
     employee6.save()
 
     #7
     employee7 = add_employee(
-        user7=User.objects.create_user('Guillermo', 'guillermo@sapu.com','guillermo'),
+        user=User.objects.create_user('Guillermo', 'guillermo@sapu.com', 'guillermo'),
         photo=photo_test
     )
+
+    Group.objects.get(name='Supervisor').user_set.add(employee7.user)
     employee7.save()
 
     #8
     employee8 = add_employee(
-        user8=User.objects.create_user('Hermenegildo', 'hermenegildo@sapu.com','hermenegildo'),
+        user=User.objects.create_user('Hermenegildo', 'hermenegildo@sapu.com', 'hermenegildo'),
         photo=photo_test
     )
+
+    Group.objects.get(name='Supervisor').user_set.add(employee8.user)
     employee8.save()
 
     #9
     employee9 = add_employee(
-        user9=User.objects.create_user(u'Ileana', 'ileana@sapu.com','ileana'),
+        user=User.objects.create_user(u'Ileana', 'ileana@sapu.com', 'ileana'),
         photo=photo_test
     )
 
+    Group.objects.get(name='Supervisor').user_set.add(employee9.user)
+    employee9.save()
+
     #10
     employee10 = add_employee(
-        user10=User.objects.create_user(u'Jonathan', 'jonathan@sapu.com','jonathan'),
+        user=User.objects.create_user(u'Jonathan', 'jonathan@sapu.com','jonathan'),
         photo=photo_test
     )
 
     #11
     employee11 = add_employee(
-        user11=User.objects.create_user(u'Katia', 'katia@sapu.com','katia'),
+        user=User.objects.create_user(u'Katia', 'katia@sapu.com','katia'),
         photo=photo_test
     )
-    employee11.save()
 
     #12
     employee12 = add_employee(
-        user12=User.objects.create_user(u'Laura', 'laura@sapu.com','laura'),
+        user=User.objects.create_user(u'Laura', 'laura@sapu.com','laura'),
         photo=photo_test
     )
-    employee12.save()
 
     #13
     employee13 = add_employee(
-        user13=User.objects.create_user(u'Mauro', 'mauro@sapu.com','mauro'),
+        user=User.objects.create_user(u'Mauro', 'mauro@sapu.com','mauro'),
         photo=photo_test
     )
-    employee13.save()
 
     #14
     add_employee(
-        user14=User.objects.create_user(u'Nazarín', 'nazarin@sapu.com','nazarin'),
+        user=User.objects.create_user(u'Nazarín', 'nazarin@sapu.com','nazarin'),
         photo=photo_test
     )
 
     #15
-    employee15 = add_employee(
-        user15=User.objects.create_user('Olaf', 'olaf@sapu.com','olaf'),
+    add_employee(
+        user=User.objects.create_user('Olaf', 'olaf@sapu.com','olaf'),
         photo=photo_test
     )
 
@@ -1667,9 +1689,9 @@ def populate():
         number=1,
         deadline=datetime1,
         state=on_time,
-        project=project1,
-        employee=employee1
+        project=project1
     )
+    stage1_project1.employee.add(employee1, employee2)
 
     #2
     stage2_project1 = add_stage(
@@ -1678,9 +1700,9 @@ def populate():
         number=2,
         deadline=datetime2,
         state=on_time,
-        project=project1,
-        employee=employee2
+        project=project1
     )
+    stage2_project1.employee.add(employee1, employee2)
 
     #3
     stage3_project1 = add_stage(
@@ -1689,9 +1711,9 @@ def populate():
         number=3,
         deadline=datetime3,
         state=on_time,
-        project=project1,
-        employee=employee1
+        project=project1
     )
+    stage3_project1.employee.add(employee1, employee2)
 
     #4
     stage4_project1 = add_stage(
@@ -1700,9 +1722,9 @@ def populate():
         number=4,
         deadline=datetime4,
         state=on_time,
-        project=project1,
-        employee=employee1
+        project=project1
     )
+    stage4_project1.employee.add(employee1, employee2)
 
     #5
     stage5_project1 = add_stage(
@@ -1711,9 +1733,9 @@ def populate():
         number=5,
         deadline=datetime5,
         state=on_time,
-        project=project1,
-        employee=employee3
+        project=project1
     )
+    stage5_project1.employee.add(employee3, employee4)
 
     #6
     stage1_project2 = add_stage(
@@ -1722,9 +1744,9 @@ def populate():
         number=1,
         deadline=datetime1,
         state=on_time,
-        project=project2,
-        employee=employee4
+        project=project2
     )
+    stage1_project2.employee.add(employee3, employee4)
 
     #7
     stage2_project2 = add_stage(
@@ -1733,9 +1755,9 @@ def populate():
         number=2,
         deadline=datetime2,
         state=on_time,
-        project=project2,
-        employee=employee2
+        project=project2
     )
+    stage2_project2.employee.add(employee3, employee4)
 
     #8
     stage3_project2 = add_stage(
@@ -1744,9 +1766,9 @@ def populate():
         number=3,
         deadline=datetime3,
         state=on_time,
-        project=project2,
-        employee=employee10
+        project=project2
     )
+    stage3_project2.employee.add(employee3, employee4)
 
     #9
     stage4_project2 = add_stage(
@@ -1755,9 +1777,9 @@ def populate():
         number=4,
         deadline=datetime4,
         state=on_time,
-        project=project2,
-        employee=employee6
+        project=project2
     )
+    stage4_project2.employee.add(employee5, employee6)
 
     #10
     stage5_project2 = add_stage(
@@ -1766,9 +1788,9 @@ def populate():
         number=5,
         deadline=datetime5,
         state=on_time,
-        project=project2,
-        employee=employee3
+        project=project2
     )
+    stage5_project2.employee.add(employee3, employee4)
 
     #11
     stage1_project3 = add_stage(
@@ -1777,9 +1799,9 @@ def populate():
         number=1,
         deadline=datetime1,
         state=on_time,
-        project=project3,
-        employee=employee1
+        project=project3
     )
+    stage1_project3.employee.add(employee5, employee6)
 
     #12
     stage2_project3 = add_stage(
@@ -1788,9 +1810,9 @@ def populate():
         number=2,
         deadline=datetime2,
         state=on_time,
-        project=project3,
-        employee=employee2
+        project=project3
     )
+    stage2_project3.employee.add(employee5, employee6)
 
     #13
     stage3_project3 = add_stage(
@@ -1799,9 +1821,9 @@ def populate():
         number=3,
         deadline=datetime3,
         state=on_time,
-        project=project3,
-        employee=employee1
+        project=project3
     )
+    stage3_project3.employee.add(employee5, employee6)
 
     #14
     stage4_project3 = add_stage(
@@ -1810,20 +1832,20 @@ def populate():
         number=4,
         deadline=datetime4,
         state=on_time,
-        project=project3,
-        employee=employee1
+        project=project3
     )
+    stage4_project3.employee.add(employee5, employee6)
 
     #15
-    stage5_project4 = add_stage(
+    stage5_project3 = add_stage(
         name='Hidráulica',
         description='Se construirá la instalación hidráulica',
         number=5,
         deadline=datetime5,
         state=on_time,
-        project=project3,
-        employee=employee3
+        project=project3
     )
+    stage5_project3.employee.add(employee5, employee6)
 
     #16
     stage1_project4 = add_stage(
@@ -1832,9 +1854,9 @@ def populate():
         number=1,
         deadline=datetime1,
         state=on_time,
-        project=project4,
-        employee=employee6
+        project=project4
     )
+    stage1_project4.employee.add(employee5, employee6)
 
     #17
     stage2_project4 = add_stage(
@@ -1843,9 +1865,9 @@ def populate():
         number=2,
         deadline=datetime2,
         state=on_time,
-        project=project4,
-        employee=employee2
+        project=project4
     )
+    stage2_project4.employee.add(employee1, employee2)
 
     #18
     stage3_project4 = add_stage(
@@ -1854,9 +1876,9 @@ def populate():
         number=3,
         deadline=datetime3,
         state=on_time,
-        project=project4,
-        employee=employee10
+        project=project4
     )
+    stage3_project4.employee.add(employee7, employee8)
 
     #19
     stage4_project4 = add_stage(
@@ -1865,9 +1887,9 @@ def populate():
         number=4,
         deadline=datetime4,
         state=on_time,
-        project=project4,
-        employee=employee4
+        project=project4
     )
+    stage4_project4.employee.add(employee7, employee8)
 
     #20
     stage5_project4 = add_stage(
@@ -1876,9 +1898,9 @@ def populate():
         number=5,
         deadline=datetime5,
         state=on_time,
-        project = project4,
-        employee = employee3
+        project=project4
     )
+    stage5_project4.employee.add(employee7, employee8)
 
     #21
     stage1_project5 = add_stage(
@@ -1887,9 +1909,9 @@ def populate():
         number=1,
         deadline=datetime1,
         state=on_time,
-        project=project5,
-        employee=employee1
+        project=project5
     )
+    stage1_project5.employee.add(employee7, employee8)
 
     #22
     stage2_project5 = add_stage(
@@ -1898,9 +1920,9 @@ def populate():
         number=2,
         deadline=datetime_late,
         state=delayed,
-        project=project5,
-        employee=employee2
+        project=project5
     )
+    stage2_project5.employee.add(employee7, employee8)
 
     #23
     stage3_project5 = add_stage(
@@ -1909,9 +1931,9 @@ def populate():
         number=3,
         deadline=datetime_late,
         state=delayed,
-        project=project5,
-        employee=employee1
+        project=project5
     )
+    stage3_project5.employee.add(employee7, employee8)
 
     #24
     stage4_project5 = add_stage(
@@ -1920,9 +1942,9 @@ def populate():
         number=4,
         deadline=datetime_late,
         state=delayed,
-        project=project5,
-        employee=employee1
-        )
+        project=project5
+    )
+    stage4_project5.employee.add(employee7, employee8)
 
     #25
     stage5_project5 = add_stage(
@@ -1931,20 +1953,20 @@ def populate():
         number=5,
         deadline=datetime5,
         state=on_time,
-        project=project5,
-        employee=employee3
+        project=project5
     )
+    stage5_project5.employee.add(employee7, employee8)
 
     #26
     stage1_project6 = add_stage(
-        name = 'Investigación',
+        name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=1,
         deadline=datetime1,
         state=completed,
-        project=project6,
-        employee=employee4
+        project=project6
     )
+    stage1_project6.employee.add(employee9, employee10)
 
     #27
     stage2_project6 = add_stage(
@@ -1953,9 +1975,9 @@ def populate():
         number=2,
         deadline=datetime2,
         state=completed,
-        project=project6,
-        employee=employee2
+        project=project6
     )
+    stage2_project6.employee.add(employee9, employee10)
 
     #28
     stage3_project6 = add_stage(
@@ -1964,9 +1986,9 @@ def populate():
         number=3,
         deadline=datetime3,
         state=completed,
-        project=project6,
-        employee=employee10
+        project=project6
     )
+    stage3_project6.employee.add(employee9, employee10)
 
     #29
     stage4_project6 = add_stage(
@@ -1975,9 +1997,9 @@ def populate():
         number=4,
         deadline=datetime4,
         state=completed,
-        project=project6,
-        employee=employee6
+        project=project6
     )
+    stage4_project6.employee.add(employee9, employee10)
 
     #30
     stage5_project6 = add_stage(
@@ -1986,9 +2008,9 @@ def populate():
         number=5,
         deadline=datetime5,
         state=completed,
-        project=project6,
-        employee=employee3
-        )
+        project=project6
+    )
+    stage5_project6.employee.add(employee9, employee10)
 
     #31
     stage1_project7 = add_stage(
@@ -1997,9 +2019,9 @@ def populate():
         number=1,
         deadline=datetime1,
         state=completed,
-        project=project7,
-        employee=employee1
+        project=project7
     )
+    stage1_project7.employee.add(employee11, employee12)
 
     #32
     stage2_project7 = add_stage(
@@ -2008,207 +2030,207 @@ def populate():
         number=2,
         deadline=datetime2,
         state=completed,
-        project=project7,
-        employee=employee2
+        project=project7
     )
+    stage2_project7.employee.add(employee11, employee12)
 
     #33
-    stage3_project8 = add_stage(
+    stage3_project7 = add_stage(
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=3,
         deadline=datetime3,
         state=completed,
-        project=project8,
-        employee=employee1
+        project=project8
     )
+    stage3_project7.employee.add(employee11, employee12)
 
     #34
-    stage4_project8 = add_stage(
+    stage4_project7 = add_stage(
         name='Cimientos',
         description='Se construirán los cimientos',
         number=4,
         deadline=datetime4,
         state=completed,
-        project=project8,
-        employee=employee1
+        project=project8
     )
+    stage4_project7.employee.add(employee11, employee12)
 
     #35
-    stage5_project8 = add_stage(
+    stage5_project7 = add_stage(
         name='Hidráulica',
         description='Se construirá la instalación hidráulica',
         number=5,
         deadline=datetime3,
         state=completed,
-        project=project8,
-        employee=employee13
+        project=project8
     )
+    stage5_project7.employee.add(employee11, employee12)
 
     #36
+    stage1_project8 = add_stage(
+        name='Investigación',
+        description='Se hará levantamiento de medidas en la localidad y se',
+        number=1,
+        deadline=datetime1,
+        state=cancelled,
+        project=project9
+    )
+    stage1_project8.employee.add(employee1, employee2)
+
+    #37
+    stage2_project8 = add_stage(
+        name='Planos',
+        description='Se dibujarán los planos de la estructura general',
+        number=2,
+        deadline=datetime2,
+        state=cancelled,
+        project=project9
+    )
+    stage2_project8.employee.add(employee1, employee2)
+
+    #38
+    stage3_project8 = add_stage(
+        name='Investigación',
+        description='Se hará levantamiento de medidas en la localidad y se',
+        number=3,
+        deadline=datetime3,
+        state=cancelled,
+        project=project9
+    )
+    stage3_project8.employee.add(employee1, employee2)
+
+    #39
+    stage4_project8 = add_stage(
+        name='Cimientos',
+        description='Se construirán los cimientos',
+        number=4,
+        deadline=datetime4,
+        state=cancelled,
+        project=project4
+    )
+    stage4_project8.employee.add(employee1, employee2)
+
+    #40
+    stage5_project8 = add_stage(
+        name='Hidráulica',
+        description='Se construirá la instalación hidráulica',
+        number=5,
+        deadline=datetime5,
+        state=cancelled,
+        project=project9
+    )
+    stage5_project8.employee.add(employee1, employee2)
+
+    #41
     stage1_project9 = add_stage(
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=1,
         deadline=datetime1,
         state=cancelled,
-        project=project9,
-        employee=employee12
+        project=project10
     )
+    stage1_project9.employee.add(employee3, employee4)
 
-    #37
-    stage2_project9=add_stage(
+    #42
+    stage2_project9 = add_stage(
         name='Planos',
         description='Se dibujarán los planos de la estructura general',
         number=2,
         deadline=datetime2,
         state=cancelled,
-        project=project9,
-        employee=employee2
+        project=project10
     )
+    stage2_project9.employee.add(employee3, employee4)
 
-    #38
+    #43
     stage3_project9 = add_stage(
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=3,
         deadline=datetime3,
         state=cancelled,
-        project=project9,
-        employee=employee10
+        project=project10
     )
+    stage3_project9.employee.add(employee3, employee4)
 
-    #39
+    #44
     stage4_project9 = add_stage(
         name='Cimientos',
         description='Se construirán los cimientos',
         number=4,
         deadline=datetime4,
         state=cancelled,
-        project=project4,
-        employee=employee9
+        project=project10
     )
+    stage4_project9.employee.add(employee3, employee4)
 
-    #40
+    #45
     stage5_project9 = add_stage(
         name='Hidráulica',
         description='Se construirá la instalación hidráulica',
         number=5,
-        deadline=datetime5,
+        deadline=datetime3,
         state=cancelled,
-        project=project9,
-        employee=employee3
+        project=project10
     )
+    stage5_project9.employee.add(employee3, employee4)
 
-    #41
+    #46
     stage1_project10 = add_stage(
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=1,
         deadline=datetime1,
-        state=cancelled,
-        project=project10,
-        employee=employee1
+        state=on_time,
+        project=project11
     )
+    stage1_project10.employee.add(employee5, employee6)
 
-    #42
+    #47
     stage2_project10 = add_stage(
         name='Planos',
         description='Se dibujarán los planos de la estructura general',
         number=2,
         deadline=datetime2,
-        state=cancelled,
-        project=project10,
-        employee=employee2
+        state=on_time,
+        project=project11
     )
+    stage2_project10.employee.add(employee5, employee6)
 
-    #43
+    #48
     stage3_project10 = add_stage(
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=3,
         deadline=datetime3,
-        state=cancelled,
-        project=project10,
-        employee=employee1
+        state=on_time,
+        project=project9
     )
+    stage3_project10.employee.add(employee5, employee6)
 
-    #44
+    #49
     stage4_project10 = add_stage(
         name='Cimientos',
         description='Se construirán los cimientos',
         number=4,
         deadline=datetime4,
-        state=cancelled,
-        project=project10,
-        employee=employee10
-    )
-
-    #45
-    stage5_project10 = add_stage(
-        name='Hidráulica',
-        description='Se construirá la instalación hidráulica',
-        number=5,
-        deadline=datetime3,
-        state=cancelled,
-        project=project10,
-        employee=employee13
-    )
-
-    #46
-    stage1_project11 = add_stage(
-        name='Investigación',
-        description='Se hará levantamiento de medidas en la localidad y se',
-        number=1,
-        deadline=datetime1,
         state=on_time,
-        project=project11,
-        employee=employee12
+        project=project11
     )
-
-    #47
-    stage2_project11 = add_stage(
-        name='Planos',
-        description='Se dibujarán los planos de la estructura general',
-        number=2,
-        deadline=datetime2,
-        state=on_time,
-        project=project11,
-        employee=employee2
-    )
-
-    #48
-    stage3_project11 = add_stage(
-        name='Investigación',
-        description='Se hará levantamiento de medidas en la localidad y se',
-        number=3,
-        deadline=datetime3,
-        state=on_time,
-        project=project9,
-        employee=employee11
-    )
-
-    #49
-    stage4_project11 = add_stage(
-        name='Cimientos',
-        description='Se construirán los cimientos',
-        number=4,
-        deadline=datetime4,
-        state=on_time,
-        project=project11,
-        employee=employee11
-    )
+    stage4_project10.employee.add(employee5, employee6)
 
     #50
-    stage5_project11 = add_stage(
+    stage5_project10 = add_stage(
         name='Hidráulica',
         description='Se construirá la instalación hidráulica',
         number=5,
         deadline=datetime5,
         state=on_time,
-        project=project11,
-        employee=employee3
+        project=project11
     )
+    stage5_project10.employee.add(employee5, employee6)
 
     ###############################################################################
     #
@@ -2221,453 +2243,453 @@ def populate():
     datetime1 = datetime.datetime.now()
 
     #1
-    comment1 = add_comment(
+    add_comment(
         title=u"Enviar solicitud",
         description=u"Enviar la solicitud de permiso al instituto",
         date=datetime1,
         employee=employee1,
-        stage=stage1
+        stage=stage1_project1
     )
 
     #2
-    comment2 = add_comment(
+    add_comment(
         title=u"Pedir materiales",
         description=u"Enviar el pedido de materiales al distribuidor autorizado",
         date=datetime1,
         employee=employee2,
-        stage=stage1
+        stage=stage1_project1
     )
 
     #3
-    comment3 = add_comment(
+    add_comment(
         title=u"Reunirse con el director",
         description=u"Asistir a la reunion con el director del lugar",
         date=datetime1,
         employee=employee1,
-        stage=stage2
+        stage=stage2_project1
     )
 
     #4
-    comment4 = add_comment(
+    add_comment(
         title=u"Delegar asignaciones",
         description=u"Establecer asignaciones de trabajo a los empleados",
         date=datetime1,
         employee=employee2,
-        stage=stage2
+        stage=stage2_project1
     )
 
     #5
-    comment5 = add_comment(
+    add_comment(
         title=u"Reportar avances",
         description=u"Reportar los avances del proyecto hasta este punto",
         date=datetime1,
         employee=employee1,
-        stage=stage3
+        stage=stage3_project1
     )
 
     #6
-    comment6 = add_comment(
+    add_comment(
         title=u"Hacer planos",
         description=u"Hacer la propuesta de los planos del proyecto",
         date=datetime1,
         employee=employee2,
-        stage=stage3
+        stage=stage3_project1
     )
 
     #7
-    comment7 = add_comment(
+    add_comment(
         title=u"Reportar avances",
         description=u"Reportar los avances del proyecto hasta este punto",
         date=datetime1,
         employee=employee1,
-        stage=stage4
+        stage=stage4_project1
     )
 
     #8
-    comment8 = add_comment(
+    add_comment(
         title=u"Instalar tuberias",
         description=u"Realizar las instalaciones de las tuberias",
         date=datetime1,
         employee=employee2,
-        stage=stage4
+        stage=stage4_project1
     )
 
     #9
-    comment9 = add_comment(
+    add_comment(
         title=u"Instalar cables",
         description=u"Instalar los cables de luz",
         date=datetime1,
         employee=employee1,
-        stage=stage5
+        stage=stage5_project1
     )
 
     #10
-    comment10 = add_comment(
+    add_comment(
         title=u"Limpiar",
         description=u"Dejar limpio el lugar",
         date=datetime1,
         employee=employee2,
-        stage=stage5
+        stage=stage5_project1
     )
 
     #11
-    comment11 = add_comment(
+    add_comment(
         title=u"Enviar solicitud",
         description=u"Enviar la solicitud de permiso al instituto",
         date=datetime1,
         employee=employee1,
-        stage=stage6
+        stage=stage1_project2
     )
 
     #12
-    comment12 = add_comment(
+    add_comment(
         title=u"Pedir materiales",
         description=u"Enviar el pedido de materiales al distribuidor autorizado",
         date=datetime1,
         employee=employee2,
-        stage=stage6
+        stage=stage1_project2
     )
 
     #13
-    comment13 = add_comment(
+    add_comment(
         title=u"Reunirse con el director",
         description=u"Asistir a la reunion con el director del lugar",
         date=datetime1,
         employee=employee1,
-        stage=stage7
+        stage=stage2_project2
     )
 
     #14
-    comment14 = add_comment(
+    add_comment(
         title=u"Delegar asignaciones",
         description=u"Establecer asignaciones de trabajo a los empleados",
         date=datetime1,
         employee=employee2,
-        stage=stage7
+        stage=stage2_project2
     )
 
     #15
-    comment15 = add_comment(
+    add_comment(
         title=u"Reportar avances",
         description=u"Reportar los avances del proyecto hasta este punto",
         date=datetime1,
         employee=employee1,
-        stage=stage8
+        stage=stage3_project2
     )
 
     #16
-    comment16 = add_comment(
+    add_comment(
         title=u"Hacer planos",
         description=u"Hacer la propuesta de los planos del proyecto",
         date=datetime1,
         employee=employee2,
-        stage=stage8
+        stage=stage3_project2
     )
 
     #17
-    comment17 = add_comment(
+    add_comment(
         title=u"Reportar avances",
         description=u"Reportar los avances del proyecto hasta este punto",
         date=datetime1,
         employee=employee1,
-        stage=stage9
+        stage=stage4_project2
     )
 
     #18
-    comment18 = add_comment(
+    add_comment(
         title=u"Instalar tuberias",
         description=u"Realizar las instalaciones de las tuberias",
         date=datetime1,
         employee=employee2,
-        stage=stage9
+        stage=stage4_project2
     )
 
     #19
-    comment19 = add_comment(
+    add_comment(
         title=u"Instalar cables",
         description=u"Instalar los cables de luz",
         date=datetime1,
         employee=employee1,
-        stage=stage10
+        stage=stage5_project2
     )
 
     #20
-    comment20 = add_comment(
+    add_comment(
         title=u"Limpiar",
         description=u"Dejar limpio el lugar",
         date=datetime1,
         employee=employee2,
-        stage=stage10
+        stage=stage5_project2
     )
 
     #21
-    comment21 = add_comment(
+    add_comment(
         title=u"Limpiar",
         description=u"Dejar limpio el lugar",
         date=datetime1,
         employee=employee2,
-        stage=stage11
+        stage=stage1_project3
     )
 
     #22
-    comment22 = add_comment(
+    add_comment(
         title=u"Enviar solicitud",
         description=u"Enviar la solicitud de permiso al instituto",
         date=datetime1,
         employee=employee1,
-        stage=stage11
+        stage=stage1_project3
     )
 
     #23
-    comment23 = add_comment(
+    add_comment(
         title=u"Pedir materiales",
         description=u"Enviar el pedido de materiales al distribuidor autorizado",
         date=datetime1,
         employee=employee2,
-        stage=stage12
+        stage=stage2_project3
     )
 
     #24
-    comment24 = add_comment(
+    add_comment(
         title=u"Reunirse con el director",
         description=u"Asistir a la reunion con el director del lugar",
         date=datetime1,
         employee=employee1,
-        stage=stage12
+        stage=stage2_project3
     )
 
     #25
-    comment25 = add_comment(
+    add_comment(
         title=u"Delegar asignaciones",
         description=u"Establecer asignaciones de trabajo a los empleados",
         date=datetime1,
         employee=employee2,
-        stage=stage13
+        stage=stage3_project3
     )
 
     #26
-    comment26 = add_comment(
+    add_comment(
         title=u"Reportar avances",
         description=u"Reportar los avances del proyecto hasta este punto",
         date=datetime1,
         employee=employee1,
-        stage=stage13
+        stage=stage3_project3
     )
 
     #27
-    comment27 = add_comment(
+    add_comment(
         title=u"Hacer planos",
         description=u"Hacer la propuesta de los planos del proyecto",
         date=datetime1,
         employee=employee2,
-        stage=stage14
+        stage=stage4_project3
     )
 
     #28
-    comment28 = add_comment(
+    add_comment(
         title=u"Reportar avances",
         description=u"Reportar los avances del proyecto hasta este punto",
         date=datetime1,
         employee=employee1,
-        stage=stage14
+        stage=stage4_project3
     )
 
     #29
-    comment29 = add_comment(
+    add_comment(
         title=u"Instalar tuberias",
         description=u"Realizar las instalaciones de las tuberias",
         date=datetime1,
         employee=employee2,
-        stage=stage15
+        stage=stage5_project3
     )
 
     #30
-    comment30 = add_comment(
+    add_comment(
         title=u"Instalar cables",
         description=u"Instalar los cables de luz",
         date=datetime1,
         employee=employee1,
-        stage=stage15
+        stage=stage5_project3
     )
 
     #31
-    comment31 = add_comment(
+    add_comment(
         title=u"Limpiar",
         description=u"Dejar limpio el lugar",
         date=datetime1,
         employee=employee2,
-        stage=stage16
+        stage=stage1_project4
     )
 
     #32
-    comment32 = add_comment(
+    add_comment(
         title=u"Enviar solicitud",
         description=u"Enviar la solicitud de permiso al instituto",
         date=datetime1,
         employee=employee1,
-        stage=stage16
+        stage=stage1_project4
     )
 
     #33
-    comment33 = add_comment(
+    add_comment(
         title=u"Pedir materiales",
         description=u"Enviar el pedido de materiales al distribuidor autorizado",
         date=datetime1,
         employee=employee2,
-        stage=stage17
+        stage=stage2_project4
     )
 
     #34
-    comment34 = add_comment(
+    add_comment(
         title=u"Reunirse con el director",
         description=u"Asistir a la reunion con el director del lugar",
         date=datetime1,
         employee=employee1,
-        stage=stage17
+        stage=stage2_project4
     )
 
     #35
-    comment35 = add_comment(
+    add_comment(
         title=u"Delegar asignaciones",
         description=u"Establecer asignaciones de trabajo a los empleados",
         date=datetime1,
         employee=employee2,
-        stage=stage18
+        stage=stage3_project4
     )
 
     #36
-    comment36 = add_comment(
+    add_comment(
         title=u"Reportar avances",
         description=u"Reportar los avances del proyecto hasta este punto",
         date=datetime1,
         employee=employee1,
-        stage=stage18
+        stage=stage3_project4
     )
 
     #37
-    comment37 = add_comment(
+    add_comment(
         title=u"Hacer planos",
         description=u"Hacer la propuesta de los planos del proyecto",
         date=datetime1,
         employee=employee2,
-        stage=stage19
+        stage=stage4_project4
     )
 
     #38
-    comment38 = add_comment(
+    add_comment(
         title=u"Reportar avances",
         description=u"Reportar los avances del proyecto hasta este punto",
         date=datetime1,
         employee=employee1,
-        stage=stage19
+        stage=stage4_project4
     )
 
     #39
-    comment39 = add_comment(
+    add_comment(
         title=u"Instalar tuberias",
         description=u"Realizar las instalaciones de las tuberias",
         date=datetime1,
         employee=employee2,
-        stage=stage20
+        stage=stage5_project4
     )
 
     #40
-    comment40 = add_comment(
+    add_comment(
         title=u"Instalar cables",
         description=u"Instalar los cables de luz",
         date=datetime1,
         employee=employee1,
-        stage=stage20
+        stage=stage5_project4
     )
 
     #41
-    comment41 = add_comment(
+    add_comment(
         title=u"Limpiar",
         description=u"Dejar limpio el lugar",
         date=datetime1,
         employee=employee2,
-        stage=stage21
+        stage=stage1_project5
     )
 
     #42
-    comment42 = add_comment(
+    add_comment(
         title=u"Enviar solicitud",
         description=u"Enviar la solicitud de permiso al instituto",
         date=datetime1,
         employee=employee1,
-        stage=stage21
+        stage=stage1_project5
     )
 
     #43
-    comment43 = add_comment(
+    add_comment(
         title=u"Pedir materiales",
         description=u"Enviar el pedido de materiales al distribuidor autorizado",
         date=datetime1,
         employee=employee2,
-        stage=stage22
+        stage=stage2_project5
     )
 
     #44
-    comment44 = add_comment(
+    add_comment(
         title=u"Reunirse con el director",
         description=u"Asistir a la reunion con el director del lugar",
         date=datetime1,
         employee=employee1,
-        stage=stage22
+        stage=stage2_project5
     )
 
     #45
-    comment45 = add_comment(
+    add_comment(
         title=u"Delegar asignaciones",
         description=u"Establecer asignaciones de trabajo a los empleados",
         date=datetime1,
         employee=employee2,
-        stage=stage23
+        stage=stage3_project5
     )
 
     #46
-    comment46 = add_comment(
+    add_comment(
         title=u"Reportar avances",
         description=u"Reportar los avances del proyecto hasta este punto",
         date=datetime1,
         employee=employee1,
-        stage=stage23
+        stage=stage3_project5
     )
 
     #47
-    comment47 = add_comment(
+    add_comment(
         title=u"Hacer planos",
         description=u"Hacer la propuesta de los planos del proyecto",
         date=datetime1,
         employee=employee2,
-        stage=stage24
+        stage=stage4_project5
     )
 
     #48
-    comment48 = add_comment(
+    add_comment(
         title=u"Reportar avances",
         description=u"Reportar los avances del proyecto hasta este punto",
         date=datetime1,
         employee=employee1,
-        stage=stage24
+        stage=stage4_project5
     )
 
     #49
-    comment49 = add_comment(
+    add_comment(
         title=u"Instalar tuberias",
         description=u"Realizar las instalaciones de las tuberias",
         date=datetime1,
         employee=employee2,
-        stage=stage25
+        stage=stage5_project5
     )
 
     #50
-    comment50 = add_comment(
+    add_comment(
         title=u"Instalar cables",
         description=u"Instalar los cables de luz",
         date=datetime1,
         employee=employee1,
-        stage=stage25
+        stage=stage5_project5
     )
 
     ###############################################################################
@@ -2679,10 +2701,10 @@ def populate():
     # 50 Registers / 2 per stage (Los que alcancen)
 
     datetime_test = datetime.date(2015, 1, 5)
-    datetime_now = datetime.datetime()
+    datetime_now = datetime.datetime.now()
 
     #1
-    task1 = add_task(
+    add_task(
         title=u'Hacer planos',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2692,7 +2714,7 @@ def populate():
     )
 
     #2
-    task2 = add_task(
+    add_task(
         title=u'Sacar permiso CEA',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2702,7 +2724,7 @@ def populate():
     )
 
     #3
-    task3 = add_task(
+    add_task(
         title=u'Cotizar metales',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2712,7 +2734,7 @@ def populate():
     )
 
     #4
-    task4 = add_task(
+    add_task(
         title=u'Contactar compañía de concreto',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2722,7 +2744,7 @@ def populate():
     )
 
     #5
-    task5 = add_task(
+    add_task(
         title=u'Montar instalación eléctrica básica',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2732,7 +2754,7 @@ def populate():
     )
 
     #6
-    task6 = add_task(
+    add_task(
         title=u'Conectar generador',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2742,7 +2764,7 @@ def populate():
     )
 
     #7
-    task7 = add_task(
+    add_task(
         title=u'Instalar tuberías',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2752,7 +2774,7 @@ def populate():
     )
 
     #8
-    task8 = add_task(
+    add_task(
         title=u'Contactar compañía de concreto',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2762,7 +2784,7 @@ def populate():
     )
 
     #9
-    task9 = add_task(
+    add_task(
         title=u'Cotizar iluminación',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2772,7 +2794,7 @@ def populate():
     )
 
     #10
-    task10 = add_task(
+    add_task(
         title=u'Instalar jardinería',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2782,7 +2804,7 @@ def populate():
     )
 
     #11
-    task11 = add_task(
+    add_task(
         title=u'Hacer planos',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2792,7 +2814,7 @@ def populate():
     )
 
     #12
-    task12 = add_task(
+    add_task(
         title=u'Sacar permiso CEA',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2802,7 +2824,7 @@ def populate():
     )
 
     #13
-    task13 = add_task(
+    add_task(
         title=u'Cotizar metales',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2812,7 +2834,7 @@ def populate():
     )
 
     #14
-    task14 = add_task(
+    add_task(
         title=u'Contactar compañía de concreto',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2822,7 +2844,7 @@ def populate():
     )
 
     #15
-    task15 = add_task(
+    add_task(
         title=u'Montar instalación eléctrica básica',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2832,7 +2854,7 @@ def populate():
     )
 
     #16
-    task16 = add_task(
+    add_task(
         title=u'Conectar generador',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2842,7 +2864,7 @@ def populate():
     )
 
     #17
-    task17 = add_task(
+    add_task(
         title=u'Instalar tuberías',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2852,7 +2874,7 @@ def populate():
     )
 
     #18
-    task18 = add_task(
+    add_task(
         title=u'Contactar compañía de concreto',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2862,7 +2884,7 @@ def populate():
     )
 
     #19
-    task19 = add_task(
+    add_task(
         title=u'Cotizar iluminación',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2872,7 +2894,7 @@ def populate():
     )
 
     #20
-    task20 = add_task(
+    add_task(
         title=u'Instalar jardinería',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2882,7 +2904,7 @@ def populate():
     )
 
     #21
-    task21 = add_task(
+    add_task(
         title=u'Hacer planos',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2892,7 +2914,7 @@ def populate():
     )
 
     #22
-    task22 = add_task(
+    add_task(
         title=u'Sacar permiso CEA',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2902,7 +2924,7 @@ def populate():
     )
 
     #23
-    task23 = add_task(
+    add_task(
         title=u'Cotizar metales',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2912,7 +2934,7 @@ def populate():
     )
 
     #24
-    task24 = add_task(
+    add_task(
         title=u'Contactar compañía de concreto',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2922,18 +2944,18 @@ def populate():
     )
 
     #25
-    task25 = add_task(
+    add_task(
         title=u'Montar instalación eléctrica básica',
         deadline=datetime_test,
         finished_date=datetime_now,
         is_complete=True,
-        stage = stage3_project3,
+        stage=stage3_project3,
         employee=employee1
     )
 
     #26
-    task26 = add_task(
-        title = u'Conectar generador',
+    add_task(
+        title=u'Conectar generador',
         deadline=datetime_test,
         finished_date=datetime_now,
         is_complete=True,
@@ -2942,7 +2964,7 @@ def populate():
     )
 
     #27
-    task27 = add_task(
+    add_task(
         title=u'Instalar tuberías',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2952,7 +2974,7 @@ def populate():
     )
 
     #28
-    task28 = add_task(
+    add_task(
         title=u'Contactar compañía de concreto',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2962,7 +2984,7 @@ def populate():
     )
 
     #29
-    task29 = add_task(
+    add_task(
         title=u'Cotizar iluminación',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2972,7 +2994,7 @@ def populate():
     )
 
     #30
-    task30 = add_task(
+    add_task(
         title=u'Instalar jardinería',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2982,7 +3004,7 @@ def populate():
     )
 
     #31
-    task31 = add_task(
+    add_task(
         title=u'Hacer planos',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -2992,7 +3014,7 @@ def populate():
     )
 
     #32
-    task32 = add_task(
+    add_task(
         title=u'Sacar permiso CEA',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3002,7 +3024,7 @@ def populate():
     )
 
     #33
-    task33 = add_task(
+    add_task(
         title=u'Cotizar metales',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3012,7 +3034,7 @@ def populate():
     )
 
     #34
-    task34 = add_task(
+    add_task(
         title=u'Contactar compañía de concreto',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3022,7 +3044,7 @@ def populate():
     )
 
     #35
-    task35 = add_task(
+    add_task(
         title=u'Montar instalación eléctrica básica',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3032,7 +3054,7 @@ def populate():
     )
 
     #36
-    task36 = add_task(
+    add_task(
         title=u'Conectar generador',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3042,7 +3064,7 @@ def populate():
     )
 
     #37
-    task37 = add_task(
+    add_task(
         title=u'Instalar tuberías',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3052,7 +3074,7 @@ def populate():
     )
 
     #38
-    task38 = add_task(
+    add_task(
         title=u'Contactar compañía de concreto',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3062,7 +3084,7 @@ def populate():
     )
 
     #39
-    task39 = add_task(
+    add_task(
         title=u'Cotizar iluminación',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3072,7 +3094,7 @@ def populate():
     )
 
     #40
-    task40 = add_task(
+    add_task(
         title=u'Instalar jardinería',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3082,7 +3104,7 @@ def populate():
     )
 
     #41
-    task41 = add_task(
+    add_task(
         title=u'Hacer planos',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3092,7 +3114,7 @@ def populate():
     )
 
     #42
-    task42 = add_task(
+    add_task(
         title=u'Sacar permiso CEA',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3102,7 +3124,7 @@ def populate():
     )
 
     #43
-    task43 = add_task(
+    add_task(
         title=u'Cotizar metales',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3112,7 +3134,7 @@ def populate():
     )
 
     #44
-    task44 = add_task(
+    add_task(
         title=u'Contactar compañía de concreto',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3122,7 +3144,7 @@ def populate():
     )
 
     #45
-    task45 = add_task(
+    add_task(
         title=u'Montar instalación eléctrica básica',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3132,7 +3154,7 @@ def populate():
     )
 
     #46
-    task46 = add_task(
+    add_task(
         title=u'Conectar generador',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3142,7 +3164,7 @@ def populate():
     )
 
     #47
-    task47 = add_task(
+    add_task(
         title=u'Instalar tuberías',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3152,7 +3174,7 @@ def populate():
     )
 
     #48
-    task48 = add_task(
+    add_task(
         title=u'Contactar compañía de concreto',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3162,17 +3184,17 @@ def populate():
     )
 
     #49
-    task49 = add_task(
-        title = u'Cotizar iluminación',
-        deadline = datetime_test,
-        finished_date = datetime_now,
-        is_complete = True,
-        stage = stage5_project5,
-        employee = employee1
+    add_task(
+        title=u'Cotizar iluminación',
+        deadline=datetime_test,
+        finished_date=datetime_now,
+        is_complete=True,
+        stage=stage5_project5,
+        employee=employee1
     )
 
     #50
-    task50 = add_task(
+    add_task(
         title=u'Instalar jardinería',
         deadline=datetime_test,
         finished_date=datetime_now,
@@ -3194,7 +3216,7 @@ def populate():
     for employee in Employee.objects.all():
         print "Inserted Employee - {0}".format(str(employee))
 
-    for project in Institution.objects.all():
+    for project in Project.objects.all():
         print "Inserted Project - {0}".format(str(project))
 
         for permission in Permission.objects.filter(project=project):
@@ -3267,16 +3289,14 @@ def add_stage(name,
               number,
               deadline,
               state,
-              project,
-              employee
+              project
 ):
     s = Stage.objects.get_or_create(name=name,
                                     description=description,
                                     number=number,
                                     deadline=deadline,
                                     state=state,
-                                    project=project,
-                                    employee=employee)[0]
+                                    project=project)[0]
     return s
 
 
@@ -3317,6 +3337,7 @@ def add_task(title,
 # Start execution here!
 if __name__ == '__main__':
     print "Starting SAPU population script..."
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sapu.settings')
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sapu.settings")
     from sapu.models import Project, Institution, ProjectType, Permission, Stage, State, Employee, Comment, Task
+    create_permissions()
     populate()

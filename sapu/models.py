@@ -96,9 +96,9 @@ class Project (django.db.models.Model):
 
 class Permission (django.db.models.Model):
 
-    title = django.db.models.CharField(unique=True, max_length=255, verbose_name=u"Titulo")
+    title = django.db.models.CharField(max_length=255, verbose_name=u"Titulo")
     description = django.db.models.TextField(verbose_name=u"Descripción")
-    folio = django.db.models.CharField(unique=True, max_length=255, verbose_name=u"Folio")
+    folio = django.db.models.CharField(max_length=255, verbose_name=u"Folio")
     institution = django.db.models.ForeignKey(Institution,
                                               on_delete=django.db.models.PROTECT,
                                               related_name="permission_institution",
@@ -169,22 +169,6 @@ class Stage (django.db.models.Model):
     def __unicode__(self):
 
         return unicode(self.name)
-
-
-#class Role
-#    employee = django.db.models.ForeignKey(Employee,
-#                                           on_delete=django.db.models.PROTECT,
-#                                           verbose_name=u"Usuario")
-#    description = django.db.models.CharField(max_length=255,
-#                                               verbose_name="Descripción")
-#    name = django.db.models.CharField(max_length=50,
-#                                               verbose_name="Tipo de Rol")
-
-
-#class Privilege(django.db.models.Model)
-#   name = django.db.models.CharField(max_length = 20, verbose_name="Privilegio")
-    #PENDING
-    #action = associated methods
 
 
 class Comment (django.db.models.Model):
