@@ -1,3 +1,7 @@
-/**
- * Created by noinoeso on 9/24/14.
- */
+$( document ).ready(function() {
+    $('.project-table').DataTable( {
+        paging: false,
+        searching: false,
+        infoCallback: function(){}
+    } );
+});

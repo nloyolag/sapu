@@ -1,0 +1,50 @@
+/* General Styles
+=================*/
+
+/* Projects Styles
+=================*/
+
+.project-table img {
+    max-width: 200px;
+}
+
+.project-table tr td:first-of-type {
+    border-left-style: solid;
+    border-left-width: 7px;
+}
+
+.project-table tr.tiempo td:first-of-type {
+    border-left-color: #5BC0DE;
+}
+
+.project-table tr.Retrasado td:first-of-type {
+    border-left-color: #F2AD4E;
+}
+
+.project-table tr.Cancelado td:first-of-type {
+    border-left-color: #999999;
+}
+
+.project-table tr.Terminado td:first-of-type {
+    border-left-color: #5CB85C;
+}
+
+.pagination-outer {
+    max-width: 1080px;
+    text-align: center;
+}
+
+.pagination-inner {
+    margin: 0 37%;
+    text-align: center;
+}
+
+.pagination-inner a {
+    color: #333333;
+}
+
+.pagination-inner p {
+    font-size: 1.5em;
+    display: inline-block;
+    padding: 0 20px;
+}
