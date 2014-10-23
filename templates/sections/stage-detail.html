@@ -4,5 +4,87 @@
 
 {% block main-content %}
 
+    <div class="stage-detail-container content container">
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <div class="stage-info {{ stage.state.name }}">
+            <p>{{ stage.number }}</p>
+            <p>{{ stage.name }}</p>
+            <p>{{ stage.description }}</p>
+            <p>{{ stage.deadline }}</p>
+            <p>{{ stage.project }}</p>
+        </div>
+
+        <div class="stage-assignees">
+            {% for employee in stage.employee %}
+                <div class="stage-asignee">
+                    <h3>{{ employee.user.name }}</h3>
+                    <img src="{{ employee.photo }}">
+                </div>
+            {% endfor %}
+        </div> <!-- .stage-assignees -->
+
+        <div class="row stage-dashboard">
+
+            <div class="col-md-6 stage-tasks">
+                {% for stage in stages %}
+
+                    <div class="stage-task row">
+
+                        <div class="col-md-3 task-employee">
+                            <img src="{{ task.employee.photo }}">
+                            <p> {{ task.employee.user.name }} </p>
+                        </div>
+
+                        <div class="col-md-9 task-info">
+                            <p>{{ task.title }}</p>
+
+                            {% if task.is_complete %}
+                                <p>Fecha de finalización: {{ task.finished_date }}</p>
+
+                            {% else %}
+                                <p>Fecha límite: {{ task.deadline }}</p>
+
+                            {% endif %}
+
+                            <p>{{ task.is_complete }}</p>
+                        </div>
+
+                    </div> <!-- .stage-task -->
+
+                {% endfor %}
+            </div> <!-- .stage-tasks -->
+
+            <div class="col-md-6 stage-comments">
+                {% for comment in comments %}
+
+                    <div class="stage-comment row">
+
+                        <div class="col-md-3 comment-employee">
+                            <img src="{{ task.employee.photo }}">
+                            <p> {{ task.employee.user.name }} </p>
+                        </div>
+
+                        <div class="col-md-9 comment-info">
+                            <p>{{ comment.title }}</p>
+                            <p>{{ comment.date }}</p>
+                            <p>{{ comment.description }}</p>
+                        </div>
+
+                    </div> <!-- .stage-comment -->
+
+                {% endfor %}
+            </div> <!-- .stage-comments -->
+            
+        </div> <!-- .stage-dashboard -->
+
+    </div> <!-- .stage-detail-inner -->
 
 {% endblock %}
