@@ -58,6 +58,57 @@ h6 {
     background-color: #5cb85c;
 }
 
+.main-content {
+    max-width: 1080px;
+    padding-top: 100px;
+    margin: 0 auto;
+}
+
+/* Header Styles
+===============*/
+
+header {
+    background-color: #333333;
+    width: 100%;
+    position: fixed;
+    color: #FFFFFF;
+    z-index: 99999;
+}
+
+nav h1 {
+    float: left;
+    margin-left: 10px;
+    margin-top: 8px;
+}
+
+nav ul {
+    float: right;
+    display: inline-block;
+    padding-top: 11px;
+}
+
+nav li {
+    display: inline-block;
+    list-style-type: none;
+    text-align: right;
+    padding: 10px;
+    margin-right: 20px;
+    font-size: 20px;
+}
+
+nav i {
+    margin-right: 7px;
+}
+
+nav a {
+   color: #FFFFFF;
+}
+
+nav a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
 /* Login Styles
 ===============*/
 
