@@ -15,76 +15,97 @@
         {% endif %}
 
         <div class="stage-info {{ stage.state.name }}">
-            <p>{{ stage.number }}</p>
-            <p>{{ stage.name }}</p>
-            <p>{{ stage.description }}</p>
-            <p>{{ stage.deadline }}</p>
-            <p>{{ stage.project }}</p>
-        </div>
+            <div class="stage-info-inner">
+                <h2>{{ stage.number }} - {{ stage.name }}</h2>
+                <h5> <i class="fa fa-clock-o fa-lg"></i> - {{ stage.deadline }}</h5>
+                <h6>Proyecto: {{ stage.project }}</h6>
+                <p>{{ stage.description }}</p>
+            </div>
+        </div> <!-- .stage-info -->
 
         <div class="stage-assignees">
-            {% for employee in stage.employee %}
-                <div class="stage-asignee">
-                    <h3>{{ employee.user.name }}</h3>
-                    <img src="{{ employee.photo }}">
-                </div>
-            {% endfor %}
+            <div class="stage-assignees-inner">
+                <h2>Encargados de la etapa</h2>
+                {% for employee in employees %}
+                    <div class="stage-assignee">
+                        <h4>{{ employee.user.first_name }}</h4>
+                        <img src="{{ employee.photo.url }}">
+                    </div>
+                {% endfor %}
+            </div>
         </div> <!-- .stage-assignees -->
 
-        <div class="row stage-dashboard">
+        <div class="stage-dashboard">
 
-            <div class="col-md-6 stage-tasks">
-                {% for stage in stages %}
+            <div class="row stage-dashboard-inner">
 
-                    <div class="stage-task row">
+                <div class="col-md-6 stage-tasks">
+                    <h2>Tareas</h2>
+                    {% for task in tasks %}
 
-                        <div class="col-md-3 task-employee">
-                            <img src="{{ task.employee.photo }}">
-                            <p> {{ task.employee.user.name }} </p>
-                        </div>
+                        <div class="stage-task row">
 
-                        <div class="col-md-9 task-info">
-                            <p>{{ task.title }}</p>
+                            <div class="col-md-2 task-employee">
+                                <img src="{{ task.employee.photo.url }}">
+                                <p> {{ task.employee.user.first_name }} </p>
+                            </div>
 
-                            {% if task.is_complete %}
-                                <p>Fecha de finalización: {{ task.finished_date }}</p>
+                            <div class="col-md-10 task-info">
 
-                            {% else %}
-                                <p>Fecha límite: {{ task.deadline }}</p>
+                                {% if task.is_complete %}
+                                    <i class="fa fa-check-square fa-2x"></i>
 
-                            {% endif %}
+                                {% else %}
+                                    <i class="fa fa-square-o fa-2x"></i>
 
-                            <p>{{ task.is_complete }}</p>
-                        </div>
+                                {% endif %}
 
-                    </div> <!-- .stage-task -->
+                                <div class="task-info-data">
+                                    {% if task.is_complete %}
+                                        <h5>{{ task.title }}</h5>
+                                        <p>Fecha de finalización: {{ task.finished_date }}</p>
 
-                {% endfor %}
-            </div> <!-- .stage-tasks -->
+                                    {% else %}
+                                        <h5>{{ task.title }}</h5>
+                                        <p>Fecha límite: {{ task.deadline }}</p>
 
-            <div class="col-md-6 stage-comments">
-                {% for comment in comments %}
+                                    {% endif %}
+                                </div>
 
-                    <div class="stage-comment row">
+                            </div>
 
-                        <div class="col-md-3 comment-employee">
-                            <img src="{{ task.employee.photo }}">
-                            <p> {{ task.employee.user.name }} </p>
-                        </div>
+                        </div> <!-- .stage-task -->
 
-                        <div class="col-md-9 comment-info">
-                            <p>{{ comment.title }}</p>
-                            <p>{{ comment.date }}</p>
-                            <p>{{ comment.description }}</p>
-                        </div>
+                    {% endfor %}
+                </div> <!-- .stage-tasks -->
 
-                    </div> <!-- .stage-comment -->
+                <div class="col-md-6 stage-comments">
+                    <h2>Comentarios</h2>
+                    {% for comment in comments %}
 
-                {% endfor %}
-            </div> <!-- .stage-comments -->
+                        <div class="stage-comment row">
+
+                            <div class="col-md-2 comment-employee">
+                                <img src="{{ comment.employee.photo.url }}">
+                                <p> {{ comment.employee.user.first_name }} </p>
+                            </div>
+
+                            <div class="col-md-10 comment-info">
+
+                                <h5>{{ comment.title }}</h5>
+                                <p>{{ comment.date }}</p>
+                                <p>{{ comment.description }}</p>
+                            </div>
+
+                        </div> <!-- .stage-comment -->
+
+                    {% endfor %}
+                </div> <!-- .stage-comments -->
+
+            </div> <!-- .stage-dashboard-inner -->
 
         </div> <!-- .stage-dashboard -->
 
-    </div> <!-- .stage-detail-inner -->
+    </div> <!-- .stage-detail -->
 
 {% endblock %}
