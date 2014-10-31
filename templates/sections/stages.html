@@ -4,5 +4,31 @@
 
 {% block main-content %}
 
+<div class="stages-outer">
+
+    <div class="stages-inner content container">
+
+        <h1>ETAPAS</h1>
+
+        <table class="table table-striped stage-table">
+
+            <div>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Número</th>
+                <th>Fecha Límite</th>
+            </div>
+
+            {% for stage in stages %}
+                <div class="{{ stage.state.name }} stage-container">
+
+                </div>
+            {% endfor  %}
+
+        </table>
+
+    </div> <!-- .stages-inner -->
+
+</div> <!-- .stages-outer -->
 
 {% endblock %}
