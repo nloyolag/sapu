@@ -4,5 +4,108 @@
 
 {% block main-content %}
 
+    <div class="stage-detail-container content container">
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <div class="stage-info {{ stage.state.name }}">
+            <div class="stage-info-inner">
+                <h2>{{ stage.number }} - {{ stage.name }}</h2>
+                <h5> <i class="fa fa-clock-o fa-lg"></i> - {{ stage.deadline }}</h5>
+                <h6>Proyecto: {{ stage.project }}</h6>
+                <p>{{ stage.description }}</p>
+            </div>
+        </div> <!-- .stage-info -->
+
+        <div class="stage-assignees">
+            <div class="stage-assignees-inner">
+                <h2>Encargados de la etapa</h2>
+                {% for employee in employees %}
+                    <div class="stage-assignee">
+                        <h4>{{ employee.user.first_name }}</h4>
+                        <img src="{{ employee.photo.url }}">
+                    </div>
+                {% endfor %}
+            </div>
+        </div> <!-- .stage-assignees -->
+
+        <div class="stage-dashboard">
+
+            <div class="row stage-dashboard-inner">
+
+                <div class="col-md-6 stage-tasks">
+                    <h2>Tareas</h2>
+                    {% for task in tasks %}
+
+                        <div class="stage-task row">
+
+                            <div class="col-md-2 task-employee">
+                                <img src="{{ task.employee.photo.url }}">
+                                <p> {{ task.employee.user.first_name }} </p>
+                            </div>
+
+                            <div class="col-md-10 task-info">
+
+                                {% if task.is_complete %}
+                                    <i class="fa fa-check-square fa-2x"></i>
+
+                                {% else %}
+                                    <i class="fa fa-square-o fa-2x"></i>
+
+                                {% endif %}
+
+                                <div class="task-info-data">
+                                    {% if task.is_complete %}
+                                        <h5>{{ task.title }}</h5>
+                                        <p>Fecha de finalización: {{ task.finished_date }}</p>
+
+                                    {% else %}
+                                        <h5>{{ task.title }}</h5>
+                                        <p>Fecha límite: {{ task.deadline }}</p>
+
+                                    {% endif %}
+                                </div>
+
+                            </div>
+
+                        </div> <!-- .stage-task -->
+
+                    {% endfor %}
+                </div> <!-- .stage-tasks -->
+
+                <div class="col-md-6 stage-comments">
+                    <h2>Comentarios</h2>
+                    {% for comment in comments %}
+
+                        <div class="stage-comment row">
+
+                            <div class="col-md-2 comment-employee">
+                                <img src="{{ comment.employee.photo.url }}">
+                                <p> {{ comment.employee.user.first_name }} </p>
+                            </div>
+
+                            <div class="col-md-10 comment-info">
+
+                                <h5>{{ comment.title }}</h5>
+                                <p>{{ comment.date }}</p>
+                                <p>{{ comment.description }}</p>
+                            </div>
+
+                        </div> <!-- .stage-comment -->
+
+                    {% endfor %}
+                </div> <!-- .stage-comments -->
+
+            </div> <!-- .stage-dashboard-inner -->
+
+        </div> <!-- .stage-dashboard -->
+
+    </div> <!-- .stage-detail -->
 
 {% endblock %}

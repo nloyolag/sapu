@@ -340,6 +340,7 @@ def populate():
     )
 
     Group.objects.get(name='Administrator').user_set.add(employee1.user)
+    employee1.user.first_name = 'Armando Arias'
     employee1.save()
 
     #2
@@ -349,6 +350,7 @@ def populate():
     )
 
     Group.objects.get(name='Administrator').user_set.add(employee2.user)
+    employee1.user.first_name = 'Baltasar Mendez'
     employee2.save()
 
     #3

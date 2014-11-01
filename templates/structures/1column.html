@@ -4,7 +4,16 @@
 
 <header>
     <nav>
-        <!-- Navigation Menu -->
+        <a href="/proyectos"><h1>SAPU</h1></a>
+        <ul>
+            {% if perms.sapu.add_employee %}
+                <li><a href="/usuarios"> <i class="fa fa-group fa-lg"></i> Usuarios </a></li>
+            {% endif %}
+
+            <li><a href="/proyectos"> <i class="fa fa-briefcase fa-lg"></i> Proyectos </a></li>
+            <li><a href="/instituciones"> <i class="fa fa-phone fa-lg"></i> Contactos </a></li>
+            <li><a href="/action-logout"> <i class="fa fa-sign-out fa-lg"></i> Cerrar Sesión</a></li>
+        </ul>
     </nav>
 </header>
 
