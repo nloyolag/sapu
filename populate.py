@@ -335,7 +335,7 @@ def populate():
 
     #1
     employee1 = add_employee(
-        user=User.objects.create_user('Armando', 'armando@sapu.com', 'armando'),
+        user=User.objects.create_user('armando','Armando', 'Almanza', 'armando@sapu.com', 'armando'),
         photo=photo_test
     )
 
@@ -345,7 +345,7 @@ def populate():
 
     #2
     employee2 = add_employee(
-        user=User.objects.create_user('Baltasar', 'baltasar@sapu.com', 'baltasar'),
+        user=User.objects.create_user('baltasar', 'Baltasar', 'Benitez','baltasar@sapu.com', 'baltasar'),
         photo=photo_test
     )
 
@@ -355,7 +355,7 @@ def populate():
 
     #3
     employee3 = add_employee(
-        user=User.objects.create_user('Carlos', 'carlos@sapu.com', 'carlos'),
+        user=User.objects.create_user('carlos', 'Carlos', 'Carlyle','carlos@sapu.com', 'carlos'),
         photo=photo_test
     )
 
@@ -364,7 +364,7 @@ def populate():
 
     #4
     employee4 = add_employee(
-        user=User.objects.create_user('Daniel', 'daniel@sapu.com', 'daniel'),
+        user=User.objects.create_user('daniel', 'Daniel', u'Domínguez', 'daniel@sapu.com', 'daniel'),
         photo=photo_test
     )
 
@@ -373,7 +373,7 @@ def populate():
 
     #5
     employee5 = add_employee(
-        user=User.objects.create_user('Eleazar', 'eleazar@sapu.com', 'eleazar'),
+        user=User.objects.create_user('eleazar', 'Eleazar', u'Echeverría', 'eleazar@sapu.com', 'eleazar'),
         photo=photo_test
     )
 
