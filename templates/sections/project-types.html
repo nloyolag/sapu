@@ -16,12 +16,24 @@
             </ul>
         {% endif %}
 
-        <div class="stage-info {{ projectType.name }}">
-            <div class="stage-info-inner">
-                <h2>{{ projectType.name }}</h2>
-                <p>{{ projectType.description }}</p>
-            </div>
-        </div>
+        {% for project_type in project_types %}
+
+            {% if forloop.counter0|divisibleby:3 %}
+                <div class="row">
+            {% endif %}
+
+                <div class="col-md-4 stage-info {{ project_type.name }}">
+                    <div class="stage-info-inner">
+                        <h2>{{ project_type.name }}</h2>
+                        <p>{{ project_type.description }}</p>
+                    </div>
+                </div>
+
+            {% if forloop.counter|divisibleby:3 %}
+                </div>
+            {% endif %}
+
+        {% endfor %}
 
 </div>
 

@@ -192,17 +192,15 @@ def institutions_render_view(request):
 
 
 @django.contrib.auth.decorators.login_required
-def project_type_render_view(request, name, description):
+def project_type_render_view(request):
 
     template_variables = {}
 
     try:
-        projectType = models.ProjectType.objects
+        project_types = models.ProjectType.objects.all()
         template_variables = {
-            'name': name,
-            'description': description
+            'project_types': project_types
         }
-
 
     except models.ProjectType.DoesNotExist as e:
         messages.error(request, e.messages)
