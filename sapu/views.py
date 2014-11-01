@@ -223,7 +223,7 @@ def stages_render_view(request, project_id):
 
     try:
         project = models.Project.objects.get(pk=project_id)
-        stages = models.Stage.objects.get(pk=project_id)
+        stages = models.Stage.objects.filter(project=project)
         template_variables = {
             'stages': stages,
             'project': project,
@@ -236,7 +236,7 @@ def stages_render_view(request, project_id):
         django.template.context.RequestContext(request, template_variables)
 
     return django.shortcuts.render_to_response(
-        globals.TEMPLATE__STAGE_DETAIL,
+        globals.TEMPLATE__STAGES,
         template_context
     )
 
