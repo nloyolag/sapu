@@ -1,8 +1,28 @@
 {% extends "structures/1column.html" %}
 
-{% block title %}SAPU - Etapas{% endblock %}
+{% block title %}SAPU - TiposDeProyecto{% endblock %}
 
 {% block main-content %}
 
+    <div class="stage-detail-container content container">
+
+        <h1>Tipos de Proyecto</h1>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <div class="stage-info {{ projectType.name }}">
+            <div class="stage-info-inner">
+                <h2>{{ projectType.name }}</h2>
+                <p>{{ projectType.description }}</p>
+            </div>
+        </div>
+
+</div>
 
 {% endblock %}

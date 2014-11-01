@@ -192,7 +192,29 @@ def institutions_render_view(request):
 
 
 @django.contrib.auth.decorators.login_required
-def project_type_render_view(request):
+def project_type_render_view(request, name, description):
+
+    template_variables = {}
+
+    try:
+        projectType = models.ProjectType.objects
+        template_variables = {
+            'name': name,
+            'description': description
+        }
+
+
+    except models.ProjectType.DoesNotExist as e:
+        messages.error(request, e.messages)
+
+    template_context =\
+        django.template.context.RequestContext(request, template_variables)
+
+    return django.shortcuts.render_to_response(
+        globals.TEMPLATE__PROJECT_TYPES,
+        template_context
+    )
+
     pass
 
 
