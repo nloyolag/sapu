@@ -217,7 +217,29 @@ def project_type_render_view(request):
 
 
 @django.contrib.auth.decorators.login_required
-def stages_render_view(request):
+def stages_render_view(request, project_id):
+
+    template_variables = {}
+
+    try:
+        project = models.Project.objects.get(pk=project_id)
+        stages = models.Stage.objects.get(pk=project_id)
+        template_variables = {
+            'stages': stages,
+            'project': project,
+        }
+
+    except models.Stage.DoesNotExist as e:
+        messages.error(request, e.messages)
+
+    template_context =\
+        django.template.context.RequestContext(request, template_variables)
+
+    return django.shortcuts.render_to_response(
+        globals.TEMPLATE__STAGE_DETAIL,
+        template_context
+    )
+
     pass
 
 
