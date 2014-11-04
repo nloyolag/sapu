@@ -1,15 +1,10 @@
-{% load static %}
 {% extends "structures/1column.html" %}
 
 {% block title %}SAPU - Etapas{% endblock %}
 
-{% block js_header %}
-   <script src="{{ STATIC_URL }}js/collapse.js"></script>
-{% endblock %}
-
 {% block main-content %}
 
-<div class="projects-container content container">
+<div class="institutions-container content container">
     <h1>Instituciones</h1>
 
     {% if messages %}
@@ -29,49 +24,65 @@
     </form>
 
 
-</div>
-
-
-        <div class="content container">
-            <div class="proyects">
-                 <div class="panel-group" id="accordion">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <h4 class="panel-title"></h4>
-
-
-                           <div id="institution-info" class="col-md-12">
-                            <div class ="col-md-6" id="institution-shortname">
-                                INAH
-                            </div>
-                            <div class="col-md-6" id="institution-name">
-                                Calle tal y tal, número tal, tal tal, tal, tal
-                            </div>
-
-
-                        </div>
-
-
+      {% for institution in institutions %}
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div id="institution-info" class="col-md-12">
+                    <div class ="col-md-6" id="institution-name">
+                        {{ institution.name }}
                     </div>
-                    <div id="institution-collapse" class="institution-collapse">
-                      <div class="panel-body">
-                        <div class="contact-info">
-                            <div class="contact-name">
-                                Nombre
-                            </div>
-                            <div class="contact-phone">
-                                Teléfono
-                            </div>
-                            <div class="contact_address">
-                                Dirección
-                            </div>
-                        </div>
-                      </div>
+                    <div class="col-md-6" id="institution-isclient">
+                        #TODO validate if is client print "Es cliente"
+                        {{ institution.is_client }}
                     </div>
-                  </div>
                 </div>
             </div>
-        </div>
-    </body>
 
+        <div id="institution-collapse" class="institution-collapse">
+            <div class="panel-body">
+                <div class="contact-info">
+                  <div class="contact-name">
+                    {{ institution.contact_point }}
+                  </div>
+                  <div class="contact-phone">
+                    {{ institution.phone }}
+                  </div>
+                  <div class="contact_address">
+                    {{ institution.address}}
+                  </div>
+                  <div class="contact_email">
+                    {{ institution.email }}
+                  </div>
+                 </div>
+            </div>
+        </div>
+
+      </div>
+    </div>
+
+    {% endfor %}
+
+    {% if pagination %}
+        <div class="pagination-outer row">
+            <div class="pagination-inner col-md-4">
+                {% if institutions.has_previous %}
+                    <a href="?page={{ institutions.previous_page_number }}">
+                        <i class="fa fa-chevron-left fa-2x"></i>
+                    </a>
+                {% endif %}
+
+                <p>
+                    Página {{ institutions.number }} de {{ institutions.paginator.num_pages }}
+                </p>
+
+                {% if projects.has_next %}
+                    <a href="?page={{ institutions.next_page_number }}">
+                        <i class="fa fa-chevron-right fa-2x"></i>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+</div>
 {% endblock %}

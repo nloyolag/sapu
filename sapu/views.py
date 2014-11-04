@@ -183,12 +183,76 @@ def projects_render_view(request):
 
 @django.contrib.auth.decorators.login_required
 def users_render_view(request):
-    pass
+    template_variables = {}
 
+    try:
+        employees = models.Employee.objects.all()
+        template_variables = {
+            'employees': employees
+        }
+
+    except models.ProjectType.DoesNotExist as e:
+        messages.error(request, e.messages)
+
+    template_context =\
+        django.template.context.RequestContext(request, template_variables)
+
+    return django.shortcuts.render_to_response(
+        globals.TEMPLATE__USERS,
+        template_context
+    )
 
 @django.contrib.auth.decorators.login_required
 def institutions_render_view(request):
-    pass
+    institution_query = ''
+
+    if request.method == "POST":
+
+        form_search_institution = forms.FormSearchProject(request.POST)
+        if form_search_institution.is_valid():
+
+            institution_query = form_search_institution.cleaned_data['name']
+
+    template_variables = {}
+
+    if institution_query:
+
+        institutions = models.Institution.objects\
+            .filter(name__icontains=institution_query)\
+            .order_by('-name')
+
+        template_variables['institutions'] = institutions
+        template_variables['pagination'] = False
+
+    else:
+
+        institutions = models.Institution.objects\
+            .order_by('-name')
+
+        paginator = django.core.paginator.Paginator(institutions,15)
+        page = request.GET.get('page')
+
+        try:
+            requests_page = paginator.page(page)
+
+        except django.core.paginator.PageNotAnInteger:
+            requests_page = paginator.page(1)
+
+        except django.core.paginator.EmptyPage:
+            requests_page = paginator.page(paginator.num_pages)
+
+        template_variables['institutions'] = requests_page
+        template_variables['pagination'] = True
+
+    template_variables['form_search_institution'] = forms.FormSearchProject()
+
+    template_context =\
+        django.template.context.RequestContext(request, template_variables)
+
+    return django.shortcuts.render_to_response(
+        globals.TEMPLATE__INSTITUTIONS,
+        template_context
+    )
 
 
 @django.contrib.auth.decorators.login_required
@@ -213,7 +277,6 @@ def project_type_render_view(request):
         template_context
     )
 
-    pass
 
 
 @django.contrib.auth.decorators.login_required
@@ -240,7 +303,6 @@ def stages_render_view(request, project_id):
         template_context
     )
 
-    pass
 
 
 @django.contrib.auth.decorators.login_required
