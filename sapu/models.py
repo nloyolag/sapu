@@ -11,7 +11,7 @@ class Institution (django.db.models.Model):
     phone = django.db.models.CharField(max_length=255, verbose_name=u"Teléfono")
     address = django.db.models.CharField(max_length=255, verbose_name=u"Dirección")
     email = django.db.models.EmailField(verbose_name=u"Email")
-    is_client = django.db.models.BooleanField(verbose_name=u"¿Es cliente?")
+    is_client = django.db.models.BooleanField(default=None,verbose_name=u"¿Es cliente?")
     contact_point = django.db.models.CharField(max_length=255, verbose_name=u"Punto de Contacto")
     name = django.db.models.CharField(max_length=255, verbose_name=u"Nombre")
 
@@ -218,8 +218,7 @@ class Task (django.db.models.Model):
     finished_date =\
         django.db.models.DateTimeField(verbose_name=u"Fecha de Completitud")
 
-    is_complete = django.db.models.BooleanField(default=False,
-                                                verbose_name=u"¿Está completada?")
+    is_complete = django.db.models.BooleanField(default=None,verbose_name=u"¿Está completada?")
 
     class Meta:
 
