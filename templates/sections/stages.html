@@ -4,5 +4,47 @@
 
 {% block main-content %}
 
+    <div class="stage-detail-container content container">
+
+        <h1>Etapas</h1>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <div class="stage-info {{ project.state.name }}">
+            <div class="stage-info-inner">
+                <img class="project-detail-img" src="{{ project.photo.url }}">
+                <h2>{{ project.project_id }} - {{ project.name }}</h2>
+                <h5> <i class="fa fa-clock-o fa-lg"></i> - {{ project.deadline }}</h5>
+                <p>{{ project.description }}</p>
+            </div>
+        </div>
+
+        {% for stage in stages %}
+
+            {% if forloop.counter0|divisibleby:3 %}
+                <div class="row">
+            {% endif %}
+
+                <div class="col-md-4 stage-info {{ stage.name }}">
+                    <div class="stage-info-inner">
+                        <h4>{{ stage.number }} - {{ stage.name }}</h4>
+                        <h5> <i class="fa fa-clock-o fa-lg"></i> - {{ stage.deadline }}</h5>
+                        <p>{{ stage.description }}</p>
+                    </div>
+                </div>
+
+            {% if forloop.counter|divisibleby:3 %}
+                </div>
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
 
 {% endblock %}

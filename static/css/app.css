@@ -101,12 +101,20 @@ nav i {
 }
 
 nav a {
-   color: #FFFFFF;
+    color: #FFFFFF;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
 }
 
 nav a:hover {
-    color: #FFFFFF;
+    color: #CCCCCC;
     text-decoration: none;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
 }
 
 /* Login Styles

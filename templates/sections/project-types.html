@@ -1,8 +1,40 @@
 {% extends "structures/1column.html" %}
 
-{% block title %}SAPU - Etapas{% endblock %}
+{% block title %}SAPU - TiposDeProyecto{% endblock %}
 
 {% block main-content %}
 
+    <div class="stage-detail-container content container">
+
+        <h1>Tipos de Proyecto</h1>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% for project_type in project_types %}
+
+            {% if forloop.counter0|divisibleby:3 %}
+                <div class="row">
+            {% endif %}
+
+                <div class="col-md-4 stage-info {{ project_type.name }}">
+                    <div class="stage-info-inner">
+                        <h4>{{ project_type.name }}</h4>
+                        <p>{{ project_type.description }}</p>
+                    </div>
+                </div>
+
+            {% if forloop.counter|divisibleby:3 %}
+                </div>
+            {% endif %}
+
+        {% endfor %}
+
+</div>
 
 {% endblock %}
