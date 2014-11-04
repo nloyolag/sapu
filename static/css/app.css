@@ -297,3 +297,19 @@ nav a:hover {
 .task-info-data {
     display: inline-block;
 }
+
+/*Institutions styles*/
+.institution-name
+{
+    display: inline-block;
+}
+
+.institution-shortname
+{
+    display: inline-block;
+}
+
+.panel-heading
+{
+    overflow: auto;
+}

@@ -1,8 +1,77 @@
+{% load static %}
 {% extends "structures/1column.html" %}
 
 {% block title %}SAPU - Etapas{% endblock %}
 
+{% block js_header %}
+   <script src="{{ STATIC_URL }}js/collapse.js"></script>
+{% endblock %}
+
 {% block main-content %}
 
+<div class="projects-container content container">
+    <h1>Instituciones</h1>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+     <form action="views.institutions_render_view" method="POST">
+        <div>
+            {% csrf_token %}
+            {{form_search_institution.name}}
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </div>
+    </form>
+
+
+</div>
+
+
+        <div class="content container">
+            <div class="proyects">
+                 <div class="panel-group" id="accordion">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title"></h4>
+
+
+                           <div id="institution-info" class="col-md-12">
+                            <div class ="col-md-6" id="institution-shortname">
+                                INAH
+                            </div>
+                            <div class="col-md-6" id="institution-name">
+                                Calle tal y tal, número tal, tal tal, tal, tal
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                    <div id="institution-collapse" class="institution-collapse">
+                      <div class="panel-body">
+                        <div class="contact-info">
+                            <div class="contact-name">
+                                Nombre
+                            </div>
+                            <div class="contact-phone">
+                                Teléfono
+                            </div>
+                            <div class="contact_address">
+                                Dirección
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </body>
 
 {% endblock %}
