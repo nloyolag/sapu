@@ -18,6 +18,32 @@ urlpatterns = patterns('',
     # Modals
     #
 
+    # ex: /modal/
+
+    # ex: /modal/restaurant/1/edit/category/6/
+    # url(r'^modal/restaurant/(?P<restaurant_id>\d+)/'
+    #     r'(?P<modal_action>\w+)/(?P<modal_element>\w+)/'
+    #     r'(?P<element_index>\w+)/$',
+    #     sellpad.views.generic_modal,
+    #     name='modal_restaurant'),
+    #
+    # # ex: /modal/restaurant/1/edit/category/
+    # url(r'^modal/restaurant/(?P<restaurant_id>\d+)/'
+    #     r'(?P<modal_action>\w+)/(?P<modal_element>\w+)/$',
+    #     sellpad.views.generic_modal,
+    #     name='modal_restaurant'),
+    #
+    # # ex: /modal/edit/category/6/
+    # url(r'^modal/(?P<modal_action>\w+)/(?P<modal_element>\w+)/'
+    #     r'(?P<element_index>\w+)/$',
+    #     sellpad.views.generic_modal,
+    #     name='modal'),
+    #
+    # # ex: /modal/edit/category/
+    # url(r'^modal/(?P<modal_action>\w+)/(?P<modal_element>\w+)/$',
+    #     sellpad.views.generic_modal,
+    #     name='modal'),
+
     #
     # Actions
     #
