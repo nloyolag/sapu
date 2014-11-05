@@ -16,11 +16,13 @@
             </ul>
         {% endif %}
 
-        <div class="stage-info {{ project.state.name }}">
-            <div class="stage-info-inner">
-                <img class="project-detail-img" src="{{ project.photo.url }}">
-                <h2>{{ project.project_id }} - {{ project.name }}</h2>
+        <div class="stage-info-project {{ project.state.name }}">
+            <img class="project-detail-img" src="{{ project.photo.url }}">
+            <div class="stage-info-project-inner">
+                <h4>{{ project.project_id }} - {{ project.name }}</h4>
+                <hr>
                 <h5> <i class="fa fa-clock-o fa-lg"></i> - {{ project.deadline }}</h5>
+                <p>Folio: {{ project.folio }} - Institución: {{ project.institution }}</p>
                 <p>{{ project.description }}</p>
             </div>
         </div>
@@ -31,13 +33,16 @@
                 <div class="row">
             {% endif %}
 
-                <div class="col-md-4 stage-info {{ stage.name }}">
-                    <div class="stage-info-inner">
-                        <h4>{{ stage.number }} - {{ stage.name }}</h4>
-                        <h5> <i class="fa fa-clock-o fa-lg"></i> - {{ stage.deadline }}</h5>
+            <a href="/proyectos/{{ project.id }}/{{ stage.id }}">
+                <div class="col-md-4 stg-info {{ stage.name }}">
+                    <div class="stg-info-inner">
+                        <h5>{{ stage.number }} - {{ stage.name }}</h5>
+                        <hr>
+                        <h6> <i class="fa fa-clock-o fa-lg"></i> - {{ stage.deadline }}</h6>
                         <p>{{ stage.description }}</p>
                     </div>
                 </div>
+            </a>
 
             {% if forloop.counter|divisibleby:3 %}
                 </div>
