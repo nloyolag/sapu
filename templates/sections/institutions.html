@@ -10,7 +10,7 @@
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            <li {% if message.tags %} class="{{ message.tags}}" {% endif %}>{{ message }}</li>
             {% endfor %}
         </ul>
     {% endif %}
@@ -25,9 +25,9 @@
 
 
       {% for institution in institutions %}
-      <div class="panel-group" id="accordion">
+      <div class="col-md-6" id="accordion"> <!--class="panel-group"-->
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div  class="col-md-6" id="panel-heading"> <!--class="panel-heading"-->
                 <div id="institution-info" class="col-md-12">
                     <div class ="col-md-6" id="institution-name">
                         {{ institution.name }}
@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-        <div id="institution-collapse" class="institution-collapse">
+        <div id="institution-collapse" class="col-md-6" >
             <div class="panel-body">
                 <div class="contact-info">
                   <div class="contact-name">
@@ -85,4 +85,14 @@
         </div>
         {% endif %}
 </div>
+
+
+
+
+
+
+
+
+
+
 {% endblock %}
