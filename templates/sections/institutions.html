@@ -15,7 +15,7 @@
         </ul>
     {% endif %}
 
-     <form action="views.institutions_render_view" method="POST">
+     <form action="{% url 'views.institutions_render_view' %}" method="POST">
         <div>
             {% csrf_token %}
             {{form_search_institution.name}}
@@ -23,18 +23,66 @@
         </div>
     </form>
 
+      <div class="row institution-table-head">
+          <div class="col-md-6">
+            <div>
+                <div  class="col-md-6">
+                    <div class="col-md-12 institution-info">
+                        <div class ="col-md-6 institution-name">
+                            Nombre
+                        </div>
+                        <div class="col-md-6 institution-isclient">
+                            ¿La institución es cliente?
+                        </div>
+                    </div>
+                </div>
+
+            <div id="institution-collapse" class="col-md-6" >
+                <div class="panel-body">
+                    Información de contacto
+                </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-6">
+            <div>
+                <div  class="col-md-6">
+                    <div class="col-md-12 institution-info">
+                        <div class ="col-md-6 institution-name">
+                            Nombre
+                        </div>
+                        <div class="col-md-6 institution-isclient">
+                            ¿La institución es cliente?
+                        </div>
+                    </div>
+                </div>
+
+            <div id="institution-collapse" class="col-md-6" >
+                <div class="panel-body">
+                    Información de contacto
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
 
       {% for institution in institutions %}
       <div class="col-md-6" id="accordion"> <!--class="panel-group"-->
         <div class="panel panel-default">
             <div  class="col-md-6" id="panel-heading"> <!--class="panel-heading"-->
                 <div id="institution-info" class="col-md-12">
-                    <div class ="col-md-6" id="institution-name">
+                    <div class ="col-md-6 institution-name">
                         {{ institution.name }}
                     </div>
-                    <div class="col-md-6" id="institution-isclient">
-                        #TODO validate if is client print "Es cliente"
-                        {{ institution.is_client }}
+                    <div class="col-md-6 institution-isclient">
+                        {% if institution.is_client %}
+                            <i class="fa fa-check-circle-o fa-2x"></i>
+                        {% else %}
+                            <i class="fa fa-circle-o fa-2x"></i>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -76,7 +124,7 @@
                     Página {{ institutions.number }} de {{ institutions.paginator.num_pages }}
                 </p>
 
-                {% if projects.has_next %}
+                {% if institutions.has_next %}
                     <a href="?page={{ institutions.next_page_number }}">
                         <i class="fa fa-chevron-right fa-2x"></i>
                     </a>
@@ -85,11 +133,6 @@
         </div>
         {% endif %}
 </div>
-
-
-
-
-
 
 
 

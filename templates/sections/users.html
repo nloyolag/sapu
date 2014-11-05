@@ -10,11 +10,11 @@
             <h1>Usuarios</h1>
 
             {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
             {% endif %}
 
             <table class="table table-striped project-table">
@@ -26,10 +26,10 @@
                 </thead>
 
             {% for employee in employees %}
-                <tr class="{{ employee.user.name }}">
-                    <td>{{ employee.user.name }}</td>
+                <tr class="{{ employee.user.username }}">
+                    <td>{{ employee.user.username }}</td>
                     <td>{{ employee.user.email }}</td>
-                    <td><img src="{{ project.photo.url }}"></td>
+                    <td><img src="{{ employee.photo.url }}"></td>
                 </tr>
             {% endfor  %}
 

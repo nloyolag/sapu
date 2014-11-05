@@ -287,9 +287,11 @@ def stages_render_view(request, project_id):
     try:
         project = models.Project.objects.get(pk=project_id)
         stages = models.Stage.objects.filter(project=project)
+        permissions = models.Permission.objects.filter(project=project)
         template_variables = {
             'stages': stages,
             'project': project,
+            'permissions': permissions
         }
 
     except models.Stage.DoesNotExist as e:

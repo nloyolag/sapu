@@ -61,7 +61,7 @@ h6 {
 .main-content {
     max-width: 1080px;
     padding-top: 100px;
-    margin: 0 auto;
+    margin: 0 auto 100px auto;
 }
 
 /* Header Styles
@@ -393,9 +393,7 @@ nav a:hover {
 
 .stage-info-project img {
     display: inline-block;
-    margin-top: -150px;
-    margin-left: 20px;
-    margin-right: 10px;
+    margin: 20px;
 }
 
 .stage-info-project-inner,
@@ -412,12 +410,37 @@ nav a:hover {
     margin-bottom: 15px;
 }
 
-.stg-info {
-    width: 370px;
-    height: 200px;
+.stg-info,
+.permission-info {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #929495;
+    border-radius: 2px;
+    background-color: #F9F9F9;
+    margin: 50px 10px 0 10px;
+    width: 30%;
 }
 
-.stg-info,
+.stg-info-project.tiempo {
+    border-left-width: 12px;
+    border-left-color: #5BC0DE;
+}
+
+.stg-info-project.Retrasado {
+    border-left-width: 12px;
+    border-left-color: #F2AD4E;
+}
+
+.stg-info-project.Cancelado {
+    border-left-width: 12px;
+    border-left-color: #999999;
+}
+
+.stg-info-project.Terminado {
+    border-left-width: 12px;
+    border-left-color: #5CB85C;
+}
+
 .stage-assignees,
 .stage-dashboard {
     border-style: solid;
@@ -462,19 +485,28 @@ nav a:hover {
     margin-bottom: 15px;
 }
 
+.permissions-title {
+    margin-top: 30px;
+}
+
 
 /*Institutions styles*/
-.institution-name
-{
+
+.institution-name {
     display: inline-block;
 }
 
-.institution-isclient
-{
+.institution-isclient {
     display: inline-block;
+    text-align: center;
 }
 
-#panel-heading
-{
+#panel-heading {
     overflow: auto;
+}
+
+.institution-table-head {
+    text-align: center;
+    font-weight: 700;
+    margin-top: 50px;
 }
