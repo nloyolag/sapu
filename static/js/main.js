@@ -4,4 +4,8 @@ $( document ).ready(function() {
         searching: false,
         infoCallback: function(){}
     } );
+
+    $("#institution-info").click(function() {
+        $("#institution-collapse").slideToggle('slow');
+    });
 });

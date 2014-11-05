@@ -4,5 +4,95 @@
 
 {% block main-content %}
 
+<div class="institutions-container content container">
+    <h1>Instituciones</h1>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags}}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+     <form action="views.institutions_render_view" method="POST">
+        <div>
+            {% csrf_token %}
+            {{form_search_institution.name}}
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </div>
+    </form>
+
+
+      {% for institution in institutions %}
+      <div class="col-md-6" id="accordion"> <!--class="panel-group"-->
+        <div class="panel panel-default">
+            <div  class="col-md-6" id="panel-heading"> <!--class="panel-heading"-->
+                <div id="institution-info" class="col-md-12">
+                    <div class ="col-md-6" id="institution-name">
+                        {{ institution.name }}
+                    </div>
+                    <div class="col-md-6" id="institution-isclient">
+                        #TODO validate if is client print "Es cliente"
+                        {{ institution.is_client }}
+                    </div>
+                </div>
+            </div>
+
+        <div id="institution-collapse" class="col-md-6" >
+            <div class="panel-body">
+                <div class="contact-info">
+                  <div class="contact-name">
+                    {{ institution.contact_point }}
+                  </div>
+                  <div class="contact-phone">
+                    {{ institution.phone }}
+                  </div>
+                  <div class="contact_address">
+                    {{ institution.address}}
+                  </div>
+                  <div class="contact_email">
+                    {{ institution.email }}
+                  </div>
+                 </div>
+            </div>
+        </div>
+
+      </div>
+    </div>
+
+    {% endfor %}
+
+    {% if pagination %}
+        <div class="pagination-outer row">
+            <div class="pagination-inner col-md-4">
+                {% if institutions.has_previous %}
+                    <a href="?page={{ institutions.previous_page_number }}">
+                        <i class="fa fa-chevron-left fa-2x"></i>
+                    </a>
+                {% endif %}
+
+                <p>
+                    Página {{ institutions.number }} de {{ institutions.paginator.num_pages }}
+                </p>
+
+                {% if projects.has_next %}
+                    <a href="?page={{ institutions.next_page_number }}">
+                        <i class="fa fa-chevron-right fa-2x"></i>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+</div>
+
+
+
+
+
+
+
+
+
 
 {% endblock %}

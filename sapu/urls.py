@@ -81,6 +81,7 @@ urlpatterns = patterns('',
 
     # ex: /proyectos/132/3
     url(r'^proyectos/(?P<project_id>\d+)/(?P<stage_id>\d+)/$', views.stage_detail_render_view, name='stage-detail'),
+
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

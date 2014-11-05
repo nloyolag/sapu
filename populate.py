@@ -8,6 +8,7 @@ import datetime
 
 #Django imports
 
+import django
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.contenttypes.models import ContentType
 
@@ -15,7 +16,6 @@ from django.contrib.contenttypes.models import ContentType
 
 from permissions import create_permissions
 import sapu.models
-
 
 def populate():
 
@@ -335,7 +335,7 @@ def populate():
 
     #1
     employee1 = add_employee(
-        user=User.objects.create_user('armando','Armando', 'Almanza', 'armando@sapu.com', 'armando'),
+        user=User.objects.create_user('Armando', 'armando@sapu.com', 'armando'),
         photo=photo_test
     )
 
@@ -345,7 +345,7 @@ def populate():
 
     #2
     employee2 = add_employee(
-        user=User.objects.create_user('baltasar', 'Baltasar', 'Benitez','baltasar@sapu.com', 'baltasar'),
+        user=User.objects.create_user('Baltasar','baltasar@sapu.com', 'baltasar'),
         photo=photo_test
     )
 
@@ -355,7 +355,7 @@ def populate():
 
     #3
     employee3 = add_employee(
-        user=User.objects.create_user('carlos', 'Carlos', 'Carlyle','carlos@sapu.com', 'carlos'),
+        user=User.objects.create_user('Carlos','carlos@sapu.com', 'carlos'),
         photo=photo_test
     )
 
@@ -364,7 +364,7 @@ def populate():
 
     #4
     employee4 = add_employee(
-        user=User.objects.create_user('daniel', 'Daniel', u'Domínguez', 'daniel@sapu.com', 'daniel'),
+        user=User.objects.create_user('Daniel', 'daniel@sapu.com', 'daniel'),
         photo=photo_test
     )
 
@@ -373,7 +373,7 @@ def populate():
 
     #5
     employee5 = add_employee(
-        user=User.objects.create_user('eleazar', 'Eleazar', u'Echeverría', 'eleazar@sapu.com', 'eleazar'),
+        user=User.objects.create_user('Eleazar', 'eleazar@sapu.com', 'eleazar'),
         photo=photo_test
     )
 
@@ -456,7 +456,7 @@ def populate():
     #
     #  Projects
     #
-    ###############################################################################
+    ########################################### ####################################
     # REQUIRES: Institution, ProjectType, State
     # 50 Registers
 
@@ -3337,6 +3337,9 @@ def add_task(title,
     return t
 
 # Start execution here!
+
+django.setup()
+
 if __name__ == '__main__':
     print "Starting SAPU population script..."
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sapu.settings")
