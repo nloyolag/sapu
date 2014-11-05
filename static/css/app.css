@@ -306,6 +306,163 @@ nav a:hover {
     display: inline-block;
 }
 
+/*Project Types styles*/
+
+.pt-info {
+    width: 330px;
+    height: 180px;
+}
+
+.title-band {
+    background-color: #E6E6E6;
+}
+
+.pt-info,
+.stage-assignees,
+.stage-dashboard {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #929495;
+    border-radius: 2px;
+    background-color: #F9F9F9;
+    margin: 30px 15px 0 15px;
+}
+
+.pt-info.tiempo {
+    border-left-width: 12px;
+    border-left-color: #5BC0DE;
+}
+
+.pt-info.Retrasado {
+    border-left-width: 12px;
+    border-left-color: #F2AD4E;
+}
+
+.pt-info.Cancelado {
+    border-left-width: 12px;
+    border-left-color: #999999;
+}
+
+.pt-info.Terminado {
+    border-left-width: 12px;
+    border-left-color: #5CB85C;
+}
+
+.pt-info-inner,
+.stage-assignees-inner,
+.stage-dashboard-inner {
+    padding: 15px;
+}
+
+.pt-info-inner * {
+    margin-bottom: 15px;
+}
+
+/*Stages styles*/
+
+.stage-info-project,
+.stage-assignees,
+.stage-dashboard {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #929495;
+    border-radius: 2px;
+    background-color: #F9F9F9;
+    margin: 50px auto 0 auto;
+}
+
+.stage-info-project.tiempo {
+    border-left-width: 12px;
+    border-left-color: #5BC0DE;
+}
+
+.stage-info-project.Retrasado {
+    border-left-width: 12px;
+    border-left-color: #F2AD4E;
+}
+
+.stage-info-project.Cancelado {
+    border-left-width: 12px;
+    border-left-color: #999999;
+}
+
+.stage-info-project.Terminado {
+    border-left-width: 12px;
+    border-left-color: #5CB85C;
+}
+
+.stage-info-project img {
+    display: inline-block;
+    margin-top: -150px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.stage-info-project-inner,
+.stage-assignees-inner,
+.stage-dashboard-inner {
+    padding: 15px;
+}
+
+.stage-info-project-inner {
+    display: inline-block;
+}
+
+.stage-info-project-inner * {
+    margin-bottom: 15px;
+}
+
+.stg-info {
+    width: 370px;
+    height: 200px;
+}
+
+.stg-info,
+.stage-assignees,
+.stage-dashboard {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #929495;
+    border-radius: 2px;
+    background-color: #F9F9F9;
+    margin: 50px 10px 0 10px;
+}
+
+.stg-info.tiempo {
+    border-left-width: 12px;
+    border-left-color: #5BC0DE;
+}
+
+.stg-info.Retrasado {
+    border-left-width: 12px;
+    border-left-color: #F2AD4E;
+}
+
+.stg-info.Cancelado {
+    border-left-width: 12px;
+    border-left-color: #999999;
+}
+
+.stg-info.Terminado {
+    border-left-width: 12px;
+    border-left-color: #5CB85C;
+}
+
+.stg-info-inner,
+.stage-assignees-inner,
+.stage-dashboard-inner {
+    padding: 15px;
+}
+
+.stg-info-inner {
+    display: inline-block;
+}
+
+.stg-info-inner * {
+    margin-bottom: 15px;
+}
+
+
 /*Institutions styles*/
 .institution-name
 {
