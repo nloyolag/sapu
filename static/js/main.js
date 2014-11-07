@@ -25,10 +25,15 @@ $( document ).ready(function() {
     });
 
     modalDeleteSummon.fancybox({
-
+       'afterClose' : function() {
+            var _href = $(this).attr("href");
+            _href = _href.substr(1);
+            var targetModal = document.getElementById(_href);
+            var modal_href = $(targetModal).children("a").attr("href");
+            while(modal_href.charAt(modal_href.length - 1) != '/')
+                modal_href = modal_href.substr(0, modal_href.length - 1);
+            $(targetModal).children("a").attr("href", modal_href);
+        }
     });
-
-
-
 
 });

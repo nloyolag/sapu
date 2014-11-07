@@ -27,15 +27,24 @@
                         <h5>{{ project_type.name }}</h5>
                         <hr>
                         <p>{{ project_type.description }}</p>
+                        <a href=""><i class="fa fa-pencil"></i></a>
+                        <a href="#delete-project-type" class="modal-delete-summon" id="{{ project_type.id }}"><i class="fa fa-trash-o"></i></a>
                     </div>
                 </div>
 
-            {% if forloop.counter|divisibleby:3 %}
+            {% if forloop.counter|divisibleby:3 or forloop.last %}
                 </div>
             {% endif %}
 
         {% endfor %}
 
+    </div>
+
+<div style="display:none">
+    <div class="delete-modal" id="delete-project-type">
+        <h6>¿Estás seguro de querer eliminar este tipo de proyecto?</h6>
+        <a href="/delete/project_type/" class="btn btn-danger">Eliminar</a>
+    </div>
 </div>
 
 {% endblock %}
