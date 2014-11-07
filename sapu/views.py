@@ -336,3 +336,39 @@ def stage_detail_render_view(request, project_id, stage_id):
         globals.TEMPLATE__STAGE_DETAIL,
         template_context
     )
+
+
+def generic_modal(request, modal_action, modal_element, element_index=None):
+    pass
+
+
+def delete_institution_view(request, institution_id):
+    pass
+
+
+def delete_project_type_view(request, project_type_id):
+    pass
+
+
+def delete_project_view(request, project_id):
+    pass
+
+
+def delete_permission_view(request, permission_id):
+    pass
+
+
+def delete_employee_view(request, employee_id):
+    pass
+
+
+def delete_stage_view(request, stage_id):
+    pass
+
+
+def delete_task_view(request, task_id):
+    pass
+
+
+def delete_comment_view(request, comment_id):
+    pass

@@ -10,7 +10,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
-    #ex: /admin/
+    # ex: /admin/
     url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', include(admin.site.urls)),
 
@@ -18,31 +18,60 @@ urlpatterns = patterns('',
     # Modals
     #
 
-    # ex: /modal/
+    # ex: /modal/add/project/
+    url(r'^modal/(?P<modal_action>\w+)/(?P<modal_element>\w+)/$',
+        views.generic_modal,
+        name='modal-add'),
 
-    # ex: /modal/restaurant/1/edit/category/6/
-    # url(r'^modal/restaurant/(?P<restaurant_id>\d+)/'
-    #     r'(?P<modal_action>\w+)/(?P<modal_element>\w+)/'
-    #     r'(?P<element_index>\w+)/$',
-    #     sellpad.views.generic_modal,
-    #     name='modal_restaurant'),
+    # ex: /modal/edit/project/6/
+    url(r'^modal/(?P<modal_action>\w+)/(?P<modal_element>\w+)/'
+        r'(?P<element_index>\w+)/$',
+        views.generic_modal,
+        name='modal-edit'),
+
     #
-    # # ex: /modal/restaurant/1/edit/category/
-    # url(r'^modal/restaurant/(?P<restaurant_id>\d+)/'
-    #     r'(?P<modal_action>\w+)/(?P<modal_element>\w+)/$',
-    #     sellpad.views.generic_modal,
-    #     name='modal_restaurant'),
+    # Modals Delete
     #
-    # # ex: /modal/edit/category/6/
-    # url(r'^modal/(?P<modal_action>\w+)/(?P<modal_element>\w+)/'
-    #     r'(?P<element_index>\w+)/$',
-    #     sellpad.views.generic_modal,
-    #     name='modal'),
-    #
-    # # ex: /modal/edit/category/
-    # url(r'^modal/(?P<modal_action>\w+)/(?P<modal_element>\w+)/$',
-    #     sellpad.views.generic_modal,
-    #     name='modal'),
+
+    # ex: /delete/institution/3
+    url(r'^delete/institution/(?P<institution_id>\d*)/$',
+        views.delete_institution_view,
+        name='delete-institution'),
+
+    # ex: /delete/project_type/3
+    url(r'^delete/project_type/(?P<project_type_id>\d*)/$',
+        views.delete_project_type_view,
+        name='delete-project-type'),
+
+    # ex: /delete/project/3
+    url(r'^delete/project/(?P<project_id>\d*)/$',
+        views.delete_project_view,
+        name='delete-project'),
+
+    # ex: /delete/permission/3
+    url(r'^delete/permission/(?P<permission_id>\d*)/$',
+        views.delete_permission_view,
+        name='delete-permission'),
+
+    # ex: /delete/employee/3
+    url(r'^delete/employee/(?P<employee_id>\d*)/$',
+        views.delete_employee_view,
+        name='delete-employee'),
+
+    # ex: /delete/stage/3
+    url(r'^delete/stage/(?P<stage_id>\d*)/$',
+        views.delete_stage_view,
+        name='delete-stage'),
+
+    # ex: /delete/comment/3
+    url(r'^delete/comment/(?P<comment_id>\d*)/$',
+        views.delete_comment_view,
+        name='delete-comment'),
+
+    # ex: /delete/task/3
+    url(r'^delete/task/(?P<task_id>\d*)/$',
+        views.delete_task_view,
+        name='delete-task'),
 
     #
     # Actions

@@ -23,6 +23,7 @@
                     <th>Nombre</th>
                     <th>Correo-e</th>
                     <th>Foto</th>
+                    <th>Acciones</th>
                 </thead>
 
             {% for employee in employees %}
@@ -30,6 +31,10 @@
                     <td>{{ employee.user.username }}</td>
                     <td>{{ employee.user.email }}</td>
                     <td><img src="{{ employee.photo.url }}"></td>
+                    <td>
+                        <a href=""><i class="fa fa-pencil"></i></a>
+                        <a href="#delete-employee" class="modal-delete-summon" id="{{ employee.id }}"><i class="fa fa-pencil"></i></a>
+                    </td>
                 </tr>
             {% endfor  %}
 
@@ -39,5 +44,11 @@
     </div> <!-- .users-inner -->
 </div> <!-- .users-outer -->
 
+<div style="display:none">
+    <div class="delete-modal" id="delete-employee">
+        <h6>¿Estás seguro de querer eliminar este usuario?</h6>
+        <a href="/delete/employee/" class="btn btn-danger">Eliminar</a>
+    </div>
+</div>
 
 {% endblock %}
