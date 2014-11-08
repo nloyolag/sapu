@@ -1,4 +1,4 @@
-<div class="modal">
+<div class="sapu-modal">
     <!-- Form Errors -->
     {% for modal_form in modal.main_forms %}
         {% for field in modal_form.form %}
@@ -27,7 +27,7 @@
     <!-- Forms -->
     {% if modal.main_forms %}
         {% for modal_form in modal.main_forms %}
-            <div class="modal-form">
+            <form class="modal-form" method="post">
                 <h4 class="modal-title">{{ modal_form.title }}</h4>
                 <p>{{ modal_form.description }}</p>
                 {% for hidden_field in modal_form.form.invisible_fields %}
@@ -38,12 +38,13 @@
                     {% if field.errors %}
                         <span class="field-error">
                     {% endif %}
+                        <h6>{{ field.label }}</h6>
                         {{ field }}
                     {% if field.errors %}
                         </span>
                     {% endif %}
                 {% endfor %}
-            </div>
+            </form>
         {% endfor %}
     {% endif %}
 

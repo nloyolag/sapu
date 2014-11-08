@@ -52,6 +52,14 @@ FIELD__SUPERVISOR = u"Supervisor"
 FIELD__PROJECT_MANAGER = u"Jefe de proyecto"
 FIELD__SYSTEM_ADMIN = u"Administrador del sistema"
 
+FIELD__NAME = u"Nombre"
+FIELD__TELEPHONE = u"Teléfono"
+FIELD__ADDRESS = u"Dirección"
+FIELD__EMAIL = u"Correo Electrónico"
+FIELD__IS_CLIENT = u"¿Es Cliente?"
+FIELD__CONTACT_POINT = u"Punto de Contacto"
+
+
 ################################################################################
 #
 # Form Prefixes

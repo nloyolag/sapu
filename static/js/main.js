@@ -1,5 +1,6 @@
 $( document ).ready(function() {
 
+    // Data Table creation on projects view
     $('.project-table').DataTable( {
         paging: false,
         searching: false,
@@ -12,6 +13,7 @@ $( document ).ready(function() {
 
     var modalDeleteSummon = $(".modal-delete-summon");
 
+    // Changes delete button URL on click
     modalDeleteSummon.click(function() {
         var _href = $(this).attr("href");
         _href = _href.substr(1);
@@ -21,9 +23,10 @@ $( document ).ready(function() {
     });
 
     $(".modal-summon").fancybox({
-
+        type: 'ajax'
     });
 
+    // Return delete button URL back to default
     modalDeleteSummon.fancybox({
        'afterClose' : function() {
             var _href = $(this).attr("href");
@@ -35,5 +38,21 @@ $( document ).ready(function() {
             $(targetModal).children("a").attr("href", modal_href);
         }
     });
+
+    // Target the cancel button to close the modal
+    $(document).on(
+        'click',
+        'form.modalform a.cancel-button[href="#"]',
+        function(event){
+            console.log("hola")
+            event.preventDefault();
+            close_parent_modal($(this));
+        }
+    )
+
+    function close_parent_modal($element) {
+        $modal = $($element).parents('.reveal-modal');
+        $modal.foundation('reveal', 'close');
+    }
 
 });

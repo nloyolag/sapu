@@ -74,10 +74,22 @@ class ModelFormUser(django.forms.ModelForm):
 
 class ModelFormInstitution(django.forms.ModelForm):
 
-    #def __init__(self, *args, **kwargs):
+    class Meta:
+        model = models.Institution
+        fields = [
+            'name',
+            'phone',
+            'address',
+            'email',
+            'is_client',
+            'contact_point'
+        ]
 
-    #class Meta:
-    pass
+        error_messages = {
+            'name': {
+                'required': u"Necesitas asignarle un nombre a la institución"
+            }
+        }
 
 
 class ModelFormProjectType(django.forms.ModelForm):

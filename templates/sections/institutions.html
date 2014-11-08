@@ -8,7 +8,7 @@
 
     <div class="institutions-header view-header">
         <h1>Instituciones</h1>
-        <a href="modal/add/institution" class="btn btn-info">Agregar Institución</a>
+        <a href="/modal/add/institution" class="btn btn-info modal-summon">Agregar Institución</a>
     </div>
 
     {% if messages %}
@@ -106,7 +106,7 @@
                       <div class="contact_email">
                         {{ institution.email }}
                       </div>
-                      <a href=""><i class="fa fa-pencil"></i></a>
+                      <a href="/modal/edit/institution/{{ institution.id }}" class="modal-summon"><i class="fa fa-pencil"></i></a>
                       <a href="#delete-institution" class="modal-delete-summon" id="{{ institution.id }}"><i class="fa fa-trash-o"></i></a>
                  </div>
             </div>
