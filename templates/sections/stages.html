@@ -30,7 +30,11 @@
             </div>
         </div>
 
-        <h2 class="permissions-title">Permisos</h2>
+        <div class="view-header permissions-header">
+            <h2 class="permissions-title">Permisos</h2>
+            <a href="modal/add/permission" class="btn btn-info">Agregar Permiso</a>
+        </div>
+
 
         {% for permission in permissions %}
 
@@ -56,7 +60,10 @@
 
         {% endfor %}
 
-        <h2 class="permissions-title">Etapas</h2>
+        <div class="view-header tasks-header">
+            <h2 class="permissions-title">Etapas</h2>
+            <a href="modal/add/task" class="btn btn-info">Agregar Etapa</a>
+        </div>
 
         {% for stage in stages %}
 

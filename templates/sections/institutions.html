@@ -5,7 +5,11 @@
 {% block main-content %}
 
 <div class="institutions-container content container">
-    <h1>Instituciones</h1>
+
+    <div class="institutions-header view-header">
+        <h1>Instituciones</h1>
+        <a href="modal/add/institution" class="btn btn-info">Agregar Institución</a>
+    </div>
 
     {% if messages %}
         <ul class="messages">

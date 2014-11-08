@@ -28,6 +28,11 @@ import forms
 import models
 
 
+# TODO Create modal edit
+# TODO Create modal add
+# TODO Apply client corrections
+# TODO Fix Create/Update/Delete buttons styles
+
 # Functions that render the views of the application
 
 def action_login(request):
@@ -139,12 +144,16 @@ def projects_render_view(request):
 
     template_variables = {}
 
-    #TODO Order Projects By States, not deadlines
+    # TODO Order Projects By States, not deadlines
+    # TODO Add logic to change project state to delayed (Beware of it overriding finished or cancelled states)
+    # TODO Create projects
+    # TODO Edit projects
+    # TODO Delete projects
 
     if project_query:
 
         projects = models.Project.objects\
-            .filter(name__icontains=project_query)\
+            .filter(name__icontains=project_query, is_active=True)\
             .order_by('-deadline')
 
         template_variables['projects'] = projects
@@ -153,6 +162,7 @@ def projects_render_view(request):
     else:
 
         projects = models.Project.objects\
+            .filter(is_active=True)\
             .order_by('-deadline')
 
         paginator = django.core.paginator.Paginator(projects, 10)
@@ -185,8 +195,14 @@ def projects_render_view(request):
 def users_render_view(request):
     template_variables = {}
 
+    # TODO Check if user logged in at least once
+    # TODO Add option (in edit form or separately) to change user permissions
+    # TODO Create users
+    # TODO Edit users
+    # TODO Delete users
+
     try:
-        employees = models.Employee.objects.all()
+        employees = models.Employee.objects.filter(user__is_active=True)
         template_variables = {
             'employees': employees
         }
@@ -205,6 +221,11 @@ def users_render_view(request):
 
 @login_required
 def institutions_render_view(request):
+
+    # TODO Refactor template interface
+    # TODO Create institutions
+    # TODO Edit institutions
+
     institution_query = ''
 
     if request.method == "POST":
@@ -260,10 +281,14 @@ def institutions_render_view(request):
 @login_required
 def project_type_render_view(request):
 
+    # TODO Create project_types
+    # TODO Edit project_types
+    # TODO Delete project_types
+
     template_variables = {}
 
     try:
-        project_types = models.ProjectType.objects.all()
+        project_types = models.ProjectType.objects.filter(is_active=True)
         template_variables = {
             'project_types': project_types
         }
@@ -283,12 +308,23 @@ def project_type_render_view(request):
 @login_required
 def stages_render_view(request, project_id):
 
+    # TODO Add logic to change project state to delayed (Beware of it overriding finished or cancelled states)
+    # TODO Add logic to change stage state to delayed (Beware of it overriding finished or cancelled states)
+    # TODO Code button to declare project as complete
+    # TODO Code button to cancel project
+    # TODO Create stages
+    # TODO Edit stages
+    # TODO Delete stages
+    # TODO Create permissions
+    # TODO Edit permissions
+    # TODO Delete permissions
+
     template_variables = {}
 
     try:
         project = models.Project.objects.get(pk=project_id)
-        stages = models.Stage.objects.filter(project=project)
-        permissions = models.Permission.objects.filter(project=project)
+        stages = models.Stage.objects.filter(project=project, is_active=True)
+        permissions = models.Permission.objects.filter(project=project, is_active=True)
         template_variables = {
             'stages': stages,
             'project': project,
@@ -310,13 +346,24 @@ def stages_render_view(request, project_id):
 @login_required
 def stage_detail_render_view(request, project_id, stage_id):
 
+    # TODO Add option to assign or unassign employees to stage
+    # TODO Code checkbox to modify is_complete value
+    # TODO Separate Tasks from Comments
+    # TODO Code buttons for assignees to declare stage as finished
+    # TODO Create tasks
+    # TODO Edit tasks
+    # TODO Delete tasks
+    # TODO Create comments
+    # TODO Edit comments
+    # TODO Delete comments
+
     template_variables = {}
 
     try:
         project = models.Project.objects.get(pk=project_id)
         stage = models.Stage.objects.get(pk=stage_id)
-        comments = models.Comment.objects.filter(stage=stage)
-        tasks = models.Task.objects.filter(stage=stage)
+        comments = models.Comment.objects.filter(stage=stage, is_active=True)
+        tasks = models.Task.objects.filter(stage=stage, is_active=True)
         employees = stage.employee.all()
         template_variables = {
             'comments': comments,
@@ -347,6 +394,8 @@ def generic_modal(request, modal_action, modal_element, element_index=None):
 @permission_required('sapu.delete_institution')
 def delete_institution_view(request, institution_id):
 
+    # TODO Fix redirection bug on delete functions
+
     template_variables = {}
 
     try:
@@ -373,11 +422,13 @@ def delete_institution_view(request, institution_id):
 
 
 @django.contrib.auth.decorators.login_required
+@permission_required('sapu.delete_projecttype')
 def delete_project_type_view(request, project_type_id):
     pass
 
 
 @django.contrib.auth.decorators.login_required
+@permission_required('sapu.delete_project')
 def delete_project_view(request, project_id):
     pass
 
@@ -388,20 +439,24 @@ def delete_permission_view(request, permission_id):
 
 
 @django.contrib.auth.decorators.login_required
+@permission_required('sapu.delete_employee')
 def delete_employee_view(request, employee_id):
     pass
 
 
 @django.contrib.auth.decorators.login_required
+@permission_required('sapu.delete_stage')
 def delete_stage_view(request, stage_id):
     pass
 
 
 @django.contrib.auth.decorators.login_required
+@permission_required('sapu.delete_task')
 def delete_task_view(request, task_id):
     pass
 
 
 @django.contrib.auth.decorators.login_required
+@permission_required('sapu.delete_comment')
 def delete_comment_view(request, comment_id):
     pass
