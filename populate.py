@@ -466,6 +466,7 @@ def populate():
     project1 = add_project(
         project_id=u"A1",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Lienzo Charro",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -481,6 +482,7 @@ def populate():
     project2 = add_project(
         project_id=u"A2",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Bandodromo",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -496,6 +498,7 @@ def populate():
     project3 = add_project(
         project_id=u"A3",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Escultura del gobernador del estado de 1956",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -511,6 +514,7 @@ def populate():
     project4 = add_project(
         project_id=u"A4",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Banquetas de avenida universidad",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -526,6 +530,7 @@ def populate():
     project5 = add_project(
         project_id=u"A5",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Alameda",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -541,6 +546,7 @@ def populate():
     project6 = add_project(
         project_id=u"A6",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Carretera a Tlalpan",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -556,6 +562,7 @@ def populate():
     project7 = add_project(
         project_id=u"A7",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Fachada de convento de San Antonio",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -571,6 +578,7 @@ def populate():
     project8 = add_project(
         project_id=u"A8",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Banqueta de calle vicente guerrero",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -586,6 +594,7 @@ def populate():
     project9 = add_project(
         project_id=u"A9",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Escultura de Francisco Cervantes",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -601,6 +610,7 @@ def populate():
     project10 = add_project(
         project_id=u"A10",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Escultura de gato",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -616,6 +626,7 @@ def populate():
     project11 = add_project(
         project_id=u"A11",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Lienzo Charro",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -631,6 +642,7 @@ def populate():
     project12 = add_project(
         project_id=u"A12",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Bandodromo",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -646,6 +658,7 @@ def populate():
     project13 = add_project(
         project_id=u"A13",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Escultura del gobernador del estado de 1956",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -661,6 +674,7 @@ def populate():
     project14 = add_project(
         project_id=u"A14",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Banquetas de avenida universidad",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -676,6 +690,7 @@ def populate():
     project15 = add_project(
         project_id=u"A15",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Alameda",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -691,6 +706,7 @@ def populate():
     project16 = add_project(
         project_id=u"A16",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Carretera a Tlalpan",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -706,6 +722,7 @@ def populate():
     project17 = add_project(
         project_id=u"A17",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Fachada de convento de San Antonio",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -721,6 +738,7 @@ def populate():
     project18 = add_project(
         project_id=u"A18",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Banqueta de calle vicente guerrero",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -736,6 +754,7 @@ def populate():
     project19 = add_project(
         project_id=u"A19",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Escultura de Francisco Cervantes",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -751,6 +770,7 @@ def populate():
     project20 = add_project(
         project_id=u"A20",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Escultura de gato",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -766,6 +786,7 @@ def populate():
     project21 = add_project(
         project_id=u"A21",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Lienzo Charro",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -781,6 +802,7 @@ def populate():
     project22 = add_project(
         project_id=u"A22",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Bandodromo",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -796,6 +818,7 @@ def populate():
     project23 = add_project(
         project_id=u"A23",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Escultura del gobernador del estado de 1956",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -811,6 +834,7 @@ def populate():
     project24 = add_project(
         project_id=u"A24",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Banquetas de avenida universidad",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -826,6 +850,7 @@ def populate():
     project25 = add_project(
         project_id=u"A25",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Alameda",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -841,6 +866,7 @@ def populate():
     project26 = add_project(
         project_id=u"A26",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Carretera a Tlalpan",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -856,6 +882,7 @@ def populate():
     project27 = add_project(
         project_id=u"A27",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Fachada de convento de San Antonio",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -871,6 +898,7 @@ def populate():
     project28 = add_project(
         project_id=u"A28",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Banqueta de calle vicente guerrero",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -886,6 +914,7 @@ def populate():
     project29 = add_project(
         project_id=u"A29",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Escultura de Francisco Cervantes",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -901,6 +930,7 @@ def populate():
     project30 = add_project(
         project_id=u"A30",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Escultura de gato",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -916,6 +946,7 @@ def populate():
     project31 = add_project(
         project_id=u"A31",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Lienzo Charro",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -931,6 +962,7 @@ def populate():
     project32 = add_project(
         project_id=u"A32",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Bandodromo",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -946,6 +978,7 @@ def populate():
     project33 = add_project(
         project_id=u"A33",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Escultura del gobernador del estado de 1956",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -961,6 +994,7 @@ def populate():
     project34 = add_project(
         project_id=u"A34",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Banquetas de avenida universidad",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -976,6 +1010,7 @@ def populate():
     project35 = add_project(
         project_id=u"A35",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Alameda",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -991,6 +1026,7 @@ def populate():
     project36 = add_project(
         project_id=u"A36",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Carretera a Tlalpan",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -1006,6 +1042,7 @@ def populate():
     project37 = add_project(
         project_id=u"A37",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Fachada de convento de San Antonio",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -1021,6 +1058,7 @@ def populate():
     project38 = add_project(
         project_id=u"A38",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Banqueta de calle vicente guerrero",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -1036,6 +1074,7 @@ def populate():
     project39 = add_project(
         project_id=u"A39",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Escultura de Francisco Cervantes",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -1051,6 +1090,7 @@ def populate():
     project40 = add_project(
         project_id=u"A40",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Escultura de gato",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -1066,6 +1106,7 @@ def populate():
     project41 = add_project(
         project_id=u"A41",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Lienzo Charro",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -1081,6 +1122,7 @@ def populate():
     project42 = add_project(
         project_id=u"A42",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Bandodromo",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -1096,6 +1138,7 @@ def populate():
     project43 = add_project(
         project_id=u"A43",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Escultura del gobernador del estado de 1956",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -1111,6 +1154,7 @@ def populate():
     project44 = add_project(
         project_id=u"A44",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Banquetas de avenida universidad",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -1126,6 +1170,7 @@ def populate():
     project45 = add_project(
         project_id=u"A45",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Alameda",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -1141,6 +1186,7 @@ def populate():
     project46 = add_project(
         project_id=u"A46",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Carretera a Tlalpan",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -1156,6 +1202,7 @@ def populate():
     project47 = add_project(
         project_id=u"A47",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Fachada de convento de San Antonio",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -1171,6 +1218,7 @@ def populate():
     project48 = add_project(
         project_id=u"A48",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Banqueta de calle vicente guerrero",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -1186,6 +1234,7 @@ def populate():
     project49 = add_project(
         project_id=u"A49",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Escultura de Francisco Cervantes",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -1201,6 +1250,7 @@ def populate():
     project50 = add_project(
         project_id=u"A50",
         deadline=datetime1,
+        creation_date=datetime1,
         name=u"Escultura de gato",
         description=u"Enorme proyecto municipal de gran interes publico",
         folio=u"A739232",
@@ -3237,6 +3287,7 @@ def populate():
 def add_project(
         project_id,
         deadline,
+        creation_date,
         name,
         description,
         folio,
@@ -3246,6 +3297,7 @@ def add_project(
 ):
     p = Project.objects.get_or_create(project_id=project_id,
                                       deadline=deadline,
+                                      creation_date=creation_date,
                                       name=name,
                                       description=description,
                                       folio=folio,

@@ -10,7 +10,6 @@ import django.core.servers.basehttp
 import django.core.urlresolvers
 import django.core.paginator
 import django.contrib.auth
-import django.contrib.auth.decorators
 import django.contrib.auth.forms
 import django.core.mail
 import django.http
@@ -18,6 +17,7 @@ import django.shortcuts
 import django.utils.encoding
 import django.template.context
 import django.contrib.auth.models
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 
@@ -125,7 +125,7 @@ def login_render_view(request):
     )
 
 
-@django.contrib.auth.decorators.login_required
+@login_required
 def projects_render_view(request):
 
     project_query = ''
@@ -181,7 +181,7 @@ def projects_render_view(request):
     )
 
 
-@django.contrib.auth.decorators.login_required
+@login_required
 def users_render_view(request):
     template_variables = {}
 
@@ -202,7 +202,8 @@ def users_render_view(request):
         template_context
     )
 
-@django.contrib.auth.decorators.login_required
+
+@login_required
 def institutions_render_view(request):
     institution_query = ''
 
@@ -218,7 +219,7 @@ def institutions_render_view(request):
     if institution_query:
 
         institutions = models.Institution.objects\
-            .filter(name__icontains=institution_query)\
+            .filter(name__icontains=institution_query, is_active=True)\
             .order_by('-name')
 
         template_variables['institutions'] = institutions
@@ -227,9 +228,10 @@ def institutions_render_view(request):
     else:
 
         institutions = models.Institution.objects\
+            .filter(is_active=True)\
             .order_by('-name')
 
-        paginator = django.core.paginator.Paginator(institutions,15)
+        paginator = django.core.paginator.Paginator(institutions, 15)
         page = request.GET.get('page')
 
         try:
@@ -255,7 +257,7 @@ def institutions_render_view(request):
     )
 
 
-@django.contrib.auth.decorators.login_required
+@login_required
 def project_type_render_view(request):
 
     template_variables = {}
@@ -278,8 +280,7 @@ def project_type_render_view(request):
     )
 
 
-
-@django.contrib.auth.decorators.login_required
+@login_required
 def stages_render_view(request, project_id):
 
     template_variables = {}
@@ -306,8 +307,7 @@ def stages_render_view(request, project_id):
     )
 
 
-
-@django.contrib.auth.decorators.login_required
+@login_required
 def stage_detail_render_view(request, project_id, stage_id):
 
     template_variables = {}
@@ -338,37 +338,70 @@ def stage_detail_render_view(request, project_id, stage_id):
     )
 
 
+@login_required
 def generic_modal(request, modal_action, modal_element, element_index=None):
     pass
 
 
+@login_required
+@permission_required('sapu.delete_institution')
 def delete_institution_view(request, institution_id):
-    pass
+
+    template_variables = {}
+
+    try:
+
+        institution = models.Institution.objects.get(pk=institution_id)
+        institution.is_active = False
+        institution.save()
+        messages.success(request,
+                         u"La institución " +
+                         unicode(institution.name) +
+                         u" ha sido eliminada")
+
+    except models.Institution.DoesNotExist as e:
+
+        messages.error(request, e.messages)
+
+    template_context =\
+        django.template.context.RequestContext(request, template_variables)
+
+    return django.shortcuts.render_to_response(
+        globals.TEMPLATE__INSTITUTIONS,
+        template_context
+    )
 
 
+@django.contrib.auth.decorators.login_required
 def delete_project_type_view(request, project_type_id):
     pass
 
 
+@django.contrib.auth.decorators.login_required
 def delete_project_view(request, project_id):
     pass
 
 
+@django.contrib.auth.decorators.login_required
 def delete_permission_view(request, permission_id):
     pass
 
 
+@django.contrib.auth.decorators.login_required
 def delete_employee_view(request, employee_id):
     pass
 
 
+@django.contrib.auth.decorators.login_required
 def delete_stage_view(request, stage_id):
     pass
 
 
+@django.contrib.auth.decorators.login_required
 def delete_task_view(request, task_id):
     pass
 
 
+@django.contrib.auth.decorators.login_required
 def delete_comment_view(request, comment_id):
     pass

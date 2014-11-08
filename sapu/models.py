@@ -11,9 +11,10 @@ class Institution (django.db.models.Model):
     phone = django.db.models.CharField(max_length=255, verbose_name=u"Teléfono")
     address = django.db.models.CharField(max_length=255, verbose_name=u"Dirección")
     email = django.db.models.EmailField(verbose_name=u"Email")
-    is_client = django.db.models.BooleanField(default=None,verbose_name=u"¿Es cliente?")
+    is_client = django.db.models.BooleanField(default=None, verbose_name=u"¿Es cliente?")
     contact_point = django.db.models.CharField(max_length=255, verbose_name=u"Punto de Contacto")
     name = django.db.models.CharField(max_length=255, verbose_name=u"Nombre")
+    is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
 
     class Meta:
 
@@ -29,6 +30,7 @@ class ProjectType (django.db.models.Model):
 
     name = django.db.models.CharField(max_length=255, verbose_name=u"Nombre")
     description = django.db.models.TextField(verbose_name=u"Descripción")
+    is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
 
     class Meta:
 
@@ -44,6 +46,7 @@ class State (django.db.models.Model):
     name = django.db.models.CharField(max_length=20)
     description = django.db.models.CharField(max_length=255, verbose_name="Descripción")
     color = django.db.models.CharField(max_length=7)
+    is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
 
     class Meta:
 
@@ -57,7 +60,9 @@ class State (django.db.models.Model):
 
 class Project (django.db.models.Model):
     project_id = django.db.models.CharField(max_length=255, verbose_name=u"ID de Proyecto")
+    creation_date = django.db.models.DateTimeField(verbose_name=u"Fecha de creación")
     deadline = django.db.models.DateTimeField(verbose_name=u"Fecha límite")
+    is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
     name = django.db.models.CharField(max_length=150,
                                       verbose_name=u"Proyecto")
 
@@ -99,6 +104,7 @@ class Permission (django.db.models.Model):
     title = django.db.models.CharField(max_length=255, verbose_name=u"Titulo")
     description = django.db.models.TextField(verbose_name=u"Descripción")
     folio = django.db.models.CharField(max_length=255, verbose_name=u"Folio")
+    is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
     institution = django.db.models.ForeignKey(Institution,
                                               on_delete=django.db.models.PROTECT,
                                               related_name="permission_institution",
@@ -124,7 +130,7 @@ class Employee (django.db.models.Model):
     user = django.db.models.OneToOneField(django.contrib.auth.models.User,
                                           on_delete=django.db.models.PROTECT,
                                           related_name="employee",
-                                          verbose_name=u"Usuario") #use CASCADE instead of PROTECT
+                                          verbose_name=u"Usuario")
 
     photo = django.db.models.ImageField(upload_to="photos/users",
                                         verbose_name=u"Foto")
@@ -143,6 +149,7 @@ class Stage (django.db.models.Model):
     name = django.db.models.CharField(max_length=255)
     description = django.db.models.CharField(max_length=255, verbose_name="Descripción")
     number = django.db.models.IntegerField(verbose_name="Número")
+    is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
     deadline = \
         django.db.models.DateTimeField(verbose_name=u"Fecha Límite")
 
@@ -172,7 +179,7 @@ class Stage (django.db.models.Model):
 
 
 class Comment (django.db.models.Model):
-
+    is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
     stage = django.db.models.ForeignKey(Stage,
                                         on_delete=django.db.models.PROTECT,
                                         related_name="comment_stage",
@@ -199,7 +206,7 @@ class Comment (django.db.models.Model):
 
 
 class Task (django.db.models.Model):
-
+    is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
     stage = django.db.models.ForeignKey(Stage,
                                         on_delete=django.db.models.PROTECT,
                                         related_name="task_stage",
