@@ -36,7 +36,8 @@ h6 {
     padding: 0;
 }
 
-.messages li {
+.messages li,
+.form-error {
     list-style-type: none;
     display: inline-block;
     padding: 8px;
@@ -46,7 +47,8 @@ h6 {
     border-radius: 5px;
 }
 
-.messages .error {
+.messages .error,
+.form-error {
     background-color: #d9534f;
 }
 

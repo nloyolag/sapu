@@ -26,12 +26,14 @@ import settings
 import globals
 import forms
 import models
+import modals
 
 
 # TODO Create modal edit
 # TODO Create modal add
 # TODO Apply client corrections
 # TODO Fix Create/Update/Delete buttons styles
+# TODO Show Create/Edit/Delete buttons only to appropiate groups
 
 # Functions that render the views of the application
 
@@ -387,7 +389,42 @@ def stage_detail_render_view(request, project_id, stage_id):
 
 @login_required
 def generic_modal(request, modal_action, modal_element, element_index=None):
-    pass
+
+    modal_forms = {}
+    template_variables = {}
+
+    if request.method == "POST":
+
+        # Modal Handlers
+        handler =\
+            modals.MODAL__HANDLER_FUNCTIONS[modal_element]
+        if handler is None:
+            messages.error(request, globals.ERROR__SERVER_ERROR)
+        else:
+            modal_forms = handler(
+                request=request,
+                element_index=element_index
+            )
+
+    modal_function =\
+        modals.MODAL__FUNCTIONS[modal_element]
+    if modal_function is None:
+        raise django.http.Http404
+
+    modal = modal_function(modal_name=modal_element,
+                           element_index=element_index,
+                           modal_forms=modal_forms)
+
+    template_variables['modal'] = modal
+    template_variables['element_index'] = element_index
+
+    template_context =\
+        django.template.context.RequestContext(request, template_variables)
+
+    return django.shortcuts.render_to_response(
+        globals.TEMPLATE__MODAL,
+        template_context
+    )
 
 
 @login_required
