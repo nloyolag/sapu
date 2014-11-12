@@ -43,9 +43,9 @@ class ProjectType (django.db.models.Model):
 
 
 class State (django.db.models.Model):
-    number = django.db.models.CharField(max_length=255, verbose_name=u"Código de estado")
+    number = django.db.models.IntegerField(verbose_name=u"Código de estado")
     name = django.db.models.CharField(max_length=20)
-    description = django.db.models.CharField(max_length=255, verbose_name="Descripción")
+    description = django.db.models.CharField(max_length=255, verbose_name=u"Descripción")
     color = django.db.models.CharField(max_length=7)
     is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
 
@@ -100,16 +100,32 @@ class Project (django.db.models.Model):
         return unicode(self.name)
 
 
+class PermissionState (django.db.models.Model):
+    number = django.db.models.IntegerField(verbose_name=u"Código de estado del permiso")
+    name = django.db.models.CharField(max_length=255)
+    description = django.db.models.CharField(max_length=255, verbose_name=u"Descripción")
+    color = django.db.models.CharField(max_length=7)
+
+    class Meta:
+
+        verbose_name = u"Estado del permiso"
+        verbose_name_plural = u"Estados de los permisos"
+
+    def __unicode__(self):
+
+        return unicode(self.name)
+
+
 class Permission (django.db.models.Model):
 
     title = django.db.models.CharField(max_length=255, verbose_name=u"Titulo")
     description = django.db.models.TextField(verbose_name=u"Descripción")
     folio = django.db.models.CharField(max_length=255, verbose_name=u"Folio")
     is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
-    permission_state = django.db.models.ForeignKey(Permission_State,
-                                              on_delete=django.db.models.PROTECT,
-                                              related_name="permission_state",
-                                              verbose_name=u"Estado de permiso")
+    permission_state = django.db.models.ForeignKey(PermissionState,
+                                                   on_delete=django.db.models.PROTECT,
+                                                   related_name="permission_permission_state",
+                                                   verbose_name=u"Estado de permiso")
     institution = django.db.models.ForeignKey(Institution,
                                               on_delete=django.db.models.PROTECT,
                                               related_name="permission_institution",
@@ -152,8 +168,8 @@ class Employee (django.db.models.Model):
 
 class Stage (django.db.models.Model):
     name = django.db.models.CharField(max_length=255)
-    description = django.db.models.CharField(max_length=255, verbose_name="Descripción")
-    number = django.db.models.IntegerField(verbose_name="Número")
+    description = django.db.models.CharField(max_length=255, verbose_name=u"Descripción")
+    number = django.db.models.IntegerField(verbose_name=u"Número")
     is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
     deadline = \
         django.db.models.DateTimeField(verbose_name=u"Fecha Límite")
@@ -241,18 +257,3 @@ class Task (django.db.models.Model):
 
         return unicode(self.title)
 
-
-class Permission_State (django.db.models.Model):
-    number = django.db.models.CharField(max_length=255, verbose_name=u"Código de estado del permiso")
-    name = django.db.models.CharField(max_length=20)
-    description = django.db.models.CharField(max_length=255, verbose_name="Descripción")
-    color = django.db.models.CharField(max_length=7)
-
-    class Meta:
-
-        verbose_name = u"Estado del permiso"
-        verbose_name_plural = u"Estados de los permisos"
-
-    def __unicode__(self):
-
-        return unicode(self.name)
