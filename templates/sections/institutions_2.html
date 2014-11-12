@@ -58,7 +58,7 @@
             </td>
             <td>
                 <a href=""><i class="fa fa-pencil"></i></a>
-                <a href="#delete-institution" class="modal-delete-summon" id="{{ institution.id }}"><i class="fa fa-trash-o"></i></a>
+                <a href="#delete-project" class="modal-delete-summon" id="{{ project.id }}"><i class="fa fa-trash-o"></i></a>
             </td>
         </tr>
     {% endfor  %}
@@ -68,9 +68,9 @@
 </div>
 
 <div style="display:none">
-    <div class="delete-modal" id="delete-institution">
-        <h6>¿Estás seguro de querer eliminar esta institución?</h6>
-        <a href="/delete/institution/" class="btn btn-danger">Eliminar</a>
+    <div class="delete-modal" id="delete-project">
+        <h6>¿Estás seguro de querer eliminar este proyecto?</h6>
+        <a href="/delete/project/" class="btn btn-danger">Eliminar</a>
     </div>
 </div>
 
