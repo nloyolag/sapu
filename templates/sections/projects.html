@@ -31,6 +31,7 @@
     <table class="table table-striped project-table">
 
         <thead>
+            <th>Estado</th>
             <th>Nombre</th>
             <th>Código</th>
             <th>Tipo de proyecto</th>
@@ -42,7 +43,7 @@
 
     {% for project in projects %}
         <tr class="{{ project.state.name }}">
-
+            <td> {{ project.state.name }}            </td>
             <td><a href="/proyectos/{{ project.id }}">{{ project.name }}</a></td>
             <td>{{ project.id }}</td>
             <td>{{ project.project_type.name }}</td>

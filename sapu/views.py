@@ -33,7 +33,7 @@ import modals
 # TODO Create modal add
 # TODO Apply client corrections
 # TODO Fix Create/Update/Delete buttons styles
-# TODO Show Create/Edit/Delete buttons only to appropiate groups
+# TODO Show Create/Edit/Delete buttons only to appropriate groups
 
 # Functions that render the views of the application
 
@@ -156,7 +156,7 @@ def projects_render_view(request):
 
         projects = models.Project.objects\
             .filter(name__icontains=project_query, is_active=True)\
-            .order_by('-deadline')
+            .order_by('-creation_date')
 
         template_variables['projects'] = projects
         template_variables['pagination'] = False
@@ -165,7 +165,7 @@ def projects_render_view(request):
 
         projects = models.Project.objects\
             .filter(is_active=True)\
-            .order_by('-deadline')
+            .order_by('-creation_date')
 
         paginator = django.core.paginator.Paginator(projects, 10)
         page = request.GET.get('page')
