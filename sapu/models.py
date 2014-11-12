@@ -78,7 +78,7 @@ class Project (django.db.models.Model):
     institution = django.db.models.ForeignKey(Institution,
                                               on_delete=django.db.models.PROTECT,
                                               related_name="project_institution",
-                                              verbose_name=u"Institución")
+                                              verbose_name=u"Cliente")
 
     project_type = django.db.models.ForeignKey(ProjectType,
                                                on_delete=django.db.models.PROTECT,
@@ -167,7 +167,7 @@ class Employee (django.db.models.Model):
 
 
 class Stage (django.db.models.Model):
-    name = django.db.models.CharField(max_length=255)
+    name = django.db.models.CharField(max_length=255, verbose_name=u"Nombre")
     description = django.db.models.CharField(max_length=255, verbose_name=u"Descripción")
     number = django.db.models.IntegerField(verbose_name=u"Número")
     is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
@@ -246,7 +246,7 @@ class Task (django.db.models.Model):
     finished_date =\
         django.db.models.DateTimeField(verbose_name=u"Fecha de Completitud")
 
-    is_complete = django.db.models.BooleanField(default=None,verbose_name=u"¿Está completada?")
+    is_complete = django.db.models.BooleanField(default=None, verbose_name=u"¿Está completada?")
 
     class Meta:
 

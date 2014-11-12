@@ -460,22 +460,27 @@ def modal_edit_project_type(
 # Functions that handle database modifications made with modals
 
 def modal_edit_project_handler(request, element_index=None):
+    # auto fill creation date, state
     pass
 
 
 def modal_edit_permission_handler(request, element_index=None):
+    # auto fill permission_state, project
     pass
 
 
 def modal_edit_stage_handler(request, element_index=None):
+    # auto fill project, state.
     pass
 
 
 def modal_edit_task_handler(request, element_index=None):
+    # AUto fill stage
     pass
 
 
 def modal_edit_comment_handler(request, element_index=None):
+    # auto fill date, stage and employee
     pass
 
 
