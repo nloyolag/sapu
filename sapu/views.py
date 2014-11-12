@@ -34,7 +34,7 @@ import modals
 # TODO Apply client corrections
 # TODO Fix Create/Update/Delete buttons styles
 # TODO Show Create/Edit/Delete buttons only to appropiate groups
-# TODO
+
 
 # Functions that render the views of the application
 
@@ -157,7 +157,7 @@ def projects_render_view(request):
 
         projects = models.Project.objects\
             .filter(name__icontains=project_query, is_active=True)\
-            .order_by('-deadline')
+            .order_by('-creation_date')
 
         template_variables['projects'] = projects
         template_variables['pagination'] = False
@@ -166,7 +166,7 @@ def projects_render_view(request):
 
         projects = models.Project.objects\
             .filter(is_active=True)\
-            .order_by('-deadline')
+            .order_by('-creation_date')
 
         paginator = django.core.paginator.Paginator(projects, 10)
         page = request.GET.get('page')
@@ -462,39 +462,214 @@ def delete_institution_view(request, institution_id):
 @django.contrib.auth.decorators.login_required
 @permission_required('sapu.delete_projecttype')
 def delete_project_type_view(request, project_type_id):
+
+    template_variables = {}
+
+    try:
+
+        project_type = models.ProjectType.objects.get(pk=project_type_id)
+        project_type.is_active = False
+        project_type.save()
+        messages.success(request,
+                         u"El tipo de proyecto " +
+                         unicode(project_type.name) +
+                         u" ha sido eliminado.")
+
+    except models.ProjectType.DoesNotExist as e:
+
+        messages.error(request, e.messages)
+
+    template_context =\
+        django.template.context.RequestContext(request, template_variables)
+
+    return django.shortcuts.render_to_response(
+        globals.TEMPLATE__PROJECT_TYPES,
+        template_context
+    )
+
     pass
 
 
 @django.contrib.auth.decorators.login_required
 @permission_required('sapu.delete_project')
 def delete_project_view(request, project_id):
+
+    template_variables = {}
+
+    try:
+
+        project = models.Project.objects.get(pk=project_id)
+        project.is_active = False
+        project.save()
+        messages.success(request,
+                         u"El proyecto " +
+                         unicode(project.name) +
+                         u" ha sido eliminado.")
+
+    except models.Project.DoesNotExist as e:
+
+        messages.error(request, e.messages)
+
+    template_context =\
+        django.template.context.RequestContext(request, template_variables)
+
+    return django.shortcuts.render_to_response(
+        globals.TEMPLATE__PROJECTS,
+        template_context
+    )
+
     pass
 
 
 @django.contrib.auth.decorators.login_required
 def delete_permission_view(request, permission_id):
-    pass
 
+    template_variables = {}
+
+    try:
+
+        permission = models.Permission.objects.get(pk=permission_id)
+        permission.is_active = False
+        permission.save()
+        messages.success(request,
+                         u"El permiso " +
+                         unicode(permission.title) +
+                         u" ha sido eliminado.")
+
+    except models.Permission.DoesNotExist as e:
+
+        messages.error(request, e.messages)
+
+    template_context =\
+        django.template.context.RequestContext(request, template_variables)
+
+    return django.shortcuts.render_to_response(
+        globals.TEMPLATE__STAGES,
+        template_context
+    )
+
+    pass
 
 @django.contrib.auth.decorators.login_required
 @permission_required('sapu.delete_employee')
 def delete_employee_view(request, employee_id):
+
+    template_variables = {}
+
+    try:
+
+        employee = models.Employee.objects.get(pk=employee_id)
+        employee.is_active = False
+        employee.save()
+        messages.success(request,
+                         u"El usuario " +
+                         unicode(employee.user) +
+                         u" ha sido eliminado.")
+
+    except models.Employee.DoesNotExist as e:
+
+        messages.error(request, e.messages)
+
+    template_context =\
+        django.template.context.RequestContext(request, template_variables)
+
+    return django.shortcuts.render_to_response(
+        globals.TEMPLATE__USERS,
+        template_context
+    )
+
     pass
+
 
 
 @django.contrib.auth.decorators.login_required
 @permission_required('sapu.delete_stage')
 def delete_stage_view(request, stage_id):
+
+    template_variables = {}
+
+    try:
+
+        stage = models.Stage.objects.get(pk=stage_id)
+        stage.is_active = False
+        stage.save()
+        messages.success(request,
+                         u"La etapa " +
+                         unicode(stage.name) +
+                         u" ha sido eliminada.")
+
+    except models.Stage.DoesNotExist as e:
+
+        messages.error(request, e.messages)
+
+    template_context =\
+        django.template.context.RequestContext(request, template_variables)
+
+    return django.shortcuts.render_to_response(
+        globals.TEMPLATE__STAGES,
+        template_context
+    )
+
     pass
 
 
 @django.contrib.auth.decorators.login_required
 @permission_required('sapu.delete_task')
 def delete_task_view(request, task_id):
+
+    template_variables = {}
+
+    try:
+
+        task = models.Task.objects.get(pk=task_id)
+        task.is_active = False
+        task.save()
+        messages.success(request,
+                         u"La tarea " +
+                         unicode(task.title) +
+                         u" ha sido eliminada.")
+
+    except models.Task.DoesNotExist as e:
+
+        messages.error(request, e.messages)
+
+    template_context =\
+        django.template.context.RequestContext(request, template_variables)
+
+    return django.shortcuts.render_to_response(
+        globals.TEMPLATE__STAGE_DETAIL,
+        template_context
+    )
+
     pass
 
 
 @django.contrib.auth.decorators.login_required
 @permission_required('sapu.delete_comment')
 def delete_comment_view(request, comment_id):
+
+    template_variables = {}
+
+    try:
+
+        comment = models.Comment.objects.get(pk=comment_id)
+        comment.is_active = False
+        comment.save()
+        messages.success(request,
+                         u"La tarea " +
+                         unicode(comment.title) +
+                         u" ha sido eliminada.")
+
+    except models.Task.DoesNotExist as e:
+
+        messages.error(request, e.messages)
+
+    template_context =\
+        django.template.context.RequestContext(request, template_variables)
+
+    return django.shortcuts.render_to_response(
+        globals.TEMPLATE__STAGE_DETAIL,
+        template_context
+    )
+
     pass
