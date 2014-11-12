@@ -106,6 +106,10 @@ class Permission (django.db.models.Model):
     description = django.db.models.TextField(verbose_name=u"Descripción")
     folio = django.db.models.CharField(max_length=255, verbose_name=u"Folio")
     is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
+    permission_state = django.db.models.ForeignKey(Permission_State,
+                                              on_delete=django.db.models.PROTECT,
+                                              related_name="permission_state",
+                                              verbose_name=u"Estado de permiso")
     institution = django.db.models.ForeignKey(Institution,
                                               on_delete=django.db.models.PROTECT,
                                               related_name="permission_institution",
