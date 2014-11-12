@@ -43,6 +43,7 @@ class ProjectType (django.db.models.Model):
 
 
 class State (django.db.models.Model):
+    number = django.db.models.CharField(max_length=255, verbose_name=u"Código de estado")
     name = django.db.models.CharField(max_length=20)
     description = django.db.models.CharField(max_length=255, verbose_name="Descripción")
     color = django.db.models.CharField(max_length=7)
@@ -235,3 +236,19 @@ class Task (django.db.models.Model):
     def __unicode__(self):
 
         return unicode(self.title)
+
+
+class Permission_State (django.db.models.Model):
+    number = django.db.models.CharField(max_length=255, verbose_name=u"Código de estado del permiso")
+    name = django.db.models.CharField(max_length=20)
+    description = django.db.models.CharField(max_length=255, verbose_name="Descripción")
+    color = django.db.models.CharField(max_length=7)
+
+    class Meta:
+
+        verbose_name = u"Estado del permiso"
+        verbose_name_plural = u"Estados de los permisos"
+
+    def __unicode__(self):
+
+        return unicode(self.name)

@@ -11,6 +11,7 @@ h1 {
 }
 
 h2 {
+    margin-top: 10px;
     font-size: 3em;
 }
 
@@ -290,7 +291,7 @@ nav a:hover {
 
 .task-employee img,
 .comment-employee img {
-    width: 90%;
+    width: 60%;
 }
 
 .task-info i {

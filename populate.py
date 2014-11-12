@@ -299,6 +299,7 @@ def populate():
 
     # on_time
     on_time = add_state(
+	number= 2,
         name=u"En tiempo",
         description=u"El elemento se encuentra desarrollandose y a tiempo con respecto la fecha de entrega.",
         color=u"#95C0FC"
@@ -306,6 +307,7 @@ def populate():
 
     # delayed
     delayed = add_state(
+	number=1,
         name=u"Retrasado",
         description=u"El elemento se encuentra desarrollandose pero está retrasado",
         color=u"#F3F163"
@@ -313,6 +315,7 @@ def populate():
 
     # cancelled
     cancelled = add_state(
+	number=3,
         name=u"Cancelado",
         description=u"El elemento no se terminó o ha sido pospuesto.",
         color=u"#E47F91"
@@ -320,9 +323,18 @@ def populate():
 
     # completed
     completed = add_state(
+	number=5,
         name=u"Terminado",
         description=u"El elemento ha sido terminado",
         color=u"#6CE6A5"
+    )
+    #TODO change color for standby state
+    # standby
+    standby = add_state(
+	number=4,
+        name=u"Terminado",
+        description=u"El elemento ha sido terminado",
+        color=u"#FFFFFF"
     )
 
     ###############################################################################
@@ -3398,3 +3410,39 @@ if __name__ == '__main__':
     from sapu.models import Project, Institution, ProjectType, Permission, Stage, State, Employee, Comment, Task
     create_permissions()
     populate()
+
+
+
+    ###############################################################################
+    #
+    #  States
+    #
+    ###############################################################################
+
+    # sent
+    sent = add_state(
+        name=u"Solicitado",
+        description=u"El permiso ha sido enviado a la institución y se espera aprobación.",
+        color=u"#95C0FC"
+    )
+
+    # given
+    given = add_state(
+        name=u"Otorgado",
+        description=u"La institución ha otorgado el permiso.",
+        color=u"#6CE6A5"
+    )
+
+    # rejected
+    rejected = add_state(
+        name=u"Rechazado",
+        description=u"El permiso no fue otorgado por la institución",
+        color=u"#F3F163"
+    )
+
+    # pending
+    pending = add_state(
+        name=u"Pendiente",
+        description=u"El permiso no se ha enviado para su aprobación.",
+        color=u"#E47F91"
+    )
