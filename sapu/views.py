@@ -660,7 +660,7 @@ def delete_comment_view(request, comment_id):
                          unicode(comment.title) +
                          u" ha sido eliminada.")
 
-    except models.Task.DoesNotExist as e:
+    except models.Comment.DoesNotExist as e:
 
         messages.error(request, e.messages)
 
