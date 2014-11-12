@@ -1,6 +1,6 @@
 {% extends "structures/1column.html" %}
 
-{% block title %}SAPU - Etapas{% endblock %}
+{% block title %}SAPU - Detalle de Etapa{% endblock %}
 
 {% block main-content %}
 
@@ -43,7 +43,7 @@
 
                 <div class="col-md-6 stage-tasks">
                     <h2>Tareas</h2>
-                    <a href="modal/add/task" class="btn btn-info">Agregar Tarea</a>
+                    <a href="/modal/add/task" class="btn btn-info modal-summon">Agregar Tarea</a>
                     {% for task in tasks %}
 
                         <div class="stage-task row">
@@ -86,7 +86,7 @@
 
                 <div class="col-md-6 stage-comments">
                     <h2>Comentarios</h2>
-                    <a href="modal/add/comment" class="btn btn-info">Agregar Comentario</a>
+                    <a href="/modal/add/comment" class="btn btn-info modal-summon">Agregar Comentario</a>
                     {% for comment in comments %}
 
                         <div class="stage-comment row">

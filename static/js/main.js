@@ -56,7 +56,6 @@ $( document ).ready(function() {
         function(event) {
             event.preventDefault();
             var $modal, $button, $form, button_text;
-
             $modal = $(this).parents(".fancybox-inner");
             $button = $(this);
             button_text = $button.html();
@@ -65,6 +64,7 @@ $( document ).ready(function() {
             $modal.find('.messages').slideUp().remove();
             $button.html('<i class="fa fa-refresh fa-spin"></i>');
             $button.css('pointer-events', 'None');
+            console.log($form.attr('action'));
             var action = $.post(
                 $form.attr('action'),
                 $form.serialize()

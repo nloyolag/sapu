@@ -1,5 +1,14 @@
-<form class="modal-form" method="post">
+{% if modal.main_forms %}
+        {% if element_index %}
+            {% url 'sapu.views.generic_modal' modal_action=modal.action modal_element=modal.name element_index=element_index as action_url %}
+        {% else %}
+            {% url 'sapu.views.generic_modal' modal_action=modal.action modal_element=modal.name as action_url %}
+        {% endif %}
+    <form class="modal-form" method="post" action="{{ action_url }}">
     {% csrf_token %}
+{% endif %}
+
+
     <div class="sapu-modal">
         <!-- Form Errors -->
         {% for modal_form in modal.main_forms %}
@@ -79,4 +88,7 @@
             </div>
         </div>
     </div>
-</form>
+
+{% if modal.main_forms %}
+    </form>
+{% endif %}

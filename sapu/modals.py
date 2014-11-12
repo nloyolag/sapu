@@ -24,7 +24,53 @@ def modal_edit_project(
         element_index=None,
         modal_forms=None
 ):
-    pass
+    # Construct the modal
+    action_text = globals.MODAL_ACTION__CREATE
+    modal_action = globals.OPTION_NAME__MODAL_FORM_ADD
+
+    # Project was already added/edited
+    if globals.PREFIX__FORM_PROJECT in modal_forms:
+        # Form was passed as a parameter
+        project_form = modal_forms[globals.PREFIX__FORM_PROJECT]
+
+    else:
+        # Edit Project
+        if element_index is not None:
+
+            try:
+                project =\
+                    models.Project.objects.get(pk=element_index)
+
+            except models.Project.DoesNotExist:
+                return None
+
+            project_form = forms.ModelFormProject(
+                prefix=globals.PREFIX__FORM_PROJECT,
+                instance=project
+            )
+
+            action_text = globals.MODAL_ACTION__EDIT
+            modal_action = globals.OPTION_NAME__MODAL_FORM_EDIT
+
+        # Create project
+        else:
+            project_form = forms.ModelFormProject(prefix=globals.PREFIX__FORM_PROJECT)
+
+    project_modal_form = globals.ModalForm(
+        title=globals.FIELD__PROJECT,
+        form=project_form
+    )
+
+    main_forms = [project_modal_form]
+
+    modal = globals.Modal(
+        name=modal_name,
+        action=modal_action,
+        main_forms=main_forms,
+        accept_button_text=action_text
+    )
+
+    return modal
 
 
 def modal_edit_permission(
@@ -32,7 +78,53 @@ def modal_edit_permission(
         element_index=None,
         modal_forms=None
 ):
-    pass
+    # Construct the modal
+    action_text = globals.MODAL_ACTION__CREATE
+    modal_action = globals.OPTION_NAME__MODAL_FORM_ADD
+
+    # Permission was already added/edited
+    if globals.PREFIX__FORM_PERMISSION in modal_forms:
+        # Form was passed as a parameter
+        permission_form = modal_forms[globals.PREFIX__FORM_PERMISSION]
+
+    else:
+        # Edit Permission
+        if element_index is not None:
+
+            try:
+                permission =\
+                    models.Permission.objects.get(pk=element_index)
+
+            except models.Permission.DoesNotExist:
+                return None
+
+            permission_form = forms.ModelFormPermission(
+                prefix=globals.PREFIX__FORM_PERMISSION,
+                instance=permission
+            )
+
+            action_text = globals.MODAL_ACTION__EDIT
+            modal_action = globals.OPTION_NAME__MODAL_FORM_EDIT
+
+        # Create permission
+        else:
+           permission_form = forms.ModelFormPermission(prefix=globals.PREFIX__FORM_PERMISSION)
+
+    permission_modal_form = globals.ModalForm(
+        title=globals.FIELD__PERMISSION,
+        form=permission_form
+    )
+
+    main_forms = [permission_modal_form]
+
+    modal = globals.Modal(
+        name=modal_name,
+        action=modal_action,
+        main_forms=main_forms,
+        accept_button_text=action_text
+    )
+
+    return modal
 
 
 def modal_edit_stage(
@@ -40,7 +132,53 @@ def modal_edit_stage(
         element_index=None,
         modal_forms=None
 ):
-    pass
+    # Construct the modal
+    action_text = globals.MODAL_ACTION__CREATE
+    modal_action = globals.OPTION_NAME__MODAL_FORM_ADD
+
+    # Stage was already added/edited
+    if globals.PREFIX__FORM_STAGE in modal_forms:
+        # Form was passed as a parameter
+        stage_form = modal_forms[globals.PREFIX__FORM_STAGE]
+
+    else:
+        # Edit Stage
+        if element_index is not None:
+
+            try:
+                stage =\
+                    models.Stage.objects.get(pk=element_index)
+
+            except models.Stage.DoesNotExist:
+                return None
+
+            stage_form = forms.ModelFormStage(
+                prefix=globals.PREFIX__FORM_STAGE,
+                instance=stage
+            )
+
+            action_text = globals.MODAL_ACTION__EDIT
+            modal_action = globals.OPTION_NAME__MODAL_FORM_EDIT
+
+        # Create stage
+        else:
+            stage_form = forms.ModelFormStage(prefix=globals.PREFIX__FORM_STAGE)
+
+    stage_modal_form = globals.ModalForm(
+        title=globals.FIELD__STAGE,
+        form=stage_form
+    )
+
+    main_forms = [stage_modal_form]
+
+    modal = globals.Modal(
+        name=modal_name,
+        action=modal_action,
+        main_forms=main_forms,
+        accept_button_text=action_text
+    )
+
+    return modal
 
 
 def modal_edit_task(
@@ -48,7 +186,53 @@ def modal_edit_task(
         element_index=None,
         modal_forms=None
 ):
-    pass
+    # Construct the modal
+    action_text = globals.MODAL_ACTION__CREATE
+    modal_action = globals.OPTION_NAME__MODAL_FORM_ADD
+
+    # Task was already added/edited
+    if globals.PREFIX__FORM_TASK in modal_forms:
+        # Form was passed as a parameter
+        task_form = modal_forms[globals.PREFIX__FORM_TASK]
+
+    else:
+        # Edit Task
+        if element_index is not None:
+
+            try:
+                task =\
+                    models.Task.objects.get(pk=element_index)
+
+            except models.Task.DoesNotExist:
+                return None
+
+            task_form = forms.ModelFormTask(
+                prefix=globals.PREFIX__FORM_TASK,
+                instance=task
+            )
+
+            action_text = globals.MODAL_ACTION__EDIT
+            modal_action = globals.OPTION_NAME__MODAL_FORM_EDIT
+
+        # Create task
+        else:
+            task_form = forms.ModelFormTask(prefix=globals.PREFIX__FORM_TASK)
+
+    task_modal_form = globals.ModalForm(
+        title=globals.FIELD__TASK,
+        form=task_form
+    )
+
+    main_forms = [task_modal_form]
+
+    modal = globals.Modal(
+        name=modal_name,
+        action=modal_action,
+        main_forms=main_forms,
+        accept_button_text=action_text
+    )
+
+    return modal
 
 
 def modal_edit_comment(
@@ -56,7 +240,53 @@ def modal_edit_comment(
         element_index=None,
         modal_forms=None
 ):
-    pass
+    # Construct the modal
+    action_text = globals.MODAL_ACTION__CREATE
+    modal_action = globals.OPTION_NAME__MODAL_FORM_ADD
+
+    # Comment was already added/edited
+    if globals.PREFIX__FORM_COMMENT in modal_forms:
+        # Form was passed as a parameter
+        comment_form = modal_forms[globals.PREFIX__FORM_COMMENT]
+
+    else:
+        # Edit Comment
+        if element_index is not None:
+
+            try:
+                comment =\
+                    models.Comment.objects.get(pk=element_index)
+
+            except models.Comment.DoesNotExist:
+                return None
+
+            comment_form = forms.ModelFormComment(
+                prefix=globals.PREFIX__FORM_COMMENT,
+                instance=comment
+            )
+
+            action_text = globals.MODAL_ACTION__EDIT
+            modal_action = globals.OPTION_NAME__MODAL_FORM_EDIT
+
+        # Create comment
+        else:
+            comment_form = forms.ModelFormComment(prefix=globals.PREFIX__FORM_COMMENT)
+
+    comment_modal_form = globals.ModalForm(
+        title=globals.FIELD__COMMENT,
+        form=comment_form
+    )
+
+    main_forms = [comment_modal_form]
+
+    modal = globals.Modal(
+        name=modal_name,
+        action=modal_action,
+        main_forms=main_forms,
+        accept_button_text=action_text
+    )
+
+    return modal
 
 
 def modal_edit_employee(
@@ -64,7 +294,53 @@ def modal_edit_employee(
         element_index=None,
         modal_forms=None
 ):
-    pass
+    # Construct the modal
+    action_text = globals.MODAL_ACTION__CREATE
+    modal_action = globals.OPTION_NAME__MODAL_FORM_ADD
+
+    # Employee was already added/edited
+    if globals.PREFIX__FORM_EMPLOYEE in modal_forms:
+        # Form was passed as a parameter
+        employee_form = modal_forms[globals.PREFIX__FORM_EMPLOYEE]
+
+    else:
+        # Edit Employee
+        if element_index is not None:
+
+            try:
+                employee =\
+                    models.Employee.objects.get(pk=element_index)
+
+            except models.Employee.DoesNotExist:
+                return None
+
+            employee_form = forms.ModelFormEmployee(
+                prefix=globals.PREFIX__FORM_EMPLOYEE,
+                instance=employee
+            )
+
+            action_text = globals.MODAL_ACTION__EDIT
+            modal_action = globals.OPTION_NAME__MODAL_FORM_EDIT
+
+        # Create employee
+        else:
+            employee_form = forms.ModelFormEmployee(prefix=globals.PREFIX__FORM_EMPLOYEE)
+
+    employee_modal_form = globals.ModalForm(
+        title=globals.FIELD__EMPLOYEE,
+        form=employee_form
+    )
+
+    main_forms = [employee_modal_form]
+
+    modal = globals.Modal(
+        name=modal_name,
+        action=modal_action,
+        main_forms=main_forms,
+        accept_button_text=action_text
+    )
+
+    return modal
 
 
 def modal_edit_institution(
@@ -106,7 +382,7 @@ def modal_edit_institution(
             institution_form = forms.ModelFormInstitution(prefix=globals.PREFIX__FORM_INSTITUTION)
 
     institution_modal_form = globals.ModalForm(
-        title=u"Institución",
+        title=globals.FIELD__INSTITUTION,
         form=institution_form
     )
 
@@ -127,7 +403,52 @@ def modal_edit_project_type(
         element_index=None,
         modal_forms=None
 ):
-    pass
+    # Construct the modal
+    action_text = globals.MODAL_ACTION__CREATE
+    modal_action = globals.OPTION_NAME__MODAL_FORM_ADD
+
+    # Project Type was already added/edited
+    if globals.PREFIX__FORM_PROJECT_TYPE in modal_forms:
+        # Form was passed as a parameter
+        project_type_form = modal_forms[globals.PREFIX__FORM_PROJECT_TYPE]
+
+    else:
+        # Edit Project Type
+        if element_index is not None:
+            try:
+                project_type =\
+                    models.ProjectType.objects.get(pk=element_index)
+
+            except models.ProjectType.DoesNotExist:
+                return None
+
+            project_type_form = forms.ModelFormProjectType(
+                prefix=globals.PREFIX__FORM_PROJECT_TYPE,
+                instance=project_type
+            )
+
+            action_text = globals.MODAL_ACTION__EDIT
+            modal_action = globals.OPTION_NAME__MODAL_FORM_EDIT
+
+        # Create project type
+        else:
+            project_type_form = forms.ModelFormProjectType(prefix=globals.PREFIX__FORM_PROJECT_TYPE)
+
+    project_type_modal_form = globals.ModalForm(
+        title=globals.FIELD__PROJECT_TYPE,
+        form=project_type_form
+    )
+
+    main_forms = [project_type_modal_form]
+
+    modal = globals.Modal(
+        name=modal_name,
+        action=modal_action,
+        main_forms=main_forms,
+        accept_button_text=action_text
+    )
+
+    return modal
 
 
 ################################################################################
@@ -187,7 +508,11 @@ def modal_edit_institution_handler(request, element_index=None):
             prefix=globals.PREFIX__FORM_INSTITUTION
         )
 
+    print "ANtes del valid"
+
     if form_institution.is_valid():
+
+        print "Despues del valid"
 
         institution = form_institution.save(commit=False)
 
@@ -195,6 +520,8 @@ def modal_edit_institution_handler(request, element_index=None):
             # Save the new object or update it
             institution.full_clean()
             institution.save()
+
+            print "Se guardo!"
 
             if not old_institution:
 

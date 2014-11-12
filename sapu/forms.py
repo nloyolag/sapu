@@ -64,7 +64,7 @@ class ModelFormComment(django.forms.ModelForm):
     pass
 
 
-class ModelFormUser(django.forms.ModelForm):
+class ModelFormEmployee(django.forms.ModelForm):
 
     #def __init__(self, *args, **kwargs):
 
@@ -94,7 +94,15 @@ class ModelFormInstitution(django.forms.ModelForm):
 
 class ModelFormProjectType(django.forms.ModelForm):
 
-    #def __init__(self, *args, **kwargs):
+    class Meta:
+        model = models.ProjectType
+        fields = [
+            'name',
+            'description'
+        ]
 
-    #class Meta:
-    pass
+        error_messages = {
+            'name': {
+                'required': u"Necesitas asignarle un nombre al tipo de proyecto"
+            }
+        }
