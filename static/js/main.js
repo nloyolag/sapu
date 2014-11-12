@@ -12,6 +12,7 @@ $( document ).ready(function() {
     });
 
     var modalDeleteSummon = $(".modal-delete-summon");
+    var mainContent = $(".main-content");
 
     // Changes delete button URL on click
     modalDeleteSummon.click(function() {
@@ -25,6 +26,13 @@ $( document ).ready(function() {
     $(".modal-summon").fancybox({
         type: 'ajax'
     });
+
+
+    /*$(".submit-delete").click(function() {
+        event.preventDefault();
+        var _href = $(this).attr("href");
+        $(".delete-modal").load(_href);
+    });*/
 
     // Return delete button URL back to default
     modalDeleteSummon.fancybox({
@@ -40,19 +48,66 @@ $( document ).ready(function() {
     });
 
     // Target the cancel button to close the modal
+
+    // Target the action button to send data by ajax
     $(document).on(
         'click',
-        'form.modalform a.cancel-button[href="#"]',
-        function(event){
-            console.log("hola")
+        '.modal-footer a.success-button[href="#"]',
+        function(event) {
             event.preventDefault();
-            close_parent_modal($(this));
-        }
-    )
+            var $modal, $button, $form, button_text;
 
-    function close_parent_modal($element) {
-        $modal = $($element).parents('.reveal-modal');
-        $modal.foundation('reveal', 'close');
-    }
+            $modal = $(this).parents(".fancybox-inner");
+            $button = $(this);
+            button_text = $button.html();
+            $form = $(this).parents('form');
+            $modal.find('.form-error').slideUp().remove();
+            $modal.find('.messages').slideUp().remove();
+            $button.html('<i class="fa fa-refresh fa-spin"></i>');
+            $button.css('pointer-events', 'None');
+            var action = $.post(
+                $form.attr('action'),
+                $form.serialize()
+            )
+            .done(function(data){
+                var $messages, $warnings, $errors;
+                $messages = $(data).find('.success');
+                $warnings = $(data).find('.warning');
+                $errors = $(data).find('.error');
+
+                if ($errors.length > 0 || $warnings.length > 0) {
+                    // Show error messages and reload form
+                    $errors = $(data).find('.form-error');
+                    $errors.hide().prependTo('sapu-modal');
+                    $errors.slideDown();
+                    $modal.find('.modal-form').remove();
+                    var $modal_forms = $(data).find('.modal-form');
+                    $modal.find('.modal-main').append($modal_forms);
+                } else {
+                    var url = document.getElementById("url-holder");
+                    var _href = $(url).attr("href");
+                    mainContent.load(
+                        _href,
+                        function() {
+                            mainContent.data('url', _href)
+                    });
+                    mainContent.prepend($messages);
+                    // close_parent_modal($button);
+                }
+            })
+            .fail(function(data){
+                var $alert = $('<div class="error message"/>')
+                    .text("No se puede contactar el servidor. " +
+                        "Intente de nuevo más tarde.");
+                $alert.hide().prependTo('.sapu-modal');
+                $alert.slideDown();
+            })
+            .always(function(){
+                $button.find('.fa').fadeOut();
+                $button.html(button_text);
+                $button.css('pointer-events', '');
+            });
+
+        });
 
 });

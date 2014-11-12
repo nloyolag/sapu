@@ -1,6 +1,6 @@
 {% extends "structures/1column.html" %}
 
-{% block title %}SAPU - Etapas{% endblock %}
+{% block title %}SAPU - {% endblock %}
 
 {% block main-content %}
 
@@ -143,10 +143,12 @@
 <div style="display:none">
     <div class="delete-modal" id="delete-institution">
         <h6>¿Estás seguro de querer eliminar esta institución?</h6>
-        <a href="/delete/institution/" class="btn btn-danger">Eliminar</a>
+        <a href="/delete/institution/" class="btn btn-danger submit-delete">Eliminar</a>
     </div>
 </div>
 
-
+<div style="display:none">
+    <a id="url-holder" href="/instituciones/"></a>
+</div>
 
 {% endblock %}

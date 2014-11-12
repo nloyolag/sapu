@@ -34,6 +34,7 @@ import modals
 # TODO Apply client corrections
 # TODO Fix Create/Update/Delete buttons styles
 # TODO Show Create/Edit/Delete buttons only to appropiate groups
+# TODO
 
 # Functions that render the views of the application
 
