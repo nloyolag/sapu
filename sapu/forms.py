@@ -70,7 +70,7 @@ class ModelFormPermission(django.forms.ModelForm):
             'description',
             'folio',
             'institution',
-            'state'
+            'permission_state'
         ]
 
         error_messages = {
