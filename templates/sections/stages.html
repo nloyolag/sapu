@@ -25,8 +25,6 @@
                 <h6>Folio: {{ project.folio }} - Institución: {{ project.institution }}</h6>
                 <h6>Tipo de proyecto: {{ project.project_type.name }}</h6>
                 <p>{{ project.description }}</p>
-                <a href=""><i class="fa fa-pencil"></i></a>
-                <a href="#delete-project" class="modal-delete-summon" id="{{ project.id }}"><i class="fa fa-trash-o"></i></a>
             </div>
         </div>
 
@@ -49,7 +47,7 @@
                     <h6>Folio - {{ permission.folio }}</h6>
                     <h6>Institución - {{ permission.institution.name }}</h6>
                     <p>{{ permission.description }}</p>
-                    <a href=""><i class="fa fa-pencil"></i></a>
+                    <a href="/modal/edit/permission/{{ permission.id }}" class="modal-summon"><i class="fa fa-pencil"></i></a>
                     <a href="#delete-permission" class="modal-delete-summon" id="{{ permission.id }}"><i class="fa fa-trash-o"></i></a>
                 </div>
             </div>
@@ -78,7 +76,7 @@
                         <hr>
                         <h6> <i class="fa fa-clock-o fa-lg"></i> - {{ stage.deadline }}</h6>
                         <p>{{ stage.description }}</p>
-                        <a href=""><i class="fa fa-pencil"></i></a>
+                        <a href="/modal/edit/stage/{{ stage.id }}" class="modal-summon"><i class="fa fa-pencil"></i></a>
                         <a href="#delete-stage" class="modal-delete-summon" id="{{ stage.id }}"><i class="fa fa-trash-o"></i></a>
                     </div>
                 </div>
@@ -96,13 +94,6 @@
     <div class="delete-modal" id="delete-stage">
         <h6>¿Estás seguro de querer eliminar esta etapa?</h6>
         <a href="/delete/stage/" class="btn btn-danger">Eliminar</a>
-    </div>
-</div>
-
-<div style="display:none">
-    <div class="delete-modal" id="delete-project">
-        <h6>¿Estás seguro de querer eliminar este proyecto?</h6>
-        <a href="/delete/project/" class="btn btn-danger">Eliminar</a>
     </div>
 </div>
 

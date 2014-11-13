@@ -3,6 +3,7 @@
 
 # Django imports
 import django.forms
+from django.contrib.auth.models import User
 from django.forms.models import inlineformset_factory
 
 # SAPU imports
@@ -40,7 +41,8 @@ class ModelFormProject(django.forms.ModelForm):
             'folio',
             'photo',
             'institution',
-            'project_type'
+            'project_type',
+            'state'
         ]
 
         error_messages = {
@@ -52,6 +54,9 @@ class ModelFormProject(django.forms.ModelForm):
             },
             'deadline': {
                 'required': u"Necesitas asignarle una fecha límite al proyecto"
+            },
+            'state': {
+                'required': u"Necesitas asignarle un estado al proyecto"
             }
         }
 
@@ -64,12 +69,16 @@ class ModelFormPermission(django.forms.ModelForm):
             'title',
             'description',
             'folio',
-            'institution'
+            'institution',
+            'state'
         ]
 
         error_messages = {
             'title': {
                 'required': u"Necesitas asignarle un título al permiso"
+            },
+            'state': {
+                'required': u"Necesitas asignarle un estado al permiso"
             }
         }
 
@@ -83,18 +92,25 @@ class ModelFormStage(django.forms.ModelForm):
             'description',
             'number',
             'deadline',
-            'employee'
+            'employee',
+            'state'
         ]
 
         error_messages = {
-            'title': {
-                'required': u"Necesitas asignarle un título a la etapa"
+            'name': {
+                'required': u"Necesitas asignarle un nombre a la etapa"
             },
             'deadline': {
                 'required': u"Necesitas asignarle una fecha límite a la etapa"
             },
             'number': {
                 'required': u"Necesitas asignarle un número a la etapa"
+            },
+            'employee': {
+                'required': u"Necesitas asignarle un empleado a la etapa"
+            },
+            'state': {
+                'required': u"Necesitas asignarle un estado a la etapa"
             }
         }
 
@@ -139,12 +155,71 @@ class ModelFormComment(django.forms.ModelForm):
         }
 
 
-class ModelFormEmployee(django.forms.ModelForm):
+class ModelFormUser(django.forms.ModelForm):
 
     #def __init__(self, *args, **kwargs):
 
-    #class Meta:
-    pass
+    class Meta:
+        model = django.contrib.auth.models.User
+        fields = [
+            'username',
+            'email',
+            'password',
+            'first_name',
+            'last_name',
+            'groups'
+        ]
+
+        widgets = {
+            'username': django.forms.TextInput(
+                attrs={
+                    'label': globals.FIELD__USERNAME
+                }
+            ),
+            'email': django.forms.TextInput(
+                attrs={
+                    'label': globals.FIELD__EMAIL
+                }
+            ),
+            'password': django.forms.PasswordInput(
+                attrs={
+                    'label': globals.FIELD__PASSWORD
+                }
+            ),
+            'first_name': django.forms.TextInput(
+                attrs={
+                    'label': globals.FIELD__NAME
+                }
+            ),
+            'groups': django.forms.Select(
+                attrs={
+                    'label': u"Privilegios"
+                }
+            )
+        }
+        error_messages = {
+            'username': {
+                'required': u"Necesitas escribir un nombre de usuario"
+            },
+            'first_name': {
+                'required': u"Necesitas escribir un nombre(s)"
+            },
+            'last_name': {
+                'required': u"Necesitas escribir un apellido(s)"
+            },
+            'groups': {
+                'required': u"Necesitas seleccionar un puesto"
+            }
+        }
+
+
+class ModelFormEmployee(django.forms.ModelForm):
+
+    class Meta:
+        model = models.Employee
+        fields = [
+            'photo'
+        ]
 
 
 class ModelFormInstitution(django.forms.ModelForm):

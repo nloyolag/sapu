@@ -299,7 +299,7 @@ def populate():
 
     # on_time
     on_time = add_state(
-        number= 2,
+        number=2,
         name=u"En tiempo",
         description=u"El elemento se encuentra desarrollandose y a tiempo con respecto la fecha de entrega.",
         color=u"#95C0FC"

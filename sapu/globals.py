@@ -73,6 +73,7 @@ PREFIX__FORM_STAGE = 'stage'
 PREFIX__FORM_TASK = 'task'
 PREFIX__FORM_COMMENT = 'comment'
 PREFIX__FORM_EMPLOYEE = 'employee'
+PREFIX__FORM_USER = 'user'
 PREFIX__FORM_PERMISSION = 'permission'
 
 ################################################################################

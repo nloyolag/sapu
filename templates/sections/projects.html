@@ -51,7 +51,7 @@
             <td>{{ project.deadline }}</td>
             <td><img src="{{ project.photo.url }}"></td>
             <td>
-                <a href=""><i class="fa fa-pencil"></i></a>
+                <a href="/modal/edit/project/{{ project.id }}" class="modal-summon"><i class="fa fa-pencil"></i></a>
                 <a href="#delete-project" class="modal-delete-summon" id="{{ project.id }}"><i class="fa fa-trash-o"></i></a>
             </td>
         </tr>

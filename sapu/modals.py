@@ -1,8 +1,12 @@
 #coding:utf-8
 
+# Python imports
+import datetime
+
 # Django imports
 import django.core.exceptions
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 # SAPU imports
 import forms
@@ -460,37 +464,420 @@ def modal_edit_project_type(
 # Functions that handle database modifications made with modals
 
 def modal_edit_project_handler(request, element_index=None):
-    # auto fill creation date, state
-    pass
+
+    old_project = None
+
+    if element_index:
+
+        try:
+            old_project = models.Project.objects.get(pk=element_index)
+        except models.Project.DoesNotExist:
+            messages.error(request, globals.ERROR__FORBIDDEN)
+            return None
+
+        # Get the form for instance element
+        form_project = forms.ModelFormProject(
+            request.POST,
+            prefix=globals.PREFIX__FORM_INSTITUTION,
+            instance=old_project
+        )
+
+    else:
+        # Get the form for new element
+        form_project = forms.ModelFormProject(
+            request.POST,
+            prefix=globals.PREFIX__FORM_PROJECT
+        )
+
+    if form_project.is_valid():
+
+        project = form_project.save(commit=False)
+
+        try:
+            # Save the new object or update it
+            # auto fill creation date
+            project.creation_date = datetime.datetime.now()
+            project.full_clean()
+            project.save()
+
+            if not old_project:
+
+                messages.success(request, globals.MESSAGE__CREATION_SUCCESS_M.format(
+                    model_name=globals.MODEL_NAME__PROJECT,
+                    item_name=project.name
+                ))
+
+            else:
+
+                messages.success(request, globals.MESSAGE__EDIT_SUCCESS_M.format(
+                    model_name=globals.MODEL_NAME__PROJECT,
+                    item_name=project.name
+                ))
+
+        except models.Project.DoesNotExist as e:
+            messages.error(request, e.messages)
+
+        except django.core.exceptions.ValidationError as e:
+            messages.error(request, e.messages)
+
+    forms_handler = {
+        globals.PREFIX__FORM_PROJECT: form_project
+    }
+
+    return forms_handler
 
 
 def modal_edit_permission_handler(request, element_index=None):
-    # auto fill permission_state, project
-    pass
+    # auto fill project
+    old_permission = None
+
+    if element_index:
+
+        try:
+            old_permission = models.Permission.objects.get(pk=element_index)
+        except models.Permission.DoesNotExist:
+            messages.error(request, globals.ERROR__FORBIDDEN)
+            return None
+
+        # Get the form for instance element
+        form_permission = forms.ModelFormPermission(
+            request.POST,
+            prefix=globals.PREFIX__FORM_PERMISSION,
+            instance=old_permission
+        )
+
+    else:
+        # Get the form for new element
+        form_permission = forms.ModelFormPermission(
+            request.POST,
+            prefix=globals.PREFIX__FORM_PERMISSION
+        )
+
+    if form_permission.is_valid():
+
+        permission = form_permission.save(commit=False)
+
+        try:
+            # Save the new object or update it
+            # auto fill project
+            # permission.project = models.Project.objects.get()
+            permission.full_clean()
+            permission.save()
+
+            if not old_permission:
+
+                messages.success(request, globals.MESSAGE__CREATION_SUCCESS_M.format(
+                    model_name=globals.MODEL_NAME__PERMISSION,
+                    item_name=permission.name
+                ))
+
+            else:
+
+                messages.success(request, globals.MESSAGE__EDIT_SUCCESS_M.format(
+                    model_name=globals.MODEL_NAME__PERMISSION,
+                    item_name=permission.name
+                ))
+
+        except models.Permission.DoesNotExist as e:
+            messages.error(request, e.messages)
+
+        except django.core.exceptions.ValidationError as e:
+            messages.error(request, e.messages)
+
+    forms_handler = {
+        globals.PREFIX__FORM_PERMISSION: form_permission
+    }
+
+    return forms_handler
 
 
 def modal_edit_stage_handler(request, element_index=None):
-    # auto fill project, state.
-    pass
+    # auto fill project.
+    old_stage = None
+
+    if element_index:
+
+        try:
+            old_stage = models.Stage.objects.get(pk=element_index)
+        except models.Stage.DoesNotExist:
+            messages.error(request, globals.ERROR__FORBIDDEN)
+            return None
+
+        # Get the form for instance element
+        form_stage = forms.ModelFormStage(
+            request.POST,
+            prefix=globals.PREFIX__FORM_STAGE,
+            instance=old_stage
+        )
+
+    else:
+        # Get the form for new element
+        form_stage = forms.ModelFormStage(
+            request.POST,
+            prefix=globals.PREFIX__FORM_STAGE
+        )
+
+    if form_stage.is_valid():
+
+        stage = form_stage.save(commit=False)
+
+        try:
+            # Save the new object or update it
+            # auto fill project.
+            # stage.project = models.Project.objects.get()
+            stage.full_clean()
+            stage.save()
+
+            if not old_stage:
+
+                messages.success(request, globals.MESSAGE__CREATION_SUCCESS_F.format(
+                    model_name=globals.MODEL_NAME__STAGE,
+                    item_name=stage.name
+                ))
+
+            else:
+
+                messages.success(request, globals.MESSAGE__EDIT_SUCCESS_F.format(
+                    model_name=globals.MODEL_NAME__STAGE,
+                    item_name=stage.name
+                ))
+
+        except models.Stage.DoesNotExist as e:
+            messages.error(request, e.messages)
+
+        except django.core.exceptions.ValidationError as e:
+            messages.error(request, e.messages)
+
+    forms_handler = {
+        globals.PREFIX__FORM_STAGE: form_stage
+    }
+
+    return forms_handler
 
 
 def modal_edit_task_handler(request, element_index=None):
     # AUto fill stage
-    pass
+    old_task = None
+
+    if element_index:
+
+        try:
+            old_task = models.Task.objects.get(pk=element_index)
+        except models.Task.DoesNotExist:
+            messages.error(request, globals.ERROR__FORBIDDEN)
+            return None
+
+        # Get the form for instance element
+        form_task = forms.ModelFormTask(
+            request.POST,
+            prefix=globals.PREFIX__FORM_TASK,
+            instance=old_task
+        )
+
+    else:
+        # Get the form for new element
+        form_task = forms.ModelFormTask(
+            request.POST,
+            prefix=globals.PREFIX__FORM_TASK
+        )
+
+    if form_task.is_valid():
+
+        task = form_task.save(commit=False)
+
+        try:
+            # Save the new object or update it
+            # AUto fill stage
+            # task.stage = models.Stage.objects.get()
+            task.full_clean()
+            task.save()
+
+            if not old_task:
+
+                messages.success(request, globals.MESSAGE__CREATION_SUCCESS_F.format(
+                    model_name=globals.MODEL_NAME__TASK,
+                    item_name=task.name
+                ))
+
+            else:
+
+                messages.success(request, globals.MESSAGE__EDIT_SUCCESS_F.format(
+                    model_name=globals.MODEL_NAME__TASK,
+                    item_name=task.name
+                ))
+
+        except models.Task.DoesNotExist as e:
+            messages.error(request, e.messages)
+
+        except django.core.exceptions.ValidationError as e:
+            messages.error(request, e.messages)
+
+    forms_handler = {
+        globals.PREFIX__FORM_TASK: form_task
+    }
+
+    return forms_handler
 
 
 def modal_edit_comment_handler(request, element_index=None):
     # auto fill date, stage and employee
-    pass
+    old_comment = None
+
+    if element_index:
+
+        try:
+            old_comment = models.Comment.objects.get(pk=element_index)
+        except models.Comment.DoesNotExist:
+            messages.error(request, globals.ERROR__FORBIDDEN)
+            return None
+
+        # Get the form for instance element
+        form_comment = forms.ModelFormComment(
+            request.POST,
+            prefix=globals.PREFIX__FORM_COMMENT,
+            instance=old_comment
+        )
+
+    else:
+        # Get the form for new element
+        form_comment = forms.ModelFormComment(
+            request.POST,
+            prefix=globals.PREFIX__FORM_COMMENT
+        )
+
+    if form_comment.is_valid():
+
+        comment = form_comment.save(commit=False)
+
+        try:
+            # Save the new object or update it
+            # auto fill date, stage and employee
+            # comment.stage = models.Stage.objects.get()
+            # comment.employee = sessionCurrent.user
+            comment.date = datetime.datetime.now()
+            comment.full_clean()
+            comment.save()
+
+            if not old_comment:
+
+                messages.success(request, globals.MESSAGE__CREATION_SUCCESS_M.format(
+                    model_name=globals.MODEL_NAME__COMMENT,
+                    item_name=comment.name
+                ))
+
+            else:
+
+                messages.success(request, globals.MESSAGE__EDIT_SUCCESS_M.format(
+                    model_name=globals.MODEL_NAME__COMMENT,
+                    item_name=comment.name
+                ))
+
+        except models.Comment.DoesNotExist as e:
+            messages.error(request, e.messages)
+
+        except django.core.exceptions.ValidationError as e:
+            messages.error(request, e.messages)
+
+    forms_handler = {
+        globals.PREFIX__FORM_COMMENT: form_comment
+    }
+
+    return forms_handler
 
 
 def modal_edit_employee_handler(request, element_index=None):
-    pass
+
+    old_employee = None
+    old_user = None
+
+    if element_index:
+
+        try:
+            old_employee = models.Employee.objects.get(pk=element_index)
+            old_user = old_employee.user
+
+        except models.Employee.DoesNotExist:
+            messages.error(request, globals.ERROR__FORBIDDEN)
+            return None
+
+        except User.DoesNotExist:
+            messages.error(request, globals.ERROR__FORBIDDEN)
+            return None
+
+        # Get the form for instance element
+        form_user = forms.ModelFormUser(
+            request.POST,
+            prefix=globals.PREFIX__FORM_USER,
+            instance=old_user
+        )
+
+        form_employee = forms.ModelFormEmployee(
+            request.POST,
+            prefix=globals.PREFIX__FORM_EMPLOYEE,
+            instance=old_employee
+        )
+
+    else:
+        # Get the form for new element
+
+        form_user = forms.ModelFormUser(
+            request.POST,
+            prefix=globals.PREFIX__FORM_USER
+        )
+
+        form_employee = forms.ModelFormEmployee(
+            request.POST,
+            prefix=globals.PREFIX__FORM_EMPLOYEE
+        )
+
+    if form_employee.is_valid() and form_user.is_valid():
+
+        employee = form_employee.save(commit=False)
+        user = form_user.save(commit=False)
+
+        try:
+            # Save the new object or update it
+            user.full_clean()
+            user.save()
+            employee.user = user
+            employee.full_clean()
+            employee.save()
+
+            if not old_employee:
+
+                messages.success(request, globals.MESSAGE__CREATION_SUCCESS_M.format(
+                    model_name=globals.MODEL_NAME__EMPLOYEE,
+                    item_name=employee.name
+                ))
+
+            else:
+
+                messages.success(request, globals.MESSAGE__EDIT_SUCCESS_M.format(
+                    model_name=globals.MODEL_NAME__EMPLOYEE,
+                    item_name=employee.name
+                ))
+
+        except models.Employee.DoesNotExist as e:
+            messages.error(request, e.messages)
+
+        except User.DoesNotExist as e:
+            messages.error(request, e.messages)
+
+        except django.core.exceptions.ValidationError as e:
+            messages.error(request, e.messages)
+
+    forms_handler = {
+        globals.PREFIX__FORM_USER: form_user,
+        globals.PREFIX__FORM_EMPLOYEE: form_employee
+    }
+
+    return forms_handler
 
 
 def modal_edit_institution_handler(request, element_index=None):
 
     old_institution = None
+
     if element_index:
 
         try:
@@ -513,11 +900,7 @@ def modal_edit_institution_handler(request, element_index=None):
             prefix=globals.PREFIX__FORM_INSTITUTION
         )
 
-    print "ANtes del valid"
-
     if form_institution.is_valid():
-
-        print "Despues del valid"
 
         institution = form_institution.save(commit=False)
 
@@ -525,8 +908,6 @@ def modal_edit_institution_handler(request, element_index=None):
             # Save the new object or update it
             institution.full_clean()
             institution.save()
-
-            print "Se guardo!"
 
             if not old_institution:
 
@@ -556,7 +937,65 @@ def modal_edit_institution_handler(request, element_index=None):
 
 
 def modal_edit_project_type_handler(request, element_index=None):
-    pass
+
+    old_project_type = None
+
+    if element_index:
+
+        try:
+            old_project_type = models.ProjectType.objects.get(pk=element_index)
+        except models.ProjectType.DoesNotExist:
+            messages.error(request, globals.ERROR__FORBIDDEN)
+            return None
+
+        # Get the form for instance element
+        form_project_type = forms.ModelFormProjectType(
+            request.POST,
+            prefix=globals.PREFIX__FORM_PROJECT_TYPE,
+            instance=old_project_type
+        )
+
+    else:
+        # Get the form for new element
+        form_project_type = forms.ModelFormProjectType(
+            request.POST,
+            prefix=globals.PREFIX__FORM_PROJECT_TYPE
+        )
+
+    if form_project_type.is_valid():
+
+        project_type = form_project_type.save(commit=False)
+
+        try:
+            # Save the new object or update it
+            project_type.full_clean()
+            project_type.save()
+
+            if not old_project_type:
+
+                messages.success(request, globals.MESSAGE__CREATION_SUCCESS_M.format(
+                    model_name=globals.MODEL_NAME__PROJECT_TYPE,
+                    item_name=project_type.name
+                ))
+
+            else:
+
+                messages.success(request, globals.MESSAGE__EDIT_SUCCESS_M.format(
+                    model_name=globals.MODEL_NAME__PROJECT_TYPE,
+                    item_name=project_type.name
+                ))
+
+        except models.ProjectType.DoesNotExist as e:
+            messages.error(request, e.messages)
+
+        except django.core.exceptions.ValidationError as e:
+            messages.error(request, e.messages)
+
+    forms_handler = {
+        globals.PREFIX__FORM_PROJECT_TYPE: form_project_type
+    }
+
+    return forms_handler
 
 ################################################################################
 #

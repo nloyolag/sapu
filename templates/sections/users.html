@@ -35,7 +35,7 @@
                     <td>{{ employee.user.email }}</td>
                     <td><img src="{{ employee.photo.url }}"></td>
                     <td>
-                        <a href=""><i class="fa fa-pencil"></i></a>
+                        <a href="/modal/edit/employee/{{ employee.id }}" class="modal-summon"><i class="fa fa-pencil"></i></a>
                         <a href="#delete-employee" class="modal-delete-summon" id="{{ employee.id }}"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>

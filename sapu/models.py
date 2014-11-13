@@ -8,11 +8,11 @@ import datetime
 
 class Institution (django.db.models.Model):
 
-    phone = django.db.models.CharField(max_length=255, verbose_name=u"Teléfono")
-    address = django.db.models.CharField(max_length=255, verbose_name=u"Dirección")
-    email = django.db.models.EmailField(verbose_name=u"Email")
+    phone = django.db.models.CharField(max_length=255, verbose_name=u"Teléfono", blank=True)
+    address = django.db.models.CharField(max_length=255, verbose_name=u"Dirección", blank=True)
+    email = django.db.models.EmailField(verbose_name=u"Email", blank=True)
     is_client = django.db.models.BooleanField(default=None, verbose_name=u"¿Es cliente?")
-    contact_point = django.db.models.CharField(max_length=255, verbose_name=u"Punto de Contacto")
+    contact_point = django.db.models.CharField(max_length=255, verbose_name=u"Punto de Contacto", blank=True)
     name = django.db.models.CharField(max_length=255, verbose_name=u"Nombre")
     is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
 
@@ -29,7 +29,7 @@ class Institution (django.db.models.Model):
 class ProjectType (django.db.models.Model):
 
     name = django.db.models.CharField(max_length=255, verbose_name=u"Nombre")
-    description = django.db.models.TextField(verbose_name=u"Descripción")
+    description = django.db.models.TextField(verbose_name=u"Descripción", blank=True)
     is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
 
     class Meta:
@@ -43,7 +43,7 @@ class ProjectType (django.db.models.Model):
 
 
 class State (django.db.models.Model):
-    number = django.db.models.IntegerField(verbose_name=u"Código de estado")
+    number = django.db.models.IntegerField(verbose_name=u"Código de estado", unique=True)
     name = django.db.models.CharField(max_length=20)
     description = django.db.models.CharField(max_length=255, verbose_name=u"Descripción")
     color = django.db.models.CharField(max_length=7)
@@ -68,22 +68,26 @@ class Project (django.db.models.Model):
                                       verbose_name=u"Proyecto")
 
     photo = django.db.models.ImageField(upload_to="photos/projects",
-                                        verbose_name=u"Foto")
+                                        verbose_name=u"Foto",
+                                        default="photos/projects/default.jpg")
 
     description = django.db.models.CharField(max_length=255,
-                                             verbose_name="Descripción")
+                                             verbose_name="Descripción",
+                                             blank=True)
 
     folio = django.db.models.CharField(max_length=255, verbose_name=u"Folio de oficio de solicitud")
 
     institution = django.db.models.ForeignKey(Institution,
                                               on_delete=django.db.models.PROTECT,
                                               related_name="project_institution",
-                                              verbose_name=u"Cliente")
+                                              verbose_name=u"Cliente",
+                                              blank=True)
 
     project_type = django.db.models.ForeignKey(ProjectType,
                                                on_delete=django.db.models.PROTECT,
                                                related_name="project_project_type",
-                                               verbose_name=u"Tipo de Proyecto")
+                                               verbose_name=u"Tipo de Proyecto",
+                                               blank=True)
 
     state = django.db.models.ForeignKey(State,
                                         on_delete=django.db.models.PROTECT,
@@ -101,7 +105,7 @@ class Project (django.db.models.Model):
 
 
 class PermissionState (django.db.models.Model):
-    number = django.db.models.IntegerField(verbose_name=u"Código de estado del permiso")
+    number = django.db.models.IntegerField(verbose_name=u"Código de estado del permiso", unique=True)
     name = django.db.models.CharField(max_length=255)
     description = django.db.models.CharField(max_length=255, verbose_name=u"Descripción")
     color = django.db.models.CharField(max_length=7)
@@ -119,8 +123,8 @@ class PermissionState (django.db.models.Model):
 class Permission (django.db.models.Model):
 
     title = django.db.models.CharField(max_length=255, verbose_name=u"Titulo")
-    description = django.db.models.TextField(verbose_name=u"Descripción")
-    folio = django.db.models.CharField(max_length=255, verbose_name=u"Folio")
+    description = django.db.models.TextField(verbose_name=u"Descripción", blank=True)
+    folio = django.db.models.CharField(max_length=255, verbose_name=u"Folio", blank=True)
     is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
     permission_state = django.db.models.ForeignKey(PermissionState,
                                                    on_delete=django.db.models.PROTECT,
@@ -129,7 +133,8 @@ class Permission (django.db.models.Model):
     institution = django.db.models.ForeignKey(Institution,
                                               on_delete=django.db.models.PROTECT,
                                               related_name="permission_institution",
-                                              verbose_name=u"Institución")
+                                              verbose_name=u"Institución",
+                                              blank=True)
 
     project = django.db.models.ForeignKey(Project,
                                           on_delete=django.db.models.PROTECT,
@@ -154,7 +159,8 @@ class Employee (django.db.models.Model):
                                           verbose_name=u"Usuario")
 
     photo = django.db.models.ImageField(upload_to="photos/users",
-                                        verbose_name=u"Foto")
+                                        verbose_name=u"Foto",
+                                        default="photos/users/default.jpg")
 
     class Meta:
 
@@ -168,7 +174,7 @@ class Employee (django.db.models.Model):
 
 class Stage (django.db.models.Model):
     name = django.db.models.CharField(max_length=255, verbose_name=u"Nombre")
-    description = django.db.models.CharField(max_length=255, verbose_name=u"Descripción")
+    description = django.db.models.CharField(max_length=255, verbose_name=u"Descripción", blank=True)
     number = django.db.models.IntegerField(verbose_name=u"Número")
     is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
     deadline = \
@@ -212,7 +218,7 @@ class Comment (django.db.models.Model):
                                            verbose_name=u"Empleado")
 
     title = django.db.models.CharField(max_length=255, verbose_name=u"Título")
-    description = django.db.models.TextField(verbose_name=u"Descripción")
+    description = django.db.models.TextField(verbose_name=u"Descripción", blank=True)
     date =\
         django.db.models.DateTimeField(verbose_name=u"Fecha")
 
@@ -244,7 +250,7 @@ class Task (django.db.models.Model):
         django.db.models.DateTimeField(verbose_name=u"Fecha Límite")
 
     finished_date =\
-        django.db.models.DateTimeField(verbose_name=u"Fecha de Completitud")
+        django.db.models.DateTimeField(verbose_name=u"Fecha de Completitud", blank=True)
 
     is_complete = django.db.models.BooleanField(default=None, verbose_name=u"¿Está completada?")
 

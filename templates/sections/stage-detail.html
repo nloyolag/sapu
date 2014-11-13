@@ -20,8 +20,6 @@
                 <h5> <i class="fa fa-clock-o fa-lg"></i> - {{ stage.deadline }}</h5>
                 <h6>Proyecto: {{ stage.project }}</h6>
                 <p>{{ stage.description }}</p>
-                <a href=""><i class="fa fa-pencil"></i></a>
-                <a href="#delete-stage" class="modal-delete-summon" id="{{ stage.id }}"><i class="fa fa-trash-o"></i></a>
             </div>
         </div> <!-- .stage-info -->
 
@@ -73,7 +71,7 @@
                                         <p>Fecha límite: {{ task.deadline }}</p>
 
                                     {% endif %}
-                                    <a href=""><i class="fa fa-pencil"></i></a>
+                                    <a href="/modal/edit/task/{{ task.id }}" class="modal-summon"><i class="fa fa-pencil"></i></a>
                                     <a href="#delete-task" class="modal-delete-summon" id="{{ task.id }}"><i class="fa fa-trash-o"></i></a>
                                 </div>
 
@@ -102,7 +100,7 @@
                                 <h5>{{ comment.title }}</h5>
                                 <p>{{ comment.date }}</p>
                                 <p>{{ comment.description }}</p>
-                                <a href=""><i class="fa fa-pencil"></i></a>
+                                <a href="/modal/edit/comment/{{ comment.id }}" class="modal-summon"><i class="fa fa-pencil"></i></a>
                                 <a href="#delete-comment" class="modal-delete-summon" id="{{ comment.id }}"><i class="fa fa-trash-o"></i></a>
                             </div>
 
@@ -116,13 +114,6 @@
         </div> <!-- .stage-dashboard -->
 
     </div> <!-- .stage-detail -->
-
-<div style="display:none">
-    <div class="delete-modal" id="delete-stage">
-        <h6>¿Estás seguro de querer eliminar esta etapa?</h6>
-        <a href="/delete/stage/" class="btn btn-danger">Eliminar</a>
-    </div>
-</div>
 
 <div style="display:none">
     <div class="delete-modal" id="delete-task">
