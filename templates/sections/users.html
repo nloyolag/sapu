@@ -4,6 +4,15 @@
 
 {% block main-content %}
 
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <div class="users-outer">
     <div class="users-inner content container">
 
@@ -11,14 +20,6 @@
                 <h1>Usuarios</h1>
                 <a href="/modal/add/employee" class="btn btn-info modal-summon">Agregar Usuario</a>
             </div>
-
-            {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
 
             <table class="table table-striped project-table">
 

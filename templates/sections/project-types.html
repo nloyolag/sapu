@@ -4,6 +4,14 @@
 
 {% block main-content %}
 
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <div class="stage-detail-container content container">
 
         <div class="project-types-header view-header">
@@ -11,43 +19,38 @@
             <a href="/modal/add/project_type" class="btn btn-info modal-summon">Agregar Tipo de Proyecto</a>
         </div>
 
+        <div id="list-content">
 
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+            {% for project_type in project_types %}
 
-        {% for project_type in project_types %}
+                {% if forloop.counter0|divisibleby:3 %}
+                    <div class="row">
+                {% endif %}
 
-            {% if forloop.counter0|divisibleby:3 %}
-                <div class="row">
-            {% endif %}
-
-                <div class="col-md-4 pt-info {{ project_type.name }}">
-                    <div class="pt-info-inner">
-                        <h5>{{ project_type.name }}</h5>
-                        <hr>
-                        <p>{{ project_type.description }}</p>
-                        <a href="/modal/edit/project_type/{{ project_type.id }}" class="modal-summon"><i class="fa fa-pencil"></i></a>
-                        <a href="#delete-project-type" class="modal-delete-summon" id="{{ project_type.id }}"><i class="fa fa-trash-o"></i></a>
+                    <div class="col-md-4 pt-info {{ project_type.name }}">
+                        <div class="pt-info-inner">
+                            <h5>{{ project_type.name }}</h5>
+                            <hr>
+                            <p>{{ project_type.description }}</p>
+                            <a href="/modal/edit/project_type/{{ project_type.id }}" class="modal-summon"><i class="fa fa-pencil"></i></a>
+                            <a href="#delete-project-type" class="modal-delete-summon" id="{{ project_type.id }}"><i class="fa fa-trash-o"></i></a>
+                        </div>
                     </div>
-                </div>
 
-            {% if forloop.counter|divisibleby:3 or forloop.last %}
-                </div>
-            {% endif %}
+                {% if forloop.counter|divisibleby:3 or forloop.last %}
+                    </div>
+                {% endif %}
 
-        {% endfor %}
+            {% endfor %}
+
+        </div> <!-- #list-content -->
 
     </div>
 
 <div style="display:none">
     <div class="delete-modal" id="delete-project-type">
         <h6>¿Estás seguro de querer eliminar este tipo de proyecto?</h6>
-        <a href="/delete/project_type/" class="btn btn-danger">Eliminar</a>
+        <a href="/delete/project_type/" class="btn btn-danger submit-delete">Eliminar</a>
     </div>
 </div>
 

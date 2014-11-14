@@ -4,21 +4,20 @@
 
 {% block main-content %}
 
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <div class="projects-container content container">
 
     <div class="projects-header view-header">
         <h1>PROYECTOS</h1>
         <a href="/modal/add/project" class="btn btn-info modal-summon">Agregar Proyecto</a>
     </div>
-
-
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
 
     <form action="{% url 'views.projects_render_view' %}" method="POST">
         <div>

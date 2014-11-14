@@ -20,6 +20,7 @@ import django.contrib.auth.models
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.http import HttpResponse
 
 # SAPU imports
 import settings
@@ -29,8 +30,6 @@ import models
 import modals
 
 
-# TODO Create modal edit
-# TODO Create modal add
 # TODO Apply client corrections
 # TODO Fix Create/Update/Delete buttons styles
 # TODO Show Create/Edit/Delete buttons only to appropiate groups
@@ -151,7 +150,6 @@ def projects_render_view(request):
     # TODO Add logic to change project state to delayed (Beware of it overriding finished or cancelled states)
     # TODO Create projects
     # TODO Edit projects
-    # TODO Delete projects
 
     if project_query:
 
@@ -199,10 +197,8 @@ def users_render_view(request):
     template_variables = {}
 
     # TODO Check if user logged in at least once
-    # TODO Add option (in edit form or separately) to change user permissions
     # TODO Create users
     # TODO Edit users
-    # TODO Delete users
 
     try:
         employees = models.Employee.objects.filter(user__is_active=True)
@@ -225,7 +221,6 @@ def users_render_view(request):
 @login_required
 def institutions_render_view(request):
 
-    # TODO Refactor template interface
     # TODO Create institutions
     # TODO Edit institutions
 
@@ -284,10 +279,6 @@ def institutions_render_view(request):
 @login_required
 def project_type_render_view(request):
 
-    # TODO Create project_types
-    # TODO Edit project_types
-    # TODO Delete project_types
-
     template_variables = {}
 
     try:
@@ -317,10 +308,8 @@ def stages_render_view(request, project_id):
     # TODO Code button to cancel project
     # TODO Create stages
     # TODO Edit stages
-    # TODO Delete stages
     # TODO Create permissions
     # TODO Edit permissions
-    # TODO Delete permissions
 
     template_variables = {}
 
@@ -355,10 +344,8 @@ def stage_detail_render_view(request, project_id, stage_id):
     # TODO Code buttons for assignees to declare stage as finished
     # TODO Create tasks
     # TODO Edit tasks
-    # TODO Delete tasks
     # TODO Create comments
     # TODO Edit comments
-    # TODO Delete comments
 
     template_variables = {}
 
@@ -432,9 +419,7 @@ def generic_modal(request, modal_action, modal_element, element_index=None):
 @permission_required('sapu.delete_institution')
 def delete_institution_view(request, institution_id):
 
-    # TODO Fix redirection bug on delete functions
-
-    template_variables = {}
+    #TODO Deactivate in cascade
 
     try:
 
@@ -450,20 +435,12 @@ def delete_institution_view(request, institution_id):
 
         messages.error(request, e.messages)
 
-    template_context =\
-        django.template.context.RequestContext(request, template_variables)
-
-    return django.shortcuts.render_to_response(
-        globals.TEMPLATE__INSTITUTIONS,
-        template_context
-    )
+    return HttpResponse('')
 
 
 @django.contrib.auth.decorators.login_required
 @permission_required('sapu.delete_projecttype')
 def delete_project_type_view(request, project_type_id):
-
-    template_variables = {}
 
     try:
 
@@ -479,22 +456,12 @@ def delete_project_type_view(request, project_type_id):
 
         messages.error(request, e.messages)
 
-    template_context =\
-        django.template.context.RequestContext(request, template_variables)
-
-    return django.shortcuts.render_to_response(
-        globals.TEMPLATE__PROJECT_TYPES,
-        template_context
-    )
-
-    pass
+    return HttpResponse('')
 
 
 @django.contrib.auth.decorators.login_required
 @permission_required('sapu.delete_project')
 def delete_project_view(request, project_id):
-
-    template_variables = {}
 
     try:
 
@@ -510,21 +477,11 @@ def delete_project_view(request, project_id):
 
         messages.error(request, e.messages)
 
-    template_context =\
-        django.template.context.RequestContext(request, template_variables)
-
-    return django.shortcuts.render_to_response(
-        globals.TEMPLATE__PROJECTS,
-        template_context
-    )
-
-    pass
+    return HttpResponse('')
 
 
 @django.contrib.auth.decorators.login_required
 def delete_permission_view(request, permission_id):
-
-    template_variables = {}
 
     try:
 
@@ -540,21 +497,12 @@ def delete_permission_view(request, permission_id):
 
         messages.error(request, e.messages)
 
-    template_context =\
-        django.template.context.RequestContext(request, template_variables)
+    return HttpResponse('')
 
-    return django.shortcuts.render_to_response(
-        globals.TEMPLATE__STAGES,
-        template_context
-    )
-
-    pass
 
 @django.contrib.auth.decorators.login_required
 @permission_required('sapu.delete_employee')
 def delete_employee_view(request, employee_id):
-
-    template_variables = {}
 
     try:
 
@@ -570,23 +518,12 @@ def delete_employee_view(request, employee_id):
 
         messages.error(request, e.messages)
 
-    template_context =\
-        django.template.context.RequestContext(request, template_variables)
-
-    return django.shortcuts.render_to_response(
-        globals.TEMPLATE__USERS,
-        template_context
-    )
-
-    pass
-
+    return HttpResponse('')
 
 
 @django.contrib.auth.decorators.login_required
 @permission_required('sapu.delete_stage')
 def delete_stage_view(request, stage_id):
-
-    template_variables = {}
 
     try:
 
@@ -602,22 +539,12 @@ def delete_stage_view(request, stage_id):
 
         messages.error(request, e.messages)
 
-    template_context =\
-        django.template.context.RequestContext(request, template_variables)
-
-    return django.shortcuts.render_to_response(
-        globals.TEMPLATE__STAGES,
-        template_context
-    )
-
-    pass
+    return HttpResponse('')
 
 
 @django.contrib.auth.decorators.login_required
 @permission_required('sapu.delete_task')
 def delete_task_view(request, task_id):
-
-    template_variables = {}
 
     try:
 
@@ -633,22 +560,12 @@ def delete_task_view(request, task_id):
 
         messages.error(request, e.messages)
 
-    template_context =\
-        django.template.context.RequestContext(request, template_variables)
-
-    return django.shortcuts.render_to_response(
-        globals.TEMPLATE__STAGE_DETAIL,
-        template_context
-    )
-
-    pass
+    return HttpResponse('')
 
 
 @django.contrib.auth.decorators.login_required
 @permission_required('sapu.delete_comment')
 def delete_comment_view(request, comment_id):
-
-    template_variables = {}
 
     try:
 
@@ -664,12 +581,4 @@ def delete_comment_view(request, comment_id):
 
         messages.error(request, e.messages)
 
-    template_context =\
-        django.template.context.RequestContext(request, template_variables)
-
-    return django.shortcuts.render_to_response(
-        globals.TEMPLATE__STAGE_DETAIL,
-        template_context
-    )
-
-    pass
+    return HttpResponse('')

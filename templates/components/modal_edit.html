@@ -1,94 +1,96 @@
-{% if modal.main_forms %}
-        {% if element_index %}
-            {% url 'sapu.views.generic_modal' modal_action=modal.action modal_element=modal.name element_index=element_index as action_url %}
-        {% else %}
-            {% url 'sapu.views.generic_modal' modal_action=modal.action modal_element=modal.name as action_url %}
-        {% endif %}
-    <form class="modal-form" method="post" action="{{ action_url }}">
-    {% csrf_token %}
-{% endif %}
+<div class="sapu-modal">
+    {% if modal.main_forms %}
+            {% if element_index %}
+                {% url 'sapu.views.generic_modal' modal_action=modal.action modal_element=modal.name element_index=element_index as action_url %}
+            {% else %}
+                {% url 'sapu.views.generic_modal' modal_action=modal.action modal_element=modal.name as action_url %}
+            {% endif %}
+        <form class="modal-form" method="post" action="{{ action_url }}">
+        {% csrf_token %}
+    {% endif %}
 
 
-    <div class="sapu-modal">
-        <!-- Form Errors -->
-        {% for modal_form in modal.main_forms %}
-            {% for field in modal_form.form %}
-                {% for error in form.non_field_errors %}
-                    <div class="form-error error">
-                        {{ error }}
-                    </div>
-                {% endfor %}
-                {% for error in field.errors %}
-                    <div class="form-error error">
-                        {{ error }}
-                    </div>
-                {% endfor %}
-            {% endfor %}
-        {% endfor %}
-
-        <!-- Messages -->
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
-        <!-- Forms -->
-        {% if modal.main_forms %}
+        <div class="sapu-modal-inner">
+            <!-- Form Errors -->
             {% for modal_form in modal.main_forms %}
-                <h4 class="modal-title">{{ modal_form.title }}</h4>
-                <p>{{ modal_form.description }}</p>
-                {% for hidden_field in modal_form.form.invisible_fields %}
-                    {{ hidden_field }}
-                {% endfor %}
-                <hr>
-                {% for field in modal_form.form.visible_fields %}
-                    <div class="modal-field">
-                        {% if field.errors %}
-                            <span class="field-error">
-                        {% endif %}
-                            <h6>{{ field.label }}</h6>
-                            {{ field }}
-                        {% if field.errors %}
-                            </span>
-                        {% endif %}
-                    </div>
+                {% for field in modal_form.form %}
+                    {% for error in form.non_field_errors %}
+                        <div class="form-error error">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                    {% for error in field.errors %}
+                        <div class="form-error error">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
                 {% endfor %}
             {% endfor %}
-        {% endif %}
 
-    </div>
+            <!-- Messages -->
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-6">
-                <div class="modal-footer">
-                    {% if modal.cancel_button_text %}
-                        <div class="col-md-6">
-                            <a href="{{ modal.cancel_button_link }}" class="cancel-button">
-                                <button class="radius">
-                                    {{ modal.cancel_button_text }}
-                                </button>
-                            </a>
+            <!-- Forms -->
+            {% if modal.main_forms %}
+                {% for modal_form in modal.main_forms %}
+                    <h4 class="modal-title">{{ modal_form.title }}</h4>
+                    <p>{{ modal_form.description }}</p>
+                    {% for hidden_field in modal_form.form.invisible_fields %}
+                        {{ hidden_field }}
+                    {% endfor %}
+                    <hr>
+                    {% for field in modal_form.form.visible_fields %}
+                        <div class="modal-field">
+                            {% if field.errors %}
+                                <span class="field-error">
+                            {% endif %}
+                                <h6>{{ field.label }}</h6>
+                                {{ field }}
+                            {% if field.errors %}
+                                </span>
+                            {% endif %}
                         </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
 
-                    {% endif %}
-                    {% if modal.accept_button_text %}
-                        <div class="col-md-6">
-                            <a href="{{ modal.accept_button_link }}" class="success-button">
-                                <button class="radius">
-                                    {{ modal.accept_button_text }}
-                                </button>
-                            </a>
-                        </div>
-                    {% endif %}
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="modal-footer">
+                        {% if modal.cancel_button_text %}
+                            <div class="col-md-6">
+                                <a href="{{ modal.cancel_button_link }}" class="cancel-button">
+                                    <button class="radius">
+                                        {{ modal.cancel_button_text }}
+                                    </button>
+                                </a>
+                            </div>
+
+                        {% endif %}
+                        {% if modal.accept_button_text %}
+                            <div class="col-md-6">
+                                <a href="{{ modal.accept_button_link }}" class="success-button">
+                                    <button class="radius">
+                                        {{ modal.accept_button_text }}
+                                    </button>
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-{% if modal.main_forms %}
-    </form>
-{% endif %}
+    {% if modal.main_forms %}
+        </form>
+    {% endif %}
+</div> <!-- .sapu-modal -->

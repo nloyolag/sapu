@@ -1,5 +1,10 @@
 $( document ).ready(function() {
 
+    // Selectors reutilized throughout the script
+    var modalDeleteSummon = $(".modal-delete-summon");
+    var mainContent = $(".main-content");
+    var listContent = $("#list-content");
+
     // Data Table creation on projects view
     $('.project-table').DataTable( {
         paging: false,
@@ -7,35 +12,17 @@ $( document ).ready(function() {
         infoCallback: function(){}
     } );
 
-    var modalDeleteSummon = $(".modal-delete-summon");
-    var mainContent = $(".main-content");
-
     // Changes delete button URL on click
-    modalDeleteSummon.click(function() {
+    $(document).on("click", ".modal-delete-summon", function() {
         var _href = $(this).attr("href");
         _href = _href.substr(1);
         var targetModal = document.getElementById(_href);
         var modal_href = $(targetModal).children("a").attr("href");
         $(targetModal).children("a").attr("href", modal_href + $(this).attr("id"));
+        console.log(modal_href + $(this).attr("id"));
     });
 
-    $(".modal-summon").fancybox({
-        type: 'ajax',
-        ajax: {
-            complete: function() {
-                $("select").select2({width: "90%"});
-            }
-        }
-    });
-
-
-    /*$(".submit-delete").click(function() {
-        event.preventDefault();
-        var _href = $(this).attr("href");
-        $(".delete-modal").load(_href);
-    });*/
-
-    // Return delete button URL back to default
+    // Return delete button URL back to default, add fancybox
     modalDeleteSummon.fancybox({
        'afterClose' : function() {
             var _href = $(this).attr("href");
@@ -48,9 +35,38 @@ $( document ).ready(function() {
         }
     });
 
-    // Target the cancel button to close the modal
+    // Makes AJAX deletion
+    $(document).on("click", ".submit-delete", function() {
+        event.preventDefault();
+        var $button = $(this);
+        $button.html('<i class="fa fa-refresh fa-spin"></i>');
+        var _href = $(this).attr("href");
 
-    // Target the action button to send data by ajax
+        $(this).load(_href, function(data) {
+            var url = document.URL;
+            var $messages = $(data).find('.success');
+            mainContent.empty();
+            mainContent.load(
+            url + " #main-content > *",
+            function() {
+                mainContent.prepend($messages);
+                $.fancybox.close();
+            });
+        });
+
+    });
+
+    // Summons modal for create and edit buttons
+    $(".modal-summon").fancybox({
+        type: 'ajax',
+        ajax: {
+            complete: function() {
+                $("select").select2({width: "90%"});
+            }
+        }
+    });
+
+    // Send form via AJAX to Edit or Create
     $(document).on(
         'click',
         '.modal-footer a.success-button[href="#"]',
@@ -65,7 +81,6 @@ $( document ).ready(function() {
             $modal.find('.messages').slideUp().remove();
             $button.html('<i class="fa fa-refresh fa-spin"></i>');
             $button.css('pointer-events', 'None');
-            console.log($form.attr('action'));
             var action = $.post(
                 $form.attr('action'),
                 $form.serialize()
@@ -78,22 +93,18 @@ $( document ).ready(function() {
 
                 if ($errors.length > 0 || $warnings.length > 0) {
                     // Show error messages and reload form
-                    $errors = $(data).find('.form-error');
-                    $errors.hide().prependTo('sapu-modal');
-                    $errors.slideDown();
                     $modal.find('.modal-form').remove();
                     var $modal_forms = $(data).find('.modal-form');
-                    $modal.find('.modal-main').append($modal_forms);
+                    $modal.find('.sapu-modal').append($modal_forms);
                 } else {
-                    var url = document.getElementById("url-holder");
-                    var _href = $(url).attr("href");
+                    var url = document.URL;
+                    mainContent.empty();
                     mainContent.load(
-                        _href,
+                        url + " #main-content > *",
                         function() {
-                            mainContent.data('url', _href)
+                            mainContent.prepend($messages);
+                            $.fancybox.close();
                     });
-                    mainContent.prepend($messages);
-                    // close_parent_modal($button);
                 }
             })
             .fail(function(data){

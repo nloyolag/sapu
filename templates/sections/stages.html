@@ -4,17 +4,17 @@
 
 {% block main-content %}
 
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <div class="stage-detail-container content container">
 
         <h1>Proyecto: {{ project.name }}</h1>
-
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
 
         <div class="stage-info-project {{ project.state.name }} row">
             <img class="project-detail-img col-md-3" src="{{ project.photo.url }}">
