@@ -221,9 +221,6 @@ def users_render_view(request):
 @login_required
 def institutions_render_view(request):
 
-    # TODO Create institutions
-    # TODO Edit institutions
-
     institution_query = ''
 
     if request.method == "POST":
@@ -376,7 +373,14 @@ def stage_detail_render_view(request, project_id, stage_id):
 
 
 @login_required
-def generic_modal(request, modal_action, modal_element, element_index=None):
+def generic_modal(
+        request,
+        modal_action,
+        modal_element,
+        element_index=None,
+        project_id=None,
+        stage_id=None
+):
 
     modal_forms = {}
     template_variables = {}
@@ -391,7 +395,9 @@ def generic_modal(request, modal_action, modal_element, element_index=None):
         else:
             modal_forms = handler(
                 request=request,
-                element_index=element_index
+                element_index=element_index,
+                project_id=project_id,
+                stage_id=stage_id
             )
 
     modal_function =\

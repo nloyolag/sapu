@@ -463,7 +463,12 @@ def modal_edit_project_type(
 
 # Functions that handle database modifications made with modals
 
-def modal_edit_project_handler(request, element_index=None):
+def modal_edit_project_handler(
+        request,
+        element_index=None,
+        project_id=None,
+        stage_id=None
+):
 
     old_project = None
 
@@ -527,8 +532,13 @@ def modal_edit_project_handler(request, element_index=None):
     return forms_handler
 
 
-def modal_edit_permission_handler(request, element_index=None):
-    # auto fill project
+def modal_edit_permission_handler(
+        request,
+        element_index=None,
+        project_id=None,
+        stage_id=None
+):
+
     old_permission = None
 
     if element_index:
@@ -559,8 +569,7 @@ def modal_edit_permission_handler(request, element_index=None):
 
         try:
             # Save the new object or update it
-            # auto fill project
-            # permission.project = models.Project.objects.get()
+            permission.project = models.Project.objects.get(pk=project_id)
             permission.full_clean()
             permission.save()
 
@@ -581,6 +590,9 @@ def modal_edit_permission_handler(request, element_index=None):
         except models.Permission.DoesNotExist as e:
             messages.error(request, e.messages)
 
+        except models.Project.DoesNotExist as e:
+            messages.error(request, e.messages)
+
         except django.core.exceptions.ValidationError as e:
             messages.error(request, e.messages)
 
@@ -591,8 +603,13 @@ def modal_edit_permission_handler(request, element_index=None):
     return forms_handler
 
 
-def modal_edit_stage_handler(request, element_index=None):
-    # auto fill project.
+def modal_edit_stage_handler(
+        request,
+        element_index=None,
+        project_id=None,
+        stage_id=None
+):
+
     old_stage = None
 
     if element_index:
@@ -624,7 +641,7 @@ def modal_edit_stage_handler(request, element_index=None):
         try:
             # Save the new object or update it
             # auto fill project.
-            # stage.project = models.Project.objects.get()
+            stage.project = models.Project.objects.get(pk=project_id)
             stage.full_clean()
             stage.save()
 
@@ -645,6 +662,9 @@ def modal_edit_stage_handler(request, element_index=None):
         except models.Stage.DoesNotExist as e:
             messages.error(request, e.messages)
 
+        except models.Project.DoesNotExist as e:
+            messages.error(request, e.messages)
+
         except django.core.exceptions.ValidationError as e:
             messages.error(request, e.messages)
 
@@ -655,8 +675,13 @@ def modal_edit_stage_handler(request, element_index=None):
     return forms_handler
 
 
-def modal_edit_task_handler(request, element_index=None):
-    # AUto fill stage
+def modal_edit_task_handler(
+        request,
+        element_index=None,
+        project_id=None,
+        stage_id=None
+):
+
     old_task = None
 
     if element_index:
@@ -687,8 +712,7 @@ def modal_edit_task_handler(request, element_index=None):
 
         try:
             # Save the new object or update it
-            # AUto fill stage
-            # task.stage = models.Stage.objects.get()
+            task.stage = models.Stage.objects.get(pk=stage_id)
             task.full_clean()
             task.save()
 
@@ -709,6 +733,9 @@ def modal_edit_task_handler(request, element_index=None):
         except models.Task.DoesNotExist as e:
             messages.error(request, e.messages)
 
+        except models.Stage.DoesNotExist as e:
+            messages.error(request, e.messages)
+
         except django.core.exceptions.ValidationError as e:
             messages.error(request, e.messages)
 
@@ -719,8 +746,13 @@ def modal_edit_task_handler(request, element_index=None):
     return forms_handler
 
 
-def modal_edit_comment_handler(request, element_index=None):
-    # auto fill date, stage and employee
+def modal_edit_comment_handler(
+        request,
+        element_index=None,
+        project_id=None,
+        stage_id=None
+):
+
     old_comment = None
 
     if element_index:
@@ -751,9 +783,11 @@ def modal_edit_comment_handler(request, element_index=None):
 
         try:
             # Save the new object or update it
-            # auto fill date, stage and employee
-            # comment.stage = models.Stage.objects.get()
-            # comment.employee = sessionCurrent.user
+            # auto fill stage and employee
+            comment.stage = models.Stage.objects.get(pk=stage_id)
+            user = request.user
+            employee = models.Employee.objects.get(user=user)
+            comment.employee = employee
             comment.date = datetime.datetime.now()
             comment.full_clean()
             comment.save()
@@ -775,6 +809,9 @@ def modal_edit_comment_handler(request, element_index=None):
         except models.Comment.DoesNotExist as e:
             messages.error(request, e.messages)
 
+        except models.Stage.DoesNotExist as e:
+            messages.error(request, e.messages)
+
         except django.core.exceptions.ValidationError as e:
             messages.error(request, e.messages)
 
@@ -785,7 +822,12 @@ def modal_edit_comment_handler(request, element_index=None):
     return forms_handler
 
 
-def modal_edit_employee_handler(request, element_index=None):
+def modal_edit_employee_handler(
+        request,
+        element_index=None,
+        project_id=None,
+        stage_id=None
+):
 
     old_employee = None
     old_user = None
@@ -874,7 +916,12 @@ def modal_edit_employee_handler(request, element_index=None):
     return forms_handler
 
 
-def modal_edit_institution_handler(request, element_index=None):
+def modal_edit_institution_handler(
+        request,
+        element_index=None,
+        project_id=None,
+        stage_id=None
+):
 
     old_institution = None
 
@@ -936,7 +983,12 @@ def modal_edit_institution_handler(request, element_index=None):
     return forms_handler
 
 
-def modal_edit_project_type_handler(request, element_index=None):
+def modal_edit_project_type_handler(
+        request,
+        element_index=None,
+        project_id=None,
+        stage_id=None
+):
 
     old_project_type = None
 

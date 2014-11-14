@@ -41,7 +41,7 @@
 
                 <div class="col-md-6 stage-tasks">
                     <h2>Tareas</h2>
-                    <a href="/modal/add/task" class="btn btn-info modal-summon">Agregar Tarea</a>
+                    <a href="/modal/stage/{{ stage.id }}/add/task" class="btn btn-info modal-summon">Agregar Tarea</a>
                     {% for task in tasks %}
 
                         <div class="stage-task row">
@@ -71,7 +71,7 @@
                                         <p>Fecha límite: {{ task.deadline }}</p>
 
                                     {% endif %}
-                                    <a href="/modal/edit/task/{{ task.id }}" class="modal-summon"><i class="fa fa-pencil"></i></a>
+                                    <a href="/modal/stage/{{ stage.id }}/edit/task/{{ task.id }}" class="modal-summon"><i class="fa fa-pencil"></i></a>
                                     <a href="#delete-task" class="modal-delete-summon" id="{{ task.id }}"><i class="fa fa-trash-o"></i></a>
                                 </div>
 
@@ -84,7 +84,7 @@
 
                 <div class="col-md-6 stage-comments">
                     <h2>Comentarios</h2>
-                    <a href="/modal/add/comment" class="btn btn-info modal-summon">Agregar Comentario</a>
+                    <a href="/modal/stage/{{ stage.id }}/add/comment" class="btn btn-info modal-summon">Agregar Comentario</a>
                     {% for comment in comments %}
 
                         <div class="stage-comment row">
@@ -100,7 +100,7 @@
                                 <h5>{{ comment.title }}</h5>
                                 <p>{{ comment.date }}</p>
                                 <p>{{ comment.description }}</p>
-                                <a href="/modal/edit/comment/{{ comment.id }}" class="modal-summon"><i class="fa fa-pencil"></i></a>
+                                <a href="/modal/stage/{{ stage.id }}/edit/comment/{{ comment.id }}" class="modal-summon"><i class="fa fa-pencil"></i></a>
                                 <a href="#delete-comment" class="modal-delete-summon" id="{{ comment.id }}"><i class="fa fa-trash-o"></i></a>
                             </div>
 
@@ -118,14 +118,16 @@
 <div style="display:none">
     <div class="delete-modal" id="delete-task">
         <h6>¿Estás seguro de querer eliminar esta tarea?</h6>
-        <a href="/delete/task/" class="btn btn-danger">Eliminar</a>
+        <a href="#" onClick="parent.jQuery.fancybox.close();">Cancelar</a>
+        <a href="/delete/task/" class="btn btn-danger submit-delete">Eliminar</a>
     </div>
 </div>
 
 <div style="display:none">
     <div class="delete-modal" id="delete-comment">
         <h6>¿Estás seguro de querer eliminar este comentario?</h6>
-        <a href="/delete/comment/" class="btn btn-danger">Eliminar</a>
+        <a href="#" onClick="parent.jQuery.fancybox.close();">Cancelar</a>
+        <a href="/delete/comment/" class="btn btn-danger submit-delete">Eliminar</a>
     </div>
 </div>
 

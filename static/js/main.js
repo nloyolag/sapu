@@ -17,9 +17,8 @@ $( document ).ready(function() {
         var _href = $(this).attr("href");
         _href = _href.substr(1);
         var targetModal = document.getElementById(_href);
-        var modal_href = $(targetModal).children("a").attr("href");
-        $(targetModal).children("a").attr("href", modal_href + $(this).attr("id"));
-        console.log(modal_href + $(this).attr("id"));
+        var modal_href = $(targetModal).children("a.submit-delete").attr("href");
+        $(targetModal).children("a.submit-delete").attr("href", modal_href + $(this).attr("id"));
     });
 
     // Return delete button URL back to default, add fancybox
@@ -28,10 +27,10 @@ $( document ).ready(function() {
             var _href = $(this).attr("href");
             _href = _href.substr(1);
             var targetModal = document.getElementById(_href);
-            var modal_href = $(targetModal).children("a").attr("href");
+            var modal_href = $(targetModal).children("a.submit-delete").attr("href");
             while(modal_href.charAt(modal_href.length - 1) != '/')
                 modal_href = modal_href.substr(0, modal_href.length - 1);
-            $(targetModal).children("a").attr("href", modal_href);
+            $(targetModal).children("a.submit-delete").attr("href", modal_href);
         }
     });
 
@@ -53,7 +52,6 @@ $( document ).ready(function() {
                 $.fancybox.close();
             });
         });
-
     });
 
     // Summons modal for create and edit buttons
