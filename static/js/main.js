@@ -7,10 +7,6 @@ $( document ).ready(function() {
         infoCallback: function(){}
     } );
 
-    $("#institution-info").click(function() {
-        $("#institution-collapse").slideToggle('slow');
-    });
-
     var modalDeleteSummon = $(".modal-delete-summon");
     var mainContent = $(".main-content");
 
@@ -24,7 +20,12 @@ $( document ).ready(function() {
     });
 
     $(".modal-summon").fancybox({
-        type: 'ajax'
+        type: 'ajax',
+        ajax: {
+            complete: function() {
+                $("select").select2({width: "90%"});
+            }
+        }
     });
 
 
