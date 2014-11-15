@@ -55,7 +55,6 @@ class ModelFormProject(django.forms.ModelForm):
             'project_id',
             'deadline',
             'folio',
-            'photo',
             'institution',
             'project_type',
             'state'
@@ -73,6 +72,21 @@ class ModelFormProject(django.forms.ModelForm):
             },
             'state': {
                 'required': u"Necesitas asignarle un estado al proyecto"
+            }
+        }
+
+
+class ModelFormProjectPhoto(django.forms.ModelForm):
+
+    class Meta:
+        model = models.Project
+        fields = [
+            'photo'
+        ]
+
+        error_messages = {
+            'photo': {
+                'required': u"Necesitas elegir una fotografía para el proyecto"
             }
         }
 

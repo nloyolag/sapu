@@ -424,10 +424,17 @@ def generic_modal(
     template_context =\
         django.template.context.RequestContext(request, template_variables)
 
-    return django.shortcuts.render_to_response(
-        globals.TEMPLATE__MODAL,
-        template_context
-    )
+    if modal_element == globals.PREFIX__FORM_PROJECT_PHOTO and request.method == "POST":
+        return projects_render_view(request)
+
+    elif modal_element == globals.PREFIX__FORM_EMPLOYEE_PHOTO and request.method == "POST":
+        return users_render_view(request)
+
+    else:
+        return django.shortcuts.render_to_response(
+            globals.TEMPLATE__MODAL,
+            template_context
+        )
 
 
 @login_required

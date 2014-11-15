@@ -78,6 +78,61 @@ def modal_edit_project(
     return modal
 
 
+def modal_edit_project_photo(
+        modal_name,
+        element_index=None,
+        modal_forms=None
+):
+    # Construct the modal
+    action_text = globals.MODAL_ACTION__CREATE
+    modal_action = globals.OPTION_NAME__MODAL_FORM_ADD
+
+    # Project was already added/edited
+    if globals.PREFIX__FORM_PROJECT_PHOTO in modal_forms:
+        # Form was passed as a parameter
+        project_photo_form = modal_forms[globals.PREFIX__FORM_PROJECT_PHOTO]
+
+    else:
+        # Edit Project
+        if element_index is not None:
+
+            try:
+                project =\
+                    models.Project.objects.get(pk=element_index)
+
+            except models.Project.DoesNotExist:
+                return None
+
+            project_photo_form = forms.ModelFormProjectPhoto(
+                prefix=globals.PREFIX__FORM_PROJECT_PHOTO,
+                instance=project
+            )
+
+            action_text = globals.MODAL_ACTION__EDIT
+            modal_action = globals.OPTION_NAME__MODAL_FORM_EDIT
+
+        # Create project
+        else:
+            project_photo_form = forms.ModelFormProjectPhoto(prefix=globals.PREFIX__FORM_PROJECT_PHOTO)
+
+    project_modal_form = globals.ModalForm(
+        title=globals.FIELD__PHOTO,
+        form=project_photo_form
+    )
+
+    main_forms = [project_modal_form]
+
+    modal = globals.Modal(
+        name=modal_name,
+        action=modal_action,
+        main_forms=main_forms,
+        accept_button_text=action_text,
+        accept_button_link="/modal/edit/project_photo/" + element_index
+    )
+
+    return modal
+
+
 def modal_edit_permission(
         modal_name,
         element_index=None,
@@ -304,10 +359,8 @@ def modal_edit_employee(
     modal_action = globals.OPTION_NAME__MODAL_FORM_ADD
 
     # Employee was already added/edited
-    if(globals.PREFIX__FORM_EMPLOYEE in modal_forms and
-       globals.PREFIX__FORM_USER in modal_forms):
+    if globals.PREFIX__FORM_USER in modal_forms:
         # Form was passed as a parameter
-        employee_form = modal_forms[globals.PREFIX__FORM_EMPLOYEE]
         user_form = modal_forms[globals.PREFIX__FORM_USER]
         password_form = modal_forms[globals.PREFIX__FORM_PASSWORD_CHANGE]
 
@@ -327,11 +380,6 @@ def modal_edit_employee(
             except User.DoesNotExist:
                 return None
 
-            employee_form = forms.ModelFormEmployee(
-                prefix=globals.PREFIX__FORM_EMPLOYEE,
-                instance=employee
-            )
-
             user_form = forms.ModelFormEditUser(
                 prefix=globals.PREFIX__FORM_USER,
                 instance=user
@@ -346,14 +394,8 @@ def modal_edit_employee(
 
         # Create employee
         else:
-            employee_form = forms.ModelFormEmployee(prefix=globals.PREFIX__FORM_EMPLOYEE)
             user_form = forms.ModelFormUser(prefix=globals.PREFIX__FORM_USER)
             password_form = None
-
-    employee_modal_form = globals.ModalForm(
-        title=globals.FIELD__EMPLOYEE,
-        form=employee_form
-    )
 
     user_modal_form = globals.ModalForm(
         form=user_form
@@ -363,13 +405,68 @@ def modal_edit_employee(
         form=password_form
     )
 
-    main_forms = [employee_modal_form, user_modal_form, password_modal_form]
+    main_forms = [user_modal_form, password_modal_form]
 
     modal = globals.Modal(
         name=modal_name,
         action=modal_action,
         main_forms=main_forms,
         accept_button_text=action_text
+    )
+
+    return modal
+
+
+def modal_edit_employee_photo(
+        modal_name,
+        element_index=None,
+        modal_forms=None
+):
+    # Construct the modal
+    action_text = globals.MODAL_ACTION__CREATE
+    modal_action = globals.OPTION_NAME__MODAL_FORM_ADD
+
+    # Employee was already added/edited
+    if globals.PREFIX__FORM_EMPLOYEE_PHOTO in modal_forms:
+        # Form was passed as a parameter
+        employee_form = modal_forms[globals.PREFIX__FORM_EMPLOYEE_PHOTO]
+
+    else:
+        # Edit Employee
+        if element_index is not None:
+
+            try:
+                employee =\
+                    models.Employee.objects.get(pk=element_index)
+
+            except models.Employee.DoesNotExist:
+                return None
+
+            employee_form = forms.ModelFormEmployee(
+                prefix=globals.PREFIX__FORM_EMPLOYEE_PHOTO,
+                instance=employee
+            )
+
+            action_text = globals.MODAL_ACTION__EDIT
+            modal_action = globals.OPTION_NAME__MODAL_FORM_EDIT
+
+        # Create project
+        else:
+            employee_form = forms.ModelFormEmployee(prefix=globals.PREFIX__FORM_EMPLOYEE_PHOTO)
+
+    employee_modal_form = globals.ModalForm(
+        title=globals.FIELD__PHOTO,
+        form=employee_form
+    )
+
+    main_forms = [employee_modal_form]
+
+    modal = globals.Modal(
+        name=modal_name,
+        action=modal_action,
+        main_forms=main_forms,
+        accept_button_text=action_text,
+        accept_button_link="/modal/edit/employee_photo/" + element_index
     )
 
     return modal
@@ -557,6 +654,78 @@ def modal_edit_project_handler(
 
     forms_handler = {
         globals.PREFIX__FORM_PROJECT: form_project
+    }
+
+    return forms_handler
+
+
+def modal_edit_project_photo_handler(
+        request,
+        element_index=None,
+        project_id=None,
+        stage_id=None
+):
+
+    old_project = None
+
+    if element_index:
+
+        try:
+            old_project = models.Project.objects.get(pk=element_index)
+        except models.Project.DoesNotExist:
+            messages.error(request, globals.ERROR__FORBIDDEN)
+            return None
+
+        # Get the form for instance element
+        form_project_photo = forms.ModelFormProjectPhoto(
+            request.POST,
+            request.FILES,
+            prefix=globals.PREFIX__FORM_PROJECT_PHOTO,
+            instance=old_project
+        )
+
+    else:
+        # Get the form for new element
+        form_project_photo = forms.ModelFormProjectPhoto(
+            request.POST,
+            request.FILES,
+            prefix=globals.PREFIX__FORM_PROJECT
+        )
+
+    if form_project_photo.is_valid():
+
+        project_photo = form_project_photo.save(commit=False)
+
+        try:
+            # Save the new object or update it
+
+            if 'project_photo-photo' in request.FILES:
+                project_photo.full_clean()
+                old_project.photo = request.FILES['project_photo-photo']
+                old_project.save()
+
+            if not old_project:
+
+                messages.success(request, globals.MESSAGE__CREATION_SUCCESS_M.format(
+                    model_name=globals.MODEL_NAME__PROJECT,
+                    item_name=old_project.name
+                ))
+
+            else:
+
+                messages.success(request, globals.MESSAGE__EDIT_SUCCESS_M.format(
+                    model_name=globals.MODEL_NAME__PROJECT,
+                    item_name=old_project.name
+                ))
+
+        except models.Project.DoesNotExist as e:
+            messages.error(request, e.messages)
+
+        except django.core.exceptions.ValidationError as e:
+            messages.error(request, e.messages)
+
+    forms_handler = {
+        globals.PREFIX__FORM_PROJECT_PHOTO: form_project_photo
     }
 
     return forms_handler
@@ -864,6 +1033,7 @@ def modal_edit_employee_handler(
 ):
 
     old_employee = None
+    employee = None
     old_user = None
     form_password = None
 
@@ -888,13 +1058,6 @@ def modal_edit_employee_handler(
             instance=old_user
         )
 
-        form_employee = forms.ModelFormEmployee(
-            request.POST,
-            request.FILES,
-            prefix=globals.PREFIX__FORM_EMPLOYEE,
-            instance=old_employee
-        )
-
         form_password = forms.FormPasswordChange(
             request.POST,
             prefix=globals.PREFIX__FORM_PASSWORD_CHANGE
@@ -908,15 +1071,8 @@ def modal_edit_employee_handler(
             prefix=globals.PREFIX__FORM_USER
         )
 
-        form_employee = forms.ModelFormEmployee(
-            request.POST,
-            request.FILES,
-            prefix=globals.PREFIX__FORM_EMPLOYEE
-        )
+    if form_user.is_valid():
 
-    if form_employee.is_valid() and form_user.is_valid():
-
-        employee = form_employee.save(commit=False)
         user = form_user.save(commit=False)
 
         try:
@@ -947,9 +1103,16 @@ def modal_edit_employee_handler(
                 user.groups.add(group_id)
 
             user.save()
-            employee.user = user
-            employee.full_clean()
-            employee.save()
+
+            if old_employee:
+
+                old_employee.user = user
+                old_employee.save()
+
+            else:
+
+                employee = models.Employee.create(user=user)
+                employee.save()
 
             if not old_employee:
 
@@ -962,7 +1125,7 @@ def modal_edit_employee_handler(
 
                 messages.success(request, globals.MESSAGE__EDIT_SUCCESS_M.format(
                     model_name=globals.MODEL_NAME__EMPLOYEE,
-                    item_name=employee.user.first_name
+                    item_name=old_employee.user.first_name
                 ))
 
         except models.Employee.DoesNotExist as e:
@@ -976,8 +1139,79 @@ def modal_edit_employee_handler(
 
     forms_handler = {
         globals.PREFIX__FORM_USER: form_user,
-        globals.PREFIX__FORM_EMPLOYEE: form_employee,
         globals.PREFIX__FORM_PASSWORD_CHANGE: form_password
+    }
+
+    return forms_handler
+
+
+def modal_edit_employee_photo_handler(
+        request,
+        element_index=None,
+        project_id=None,
+        stage_id=None
+):
+
+    old_employee = None
+
+    if element_index:
+
+        try:
+            old_employee = models.Employee.objects.get(pk=element_index)
+        except models.Employee.DoesNotExist:
+            messages.error(request, globals.ERROR__FORBIDDEN)
+            return None
+
+        # Get the form for instance element
+        form_employee = forms.ModelFormEmployee(
+            request.POST,
+            request.FILES,
+            prefix=globals.PREFIX__FORM_EMPLOYEE_PHOTO,
+            instance=old_employee
+        )
+
+    else:
+        # Get the form for new element
+        form_employee = forms.ModelFormEmployee(
+            request.POST,
+            request.FILES,
+            prefix=globals.PREFIX__FORM_EMPLOYEE_PHOTO
+        )
+
+    if form_employee.is_valid():
+
+        employee_photo = form_employee.save(commit=False)
+
+        try:
+            # Save the new object or update it
+
+            if 'employee_photo-photo' in request.FILES:
+                employee_photo.full_clean()
+                old_employee.photo = request.FILES['employee_photo-photo']
+                old_employee.save()
+
+            if not old_employee:
+
+                messages.success(request, globals.MESSAGE__CREATION_SUCCESS_M.format(
+                    model_name=globals.MODEL_NAME__EMPLOYEE,
+                    item_name=old_employee.user.first_name
+                ))
+
+            else:
+
+                messages.success(request, globals.MESSAGE__EDIT_SUCCESS_M.format(
+                    model_name=globals.MODEL_NAME__EMPLOYEE,
+                    item_name=old_employee.user.first_name
+                ))
+
+        except models.Project.DoesNotExist as e:
+            messages.error(request, e.messages)
+
+        except django.core.exceptions.ValidationError as e:
+            messages.error(request, e.messages)
+
+    forms_handler = {
+        globals.PREFIX__FORM_PROJECT_PHOTO: form_employee
     }
 
     return forms_handler
@@ -1125,21 +1359,25 @@ def modal_edit_project_type_handler(
 MODAL__FUNCTIONS = {
     globals.MODAL_EDIT__INSTITUTION: modal_edit_institution,
     globals.MODAL_EDIT__PROJECT: modal_edit_project,
+    globals.MODAL_EDIT__PROJECT_PHOTO: modal_edit_project_photo,
     globals.MODAL_EDIT__PROJECT_TYPE: modal_edit_project_type,
     globals.MODAL_EDIT__STAGE: modal_edit_stage,
     globals.MODAL_EDIT__COMMENT: modal_edit_comment,
     globals.MODAL_EDIT__TASK: modal_edit_task,
     globals.MODAL_EDIT__EMPLOYEE: modal_edit_employee,
+    globals.MODAL_EDIT__EMPLOYEE_PHOTO: modal_edit_employee_photo,
     globals.MODAL_EDIT__PERMISSION: modal_edit_permission
 }
 
 MODAL__HANDLER_FUNCTIONS = {
     globals.MODAL_EDIT__INSTITUTION: modal_edit_institution_handler,
     globals.MODAL_EDIT__PROJECT: modal_edit_project_handler,
+    globals.MODAL_EDIT__PROJECT_PHOTO: modal_edit_project_photo_handler,
     globals.MODAL_EDIT__PROJECT_TYPE: modal_edit_project_type_handler,
     globals.MODAL_EDIT__STAGE: modal_edit_stage_handler,
     globals.MODAL_EDIT__COMMENT: modal_edit_comment_handler,
     globals.MODAL_EDIT__TASK: modal_edit_task_handler,
     globals.MODAL_EDIT__EMPLOYEE: modal_edit_employee_handler,
+    globals.MODAL_EDIT__EMPLOYEE_PHOTO: modal_edit_employee_photo_handler,
     globals.MODAL_EDIT__PERMISSION: modal_edit_permission_handler
 }
