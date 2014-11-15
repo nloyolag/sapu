@@ -71,8 +71,7 @@ class Project (django.db.models.Model):
                                         verbose_name=u"Foto",
                                         default="photos/projects/default.jpg")
 
-    description = django.db.models.CharField(max_length=255,
-                                             verbose_name="Descripción",
+    description = django.db.models.TextField(verbose_name=u"Descripción",
                                              blank=True)
 
     folio = django.db.models.CharField(max_length=255, verbose_name=u"Folio de oficio de solicitud")
@@ -174,7 +173,7 @@ class Employee (django.db.models.Model):
 
 class Stage (django.db.models.Model):
     name = django.db.models.CharField(max_length=255, verbose_name=u"Nombre")
-    description = django.db.models.CharField(max_length=255, verbose_name=u"Descripción", blank=True)
+    description = django.db.models.TextField(verbose_name=u"Descripción", blank=True)
     number = django.db.models.IntegerField(verbose_name=u"Número")
     is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
     deadline = \

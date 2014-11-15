@@ -309,6 +309,7 @@ def modal_edit_employee(
         # Form was passed as a parameter
         employee_form = modal_forms[globals.PREFIX__FORM_EMPLOYEE]
         user_form = modal_forms[globals.PREFIX__FORM_USER]
+        password_form = modal_forms[globals.PREFIX__FORM_PASSWORD_CHANGE]
 
     else:
         # Edit Employee
@@ -331,9 +332,13 @@ def modal_edit_employee(
                 instance=employee
             )
 
-            user_form = forms.ModelFormUser(
+            user_form = forms.ModelFormEditUser(
                 prefix=globals.PREFIX__FORM_USER,
                 instance=user
+            )
+
+            password_form = forms.FormPasswordChange(
+                prefix=globals.PREFIX__FORM_PASSWORD_CHANGE
             )
 
             action_text = globals.MODAL_ACTION__EDIT
@@ -343,6 +348,7 @@ def modal_edit_employee(
         else:
             employee_form = forms.ModelFormEmployee(prefix=globals.PREFIX__FORM_EMPLOYEE)
             user_form = forms.ModelFormUser(prefix=globals.PREFIX__FORM_USER)
+            password_form = None
 
     employee_modal_form = globals.ModalForm(
         title=globals.FIELD__EMPLOYEE,
@@ -353,7 +359,11 @@ def modal_edit_employee(
         form=user_form
     )
 
-    main_forms = [employee_modal_form, user_modal_form]
+    password_modal_form = globals.ModalForm(
+        form=password_form
+    )
+
+    main_forms = [employee_modal_form, user_modal_form, password_modal_form]
 
     modal = globals.Modal(
         name=modal_name,
@@ -855,6 +865,7 @@ def modal_edit_employee_handler(
 
     old_employee = None
     old_user = None
+    form_password = None
 
     if element_index:
 
@@ -871,7 +882,7 @@ def modal_edit_employee_handler(
             return None
 
         # Get the form for instance element
-        form_user = forms.ModelFormUser(
+        form_user = forms.ModelFormEditUser(
             request.POST,
             prefix=globals.PREFIX__FORM_USER,
             instance=old_user
@@ -882,6 +893,11 @@ def modal_edit_employee_handler(
             request.FILES,
             prefix=globals.PREFIX__FORM_EMPLOYEE,
             instance=old_employee
+        )
+
+        form_password = forms.FormPasswordChange(
+            request.POST,
+            prefix=globals.PREFIX__FORM_PASSWORD_CHANGE
         )
 
     else:
@@ -907,13 +923,28 @@ def modal_edit_employee_handler(
             # Save the new object or update it
             user.full_clean()
 
-            user.groups.clear()
-            groups = request.POST['user-groups']
-            print groups
+            if element_index:
+
+                user.groups.clear()
+
+                if form_password and form_password.is_valid():
+                    password = form_password.cleaned_data['password']
+                    confirm_password = form_password.cleaned_data['confirm_password']
+
+                    if password != "" and confirm_password != "":
+
+                        if password == confirm_password:
+                            user.set_password(password)
+
+                        else:
+                            messages.error(request, globals.ERROR__PASSWORDS_DONT_MATCH)
+
+            user.save()
+            groups = request.POST.getlist('user-groups')
 
             for group in groups:
-                user.groups.add(group)
-                print group
+                group_id = int(group)
+                user.groups.add(group_id)
 
             user.save()
             employee.user = user
@@ -945,7 +976,8 @@ def modal_edit_employee_handler(
 
     forms_handler = {
         globals.PREFIX__FORM_USER: form_user,
-        globals.PREFIX__FORM_EMPLOYEE: form_employee
+        globals.PREFIX__FORM_EMPLOYEE: form_employee,
+        globals.PREFIX__FORM_PASSWORD_CHANGE: form_password
     }
 
     return forms_handler
