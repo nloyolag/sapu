@@ -560,7 +560,6 @@ def delete_stage_view(request, stage_id):
                          u" ha sido eliminada.")
 
     except models.Stage.DoesNotExist as e:
-
         messages.error(request, e.messages)
 
     return HttpResponse('')

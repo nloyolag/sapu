@@ -53,6 +53,7 @@ $( document ).ready(function() {
             mainContent.load(
             url + " #main-content > *",
             function() {
+                console.log("Donde");
                 mainContent.prepend($messages);
                 $.fancybox.close();
             });

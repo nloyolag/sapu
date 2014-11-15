@@ -1065,7 +1065,6 @@ def modal_edit_employee_handler(
 
     else:
         # Get the form for new element
-
         form_user = forms.ModelFormUser(
             request.POST,
             prefix=globals.PREFIX__FORM_USER
@@ -1110,9 +1109,7 @@ def modal_edit_employee_handler(
                 old_employee.save()
 
             else:
-
-                employee = models.Employee.create(user=user)
-                employee.save()
+                employee = models.Employee.objects.get_or_create(user=user)[0]
 
             if not old_employee:
 
