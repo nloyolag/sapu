@@ -30,7 +30,7 @@
 
         <div class="view-header permissions-header">
             <h2 class="permissions-title">Permisos</h2>
-            <a href="/modal/project/{{ project.id }}/add/permission" class="btn btn-info modal-summon">Agregar Permiso</a>
+            <a href="/modal/add/permission/project/{{ project.id }}/" class="btn btn-info modal-summon">Agregar Permiso</a>
         </div>
 
 
@@ -47,7 +47,7 @@
                     <h6>Folio - {{ permission.folio }}</h6>
                     <h6>Institución - {{ permission.institution.name }}</h6>
                     <p>{{ permission.description }}</p>
-                    <a href="/modal/project/{{ project.id }}/edit/permission/{{ permission.id }}" class="modal-summon"><i class="fa fa-pencil"></i></a>
+                    <a href="/modal/edit/permission/{{ permission.id }}/project/{{ project.id }}/" class="modal-summon"><i class="fa fa-pencil"></i></a>
                     <a href="#delete-permission" class="modal-delete-summon" id="{{ permission.id }}"><i class="fa fa-trash-o"></i></a>
                 </div>
             </div>
@@ -60,7 +60,7 @@
 
         <div class="view-header tasks-header">
             <h2 class="permissions-title">Etapas</h2>
-            <a href="/modal/project/{{ project.id }}/add/stage" class="btn btn-info modal-summon">Agregar Etapa</a>
+            <a href="/modal/add/stage/project/{{ project.id }}/" class="btn btn-info modal-summon">Agregar Etapa</a>
         </div>
 
         {% for stage in stages %}
@@ -76,7 +76,7 @@
                         <hr>
                         <h6> <i class="fa fa-clock-o fa-lg"></i> - {{ stage.deadline }}</h6>
                         <p>{{ stage.description }}</p>
-                        <a href="/modal/project/{{ project.id }}/edit/stage/{{ stage.id }}" class="modal-summon"><i class="fa fa-pencil"></i></a>
+                        <a href="/modal/edit/stage/{{ stage.id }}/project/{{ project.id }}/" class="modal-summon"><i class="fa fa-pencil"></i></a>
                         <a href="#delete-stage" class="modal-delete-summon" id="{{ stage.id }}"><i class="fa fa-trash-o"></i></a>
                     </div>
                 </div>

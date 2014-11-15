@@ -250,9 +250,9 @@ class Task (django.db.models.Model):
         django.db.models.DateTimeField(verbose_name=u"Fecha Límite")
 
     finished_date =\
-        django.db.models.DateTimeField(verbose_name=u"Fecha de Completitud", blank=True)
+        django.db.models.DateTimeField(verbose_name=u"Fecha de Completitud", blank=True, null=True)
 
-    is_complete = django.db.models.BooleanField(default=None, verbose_name=u"¿Está completada?")
+    is_complete = django.db.models.BooleanField(default=False, verbose_name=u"¿Está completada?")
 
     class Meta:
 

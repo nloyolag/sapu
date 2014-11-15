@@ -18,10 +18,29 @@ urlpatterns = patterns('',
     # Modals
     #
 
-    # ex: /modal/add/project/
-    url(r'^modal/(?P<modal_action>\w+)/(?P<modal_element>\w+)/$',
+    # ex: /modal/edit/permission/3/stage/1/
+    url(r'^modal/(?P<modal_action>\w+)/(?P<modal_element>\w+)/'
+        r'(?P<element_index>\w+)/stage/(?P<stage_id>\w+)/$',
         views.generic_modal,
-        name='modal-add'),
+        name='modal-edit-stage'),
+
+    # ex: /modal/edit/permission/3/project/1/
+    url(r'^modal/(?P<modal_action>\w+)/(?P<modal_element>\w+)/'
+        r'(?P<element_index>\w+)/project/(?P<project_id>\w+)/$',
+        views.generic_modal,
+        name='modal-edit-project'),
+
+    # ex: /modal/add/permission/stage/1/
+    url(r'^modal/(?P<modal_action>\w+)/'
+        r'(?P<modal_element>\w+)/stage/(?P<stage_id>\w+)/$',
+        views.generic_modal,
+        name='modal-add-stage'),
+
+    # ex: /modal/add/permission/project/1/
+    url(r'^modal/(?P<modal_action>\w+)/'
+        r'(?P<modal_element>\w+)/project/(?P<project_id>\w+)/$',
+        views.generic_modal,
+        name='modal-add-project'),
 
     # ex: /modal/edit/project/6/
     url(r'^modal/(?P<modal_action>\w+)/(?P<modal_element>\w+)/'
@@ -29,29 +48,10 @@ urlpatterns = patterns('',
         views.generic_modal,
         name='modal-edit'),
 
-    # ex: /modal/project/1/add/permission/
-    url(r'^modal/project/(?P<project_id>\w+)/(?P<modal_action>\w+)/'
-        r'(?P<modal_element>\w+)/$',
+    # ex: /modal/add/project/
+    url(r'^modal/(?P<modal_action>\w+)/(?P<modal_element>\w+)/$',
         views.generic_modal,
-        name='modal-add-project'),
-
-    # ex: /modal/project/1/edit/permission/3/
-    url(r'^modal/project/(?P<project_id>\w+)/(?P<modal_action>\w+)/'
-        r'(?P<modal_element>\w+)/(?P<element_index>\w+)/$',
-        views.generic_modal,
-        name='modal-edit-project'),
-
-    # ex: /modal/stage/1/add/permission/
-    url(r'^modal/stage/(?P<stage_id>\w+)/'
-        r'(?P<modal_action>\w+)/(?P<modal_element>\w+)/$',
-        views.generic_modal,
-        name='modal-add-stage'),
-
-    # ex: /modal/project/1/edit/permission/3/
-    url(r'^modal/stage/(?P<stage_id>\w+)/(?P<modal_action>\w+)/'
-        r'(?P<modal_element>\w+)/(?P<element_index>\w+)/$',
-        views.generic_modal,
-        name='modal-edit-stage'),
+        name='modal-add'),
 
     #
     # Modals Delete

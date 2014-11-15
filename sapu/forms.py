@@ -122,8 +122,7 @@ class ModelFormTask(django.forms.ModelForm):
         fields = [
             'title',
             'employee',
-            'deadline',
-            'employee'
+            'deadline'
         ]
 
         error_messages = {
@@ -157,46 +156,25 @@ class ModelFormComment(django.forms.ModelForm):
 
 class ModelFormUser(django.forms.ModelForm):
 
-    #def __init__(self, *args, **kwargs):
-
     class Meta:
         model = django.contrib.auth.models.User
+
         fields = [
             'username',
             'email',
             'password',
             'first_name',
-            'last_name',
             'groups'
         ]
 
-        widgets = {
-            'username': django.forms.TextInput(
-                attrs={
-                    'label': globals.FIELD__USERNAME
-                }
-            ),
-            'email': django.forms.TextInput(
-                attrs={
-                    'label': globals.FIELD__EMAIL
-                }
-            ),
-            'password': django.forms.PasswordInput(
-                attrs={
-                    'label': globals.FIELD__PASSWORD
-                }
-            ),
-            'first_name': django.forms.TextInput(
-                attrs={
-                    'label': globals.FIELD__NAME
-                }
-            ),
-            'groups': django.forms.Select(
-                attrs={
-                    'label': u"Privilegios"
-                }
-            )
+        labels = {
+            'username': globals.FIELD__USERNAME,
+            'email': globals.FIELD__EMAIL,
+            'password': globals.FIELD__PASSWORD,
+            'first_name': globals.FIELD__NAME,
+            'groups': globals.FIELD__GROUPS
         }
+
         error_messages = {
             'username': {
                 'required': u"Necesitas escribir un nombre de usuario"

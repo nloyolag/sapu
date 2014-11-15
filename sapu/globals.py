@@ -37,6 +37,7 @@ MESSAGE__EDIT_SUCCESS_F = u"{model_name} {item_name} modificada"
 
 FIELD__PASSWORD = u"Contraseña"
 FIELD__USERNAME = u"Usuario"
+FIELD__GROUPS = u"Privilegios"
 
 FIELD__PROJECT = u"Proyecto"
 FIELD__INSTITUTION = u"Institución"

@@ -62,13 +62,16 @@ def create_permissions():
     permission_change_task = Permission.objects.get(codename='change_task')
     permission_delete_task = Permission.objects.get(codename='delete_task')
 
+    employee = Group(name='Empleado')
+    employee.save()
+
     supervisor = Group(name='Supervisor')
     supervisor.save()
 
-    project_manager = Group(name='ProjectManager')
+    project_manager = Group(name='Jefe de proyectos')
     project_manager.save()
 
-    administrator = Group(name='Administrator')
+    administrator = Group(name='Administrador')
     administrator.save()
 
     supervisor_permissions = [permission_add_task,

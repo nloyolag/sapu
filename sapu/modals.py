@@ -7,6 +7,7 @@ import datetime
 import django.core.exceptions
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
 
 # SAPU imports
 import forms
@@ -112,7 +113,7 @@ def modal_edit_permission(
 
         # Create permission
         else:
-           permission_form = forms.ModelFormPermission(prefix=globals.PREFIX__FORM_PERMISSION)
+            permission_form = forms.ModelFormPermission(prefix=globals.PREFIX__FORM_PERMISSION)
 
     permission_modal_form = globals.ModalForm(
         title=globals.FIELD__PERMISSION,
@@ -303,9 +304,11 @@ def modal_edit_employee(
     modal_action = globals.OPTION_NAME__MODAL_FORM_ADD
 
     # Employee was already added/edited
-    if globals.PREFIX__FORM_EMPLOYEE in modal_forms:
+    if(globals.PREFIX__FORM_EMPLOYEE in modal_forms and
+       globals.PREFIX__FORM_USER in modal_forms):
         # Form was passed as a parameter
         employee_form = modal_forms[globals.PREFIX__FORM_EMPLOYEE]
+        user_form = modal_forms[globals.PREFIX__FORM_USER]
 
     else:
         # Edit Employee
@@ -314,13 +317,23 @@ def modal_edit_employee(
             try:
                 employee =\
                     models.Employee.objects.get(pk=element_index)
+                user =\
+                    employee.user
 
             except models.Employee.DoesNotExist:
+                return None
+
+            except User.DoesNotExist:
                 return None
 
             employee_form = forms.ModelFormEmployee(
                 prefix=globals.PREFIX__FORM_EMPLOYEE,
                 instance=employee
+            )
+
+            user_form = forms.ModelFormUser(
+                prefix=globals.PREFIX__FORM_USER,
+                instance=user
             )
 
             action_text = globals.MODAL_ACTION__EDIT
@@ -329,13 +342,18 @@ def modal_edit_employee(
         # Create employee
         else:
             employee_form = forms.ModelFormEmployee(prefix=globals.PREFIX__FORM_EMPLOYEE)
+            user_form = forms.ModelFormUser(prefix=globals.PREFIX__FORM_USER)
 
     employee_modal_form = globals.ModalForm(
         title=globals.FIELD__EMPLOYEE,
         form=employee_form
     )
 
-    main_forms = [employee_modal_form]
+    user_modal_form = globals.ModalForm(
+        form=user_form
+    )
+
+    main_forms = [employee_modal_form, user_modal_form]
 
     modal = globals.Modal(
         name=modal_name,
@@ -483,7 +501,7 @@ def modal_edit_project_handler(
         # Get the form for instance element
         form_project = forms.ModelFormProject(
             request.POST,
-            prefix=globals.PREFIX__FORM_INSTITUTION,
+            prefix=globals.PREFIX__FORM_PROJECT,
             instance=old_project
         )
 
@@ -500,8 +518,10 @@ def modal_edit_project_handler(
 
         try:
             # Save the new object or update it
-            # auto fill creation date
-            project.creation_date = datetime.datetime.now()
+
+            if not element_index:
+                project.creation_date = datetime.datetime.now()
+
             project.full_clean()
             project.save()
 
@@ -568,7 +588,9 @@ def modal_edit_permission_handler(
         permission = form_permission.save(commit=False)
 
         try:
+
             # Save the new object or update it
+
             permission.project = models.Project.objects.get(pk=project_id)
             permission.full_clean()
             permission.save()
@@ -577,14 +599,14 @@ def modal_edit_permission_handler(
 
                 messages.success(request, globals.MESSAGE__CREATION_SUCCESS_M.format(
                     model_name=globals.MODEL_NAME__PERMISSION,
-                    item_name=permission.name
+                    item_name=permission.title
                 ))
 
             else:
 
                 messages.success(request, globals.MESSAGE__EDIT_SUCCESS_M.format(
                     model_name=globals.MODEL_NAME__PERMISSION,
-                    item_name=permission.name
+                    item_name=permission.title
                 ))
 
         except models.Permission.DoesNotExist as e:
@@ -712,7 +734,9 @@ def modal_edit_task_handler(
 
         try:
             # Save the new object or update it
-            task.stage = models.Stage.objects.get(pk=stage_id)
+            stage = models.Stage.objects.get(pk=stage_id)
+            task.stage = stage
+            task.finished_date = datetime.datetime.now()
             task.full_clean()
             task.save()
 
@@ -720,14 +744,14 @@ def modal_edit_task_handler(
 
                 messages.success(request, globals.MESSAGE__CREATION_SUCCESS_F.format(
                     model_name=globals.MODEL_NAME__TASK,
-                    item_name=task.name
+                    item_name=task.title
                 ))
 
             else:
 
                 messages.success(request, globals.MESSAGE__EDIT_SUCCESS_F.format(
                     model_name=globals.MODEL_NAME__TASK,
-                    item_name=task.name
+                    item_name=task.title
                 ))
 
         except models.Task.DoesNotExist as e:
@@ -796,14 +820,14 @@ def modal_edit_comment_handler(
 
                 messages.success(request, globals.MESSAGE__CREATION_SUCCESS_M.format(
                     model_name=globals.MODEL_NAME__COMMENT,
-                    item_name=comment.name
+                    item_name=comment.title
                 ))
 
             else:
 
                 messages.success(request, globals.MESSAGE__EDIT_SUCCESS_M.format(
                     model_name=globals.MODEL_NAME__COMMENT,
-                    item_name=comment.name
+                    item_name=comment.title
                 ))
 
         except models.Comment.DoesNotExist as e:
@@ -855,6 +879,7 @@ def modal_edit_employee_handler(
 
         form_employee = forms.ModelFormEmployee(
             request.POST,
+            request.FILES,
             prefix=globals.PREFIX__FORM_EMPLOYEE,
             instance=old_employee
         )
@@ -869,6 +894,7 @@ def modal_edit_employee_handler(
 
         form_employee = forms.ModelFormEmployee(
             request.POST,
+            request.FILES,
             prefix=globals.PREFIX__FORM_EMPLOYEE
         )
 
@@ -880,6 +906,15 @@ def modal_edit_employee_handler(
         try:
             # Save the new object or update it
             user.full_clean()
+
+            user.groups.clear()
+            groups = request.POST['user-groups']
+            print groups
+
+            for group in groups:
+                user.groups.add(group)
+                print group
+
             user.save()
             employee.user = user
             employee.full_clean()
@@ -889,14 +924,14 @@ def modal_edit_employee_handler(
 
                 messages.success(request, globals.MESSAGE__CREATION_SUCCESS_M.format(
                     model_name=globals.MODEL_NAME__EMPLOYEE,
-                    item_name=employee.name
+                    item_name=employee.user.first_name
                 ))
 
             else:
 
                 messages.success(request, globals.MESSAGE__EDIT_SUCCESS_M.format(
                     model_name=globals.MODEL_NAME__EMPLOYEE,
-                    item_name=employee.name
+                    item_name=employee.user.first_name
                 ))
 
         except models.Employee.DoesNotExist as e:

@@ -120,4 +120,11 @@ $( document ).ready(function() {
 
         });
 
+    $(document).on(
+        'click',
+        '.modal-footer a.cancel-button[href="#"]',
+        function() {
+            $.fancybox.close();
+    });
+
 });
