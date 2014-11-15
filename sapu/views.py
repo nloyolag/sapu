@@ -490,6 +490,7 @@ def delete_project_view(request, project_id):
         project = models.Project.objects.get(pk=project_id)
         project.is_active = False
         project.save()
+
         messages.success(request,
                          u"El proyecto " +
                          unicode(project.name) +
@@ -552,6 +553,7 @@ def delete_stage_view(request, stage_id):
         stage = models.Stage.objects.get(pk=stage_id)
         stage.is_active = False
         stage.save()
+
         messages.success(request,
                          u"La etapa " +
                          unicode(stage.name) +
