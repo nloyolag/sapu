@@ -516,3 +516,29 @@ nav a:hover {
 
 /* Users Styles
 =============== */
+.modal-footer {
+    width: 200px;
+    margin-left: 130px;
+}
+
+.modal-title {
+    text-align: center;
+}
+
+.modal-field h6 {
+    text-align: center;
+}
+
+#id_project_type-name {
+    margin-left: 160px;
+}
+
+#id_project_type-description {
+    margin-left: 75px;
+}
+
+#id_employee-photo {
+    margin-left: 147px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
