@@ -72,6 +72,12 @@ class ModelFormProject(django.forms.ModelForm):
             },
             'state': {
                 'required': u"Necesitas asignarle un estado al proyecto"
+            },
+            'institution': {
+                'required': u"Necesitas asignarle un cliente al proyecto"
+            },
+            'project_type': {
+                'required': u"Necesitas asignarle un tipo de proyecto al proyecto"
             }
         }
 
@@ -109,6 +115,9 @@ class ModelFormPermission(django.forms.ModelForm):
             },
             'state': {
                 'required': u"Necesitas asignarle un estado al permiso"
+            },
+            'institution': {
+                'required': u"Necesitas asignarle una institución al permiso"
             }
         }
 

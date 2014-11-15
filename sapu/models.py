@@ -80,13 +80,15 @@ class Project (django.db.models.Model):
                                               on_delete=django.db.models.PROTECT,
                                               related_name="project_institution",
                                               verbose_name=u"Cliente",
-                                              blank=True)
+                                              blank=True,
+                                              null=True)
 
     project_type = django.db.models.ForeignKey(ProjectType,
                                                on_delete=django.db.models.PROTECT,
                                                related_name="project_project_type",
                                                verbose_name=u"Tipo de Proyecto",
-                                               blank=True)
+                                               blank=True,
+                                               null=True)
 
     state = django.db.models.ForeignKey(State,
                                         on_delete=django.db.models.PROTECT,
@@ -132,8 +134,7 @@ class Permission (django.db.models.Model):
     institution = django.db.models.ForeignKey(Institution,
                                               on_delete=django.db.models.PROTECT,
                                               related_name="permission_institution",
-                                              verbose_name=u"Institución",
-                                              blank=True)
+                                              verbose_name=u"Institución")
 
     project = django.db.models.ForeignKey(Project,
                                           on_delete=django.db.models.PROTECT,
