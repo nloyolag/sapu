@@ -1,5 +1,10 @@
 $( document ).ready(function() {
 
+    $(".fancybox").fancybox({
+        autoSize : false,
+        width: 500
+    });
+
     // Selectors reutilized throughout the script
     var modalDeleteSummon = $(".modal-delete-summon");
     var mainContent = $(".main-content");
@@ -56,6 +61,8 @@ $( document ).ready(function() {
 
     // Summons modal for create and edit buttons
     $(".modal-summon").fancybox({
+        minWidth: 500,
+        scrolling: 'no',
         type: 'ajax',
         ajax: {
             complete: function() {
