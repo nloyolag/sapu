@@ -25,11 +25,27 @@ class FormSearchProject(django.forms.Form):
     )
 
 
+class FormPasswordChange(django.forms.Form):
+    password = django.forms.CharField(
+        required=False,
+        label=globals.FIELD__NEW_PASSWORD,
+        widget=django.forms.PasswordInput()
+    )
+
+    confirm_password = django.forms.CharField(
+        required=False,
+        label=globals.FIELD__CONFIRM_PASSWORD,
+        widget=django.forms.PasswordInput()
+    )
+
+
 class ModelFormProject(django.forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ModelFormProject, self).__init__(*args, **kwargs)
         self.fields['institution'].queryset = models.Institution.objects.filter(is_client=True)
+        self.fields['deadline'].widget = django.forms.TextInput(attrs={
+            'class': 'datetime-field'})
 
     class Meta:
         model = models.Project
@@ -39,7 +55,6 @@ class ModelFormProject(django.forms.ModelForm):
             'project_id',
             'deadline',
             'folio',
-            'photo',
             'institution',
             'project_type',
             'state'
@@ -57,6 +72,21 @@ class ModelFormProject(django.forms.ModelForm):
             },
             'state': {
                 'required': u"Necesitas asignarle un estado al proyecto"
+            }
+        }
+
+
+class ModelFormProjectPhoto(django.forms.ModelForm):
+
+    class Meta:
+        model = models.Project
+        fields = [
+            'photo'
+        ]
+
+        error_messages = {
+            'photo': {
+                'required': u"Necesitas elegir una fotografía para el proyecto"
             }
         }
 
@@ -84,6 +114,11 @@ class ModelFormPermission(django.forms.ModelForm):
 
 
 class ModelFormStage(django.forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(ModelFormStage, self).__init__(*args, **kwargs)
+        self.fields['deadline'].widget = django.forms.TextInput(attrs={
+            'class': 'datetime-field'})
 
     class Meta:
         model = models.Stage
@@ -117,13 +152,17 @@ class ModelFormStage(django.forms.ModelForm):
 
 class ModelFormTask(django.forms.ModelForm):
 
+    def __init__(self, *args, **kwargs):
+        super(ModelFormTask, self).__init__(*args, **kwargs)
+        self.fields['deadline'].widget = django.forms.TextInput(attrs={
+            'class': 'datetime-field'})
+
     class Meta:
         model = models.Task
         fields = [
             'title',
             'employee',
-            'deadline',
-            'employee'
+            'deadline'
         ]
 
         error_messages = {
@@ -157,46 +196,63 @@ class ModelFormComment(django.forms.ModelForm):
 
 class ModelFormUser(django.forms.ModelForm):
 
-    #def __init__(self, *args, **kwargs):
-
     class Meta:
         model = django.contrib.auth.models.User
+
         fields = [
             'username',
             'email',
-            'password',
             'first_name',
-            'last_name',
+            'password',
             'groups'
         ]
 
-        widgets = {
-            'username': django.forms.TextInput(
-                attrs={
-                    'label': globals.FIELD__USERNAME
-                }
-            ),
-            'email': django.forms.TextInput(
-                attrs={
-                    'label': globals.FIELD__EMAIL
-                }
-            ),
-            'password': django.forms.PasswordInput(
-                attrs={
-                    'label': globals.FIELD__PASSWORD
-                }
-            ),
-            'first_name': django.forms.TextInput(
-                attrs={
-                    'label': globals.FIELD__NAME
-                }
-            ),
-            'groups': django.forms.Select(
-                attrs={
-                    'label': u"Privilegios"
-                }
-            )
+        labels = {
+            'username': globals.FIELD__USERNAME,
+            'email': globals.FIELD__EMAIL,
+            'first_name': globals.FIELD__NAME,
+            'password': globals.FIELD__PASSWORD,
+            'groups': globals.FIELD__GROUPS
         }
+
+        error_messages = {
+            'username': {
+                'required': u"Necesitas escribir un nombre de usuario"
+            },
+            'first_name': {
+                'required': u"Necesitas escribir un nombre(s)"
+            },
+            'last_name': {
+                'required': u"Necesitas escribir un apellido(s)"
+            },
+            'password': {
+                'required': u"Necesitas escribir una contraseña"
+            },
+            'groups': {
+                'required': u"Necesitas seleccionar un puesto"
+            }
+        }
+
+
+class ModelFormEditUser(django.forms.ModelForm):
+
+    class Meta:
+        model = django.contrib.auth.models.User
+
+        fields = [
+            'username',
+            'email',
+            'first_name',
+            'groups'
+        ]
+
+        labels = {
+            'username': globals.FIELD__USERNAME,
+            'email': globals.FIELD__EMAIL,
+            'first_name': globals.FIELD__NAME,
+            'groups': globals.FIELD__GROUPS
+        }
+
         error_messages = {
             'username': {
                 'required': u"Necesitas escribir un nombre de usuario"

@@ -34,6 +34,13 @@ import modals
 # TODO Fix Create/Update/Delete buttons styles
 # TODO Show Create/Edit/Delete buttons only to appropiate groups
 
+# TODO Fix date time inputs
+# TODO SHow dates in spanish
+# TODO Fix image uploads
+# TODO Fix User group assignment
+# TODO Fix User password field
+# TODO Fix Cancel button modal forms
+
 
 # Functions that render the views of the application
 
@@ -411,14 +418,23 @@ def generic_modal(
 
     template_variables['modal'] = modal
     template_variables['element_index'] = element_index
+    template_variables['project_id'] = project_id
+    template_variables['stage_id'] = stage_id
 
     template_context =\
         django.template.context.RequestContext(request, template_variables)
 
-    return django.shortcuts.render_to_response(
-        globals.TEMPLATE__MODAL,
-        template_context
-    )
+    if modal_element == globals.PREFIX__FORM_PROJECT_PHOTO and request.method == "POST":
+        return projects_render_view(request)
+
+    elif modal_element == globals.PREFIX__FORM_EMPLOYEE_PHOTO and request.method == "POST":
+        return users_render_view(request)
+
+    else:
+        return django.shortcuts.render_to_response(
+            globals.TEMPLATE__MODAL,
+            template_context
+        )
 
 
 @login_required
@@ -513,8 +529,8 @@ def delete_employee_view(request, employee_id):
     try:
 
         employee = models.Employee.objects.get(pk=employee_id)
-        employee.is_active = False
-        employee.save()
+        employee.user.is_active = False
+        employee.user.save()
         messages.success(request,
                          u"El usuario " +
                          unicode(employee.user) +

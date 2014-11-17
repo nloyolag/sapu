@@ -17,6 +17,7 @@ from django.contrib.contenttypes.models import ContentType
 from permissions import create_permissions
 import sapu.models
 
+
 def populate():
 
     ###############################################################################
@@ -391,7 +392,7 @@ def populate():
         photo=photo_test
     )
 
-    Group.objects.get(name='Administrator').user_set.add(employee1.user)
+    Group.objects.get(name='Administrador').user_set.add(employee1.user)
     employee1.user.first_name = 'Armando Arias'
     employee1.save()
 
@@ -401,7 +402,7 @@ def populate():
         photo=photo_test
     )
 
-    Group.objects.get(name='Administrator').user_set.add(employee2.user)
+    Group.objects.get(name='Administrador').user_set.add(employee2.user)
     employee1.user.first_name = 'Baltasar Mendez'
     employee2.save()
 
@@ -411,7 +412,7 @@ def populate():
         photo=photo_test
     )
 
-    Group.objects.get(name='Administrator').user_set.add(employee3.user)
+    Group.objects.get(name='Administrador').user_set.add(employee3.user)
     employee3.save()
 
     #4
@@ -420,7 +421,7 @@ def populate():
         photo=photo_test
     )
 
-    Group.objects.get(name='ProjectManager').user_set.add(employee4.user)
+    Group.objects.get(name='Jefe de proyectos').user_set.add(employee4.user)
     employee4.save()
 
     #5
@@ -429,7 +430,7 @@ def populate():
         photo=photo_test
     )
 
-    Group.objects.get(name='ProjectManager').user_set.add(employee5.user)
+    Group.objects.get(name='Jefe de proyectos').user_set.add(employee5.user)
     employee5.save()
 
     #6
@@ -438,7 +439,7 @@ def populate():
         photo=photo_test
     )
 
-    Group.objects.get(name='ProjectManager').user_set.add(employee6.user)
+    Group.objects.get(name='Jefe de proyectos').user_set.add(employee6.user)
     employee6.save()
 
     #7
@@ -470,39 +471,57 @@ def populate():
 
     #10
     employee10 = add_employee(
-        user=User.objects.create_user(u'Jonathan', 'jonathan@sapu.com','jonathan'),
+        user=User.objects.create_user(u'Jonathan', 'jonathan@sapu.com', 'jonathan'),
         photo=photo_test
     )
+
+    Group.objects.get(name='Empleado').user_set.add(employee10.user)
+    employee10.save()
 
     #11
     employee11 = add_employee(
-        user=User.objects.create_user(u'Katia', 'katia@sapu.com','katia'),
+        user=User.objects.create_user(u'Katia', 'katia@sapu.com', 'katia'),
         photo=photo_test
     )
+
+    Group.objects.get(name='Empleado').user_set.add(employee11.user)
+    employee11.save()
 
     #12
     employee12 = add_employee(
-        user=User.objects.create_user(u'Laura', 'laura@sapu.com','laura'),
+        user=User.objects.create_user(u'Laura', 'laura@sapu.com', 'laura'),
         photo=photo_test
     )
+
+    Group.objects.get(name='Empleado').user_set.add(employee12.user)
+    employee12.save()
 
     #13
     employee13 = add_employee(
-        user=User.objects.create_user(u'Mauro', 'mauro@sapu.com','mauro'),
+        user=User.objects.create_user(u'Mauro', 'mauro@sapu.com', 'mauro'),
         photo=photo_test
     )
+
+    Group.objects.get(name='Empleado').user_set.add(employee13.user)
+    employee13.save()
 
     #14
-    add_employee(
-        user=User.objects.create_user(u'Nazarín', 'nazarin@sapu.com','nazarin'),
+    employee14 = add_employee(
+        user=User.objects.create_user(u'Nazarín', 'nazarin@sapu.com', 'nazarin'),
         photo=photo_test
     )
 
+    Group.objects.get(name='Empleado').user_set.add(employee14.user)
+    employee14.save()
+
     #15
-    add_employee(
-        user=User.objects.create_user('Olaf', 'olaf@sapu.com','olaf'),
+    employee15 = add_employee(
+        user=User.objects.create_user('Olaf', 'olaf@sapu.com', 'olaf'),
         photo=photo_test
     )
+
+    Group.objects.get(name='Empleado').user_set.add(employee15.user)
+    employee15.save()
 
     ###############################################################################
     #

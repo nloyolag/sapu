@@ -67,6 +67,7 @@ $( document ).ready(function() {
         ajax: {
             complete: function() {
                 $("select").select2({width: "90%"});
+                $(".datetime-field").datepicker();
             }
         }
     });
@@ -101,6 +102,8 @@ $( document ).ready(function() {
                     $modal.find('.modal-form').remove();
                     var $modal_forms = $(data).find('.modal-form');
                     $modal.find('.sapu-modal').append($modal_forms);
+                    $("select").select2({width: "90%"});
+                    $(".datetime-field").datepicker();
                 } else {
                     var url = document.URL;
                     mainContent.empty();
@@ -126,5 +129,13 @@ $( document ).ready(function() {
             });
 
         });
+
+    $(document).on(
+        'click',
+        '.modal-footer a.cancel-button[href="#"]',
+        function() {
+            event.preventDefault();
+            $.fancybox.close();
+    });
 
 });

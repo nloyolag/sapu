@@ -1,14 +1,21 @@
 <div class="sapu-modal">
     {% if modal.main_forms %}
-            {% if element_index %}
+            {% if element_index and project_id %}
+                {% url 'sapu.views.generic_modal' modal_action=modal.action modal_element=modal.name element_index=element_index project_id=project_id as action_url %}
+            {% elif element_index and stage_id %}
+                {% url 'sapu.views.generic_modal' modal_action=modal.action modal_element=modal.name element_index=element_index stage_id=stage_id as action_url %}
+            {% elif element_index %}
                 {% url 'sapu.views.generic_modal' modal_action=modal.action modal_element=modal.name element_index=element_index as action_url %}
+            {% elif project_id %}
+                {% url 'sapu.views.generic_modal' modal_action=modal.action modal_element=modal.name project_id=project_id as action_url %}
+            {% elif stage_id %}
+                {% url 'sapu.views.generic_modal' modal_action=modal.action modal_element=modal.name stage_id=stage_id as action_url %}
             {% else %}
                 {% url 'sapu.views.generic_modal' modal_action=modal.action modal_element=modal.name as action_url %}
             {% endif %}
-        <form class="modal-form" method="post" action="{{ action_url }}">
+        <form class="modal-form" method="post" action="{{ action_url }}" enctype="multipart/form-data">
         {% csrf_token %}
     {% endif %}
-
 
         <div class="sapu-modal-inner">
             <!-- Form Errors -->
@@ -69,7 +76,7 @@
                         {% if modal.cancel_button_text %}
                             <div class="col-md-6">
                                 <a href="{{ modal.cancel_button_link }}" class="cancel-button">
-                                    <button class="radius">
+                                    <button type="button" class="radius">
                                         {{ modal.cancel_button_text }}
                                     </button>
                                 </a>

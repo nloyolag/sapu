@@ -14,6 +14,7 @@ ERROR__FORBIDDEN = u"No cuentas con los permisos necesarios"
 ERROR__SERVER_ERROR = u"Error en el servidor. Intente de nuevo más tarde."
 ERROR__DUPLICATE = u"Ya existe un ítem con el mismo nombre"
 ERROR__INVALID_UPLOAD = u"Error al subir el archivo"
+ERROR__PASSWORDS_DONT_MATCH = u"Las contraseñas no coinciden"
 
 
 ################################################################################
@@ -37,6 +38,10 @@ MESSAGE__EDIT_SUCCESS_F = u"{model_name} {item_name} modificada"
 
 FIELD__PASSWORD = u"Contraseña"
 FIELD__USERNAME = u"Usuario"
+FIELD__GROUPS = u"Privilegios"
+FIELD__NEW_PASSWORD = u"Nueva contraseña"
+FIELD__CONFIRM_PASSWORD = u"Repetir contraseña"
+FIELD__PHOTO = u"Foto"
 
 FIELD__PROJECT = u"Proyecto"
 FIELD__INSTITUTION = u"Institución"
@@ -75,6 +80,9 @@ PREFIX__FORM_COMMENT = 'comment'
 PREFIX__FORM_EMPLOYEE = 'employee'
 PREFIX__FORM_USER = 'user'
 PREFIX__FORM_PERMISSION = 'permission'
+PREFIX__FORM_PASSWORD_CHANGE = 'password-change'
+PREFIX__FORM_PROJECT_PHOTO = 'project_photo'
+PREFIX__FORM_EMPLOYEE_PHOTO = 'employee_photo'
 
 ################################################################################
 #
@@ -106,6 +114,8 @@ MODAL_EDIT__COMMENT = "comment"
 MODAL_EDIT__TASK = "task"
 MODAL_EDIT__EMPLOYEE = "employee"
 MODAL_EDIT__PERMISSION = "permission"
+MODAL_EDIT__PROJECT_PHOTO = "project_photo"
+MODAL_EDIT__EMPLOYEE_PHOTO = "employee_photo"
 
 ################################################################################
 #
