@@ -62,7 +62,7 @@ $( document ).ready(function() {
     // Summons modal for create and edit buttons
     $(".modal-summon").fancybox({
         minWidth: 500,
-        scrolling: 'no',
+        scrolling: 'auto',
         type: 'ajax',
         ajax: {
             complete: function() {

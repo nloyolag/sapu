@@ -529,16 +529,16 @@ nav a:hover {
     text-align: center;
 }
 
-#id_project_type-name {
-    margin-left: 160px;
-}
-
-#id_project_type-description {
-    margin-left: 75px;
-}
-
 #id_employee-photo {
-    margin-left: 147px;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+input, textarea, select2-container {
+    display: block;
+    margin: 0 auto;
+}
+
+.fancybox-inner {
+    overflow-x: hidden !important;
 }
