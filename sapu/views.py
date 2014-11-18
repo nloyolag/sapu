@@ -21,6 +21,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponse
+from django.utils import timezone
 
 # SAPU imports
 import settings
@@ -34,12 +35,7 @@ import modals
 # TODO Fix Create/Update/Delete buttons styles
 # TODO Show Create/Edit/Delete buttons only to appropiate groups
 
-# TODO Fix date time inputs
 # TODO SHow dates in spanish
-# TODO Fix image uploads
-# TODO Fix User group assignment
-# TODO Fix User password field
-# TODO Fix Cancel button modal forms
 
 
 # Functions that render the views of the application
@@ -155,8 +151,6 @@ def projects_render_view(request):
 
     # TODO Order Projects By States, not deadlines
     # TODO Add logic to change project state to delayed (Beware of it overriding finished or cancelled states)
-    # TODO Create projects
-    # TODO Edit projects
 
     if project_query:
 
@@ -204,8 +198,6 @@ def users_render_view(request):
     template_variables = {}
 
     # TODO Check if user logged in at least once
-    # TODO Create users
-    # TODO Edit users
 
     try:
         employees = models.Employee.objects.filter(user__is_active=True)
@@ -306,16 +298,13 @@ def project_type_render_view(request):
 @login_required
 def stages_render_view(request, project_id):
 
-    # TODO Add logic to change project state to delayed (Beware of it overriding finished or cancelled states)
-    # TODO Add logic to change stage state to delayed (Beware of it overriding finished or cancelled states)
     # TODO Code button to declare project as complete
     # TODO Code button to cancel project
-    # TODO Create stages
-    # TODO Edit stages
-    # TODO Create permissions
-    # TODO Edit permissions
 
     template_variables = {}
+    stages = None
+    delayed = False
+    project = None
 
     try:
         project = models.Project.objects.get(pk=project_id)
@@ -329,6 +318,23 @@ def stages_render_view(request, project_id):
 
     except models.Stage.DoesNotExist as e:
         messages.error(request, e.messages)
+
+    for stage in stages:
+
+        if stage.state.number == 1:
+            delayed = True
+
+        if stage.deadline < timezone.now() and stage.state.number == 2:
+            stage.state = models.State.objects.get(number=1)
+
+        elif stage.deadline > timezone.now() and stage.state.number == 1:
+            stage.state = models.State.objects.get(number=2)
+
+    if delayed and project.state.number == 2:
+        project.state = models.State.objects.get(number=1)
+
+    elif not delayed and project.state.number == 1:
+        project.state = models.State.objects.get(number=2)
 
     template_context =\
         django.template.context.RequestContext(request, template_variables)
@@ -346,10 +352,6 @@ def stage_detail_render_view(request, project_id, stage_id):
     # TODO Code checkbox to modify is_complete value
     # TODO Separate Tasks from Comments
     # TODO Code buttons for assignees to declare stage as finished
-    # TODO Create tasks
-    # TODO Edit tasks
-    # TODO Create comments
-    # TODO Edit comments
 
     template_variables = {}
 
@@ -440,8 +442,6 @@ def generic_modal(
 @login_required
 @permission_required('sapu.delete_institution')
 def delete_institution_view(request, institution_id):
-
-    #TODO Deactivate in cascade
 
     try:
 

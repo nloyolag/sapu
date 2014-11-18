@@ -75,7 +75,7 @@ header {
     width: 100%;
     position: fixed;
     color: #FFFFFF;
-    z-index: 99999;
+    z-index: 10;
 }
 
 nav h1 {
@@ -601,7 +601,7 @@ a .fa-upload, a .fa-pencil, a .fa-trash-o {
 
 
 .fancybox-overlay {
-    z-index: 200 !important;
+    z-index: 15;
 }
 
 .form-error {
@@ -662,6 +662,6 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
     border-color: #FA5858;
 }
 
-.fancybox-overlay {
-    z-index: 99999 !important;
+.select2-results {
+    z-index: 20;
 }

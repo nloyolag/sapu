@@ -9,6 +9,7 @@ import datetime
 #Django imports
 
 import django
+from django.utils import timezone
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.contenttypes.models import ContentType
 
@@ -531,7 +532,7 @@ def populate():
     # REQUIRES: Institution, ProjectType, State
     # 50 Registers
 
-    datetime1 = datetime.datetime.now()
+    datetime1 = timezone.now()
 
     # 1
     project1 = add_project(
@@ -2413,7 +2414,7 @@ def populate():
     # REQUIRES: Stage, Employee
     # 50 Registers / 2 per stage (Los que alcancen)
 
-    datetime1 = datetime.datetime.now()
+    datetime1 = timezone.now()
 
     #1
     add_comment(
