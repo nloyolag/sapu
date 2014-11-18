@@ -574,3 +574,33 @@ td:nth-child(4) .modal-delete-summon {
 #id_institution-is_client, #s2id_id_user-groups {
     margin: 0 auto;
 }
+
+#list-content {
+    margin-top: 60px;
+}
+
+div.row:nth-child(4) {
+    margin-top: 60px;
+}
+
+div.row:nth-child(9) {
+    margin-top: 60px;
+}
+
+a .fa-upload, a .fa-pencil, a .fa-trash-o {
+    color: #333333;
+}
+
+#id_name, .projects-container > form:nth-child(2) > div:nth-child(1) > button:nth-child(3) {
+    margin-top: 10px;
+}
+
+.fa-check-circle-o, .fa-circle-o {
+    margin-top: 10px;
+}
+
+
+.fancybox-overlay {
+    z-index: 200 !important;
+}
+
