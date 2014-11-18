@@ -607,3 +607,47 @@ a .fa-upload, a .fa-pencil, a .fa-trash-o {
 .form-error {
     background-color: #F78181;
 }
+
+div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
+    margin-top: 120px;
+    margin-bottom: 0;
+}
+
+.task-info-data .modal-delete-summon, .comment-info .modal-delete-summon {
+    float: left;
+}
+
+.stage-dashboard-inner {
+    overflow: auto;
+}
+
+.color-guide {
+    overflow: auto;
+
+}
+
+.color-in-time, .color-late, .color-complete, .color-canceled, .color-paused {
+    display: inline-block;
+    margin: 30px 0 10px 0;
+    padding: 0 45px 0 45px
+}
+
+.color-in-time {
+    background-color: #5BC0DE;
+}
+
+.color-late {
+    background-color: #F2AD4E;
+}
+
+.color-canceled {
+    background-color: #999;
+}
+
+.color-complete {
+    background-color: #5CB85C;
+}
+
+.color-paused {
+    background-color: #F781F3;
+}
