@@ -604,3 +604,6 @@ a .fa-upload, a .fa-pencil, a .fa-trash-o {
     z-index: 200 !important;
 }
 
+.form-error {
+    background-color: #F78181;
+}
