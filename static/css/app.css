@@ -534,7 +534,7 @@ nav a:hover {
     margin-bottom: 20px;
 }
 
-input, textarea, select2-container {
+input, textarea  {
     display: block;
     margin: 0 auto;
 }
@@ -649,5 +649,10 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
 }
 
 .color-paused {
-    background-color: #F781F3;
+    background-color: #FE642E;
+}
+
+.btn-info-red {
+    background-color: #FA5858;
+    border-color: #FA5858;
 }
