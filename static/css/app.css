@@ -313,7 +313,7 @@ nav a:hover {
 
 .pt-info {
     width: 330px;
-    height: 180px;
+    height: 230px;
 }
 
 .title-band {
@@ -541,4 +541,36 @@ input, textarea, select2-container {
 
 .fancybox-inner {
     overflow-x: hidden !important;
+}
+
+#id_name {
+    display: block;
+    float: left;
+}
+
+.modal-summon {
+    display: inline-block;
+    margin: 10px 12px 0 0;
+    float: left;
+}
+
+.modal-delete-summon {
+    display: inline-block;
+    margin: 10px 12px 0 0;
+    float: right;
+}
+
+.stg-info-inner .modal-delete-summon,
+.pt-info-inner .modal-delete-summon,
+.pt-info-inner .modal-summon{
+    float: left;
+    margin-bottom: 15px;
+}
+
+td:nth-child(4) .modal-delete-summon {
+    float: left;
+}
+
+#id_institution-is_client, #s2id_id_user-groups {
+    margin: 0 auto;
 }
