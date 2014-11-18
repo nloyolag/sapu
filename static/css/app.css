@@ -656,3 +656,12 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
     background-color: #FA5858;
     border-color: #FA5858;
 }
+
+.btn-info-red:hover {
+    background-color: #DF0101;
+    border-color: #FA5858;
+}
+
+.fancybox-overlay {
+    z-index: 99999 !important;
+}
