@@ -299,6 +299,7 @@ nav a:hover {
     vertical-align: middle;
     margin-bottom: 63px;
     margin-right: 4%;
+    color: #333333;
 }
 
 .task-info i:hover {
@@ -307,6 +308,11 @@ nav a:hover {
 
 .task-info-data {
     display: inline-block;
+}
+
+.stage-container,
+.permission-container {
+    min-height: 300px;
 }
 
 /*Project Types styles*/

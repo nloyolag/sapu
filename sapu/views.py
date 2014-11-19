@@ -139,6 +139,7 @@ def login_render_view(request):
 def projects_render_view(request):
 
     project_query = ''
+    delayed = False
 
     if request.method == "POST":
 
@@ -150,7 +151,6 @@ def projects_render_view(request):
     template_variables = {}
 
     # TODO Order Projects By States, not deadlines
-    # TODO Add logic to change project state to delayed (Beware of it overriding finished or cancelled states)
 
     if project_query:
 
@@ -183,6 +183,26 @@ def projects_render_view(request):
         template_variables['pagination'] = True
 
     template_variables['form_search_project'] = forms.FormSearchProject()
+
+    for project in projects:
+
+        stages = models.Stage.objects.filter(project=project)
+
+        for stage in stages:
+
+            if stage.state.number == 1:
+                delayed = True
+                break
+
+        if delayed and project.state.number == 2:
+            project.state = models.State.objects.get(number=1)
+            project.save()
+
+        elif not delayed and project.state.number == 1:
+            project.state = models.State.objects.get(number=2)
+            project.save()
+
+        delayed = False
 
     template_context =\
         django.template.context.RequestContext(request, template_variables)
@@ -300,6 +320,8 @@ def stages_render_view(request, project_id):
 
     # TODO Code button to declare project as complete
     # TODO Code button to cancel project
+    # TODO SOme stages display not in 3 columns
+    # TODO Success messages look like buttons
 
     template_variables = {}
     stages = None
@@ -326,15 +348,19 @@ def stages_render_view(request, project_id):
 
         if stage.deadline < timezone.now() and stage.state.number == 2:
             stage.state = models.State.objects.get(number=1)
+            stage.save()
 
         elif stage.deadline > timezone.now() and stage.state.number == 1:
             stage.state = models.State.objects.get(number=2)
+            stage.save()
 
     if delayed and project.state.number == 2:
         project.state = models.State.objects.get(number=1)
+        project.save()
 
     elif not delayed and project.state.number == 1:
         project.state = models.State.objects.get(number=2)
+        project.save()
 
     template_context =\
         django.template.context.RequestContext(request, template_variables)
@@ -379,6 +405,23 @@ def stage_detail_render_view(request, project_id, stage_id):
         globals.TEMPLATE__STAGE_DETAIL,
         template_context
     )
+
+
+@login_required
+def check_task_view(
+        request,
+        task_id
+):
+    task = models.Task.objects.get(pk=task_id)
+
+    if task.is_complete:
+        task.is_complete = False
+    else:
+        task.is_complete = True
+
+    task.save()
+
+    return HttpResponse('')
 
 
 @login_required

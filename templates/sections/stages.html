@@ -26,6 +26,20 @@
                 <h6>Tipo de proyecto: {{ project.project_type.name }}</h6>
                 <p>{{ project.description }}</p>
             </div>
+
+            <!-- <form>
+                <select>
+                    <option>En Tiempo</option>
+                    <option>Retrasado</option>
+                    <option>Cancelado</option>
+                    <option>Completado</option>
+                    <option>Congelado</option>
+                </select>
+                <a href="/modal/add/permission/project/{{ project.id }}/" class="btn btn-info">Modificar estado</a>
+            </form>
+            <a href="/modal/add/permission/project/{{ project.id }}/" class="btn btn-danger">Cancelar Proyecto</a>
+            <a href="/modal/add/permission/project/{{ project.id }}/" class="btn btn-success">Completar Proyecto</a>
+            <a href="/modal/add/permission/project/{{ project.id }}/" class="btn btn-warning">Congelar Proyecto</a> -->
         </div>
 
         <div class="view-header permissions-header">
@@ -33,46 +47,49 @@
             <a href="/modal/add/permission/project/{{ project.id }}/" class="btn btn-info modal-summon">Agregar Permiso</a>
         </div>
 
+        <div class="permission-container">
+            {% for permission in permissions %}
 
-        {% for permission in permissions %}
+                {% if forloop.counter0|divisibleby:3 %}
+                    <div class="row">
+                {% endif %}
 
-            {% if forloop.counter0|divisibleby:3 %}
-                <div class="row">
-            {% endif %}
-
-            <div class="col-md-4 permission-info">
-                <div class="stg-info-inner">
-                    <h5>{{ permission.title }}</h5>
-                    <hr>
-                    <h6>Folio - {{ permission.folio }}</h6>
-                    <h6>Institución - {{ permission.institution.name }}</h6>
-                    <p>{{ permission.description }}</p>
-                    <a href="/modal/edit/permission/{{ permission.id }}/project/{{ project.id }}/" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
-                    <a href="#delete-permission" class="modal-delete-summon" id="{{ permission.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
+                <div class="col-md-4 permission-info">
+                    <div class="stg-info-inner">
+                        <h5>{{ permission.title }}</h5>
+                        <hr>
+                        <h6>Folio - {{ permission.folio }}</h6>
+                        <h6>Institución - {{ permission.institution.name }}</h6>
+                        <p>{{ permission.description }}</p>
+                        <a href="/modal/edit/permission/{{ permission.id }}/project/{{ project.id }}/" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
+                        <a href="#delete-permission" class="modal-delete-summon" id="{{ permission.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
+                    </div>
                 </div>
-            </div>
 
-            {% if forloop.counter|divisibleby:3 or forloop.last %}
-                </div>
-            {% endif %}
+                {% if forloop.counter|divisibleby:3 or forloop.last %}
+                    </div>
+                {% endif %}
 
-        {% endfor %}
+            {% endfor %}
+        </div>
 
         <div class="view-header tasks-header">
             <h2 class="permissions-title">Etapas</h2>
             <a href="/modal/add/stage/project/{{ project.id }}/" class="btn btn-info modal-summon">Agregar Etapa</a>
         </div>
 
-        {% for stage in stages %}
+        <div class="stage-container">
+            {% for stage in stages %}
 
-            {% if forloop.counter0|divisibleby:3 %}
-                <div class="row">
-            {% endif %}
+                {% if forloop.counter0|divisibleby:3 %}
+                    <div class="row">
+                {% endif %}
 
-            <a href="/proyectos/{{ project.id }}/{{ stage.id }}">
                 <div class="col-md-4 stg-info {{ stage.name }} {{ stage.state.name }}">
                     <div class="stg-info-inner">
-                        <h5>{{ stage.number }} - {{ stage.name }}</h5>
+                        <a href="/proyectos/{{ project.id }}/{{ stage.id }}">
+                            <h5>{{ stage.number }} - {{ stage.name }}</h5>
+                        </a>
                         <hr>
                         <h6> <i class="fa fa-clock-o fa-lg"></i> - {{ stage.deadline }}</h6>
                         <p>{{ stage.description }}</p>
@@ -80,20 +97,20 @@
                         <a href="#delete-stage" class="modal-delete-summon" id="{{ stage.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
                     </div>
                 </div>
-            </a>
 
-            {% if forloop.counter|divisibleby:3 or forloop.last %}
-                </div>
-            {% endif %}
+                {% if forloop.counter|divisibleby:3 or forloop.last %}
+                    </div>
+                {% endif %}
 
-        {% endfor %}
+            {% endfor %}
+        </div>
 
     </div>
 
 <div style="display:none">
     <div class="delete-modal" id="delete-stage">
         <h6>¿Estás seguro de querer eliminar esta etapa?</h6>
-        <a href="#" onClick="parent.jQuery.fancybox.close();" class="radius btn btn-info">Cancelar</a>
+        <a href="#" class="radius btn btn-info">Cancelar</a>
         <a href="/delete/stage/" class="btn btn-danger submit-delete">Eliminar</a>
     </div>
 </div>
@@ -101,7 +118,7 @@
 <div style="display:none">
     <div class="delete-modal" id="delete-permission">
         <h6>¿Estás seguro de querer eliminar este permiso?</h6>
-        <a href="#" onClick="parent.jQuery.fancybox.close(); class="radius btn btn-info"">Cancelar</a>
+        <a href="#" class="radius btn btn-info">Cancelar</a>
         <a href="/delete/permission/" class="btn btn-danger submit-delete">Eliminar</a>
     </div>
 </div>

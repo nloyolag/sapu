@@ -40,7 +40,7 @@ $( document ).ready(function() {
     });
 
     // Makes AJAX deletion
-    $(document).on("click", ".submit-delete", function() {
+    $(document).on("click", ".submit-delete", function(event) {
         event.preventDefault();
         var $button = $(this);
         $button.html('<i class="fa fa-refresh fa-spin"></i>');
@@ -53,7 +53,6 @@ $( document ).ready(function() {
             mainContent.load(
             url + " #main-content > *",
             function() {
-                console.log("Donde");
                 mainContent.prepend($messages);
                 $.fancybox.close();
             });
@@ -132,12 +131,40 @@ $( document ).ready(function() {
 
         });
 
+    // Close fancybox on click
     $(document).on(
         'click',
         '.modal-footer a.cancel-button[href="#"]',
-        function() {
+        function(event) {
             event.preventDefault();
             $.fancybox.close();
+    });
+
+    // Close delete fancybox on click
+    $(document).on(
+        'click',
+        '.delete-modal a[href="#"]',
+        function(event) {
+            event.preventDefault();
+            $.fancybox.close();
+    });
+
+    // Check and uncheck tasks with AJAX
+    $(document).on("click", ".check-click", function(event) {
+        event.preventDefault();
+
+        if ($(this).hasClass("fa-check-square")) {
+            $(this).removeClass("fa-check-square");
+            $(this).addClass("fa-square-o");
+
+        } else {
+            $(this).removeClass("fa-square-o");
+            $(this).addClass("fa-check-square");
+        }
+
+        var _href = $(this).parent().attr("href");
+
+        $(this).load(_href);
     });
 
 });

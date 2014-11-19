@@ -108,6 +108,16 @@ urlpatterns = patterns('',
     url(r'^action-logout/', views.action_logout, name='action-logout'),
 
     #
+    # Business Logic Actions
+    #
+
+    # ex: /check/3
+    url(r'^check/(?P<task_id>\d*)/$',
+        views.check_task_view,
+        name='check-task'),
+
+
+    #
     # Views
     #
 
