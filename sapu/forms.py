@@ -159,6 +159,21 @@ class ModelFormStage(django.forms.ModelForm):
         }
 
 
+class ModelFormStageState(django.forms.ModelForm):
+
+    class Meta:
+        model = models.Stage
+        fields = [
+            'state'
+        ]
+
+        error_messages = {
+            'state': {
+                'required': u"Necesitas asignarle un estado a la etapa"
+            }
+        }
+
+
 class ModelFormTask(django.forms.ModelForm):
 
     def __init__(self, *args, **kwargs):

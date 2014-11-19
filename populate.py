@@ -299,14 +299,6 @@ def populate():
     #
     ###############################################################################
 
-    # on_time
-    on_time = add_state(
-        number=2,
-        name=u"En tiempo",
-        description=u"El elemento se encuentra desarrollandose y a tiempo con respecto la fecha de entrega.",
-        color=u"#95C0FC"
-    )
-
     # delayed
     delayed = add_state(
         number=1,
@@ -315,9 +307,25 @@ def populate():
         color=u"#F3F163"
     )
 
+    # on_time
+    on_time = add_state(
+        number=2,
+        name=u"En tiempo",
+        description=u"El elemento se encuentra desarrollandose y a tiempo con respecto la fecha de entrega.",
+        color=u"#95C0FC"
+    )
+
+    # standby
+    standby = add_state(
+        number=3,
+        name=u"Congelado",
+        description=u"El elemento ha sido sido congelado",
+        color=u"#FFFFFF"
+    )
+
     # cancelled
     cancelled = add_state(
-        number=3,
+        number=4,
         name=u"Cancelado",
         description=u"El elemento no se terminó o ha sido pospuesto.",
         color=u"#E47F91"
@@ -330,16 +338,6 @@ def populate():
         description=u"El elemento ha sido terminado",
         color=u"#6CE6A5"
     )
-
-    #TODO change color for standby state
-    # standby
-    standby = add_state(
-        number=4,
-        name=u"Terminado",
-        description=u"El elemento ha sido terminado",
-        color=u"#FFFFFF"
-    )
-
 
     ###############################################################################
     #

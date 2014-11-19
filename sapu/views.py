@@ -318,14 +318,13 @@ def project_type_render_view(request):
 @login_required
 def stages_render_view(request, project_id):
 
-    # TODO Code button to declare project as complete
-    # TODO Code button to cancel project
     # TODO SOme stages display not in 3 columns
     # TODO Success messages look like buttons
 
     template_variables = {}
     stages = None
     delayed = False
+    can_complete = True
     project = None
 
     try:
@@ -340,6 +339,8 @@ def stages_render_view(request, project_id):
 
     except models.Stage.DoesNotExist as e:
         messages.error(request, e.messages)
+
+    # Check datetimes to set projects and stages to delayed or on time
 
     for stage in stages:
 
@@ -362,6 +363,37 @@ def stages_render_view(request, project_id):
         project.state = models.State.objects.get(number=2)
         project.save()
 
+    # Validate project state change form submission
+
+    if request.method == "POST":
+        form_stage_state = forms.ModelFormStageState(request.POST)
+
+        if form_stage_state.is_valid():
+            state = form_stage_state.cleaned_data['state']
+
+            if state.number == 5:  # Completed
+
+                for stage in stages:
+                    if stage.state.number != 5:
+                        can_complete = False
+                        break
+
+                if can_complete:
+                    project.state = models.State.objects.get(number=5)
+                    project.save()
+
+                else:
+                    messages.error(request, globals.ERROR__STAGES_ARE_NOT_COMPLETE)
+
+            else:
+                project.state = models.State.objects.get(number=state.number)
+                project.save()
+
+    else:
+        form_stage_state = forms.ModelFormStageState()
+
+    template_variables['form_stage_state'] = form_stage_state
+
     template_context =\
         django.template.context.RequestContext(request, template_variables)
 
@@ -375,8 +407,6 @@ def stages_render_view(request, project_id):
 def stage_detail_render_view(request, project_id, stage_id):
 
     # TODO Add option to assign or unassign employees to stage
-    # TODO Code checkbox to modify is_complete value
-    # TODO Separate Tasks from Comments
     # TODO Code buttons for assignees to declare stage as finished
 
     template_variables = {}
