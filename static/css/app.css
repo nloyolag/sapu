@@ -273,7 +273,7 @@ nav a:hover {
 }
 
 .stage-assignee {
-    width: 25%;
+    width: 16%;
     display: inline-block;
 }
 
@@ -289,9 +289,11 @@ nav a:hover {
     margin-bottom: 50px;
 }
 
-.task-employee img,
-.comment-employee img {
-    width: 60%;
+.stage-task img,
+.stage-comment img {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
 }
 
 .task-info i {
@@ -531,6 +533,11 @@ nav a:hover {
     text-align: center;
 }
 
+.modal-field input,
+.modal-field textarea {
+    width: 90%;
+}
+
 .modal-field h6 {
     text-align: center;
 }
@@ -610,8 +617,27 @@ a .fa-upload, a .fa-pencil, a .fa-trash-o {
     z-index: 15;
 }
 
+.select2-container {
+    margin: 0 auto;
+    display: block;
+}
+
+span.field-error input,
+span.field-error textarea,
+span.field-error .select2-container {
+    border-color: #F78181;
+    border-style: solid;
+    border-width: 2px;
+}
+
+span.field-error .select2-container {
+    border-radius: 5px;
+}
+
 .form-error {
     background-color: #F78181;
+    text-align: center;
+    display: block;
 }
 
 div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {

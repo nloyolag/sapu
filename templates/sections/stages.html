@@ -21,7 +21,7 @@
             <div class="stage-info-project-inner col-md-8">
                 <h3>{{ project.project_id }} - {{ project.name }}</h3>
                 <hr>
-                <h5> <i class="fa fa-clock-o fa-lg"></i> - {{ project.deadline }}</h5>
+                <h5> <i class="fa fa-clock-o fa-lg"></i> - {{ project.deadline|date:"d/m/Y" }}</h5>
                 <h6>Folio: {{ project.folio }} - Institución: {{ project.institution }}</h6>
                 <h6>Tipo de proyecto: {{ project.project_type.name }}</h6>
                 <p>{{ project.description }}</p>
@@ -80,11 +80,11 @@
 
                 <div class="col-md-4 stg-info {{ stage.name }} {{ stage.state.name }}">
                     <div class="stg-info-inner">
-                        <a href="/proyectos/{{ project.id }}/{{ stage.id }}">
+                        <a href="/proyectos/proyecto/{{ project.id }}/etapa/{{ stage.id }}">
                             <h5>{{ stage.number }} - {{ stage.name }}</h5>
                         </a>
                         <hr>
-                        <h6> <i class="fa fa-clock-o fa-lg"></i> - {{ stage.deadline }}</h6>
+                        <h6> <i class="fa fa-clock-o fa-lg"></i> - {{ stage.deadline|date:"d/m/Y" }}</h6>
                         <p>{{ stage.description }}</p>
                         <a href="/modal/edit/stage/{{ stage.id }}/project/{{ project.id }}/" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
                         <a href="#delete-stage" class="modal-delete-summon" id="{{ stage.id }}"><i class="fa fa-trash-o fa-2x"></i></a>

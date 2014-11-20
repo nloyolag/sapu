@@ -140,10 +140,10 @@ urlpatterns = patterns('',
     url(r'^tipos-de-proyecto/$', views.project_type_render_view, name='project-type'),
 
     # ex: /proyectos/132/
-    url(r'^proyectos/(?P<project_id>\d+)/$', views.stages_render_view, name='stages'),
+    url(r'^proyectos/proyecto/(?P<project_id>\d+)/$', views.stages_render_view, name='stages'),
 
     # ex: /proyectos/132/3
-    url(r'^proyectos/(?P<project_id>\d+)/(?P<stage_id>\d+)/$', views.stage_detail_render_view, name='stage-detail'),
+    url(r'^proyectos/proyecto/(?P<project_id>\d+)/etapa/(?P<stage_id>\d+)/$', views.stage_detail_render_view, name='stage-detail'),
 
 )
 

@@ -51,7 +51,7 @@
     {% for project in projects %}
         <tr class="{{ project.state.name }}">
             <td> {{ project.state.name }} </td>
-            <td><a href="/proyectos/{{ project.id }}">{{ project.name }}</a></td>
+            <td><a href="/proyectos/proyecto/{{ project.id }}">{{ project.name }}</a></td>
             <td>{{ project.id }}</td>
             <td>{{ project.project_type.name }}</td>
             <td>{{ project.description }}</td>
