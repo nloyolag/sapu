@@ -35,7 +35,7 @@
             <th>Dirección</th>
             <th>Contacto</th>
             <th>Telefono</th>
-            <th>Proyecto pendiente</th>
+            <th>Es cliente</th>
             <th>Acciones</th>
         </thead>
 
@@ -49,9 +49,9 @@
             <td>{{ institution.phone }}</td>
             <td>
                 {% if institution.is_client %}
-                    <i class="fa fa-check-circle-o fa-2x"></i>
+                    <i class="fa fa-check fa-2x"></i>
                 {% else %}
-                    <i class="fa fa-circle-o fa-2x"></i>
+                    <i class="fa fa-remove fa-2x"></i>
                 {% endif %}
 
             </td>
@@ -69,8 +69,10 @@
 <div style="display:none">
     <div class="delete-modal" id="delete-institution">
         <h6>¿Estás seguro de querer eliminar esta institución?</h6>
-        <a href="#" onClick="parent.jQuery.fancybox.close();" class="radius btn btn-info">Cancelar</a>
-        <a href="/delete/institution/" class="btn btn-danger submit-delete">Eliminar</a>
+        <div class="delete-buttons">
+            <a href="#" onClick="parent.jQuery.fancybox.close();" class="radius btn btn-info">Cancelar</a>
+            <a href="/delete/institution/" class="btn btn-danger submit-delete">Eliminar</a>
+        </div>
     </div>
 </div>
 

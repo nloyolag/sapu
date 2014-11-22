@@ -118,7 +118,7 @@ $( document ).ready(function() {
                 }
             })
             .fail(function(data){
-                var $alert = $('<div class="error message"/>')
+                var $alert = $('<div class="error message form-error error"/>')
                     .text("No se puede contactar el servidor. " +
                         "Intente de nuevo más tarde.");
                 $alert.hide().prependTo('.sapu-modal');

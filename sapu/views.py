@@ -30,17 +30,20 @@ import models
 import modals
 
 
-# TODO Apply client corrections
-# TODO Fix Create/Update/Delete buttons styles
-# TODO Show Create/Edit/Delete buttons only to appropiate groups
+# TODO Apply client corrections AURA and YAEL
+# TODO Show Create/Edit/Delete buttons only to appropiate groups AURA or YAEL
 
-# TODO Fix date time inputs
-# TODO SHow dates in spanish
-# TODO Fix image uploads
-# TODO Fix User group assignment
-# TODO Fix User password field
-# TODO Fix Cancel button modal forms
+# TODO Show dates in spanish NOE
 
+#TODO Deploy manual ALL
+#TODO final presentation ALL
+#TODO Corrected MER AURA
+#TODO Hosting and domain CHARLES
+#TODO Redesign user template
+#TODO Correct upload image positioning
+#TODO Correct alignment of modal forms
+#TODO Permission states
+#TODO Institutions: change is client column and simbology
 
 # Functions that render the views of the application
 
@@ -153,10 +156,8 @@ def projects_render_view(request):
 
     template_variables = {}
 
-    # TODO Order Projects By States, not deadlines
-    # TODO Add logic to change project state to delayed (Beware of it overriding finished or cancelled states)
-    # TODO Create projects
-    # TODO Edit projects
+    # TODO Order Projects By States, not deadlines AURA or YAEL
+    # TODO Add logic to change project state to delayed (Beware of it overriding finished or cancelled states) NOE
 
     if project_query:
 
@@ -203,9 +204,7 @@ def projects_render_view(request):
 def users_render_view(request):
     template_variables = {}
 
-    # TODO Check if user logged in at least once
-    # TODO Create users
-    # TODO Edit users
+    # TODO Check if user logged in at least once NOE
 
     try:
         employees = models.Employee.objects.filter(user__is_active=True)
@@ -306,14 +305,8 @@ def project_type_render_view(request):
 @login_required
 def stages_render_view(request, project_id):
 
-    # TODO Add logic to change project state to delayed (Beware of it overriding finished or cancelled states)
-    # TODO Add logic to change stage state to delayed (Beware of it overriding finished or cancelled states)
-    # TODO Code button to declare project as complete
-    # TODO Code button to cancel project
-    # TODO Create stages
-    # TODO Edit stages
-    # TODO Create permissions
-    # TODO Edit permissions
+    # TODO Code button to declare project as complete NOE
+    # TODO Code button to cancel project NOE
 
     template_variables = {}
 
@@ -342,14 +335,9 @@ def stages_render_view(request, project_id):
 @login_required
 def stage_detail_render_view(request, project_id, stage_id):
 
-    # TODO Add option to assign or unassign employees to stage
-    # TODO Code checkbox to modify is_complete value
-    # TODO Separate Tasks from Comments
-    # TODO Code buttons for assignees to declare stage as finished
-    # TODO Create tasks
-    # TODO Edit tasks
-    # TODO Create comments
-    # TODO Edit comments
+    # TODO Add option to assign or unassign employees to stage CHARLES
+    # TODO Code checkbox to modify is_complete value AURA or YAEL or NOE
+    # TODO Code buttons for assignees to declare stage as finished AURA or YAEL or NOE
 
     template_variables = {}
 
@@ -440,8 +428,6 @@ def generic_modal(
 @login_required
 @permission_required('sapu.delete_institution')
 def delete_institution_view(request, institution_id):
-
-    #TODO Deactivate in cascade
 
     try:
 

@@ -26,8 +26,8 @@ ERROR__PASSWORDS_DONT_MATCH = u"Las contraseñas no coinciden"
 MESSAGE__CREATION_SUCCESS_M = u"{model_name} {item_name} creado"
 MESSAGE__EDIT_SUCCESS_M = u"{model_name} {item_name} modificado"
 
-MESSAGE__CREATION_SUCCESS_F = u"{model_name} {item_name} creada"
-MESSAGE__EDIT_SUCCESS_F = u"{model_name} {item_name} modificada"
+MESSAGE__CREATION_SUCCESS_F = u"{model_name} {item_name} creado"
+MESSAGE__EDIT_SUCCESS_F = u"{model_name} {item_name} modificado"
 
 
 ################################################################################
@@ -139,14 +139,14 @@ OPTION_NAME__MODAL_FORM_EDIT = "edit"
 #
 ################################################################################
 
-MODEL_NAME__INSTITUTION = u"institución"
-MODEL_NAME__PROJECT = u"proyecto"
-MODEL_NAME__PROJECT_TYPE = u"tipo de proyecto"
-MODEL_NAME__STAGE = u"etapa"
-MODEL_NAME__COMMENT = u"comentario"
-MODEL_NAME__TASK = u"tarea"
-MODEL_NAME__EMPLOYEE = u"usuario"
-MODEL_NAME__PERMISSION = u"permiso"
+MODEL_NAME__INSTITUTION = u"Institución"
+MODEL_NAME__PROJECT = u"Proyecto"
+MODEL_NAME__PROJECT_TYPE = u"Tipo de proyecto"
+MODEL_NAME__STAGE = u"Etapa"
+MODEL_NAME__COMMENT = u"Comentario"
+MODEL_NAME__TASK = u"Tarea"
+MODEL_NAME__EMPLOYEE = u"Usuario"
+MODEL_NAME__PERMISSION = u"Permiso"
 
 
 ################################################################################

@@ -665,3 +665,22 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
 .fancybox-overlay {
     z-index: 99999 !important;
 }
+
+.success-message {
+    background-color: #5cb85c;
+    font-size: 20px;
+}
+
+.select2-container {
+    display: block;
+    margin: 0 auto;
+}
+
+.fa-check {
+    margin: 10px 0 0 23px;
+}
+
+.delete-buttons {
+    width: 170px;
+    margin: 0 auto;
+}

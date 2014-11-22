@@ -3,7 +3,7 @@ $.datepicker.regional['es'] = {
 	prevText: '&#x3C;Ant',
 	nextText: 'Sig&#x3E;',
 	currentText: 'Hoy',
-	monthNames: ['Enero','Gebrero','Marzo','Abril','Mayo','Junio',
+	monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
 	'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
 	monthNamesShort: ['ene','feb','mar','abr','may','jun',
 	'jul','ago','sep','oct','nov','dic'],
