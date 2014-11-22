@@ -16,22 +16,25 @@
 
         <h1>Proyecto: {{ project.name }}</h1>
 
-        <div class="stage-info-project {{ project.state.name }} row">
-            <img class="project-detail-img col-md-3" src="{{ project.photo.url }}">
-            <div class="stage-info-project-inner col-md-8">
-                <h3>{{ project.project_id }} - {{ project.name }}</h3>
-                <hr>
-                <h5> <i class="fa fa-clock-o fa-lg"></i> - {{ project.deadline|date:"d/m/Y" }}</h5>
-                <h6>Folio: {{ project.folio }} - Institución: {{ project.institution }}</h6>
-                <h6>Tipo de proyecto: {{ project.project_type.name }}</h6>
-                <p>{{ project.description }}</p>
+        <div class="stage-info-project {{ project.state.name }}">
+            <div class="row">
+                <img class="project-detail-img col-md-3" src="{{ project.photo.url }}">
+                <div class="stage-info-project-inner col-md-8">
+                    <h3>{{ project.project_id }} - {{ project.name }}</h3>
+                    <hr>
+                    <h5> <i class="fa fa-clock-o fa-lg"></i> - {{ project.deadline|date:"d/m/Y" }}</h5>
+                    <h6>Folio: {{ project.folio }} - Institución: {{ project.institution }}</h6>
+                    <h6>Tipo de proyecto: {{ project.project_type.name }}</h6>
+                    <p>{{ project.description }}</p>
+                </div>
             </div>
 
-            <form method="post" action="/proyectos/{{ project.id }}/">
+            <form method="post" action="/proyectos/proyecto/{{ project.id }}/">
                 {% csrf_token %}
                 {{ form_stage_state }}
-                <input type="submit" value="Modificar Estado">
+                <input type="submit" class="btn btn-info" value="Modificar Estado">
             </form>
+
 
         </div>
 

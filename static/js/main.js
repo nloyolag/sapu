@@ -5,6 +5,8 @@ $( document ).ready(function() {
         width: 500
     });
 
+    $(".stage-detail-container select").select2({width: "15%"});
+
     // Selectors reutilized throughout the script
     var modalDeleteSummon = $(".modal-delete-summon");
     var mainContent = $(".main-content");
@@ -54,6 +56,7 @@ $( document ).ready(function() {
             url + " #main-content > *",
             function() {
                 mainContent.prepend($messages);
+                $(".stage-detail-container select").select2({width: "15%"});
                 $.fancybox.close();
             });
         });
@@ -112,6 +115,7 @@ $( document ).ready(function() {
                         url + " #main-content > *",
                         function() {
                             mainContent.prepend($messages);
+                            $(".stage-detail-container select").select2({width: "15%"});
                             $.fancybox.close();
                     });
                 }
@@ -165,6 +169,7 @@ $( document ).ready(function() {
         var _href = $(this).parent().attr("href");
 
         $(this).load(_href);
+        $(".stage-detail-container select").select2({width: "15%"});
     });
 
 });

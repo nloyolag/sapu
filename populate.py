@@ -1863,7 +1863,8 @@ def populate():
         state=on_time,
         project=project1
     )
-    stage1_project1.employee.add(employee1, employee2)
+    add_assignment(stage1_project1, employee1)
+    add_assignment(stage1_project1, employee2)
 
     #2
     stage2_project1 = add_stage(
@@ -1874,7 +1875,8 @@ def populate():
         state=on_time,
         project=project1
     )
-    stage2_project1.employee.add(employee1, employee2)
+    add_assignment(stage2_project1, employee1)
+    add_assignment(stage2_project1, employee2)
 
     #3
     stage3_project1 = add_stage(
@@ -1885,7 +1887,8 @@ def populate():
         state=on_time,
         project=project1
     )
-    stage3_project1.employee.add(employee1, employee2)
+    add_assignment(stage3_project1, employee1)
+    add_assignment(stage3_project1, employee2)
 
     #4
     stage4_project1 = add_stage(
@@ -1896,7 +1899,8 @@ def populate():
         state=on_time,
         project=project1
     )
-    stage4_project1.employee.add(employee1, employee2)
+    add_assignment(stage4_project1, employee1)
+    add_assignment(stage4_project1, employee2)
 
     #5
     stage5_project1 = add_stage(
@@ -1907,7 +1911,8 @@ def populate():
         state=on_time,
         project=project1
     )
-    stage5_project1.employee.add(employee3, employee4)
+    add_assignment(stage5_project1, employee1)
+    add_assignment(stage5_project1, employee2)
 
     #6
     stage1_project2 = add_stage(
@@ -1918,7 +1923,8 @@ def populate():
         state=on_time,
         project=project2
     )
-    stage1_project2.employee.add(employee3, employee4)
+    add_assignment(stage1_project2, employee3)
+    add_assignment(stage1_project2, employee4)
 
     #7
     stage2_project2 = add_stage(
@@ -1929,7 +1935,8 @@ def populate():
         state=on_time,
         project=project2
     )
-    stage2_project2.employee.add(employee3, employee4)
+    add_assignment(stage2_project2, employee3)
+    add_assignment(stage2_project2, employee4)
 
     #8
     stage3_project2 = add_stage(
@@ -1940,7 +1947,8 @@ def populate():
         state=on_time,
         project=project2
     )
-    stage3_project2.employee.add(employee3, employee4)
+    add_assignment(stage3_project2, employee3)
+    add_assignment(stage3_project2, employee4)
 
     #9
     stage4_project2 = add_stage(
@@ -1951,7 +1959,8 @@ def populate():
         state=on_time,
         project=project2
     )
-    stage4_project2.employee.add(employee5, employee6)
+    add_assignment(stage4_project2, employee5)
+    add_assignment(stage4_project2, employee6)
 
     #10
     stage5_project2 = add_stage(
@@ -1962,7 +1971,8 @@ def populate():
         state=on_time,
         project=project2
     )
-    stage5_project2.employee.add(employee3, employee4)
+    add_assignment(stage5_project2, employee3)
+    add_assignment(stage5_project2, employee4)
 
     #11
     stage1_project3 = add_stage(
@@ -1973,7 +1983,8 @@ def populate():
         state=on_time,
         project=project3
     )
-    stage1_project3.employee.add(employee5, employee6)
+    add_assignment(stage1_project3, employee5)
+    add_assignment(stage1_project3, employee6)
 
     #12
     stage2_project3 = add_stage(
@@ -1984,7 +1995,8 @@ def populate():
         state=on_time,
         project=project3
     )
-    stage2_project3.employee.add(employee5, employee6)
+    add_assignment(stage2_project3, employee5)
+    add_assignment(stage2_project3, employee6)
 
     #13
     stage3_project3 = add_stage(
@@ -1995,7 +2007,8 @@ def populate():
         state=on_time,
         project=project3
     )
-    stage3_project3.employee.add(employee5, employee6)
+    add_assignment(stage3_project3, employee5)
+    add_assignment(stage3_project3, employee6)
 
     #14
     stage4_project3 = add_stage(
@@ -2006,7 +2019,8 @@ def populate():
         state=on_time,
         project=project3
     )
-    stage4_project3.employee.add(employee5, employee6)
+    add_assignment(stage4_project3, employee5)
+    add_assignment(stage4_project3, employee6)
 
     #15
     stage5_project3 = add_stage(
@@ -2017,7 +2031,8 @@ def populate():
         state=on_time,
         project=project3
     )
-    stage5_project3.employee.add(employee5, employee6)
+    add_assignment(stage5_project3, employee5)
+    add_assignment(stage5_project3, employee6)
 
     #16
     stage1_project4 = add_stage(
@@ -2028,7 +2043,8 @@ def populate():
         state=on_time,
         project=project4
     )
-    stage1_project4.employee.add(employee5, employee6)
+    add_assignment(stage1_project4, employee5)
+    add_assignment(stage1_project4, employee6)
 
     #17
     stage2_project4 = add_stage(
@@ -2039,7 +2055,8 @@ def populate():
         state=on_time,
         project=project4
     )
-    stage2_project4.employee.add(employee1, employee2)
+    add_assignment(stage2_project4, employee1)
+    add_assignment(stage2_project4, employee2)
 
     #18
     stage3_project4 = add_stage(
@@ -2050,7 +2067,8 @@ def populate():
         state=on_time,
         project=project4
     )
-    stage3_project4.employee.add(employee7, employee8)
+    add_assignment(stage3_project4, employee7)
+    add_assignment(stage3_project4, employee8)
 
     #19
     stage4_project4 = add_stage(
@@ -2061,7 +2079,8 @@ def populate():
         state=on_time,
         project=project4
     )
-    stage4_project4.employee.add(employee7, employee8)
+    add_assignment(stage4_project4, employee7)
+    add_assignment(stage4_project4, employee8)
 
     #20
     stage5_project4 = add_stage(
@@ -2072,7 +2091,8 @@ def populate():
         state=on_time,
         project=project4
     )
-    stage5_project4.employee.add(employee7, employee8)
+    add_assignment(stage5_project4, employee7)
+    add_assignment(stage5_project4, employee8)
 
     #21
     stage1_project5 = add_stage(
@@ -2083,7 +2103,8 @@ def populate():
         state=on_time,
         project=project5
     )
-    stage1_project5.employee.add(employee7, employee8)
+    add_assignment(stage1_project5, employee7)
+    add_assignment(stage1_project5, employee8)
 
     #22
     stage2_project5 = add_stage(
@@ -2094,7 +2115,8 @@ def populate():
         state=delayed,
         project=project5
     )
-    stage2_project5.employee.add(employee7, employee8)
+    add_assignment(stage2_project5, employee7)
+    add_assignment(stage2_project5, employee8)
 
     #23
     stage3_project5 = add_stage(
@@ -2105,7 +2127,8 @@ def populate():
         state=delayed,
         project=project5
     )
-    stage3_project5.employee.add(employee7, employee8)
+    add_assignment(stage3_project5, employee7)
+    add_assignment(stage3_project5, employee8)
 
     #24
     stage4_project5 = add_stage(
@@ -2116,7 +2139,8 @@ def populate():
         state=delayed,
         project=project5
     )
-    stage4_project5.employee.add(employee7, employee8)
+    add_assignment(stage4_project5, employee7)
+    add_assignment(stage4_project5, employee8)
 
     #25
     stage5_project5 = add_stage(
@@ -2127,7 +2151,8 @@ def populate():
         state=on_time,
         project=project5
     )
-    stage5_project5.employee.add(employee7, employee8)
+    add_assignment(stage5_project5, employee7)
+    add_assignment(stage5_project5, employee8)
 
     #26
     stage1_project6 = add_stage(
@@ -2138,7 +2163,8 @@ def populate():
         state=completed,
         project=project6
     )
-    stage1_project6.employee.add(employee9, employee10)
+    add_assignment(stage1_project6, employee9)
+    add_assignment(stage1_project6, employee10)
 
     #27
     stage2_project6 = add_stage(
@@ -2149,7 +2175,8 @@ def populate():
         state=completed,
         project=project6
     )
-    stage2_project6.employee.add(employee9, employee10)
+    add_assignment(stage2_project6, employee9)
+    add_assignment(stage2_project6, employee10)
 
     #28
     stage3_project6 = add_stage(
@@ -2160,7 +2187,8 @@ def populate():
         state=completed,
         project=project6
     )
-    stage3_project6.employee.add(employee9, employee10)
+    add_assignment(stage3_project6, employee9)
+    add_assignment(stage3_project6, employee10)
 
     #29
     stage4_project6 = add_stage(
@@ -2171,7 +2199,8 @@ def populate():
         state=completed,
         project=project6
     )
-    stage4_project6.employee.add(employee9, employee10)
+    add_assignment(stage4_project6, employee9)
+    add_assignment(stage4_project6, employee10)
 
     #30
     stage5_project6 = add_stage(
@@ -2182,7 +2211,8 @@ def populate():
         state=completed,
         project=project6
     )
-    stage5_project6.employee.add(employee9, employee10)
+    add_assignment(stage5_project6, employee9)
+    add_assignment(stage5_project6, employee10)
 
     #31
     stage1_project7 = add_stage(
@@ -2193,7 +2223,8 @@ def populate():
         state=completed,
         project=project7
     )
-    stage1_project7.employee.add(employee11, employee12)
+    add_assignment(stage1_project7, employee11)
+    add_assignment(stage1_project7, employee12)
 
     #32
     stage2_project7 = add_stage(
@@ -2204,7 +2235,8 @@ def populate():
         state=completed,
         project=project7
     )
-    stage2_project7.employee.add(employee11, employee12)
+    add_assignment(stage2_project7, employee11)
+    add_assignment(stage2_project7, employee12)
 
     #33
     stage3_project7 = add_stage(
@@ -2215,7 +2247,8 @@ def populate():
         state=completed,
         project=project8
     )
-    stage3_project7.employee.add(employee11, employee12)
+    add_assignment(stage3_project7, employee11)
+    add_assignment(stage3_project7, employee12)
 
     #34
     stage4_project7 = add_stage(
@@ -2226,7 +2259,8 @@ def populate():
         state=completed,
         project=project8
     )
-    stage4_project7.employee.add(employee11, employee12)
+    add_assignment(stage4_project7, employee11)
+    add_assignment(stage4_project7, employee12)
 
     #35
     stage5_project7 = add_stage(
@@ -2237,7 +2271,8 @@ def populate():
         state=completed,
         project=project8
     )
-    stage5_project7.employee.add(employee11, employee12)
+    add_assignment(stage5_project7, employee11)
+    add_assignment(stage5_project7, employee12)
 
     #36
     stage1_project8 = add_stage(
@@ -2248,7 +2283,8 @@ def populate():
         state=cancelled,
         project=project9
     )
-    stage1_project8.employee.add(employee1, employee2)
+    add_assignment(stage1_project8, employee1)
+    add_assignment(stage1_project8, employee2)
 
     #37
     stage2_project8 = add_stage(
@@ -2259,7 +2295,8 @@ def populate():
         state=cancelled,
         project=project9
     )
-    stage2_project8.employee.add(employee1, employee2)
+    add_assignment(stage2_project8, employee1)
+    add_assignment(stage2_project8, employee2)
 
     #38
     stage3_project8 = add_stage(
@@ -2270,7 +2307,8 @@ def populate():
         state=cancelled,
         project=project9
     )
-    stage3_project8.employee.add(employee1, employee2)
+    add_assignment(stage3_project8, employee1)
+    add_assignment(stage3_project8, employee2)
 
     #39
     stage4_project8 = add_stage(
@@ -2281,7 +2319,8 @@ def populate():
         state=cancelled,
         project=project4
     )
-    stage4_project8.employee.add(employee1, employee2)
+    add_assignment(stage4_project8, employee1)
+    add_assignment(stage4_project8, employee2)
 
     #40
     stage5_project8 = add_stage(
@@ -2292,7 +2331,8 @@ def populate():
         state=cancelled,
         project=project9
     )
-    stage5_project8.employee.add(employee1, employee2)
+    add_assignment(stage5_project8, employee1)
+    add_assignment(stage5_project8, employee2)
 
     #41
     stage1_project9 = add_stage(
@@ -2303,7 +2343,8 @@ def populate():
         state=cancelled,
         project=project10
     )
-    stage1_project9.employee.add(employee3, employee4)
+    add_assignment(stage1_project9, employee3)
+    add_assignment(stage1_project9, employee4)
 
     #42
     stage2_project9 = add_stage(
@@ -2314,7 +2355,8 @@ def populate():
         state=cancelled,
         project=project10
     )
-    stage2_project9.employee.add(employee3, employee4)
+    add_assignment(stage2_project9, employee3)
+    add_assignment(stage2_project9, employee4)
 
     #43
     stage3_project9 = add_stage(
@@ -2325,7 +2367,8 @@ def populate():
         state=cancelled,
         project=project10
     )
-    stage3_project9.employee.add(employee3, employee4)
+    add_assignment(stage3_project9, employee3)
+    add_assignment(stage3_project9, employee4)
 
     #44
     stage4_project9 = add_stage(
@@ -2336,7 +2379,8 @@ def populate():
         state=cancelled,
         project=project10
     )
-    stage4_project9.employee.add(employee3, employee4)
+    add_assignment(stage4_project9, employee3)
+    add_assignment(stage4_project9, employee4)
 
     #45
     stage5_project9 = add_stage(
@@ -2347,7 +2391,8 @@ def populate():
         state=cancelled,
         project=project10
     )
-    stage5_project9.employee.add(employee3, employee4)
+    add_assignment(stage5_project9, employee3)
+    add_assignment(stage5_project9, employee4)
 
     #46
     stage1_project10 = add_stage(
@@ -2358,7 +2403,8 @@ def populate():
         state=on_time,
         project=project11
     )
-    stage1_project10.employee.add(employee5, employee6)
+    add_assignment(stage1_project10, employee5)
+    add_assignment(stage1_project10, employee6)
 
     #47
     stage2_project10 = add_stage(
@@ -2369,7 +2415,8 @@ def populate():
         state=on_time,
         project=project11
     )
-    stage2_project10.employee.add(employee5, employee6)
+    add_assignment(stage2_project10, employee5)
+    add_assignment(stage2_project10, employee6)
 
     #48
     stage3_project10 = add_stage(
@@ -2380,7 +2427,8 @@ def populate():
         state=on_time,
         project=project9
     )
-    stage3_project10.employee.add(employee5, employee6)
+    add_assignment(stage3_project10, employee5)
+    add_assignment(stage3_project10, employee6)
 
     #49
     stage4_project10 = add_stage(
@@ -2391,7 +2439,8 @@ def populate():
         state=on_time,
         project=project11
     )
-    stage4_project10.employee.add(employee5, employee6)
+    add_assignment(stage4_project10, employee5)
+    add_assignment(stage4_project10, employee6)
 
     #50
     stage5_project10 = add_stage(
@@ -2402,7 +2451,8 @@ def populate():
         state=on_time,
         project=project11
     )
-    stage5_project10.employee.add(employee5, employee6)
+    add_assignment(stage5_project10, employee5)
+    add_assignment(stage5_project10, employee6)
 
     ###############################################################################
     #
@@ -3460,12 +3510,13 @@ def add_permission(title, description, folio, permission_state, institution, pro
     return p
 
 
-def add_stage(name,
-              description,
-              number,
-              deadline,
-              state,
-              project
+def add_stage(
+    name,
+    description,
+    number,
+    deadline,
+    state,
+    project
 ):
     s = Stage.objects.get_or_create(name=name,
                                     description=description,
@@ -3474,6 +3525,17 @@ def add_stage(name,
                                     state=state,
                                     project=project)[0]
     return s
+
+
+def add_assignment(
+    stage,
+    employee,
+    completed=False
+):
+    a = Assignment.objects.get_or_create(stage=stage,
+                                         employee=employee,
+                                         completed=completed)[0]
+    return a
 
 
 def add_state(number, name, description, color):
@@ -3500,12 +3562,13 @@ def add_comment(title, description, date, employee, stage):
     return c
 
 
-def add_task(title,
-             deadline,
-             finished_date,
-             is_complete,
-             stage,
-             employee
+def add_task(
+    title,
+    deadline,
+    finished_date,
+    is_complete,
+    stage,
+    employee
 ):
     t = Task.objects.get_or_create(title=title,
                                    deadline=deadline,
@@ -3522,6 +3585,6 @@ django.setup()
 if __name__ == '__main__':
     print "Starting SAPU population script..."
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sapu.settings")
-    from sapu.models import Project, Institution, ProjectType, Permission, Stage, State, Employee, Comment, Task, PermissionState
+    from sapu.models import Project, Institution, ProjectType, Permission, Stage, State, Employee, Comment, Task, PermissionState, Assignment
     create_permissions()
     populate()

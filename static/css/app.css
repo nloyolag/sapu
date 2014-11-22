@@ -407,6 +407,20 @@ nav a:hover {
     margin: 20px;
 }
 
+.stage-info-project form {
+    margin: 20px 0;
+}
+
+.stage-info-project .select2-container {
+    margin: 0 0 0 2.5%;
+    display: inline-block;
+}
+
+.stage-info-project label,
+.stage-info-project input {
+    margin-left: 2.5%;
+}
+
 .stage-info-project-inner,
 .stage-assignees-inner,
 .stage-dashboard-inner {
@@ -498,6 +512,10 @@ nav a:hover {
 
 .permissions-title {
     margin-top: 30px;
+}
+
+.view-header {
+    height: 100px;
 }
 
 

@@ -16,4 +16,5 @@ django.contrib.admin.site.register(models.Permission)
 django.contrib.admin.site.register(models.Employee)
 django.contrib.admin.site.register(models.Comment)
 django.contrib.admin.site.register(models.Task)
+django.contrib.admin.site.register(models.Assignment)
 
