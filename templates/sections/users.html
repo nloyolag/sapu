@@ -16,7 +16,9 @@
 
         <div class="employee-header view-header">
             <h1>Usuarios</h1>
+            {% if perms.sapu.permission_add_employee %}
             <a href="/modal/add/employee" class="btn btn-info modal-summon">Agregar Usuario</a>
+            {% endif %}
         </div>
 
         <div id="list-content">
