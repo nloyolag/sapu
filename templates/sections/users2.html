@@ -23,32 +23,25 @@
 
             {% for employee in employees %}
 
-                {% if forloop.counter0|divisibleby:2 %}
+                {% if forloop.counter0|divisibleby:3 %}
                     <div class="row">
                 {% endif %}
 
-                    <div class="col-md-6 pt-info user-info-outer {{ project_type.name }}">
+                    <div class="col-md-4 pt-info {{ project_type.name }}">
                         <div class="pt-info-inner user-block">
-
-                            <div class="image-upload-container">
-                                <img src="{{ employee.photo.url }}">
-                                <a href="/modal/edit/employee_photo/{{ employee.id }}" class="modal-summon"><i class="fa fa-upload fa-2x"></i>Subir imagen</a>
-                            </div>
-
-                            <div class="user-block-info">
-                                <h5>{{ employee.user.first_name }}</h5>
-                                <p>{{ employee.user.email }}</p>
-                                {% if employee.logged %}
-                                    <i class="fa fa-check fa-2x"></i>
-                                {% endif %}
-                                <a href="/modal/edit/employee/{{ employee.id }}" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
-                                <a href="#delete-employee" class="modal-delete-summon" id="{{ employee.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
-                            </div>
-
+                            <img src="{{ employee.photo.url }}">
+                            <p>{{ employee.user.first_name }}</p>
+                            <p>{{ employee.user.email }}</p>
+                            <a href="/modal/edit/employee_photo/{{ employee.id }}" class="modal-summon"><i class="fa fa-upload fa-2x"></i>Subir imagen</a>
+                            {% if employee.logged %}
+                                <i class="fa fa-check fa-2x"></i>
+                            {% endif %}
+                            <a href="/modal/edit/employee/{{ employee.id }}" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
+                            <a href="#delete-employee" class="modal-delete-summon" id="{{ employee.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
                         </div>
                     </div>
 
-                {% if forloop.counter|divisibleby:2 or forloop.last %}
+                {% if forloop.counter|divisibleby:3 or forloop.last %}
                     </div>
                 {% endif %}
 

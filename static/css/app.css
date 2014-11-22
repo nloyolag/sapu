@@ -647,14 +647,6 @@ td:nth-child(4) .modal-delete-summon {
     margin-top: 60px;
 }
 
-div.row:nth-child(4) {
-    margin-top: 60px;
-}
-
-div.row:nth-child(9) {
-    margin-top: 60px;
-}
-
 a .fa-upload, a .fa-pencil, a .fa-trash-o {
     color: #333333;
 }
@@ -749,6 +741,44 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
     border-color: #FA5858;
 }
 
+.fancybox-overlay {
+    z-index: 99999 !important;
+}
+
+.success-message {
+    background-color: #5cb85c;
+    font-size: 20px;
+}
+
+.select2-container {
+    display: block;
+    margin: 0 auto;
+}
+
+.fa-check {
+    margin: 10px 0 0 23px;
+}
+
+.delete-buttons {
+    width: 170px;
+    margin: 0 auto;
+}
+
 .select2-results {
     z-index: 20;
+}
+
+.user-info-outer {
+    height: 210px
+}
+
+.user-block {
+    margin-left: -10px;
+}
+
+.user-block img {
+    width: 120px;
+    height: 140px;
+    float: left;
+    margin-right: 20px;
 }

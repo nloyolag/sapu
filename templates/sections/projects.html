@@ -39,6 +39,7 @@
 
         <thead>
             <th>Estado</th>
+            <th>Fecha de Creación</th>
             <th>Nombre</th>
             <th>Código</th>
             <th>Tipo de proyecto</th>
@@ -50,7 +51,8 @@
 
     {% for project in projects %}
         <tr class="{{ project.state.name }}">
-            <td> {{ project.state.name }} </td>
+            <td> {{ project.state.name }}</td>
+            <td>{{ project.creation_date }}</td>
             <td><a href="/proyectos/proyecto/{{ project.id }}">{{ project.name }}</a></td>
             <td>{{ project.id }}</td>
             <td>{{ project.project_type.name }}</td>

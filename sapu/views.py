@@ -31,12 +31,18 @@ import models
 import modals
 
 
-# TODO Apply client corrections
-# TODO Fix Create/Update/Delete buttons styles
-# TODO Show Create/Edit/Delete buttons only to appropiate groups
+# TODO Apply client corrections AURA and YAEL
+# TODO Show Create/Edit/Delete buttons only to appropiate groups AURA or YAEL
 
-# TODO SHow dates in spanish
-
+#TODO Deploy manual ALL
+#TODO final presentation ALL
+#TODO Corrected MER AURA
+#TODO Hosting and domain CHARLES
+#TODO Redesign user template
+#TODO Correct upload image positioning
+#TODO Correct alignment of modal forms
+#TODO Permission states
+#TODO Institutions: change is client column and simbology
 
 # Functions that render the views of the application
 
@@ -153,7 +159,6 @@ def projects_render_view(request):
 
     template_variables = {}
 
-    # TODO Order Projects By States, not deadlines
 
     if project_query:
 
@@ -168,7 +173,7 @@ def projects_render_view(request):
 
         projects = models.Project.objects\
             .filter(is_active=True)\
-            .order_by('-creation_date')
+            .order_by('state')
 
         paginator = django.core.paginator.Paginator(projects, 10)
         page = request.GET.get('page')
@@ -219,6 +224,7 @@ def projects_render_view(request):
 @login_required
 def users_render_view(request):
     template_variables = {}
+
 
     employees = None
 
@@ -326,8 +332,6 @@ def project_type_render_view(request):
 @login_required
 def stages_render_view(request, project_id):
 
-    # TODO SOme stages display not in 3 columns
-    # TODO Success messages look like buttons
 
     template_variables = {}
     stages = None
@@ -414,8 +418,6 @@ def stages_render_view(request, project_id):
 @login_required
 def stage_detail_render_view(request, project_id, stage_id):
 
-    # TODO Add option to assign or unassign employees to stage
-    # TODO Code buttons for assignees to declare stage as finished
 
     template_variables = {}
 
