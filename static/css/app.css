@@ -704,6 +704,7 @@ a .fa-upload, a .fa-pencil, a .fa-trash-o {
 .select2-container {
     margin: 0 auto;
     display: block;
+    z-index: 9999;
 }
 
 span.field-error input,
@@ -765,7 +766,8 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
 }
 
 .color-paused {
-    background-color: #FE642E;
+    background-color: #0B2161;
+    color: #FAFAFA;
 }
 
 .btn-info-red {
@@ -810,7 +812,7 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
 }
 
 .user-block {
-    margin-left: -10px;
+
 }
 
 .user-block img {
@@ -847,4 +849,25 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
 
 .stg-outer-container .row {
     margin-left: 10px;
+}
+
+.select2-drop {
+z-index: 300001;
+}
+
+.select2-drop-mask {
+z-index: 300000;
+}
+
+.user-block-info a {
+    display: inline-block;
+}
+
+.user-block-info p {
+    display: inline-block;
+}
+
+.user-login-check, .user-block-actions {
+    display: inline-block;
+    width: 25%;
 }
