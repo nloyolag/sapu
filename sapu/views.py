@@ -159,7 +159,6 @@ def projects_render_view(request):
 
     template_variables = {}
 
-
     if project_query:
 
         projects = models.Project.objects\
@@ -224,7 +223,6 @@ def projects_render_view(request):
 @login_required
 def users_render_view(request):
     template_variables = {}
-
 
     employees = None
 
@@ -332,7 +330,6 @@ def project_type_render_view(request):
 @login_required
 def stages_render_view(request, project_id):
 
-
     template_variables = {}
     stages = None
     delayed = False
@@ -351,6 +348,35 @@ def stages_render_view(request, project_id):
 
     except models.Stage.DoesNotExist as e:
         messages.error(request, e.messages)
+
+    # Validate project state change form submission
+
+    if request.method == "POST":
+        form_state_project = forms.ModelFormStateProject(request.POST)
+
+        if form_state_project.is_valid():
+            state = form_state_project.cleaned_data['state']
+
+            if state.number == 5:  # Completed
+
+                for stage in stages:
+                    if stage.state.number != 5:
+                        can_complete = False
+                        break
+
+                if can_complete:
+                    project.state = models.State.objects.get(number=5)
+                    project.save()
+
+                else:
+                    messages.error(request, globals.ERROR__STAGES_ARE_NOT_COMPLETE)
+
+            else:
+                project.state = models.State.objects.get(number=state.number)
+                project.save()
+
+    else:
+        form_state_project = forms.ModelFormStateProject()
 
     # Check datetimes to set projects and stages to delayed or on time
 
@@ -375,36 +401,7 @@ def stages_render_view(request, project_id):
         project.state = models.State.objects.get(number=2)
         project.save()
 
-    # Validate project state change form submission
-
-    if request.method == "POST":
-        form_stage_state = forms.ModelFormStageState(request.POST)
-
-        if form_stage_state.is_valid():
-            state = form_stage_state.cleaned_data['state']
-
-            if state.number == 5:  # Completed
-
-                for stage in stages:
-                    if stage.state.number != 5:
-                        can_complete = False
-                        break
-
-                if can_complete:
-                    project.state = models.State.objects.get(number=5)
-                    project.save()
-
-                else:
-                    messages.error(request, globals.ERROR__STAGES_ARE_NOT_COMPLETE)
-
-            else:
-                project.state = models.State.objects.get(number=state.number)
-                project.save()
-
-    else:
-        form_stage_state = forms.ModelFormStageState()
-
-    template_variables['form_stage_state'] = form_stage_state
+    template_variables['form_state_project'] = form_state_project
 
     template_context =\
         django.template.context.RequestContext(request, template_variables)
@@ -418,8 +415,11 @@ def stages_render_view(request, project_id):
 @login_required
 def stage_detail_render_view(request, project_id, stage_id):
 
-
     template_variables = {}
+    current_user_in_stage = False
+    employees = None
+    stage = None
+    stage_completed = True
 
     try:
         project = models.Project.objects.get(pk=project_id)
@@ -427,16 +427,80 @@ def stage_detail_render_view(request, project_id, stage_id):
         comments = models.Comment.objects.filter(stage=stage, is_active=True)
         tasks = models.Task.objects.filter(stage=stage, is_active=True)
         employees = stage.employee.all()
+        assignments = models.Assignment.objects.filter(stage=stage)
+
         template_variables = {
             'comments': comments,
             'tasks': tasks,
             'stage': stage,
             'project': project,
-            'employees': employees
+            'employees': employees,
+            'assignments': assignments
         }
 
     except models.Stage.DoesNotExist as e:
         messages.error(request, e.messages)
+
+    for employee in employees:
+        if employee.user.id == request.user.id:
+            current_user_in_stage = True
+            break
+
+    template_variables['current_user_in_stage'] = current_user_in_stage
+
+    # Check state form submission
+
+    if request.method == "POST":
+        form_state_stage = forms.ModelFormStateStage(request.POST)
+
+        if form_state_stage.is_valid():
+            state = form_state_stage.cleaned_data['state']
+
+            if state.number == 5:  # Completed
+
+                submit_employee = models.Employee.objects.get(user=request.user)
+                assignment = models.Assignment.objects.get(employee=submit_employee, stage=stage)
+                assignment.completed = True
+                assignment.save()
+
+                for employee in employees:
+                    assignment = models.Assignment.objects.get(employee=employee, stage=stage)
+
+                    if not assignment.completed:
+                        stage_completed = False
+                        break
+
+                if stage_completed:  # All employees set stage as finished, stage is completed
+                    stage.state = models.State.objects.get(number=state.number)
+                    stage.save()
+
+            elif stage.state.number == 5 and state.number != 5:  # Quitting completed status
+
+                submit_employee = models.Employee.objects.get(user=request.user)
+                assignment = models.Assignment.objects.get(employee=submit_employee, stage=stage)
+                assignment.completed = False
+                assignment.save()
+                stage.state = models.State.objects.get(number=state.number)
+                stage.save()
+
+            else:
+                stage.state = models.State.objects.get(number=state.number)
+                stage.save()
+
+    else:
+        form_state_stage = forms.ModelFormStateStage()
+
+    template_variables['form_state_stage'] = form_state_stage
+
+    # Check current state with datetime
+
+    if stage.deadline < timezone.now() and stage.state.number == 2:
+        stage.state = models.State.objects.get(number=1)
+        stage.save()
+
+    elif stage.deadline > timezone.now() and stage.state.number == 1:
+        stage.state = models.State.objects.get(number=2)
+        stage.save()
 
     template_context =\
         django.template.context.RequestContext(request, template_variables)

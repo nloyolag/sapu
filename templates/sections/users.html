@@ -17,6 +17,10 @@
         <div class="employee-header view-header">
             <h1>Usuarios</h1>
             <a href="/modal/add/employee" class="btn btn-info modal-summon">Agregar Usuario</a>
+            <form method="post" action="/usuarios/">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Reiniciar sesión de usuarios</button>
+            </form>
         </div>
 
         <div id="list-content">
@@ -38,6 +42,7 @@
                             <div class="user-block-info">
                                 <h5>{{ employee.user.first_name }}</h5>
                                 <p>{{ employee.user.email }}</p>
+                                <h6>¿Ha iniciado sesión?</h6>
                                 {% if employee.logged %}
                                     <i class="fa fa-check fa-2x"></i>
                                 {% endif %}

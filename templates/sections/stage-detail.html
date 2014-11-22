@@ -24,15 +24,41 @@
         </div> <!-- .stage-info -->
 
         <div class="stage-assignees">
+
             <div class="stage-assignees-inner">
                 <h2>Encargados de la etapa</h2>
+
                 {% for employee in employees %}
+
                     <div class="stage-assignee">
                         <h4>{{ employee.user.first_name }}</h4>
                         <img src="{{ employee.photo.url }}">
+
+                        {% for assignment in assignments %}
+                            {% for each in employee.assignment_employee.all %}
+                                {% if each == assignment and assignment.completed %}
+                                    <i class="fa fa-circle fa-3x"></i>
+                                    <i class="fa fa-check fa-2x"></i>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+
                     </div>
+
                 {% endfor %}
+
             </div>
+
+            {% if current_user_in_stage %}
+
+                <form method="post" action="/proyectos/proyecto/{{ stage.project.id }}/etapa/{{ stage.id }}/">
+                    {% csrf_token %}
+                    {{ form_state_stage }}
+                    <input type="submit" class="btn btn-info" value="Modificar Estado">
+                </form>
+
+            {% endif %}
+
         </div> <!-- .stage-assignees -->
 
         <div class="stage-dashboard">

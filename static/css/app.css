@@ -279,6 +279,27 @@ nav a:hover {
     margin: 50px auto 0 auto;
 }
 
+.stage-assignee {
+    position: relative;
+}
+
+.stage-assignee i {
+    position: absolute;
+    bottom: 0;
+    z-index: 5;
+    right: 22%;
+}
+
+.stage-assignee i:first-of-type {
+    color: #333333;
+}
+
+.stage-assignee i:last-of-type {
+    color: #1C9A71;
+    right: 24%;
+    bottom: 5%;
+}
+
 .stage-info.tiempo {
     border-left-width: 12px;
     border-left-color: #5BC0DE;
@@ -444,17 +465,21 @@ nav a:hover {
     margin: 20px;
 }
 
-.stage-info-project form {
+.stage-info-project form,
+.stage-assignees form {
     margin: 20px 0;
 }
 
-.stage-info-project .select2-container {
+.stage-info-project .select2-container,
+.stage-assignees .select2-container {
     margin: 0 0 0 2.5%;
     display: inline-block;
 }
 
 .stage-info-project label,
-.stage-info-project input {
+.stage-info-project input,
+.stage-assignees label,
+.stage-assignees input {
     margin-left: 2.5%;
 }
 
