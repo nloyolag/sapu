@@ -19,6 +19,10 @@
             <div class="view-header employee-header">
                 <h1>Usuarios</h1>
                 <a href="/modal/add/employee" class="btn btn-info modal-summon">Agregar Usuario</a>
+                <form method="post" action="/usuarios/">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Reiniciar sesión de usuarios</button>
+                </form>
             </div>
 
             <table class="table table-striped project-table">
@@ -27,6 +31,7 @@
                     <th>Nombre</th>
                     <th>Correo-e</th>
                     <th>Foto</th>
+                    <th>¿Ha iniciado sesión?</th>
                     <th>Acciones</th>
                 </thead>
 
@@ -37,7 +42,11 @@
                     <td>
                         <img src="{{ employee.photo.url }}">
                         <a href="/modal/edit/employee_photo/{{ employee.id }}" class="modal-summon"><i class="fa fa-upload fa-2x"></i>Subir imagen</a>
-
+                    </td>
+                    <td>
+                        {% if employee.logged %}
+                            <i class="fa fa-check fa-2x"></i>
+                        {% endif %}
                     </td>
                     <td>
                         <a href="/modal/edit/employee/{{ employee.id }}" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>

@@ -162,6 +162,8 @@ class Employee (django.db.models.Model):
                                         verbose_name=u"Foto",
                                         default="photos/users/default.jpg")
 
+    logged = django.db.models.BooleanField(default=False, verbose_name=u"¿Se conectó hoy?")
+
     class Meta:
 
         verbose_name = u"Empleado"

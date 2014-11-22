@@ -67,6 +67,9 @@ def action_login(request):
 
                     # Login and redirect to projects view
                     django.contrib.auth.login(request, user)
+                    employee = models.Employee.objects.get(user=user)
+                    employee.logged = True
+                    employee.save()
 
                     redirect_url =\
                         request.POST.get('redirect_url',
@@ -217,7 +220,7 @@ def projects_render_view(request):
 def users_render_view(request):
     template_variables = {}
 
-    # TODO Check if user logged in at least once
+    employees = None
 
     try:
         employees = models.Employee.objects.filter(user__is_active=True)
@@ -227,6 +230,11 @@ def users_render_view(request):
 
     except models.ProjectType.DoesNotExist as e:
         messages.error(request, e.messages)
+
+    if request.method == "POST":
+        for employee in employees:
+            employee.logged = False
+            employee.save()
 
     template_context =\
         django.template.context.RequestContext(request, template_variables)
