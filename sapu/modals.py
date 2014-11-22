@@ -243,6 +243,60 @@ def modal_edit_stage(
     return modal
 
 
+def modal_edit_stage_employees(
+        modal_name,
+        element_index=None,
+        modal_forms=None
+):
+    # Construct the modal
+    action_text = globals.MODAL_ACTION__CREATE
+    modal_action = globals.OPTION_NAME__MODAL_FORM_ADD
+
+    # Stage was already added/edited
+    if globals.PREFIX__FORM_STAGE_EMPLOYEE in modal_forms:
+        # Form was passed as a parameter
+        stage_form = modal_forms[globals.PREFIX__FORM_STAGE_EMPLOYEE]
+
+    else:
+        # Edit Stage
+        if element_index is not None:
+
+            try:
+                stage =\
+                    models.Stage.objects.get(pk=element_index)
+
+            except models.Stage.DoesNotExist:
+                return None
+
+            stage_form = forms.ModelFormStageEmployees(
+                prefix=globals.PREFIX__FORM_STAGE_EMPLOYEE,
+                instance=stage
+            )
+
+            action_text = globals.MODAL_ACTION__EDIT
+            modal_action = globals.OPTION_NAME__MODAL_FORM_EDIT
+
+        # Create stage
+        else:
+            stage_form = forms.ModelFormStageEmployees(prefix=globals.PREFIX__FORM_STAGE_EMPLOYEE)
+
+    stage_modal_form = globals.ModalForm(
+        title=globals.FIELD__STAGE,
+        form=stage_form
+    )
+
+    main_forms = [stage_modal_form]
+
+    modal = globals.Modal(
+        name=modal_name,
+        action=modal_action,
+        main_forms=main_forms,
+        accept_button_text=action_text
+    )
+
+    return modal
+
+
 def modal_edit_task(
         modal_name,
         element_index=None,
@@ -887,6 +941,85 @@ def modal_edit_stage_handler(
     return forms_handler
 
 
+def modal_edit_stage_employees_handler(
+        request,
+        element_index=None,
+        project_id=None,
+        stage_id=None
+):
+
+    old_stage = None
+
+    if element_index:
+
+        try:
+            old_stage = models.Stage.objects.get(pk=element_index)
+        except models.Stage.DoesNotExist:
+            messages.error(request, globals.ERROR__FORBIDDEN)
+            return None
+
+        # Get the form for instance element
+        form_stage = forms.ModelFormStageEmployees(
+            request.POST,
+            prefix=globals.PREFIX__FORM_STAGE_EMPLOYEE,
+            instance=old_stage
+        )
+
+    else:
+        # Get the form for new element
+        form_stage = forms.ModelFormStageEmployees(
+            request.POST,
+            prefix=globals.PREFIX__FORM_STAGE_EMPLOYEE
+        )
+
+    if form_stage.is_valid():
+
+        stage = form_stage.save(commit=False)
+
+        try:
+            # Save the new object or update it
+            # auto fill project.
+
+            stage.project = models.Project.objects.get(pk=project_id)
+            stage.full_clean()
+            stage.save()
+
+            employees = form_stage.cleaned_data['employee']
+
+            for employee in employees:
+                models.Assignment.objects.create(stage=stage,
+                                                 employee=employee)
+
+            if not old_stage:
+
+                messages.success(request, globals.MESSAGE__CREATION_SUCCESS_F.format(
+                    model_name=globals.MODEL_NAME__STAGE,
+                    item_name=stage.name
+                ))
+
+            else:
+
+                messages.success(request, globals.MESSAGE__EDIT_SUCCESS_F.format(
+                    model_name=globals.MODEL_NAME__STAGE,
+                    item_name=stage.name
+                ))
+
+        except models.Stage.DoesNotExist as e:
+            messages.error(request, e.messages)
+
+        except models.Project.DoesNotExist as e:
+            messages.error(request, e.messages)
+
+        except django.core.exceptions.ValidationError as e:
+            messages.error(request, e.messages)
+
+    forms_handler = {
+        globals.PREFIX__FORM_STAGE_EMPLOYEE: form_stage
+    }
+
+    return forms_handler
+
+
 def modal_edit_task_handler(
         request,
         element_index=None,
@@ -1370,6 +1503,7 @@ MODAL__FUNCTIONS = {
     globals.MODAL_EDIT__PROJECT_PHOTO: modal_edit_project_photo,
     globals.MODAL_EDIT__PROJECT_TYPE: modal_edit_project_type,
     globals.MODAL_EDIT__STAGE: modal_edit_stage,
+    globals.MODAL_EDIT__STAGE_EMPLOYEES: modal_edit_stage_employees,
     globals.MODAL_EDIT__COMMENT: modal_edit_comment,
     globals.MODAL_EDIT__TASK: modal_edit_task,
     globals.MODAL_EDIT__EMPLOYEE: modal_edit_employee,
@@ -1383,6 +1517,7 @@ MODAL__HANDLER_FUNCTIONS = {
     globals.MODAL_EDIT__PROJECT_PHOTO: modal_edit_project_photo_handler,
     globals.MODAL_EDIT__PROJECT_TYPE: modal_edit_project_type_handler,
     globals.MODAL_EDIT__STAGE: modal_edit_stage_handler,
+    globals.MODAL_EDIT__STAGE_EMPLOYEES: modal_edit_stage_employees_handler,
     globals.MODAL_EDIT__COMMENT: modal_edit_comment_handler,
     globals.MODAL_EDIT__TASK: modal_edit_task_handler,
     globals.MODAL_EDIT__EMPLOYEE: modal_edit_employee_handler,

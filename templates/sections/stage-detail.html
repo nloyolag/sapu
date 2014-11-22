@@ -23,7 +23,7 @@
             </div>
         </div> <!-- .stage-info -->
 
-        <div class="stage-assignees">
+        <div class="stage-assignees select-container">
 
             <div class="stage-assignees-inner">
                 <h2>Encargados de la etapa</h2>
@@ -31,7 +31,7 @@
                 {% for employee in employees %}
 
                     <div class="stage-assignee">
-                        <h4>{{ employee.user.first_name }}</h4>
+                        <h6>{{ employee.user.first_name }}</h6>
                         <img src="{{ employee.photo.url }}">
 
                         {% for assignment in assignments %}
@@ -46,6 +46,8 @@
                     </div>
 
                 {% endfor %}
+
+                <a href="/modal/edit/stage_employees/project/{{ stage.project.id }}/" class="btn btn-info modal-summon">Agregar Encargados</a>
 
             </div>
 

@@ -279,6 +279,10 @@ nav a:hover {
     margin: 50px auto 0 auto;
 }
 
+.stage-assignees .modal-summon {
+    float: none;
+}
+
 .stage-assignee {
     position: relative;
 }
@@ -332,11 +336,12 @@ nav a:hover {
 
 .stage-assignee {
     width: 16%;
+    margin-right: 5%;
     display: inline-block;
 }
 
 .stage-assignee img {
-    width: 80%;
+    width: 95%;
 }
 
 .stage-dashboard {

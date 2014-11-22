@@ -162,6 +162,21 @@ class ModelFormStage(django.forms.ModelForm):
         }
 
 
+class ModelFormStageEmployees(django.forms.ModelForm):
+
+    class Meta:
+        model = models.Stage
+        fields = [
+            'employee'
+        ]
+
+        error_messages = {
+            'employee': {
+                'required': u"Necesitas asignarle uno o más empleados a la etapa"
+            }
+        }
+
+
 class ModelFormStateProject(django.forms.ModelForm):
 
     class Meta:
