@@ -173,7 +173,7 @@ def projects_render_view(request):
 
         projects = models.Project.objects\
             .filter(is_active=True)\
-            .order_by('-creation_date')
+            .order_by('state')
 
         paginator = django.core.paginator.Paginator(projects, 10)
         page = request.GET.get('page')

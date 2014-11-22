@@ -738,3 +738,18 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
 .select2-results {
     z-index: 20;
 }
+
+.user-info-outer {
+    height: 210px
+}
+
+.user-block {
+    margin-left: -10px;
+}
+
+.user-block img {
+    width: 120px;
+    height: 140px;
+    float: left;
+    margin-right: 20px;
+}
