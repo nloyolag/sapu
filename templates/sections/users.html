@@ -31,7 +31,7 @@
                     <div class="row">
                 {% endif %}
 
-                    <div class="col-md-6 pt-info user-info-outer {{ project_type.name }}">
+                    <div class="user-envelope col-md-6"><div class="pt-info user-info-outer {{ project_type.name }}">
                         <div class="pt-info-inner user-block">
 
                             <div class="image-upload-container">
@@ -40,17 +40,19 @@
                             </div>
 
                             <div class="user-block-info">
-                                <h5>{{ employee.user.first_name }}</h5>
+                                <h5>Yeah de prueba{{ employee.user.first_name }}</h5>
                                 <p>{{ employee.user.email }}</p>
-                                <h6>¿Ha iniciado sesión?</h6>
+                                <h6>{{ employee.user.groups.all.0 }}</h6>
+                                <p>¿Ha iniciado sesión?</p>
                                 {% if employee.logged %}
-                                    <i class="fa fa-check fa-2x"></i>
+                                    <i class="fa fa-check fa-2x logged-icon"></i>
                                 {% endif %}
+                                <p>Acciones</p>
                                 <a href="/modal/edit/employee/{{ employee.id }}" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
                                 <a href="#delete-employee" class="modal-delete-summon" id="{{ employee.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
                             </div>
 
-                        </div>
+                        </div></div>
                     </div>
 
                 {% if forloop.counter|divisibleby:2 or forloop.last %}

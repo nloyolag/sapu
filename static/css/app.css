@@ -214,9 +214,9 @@ nav a:hover {
 
 .image-upload-container a {
     position: absolute;
-    right: 32%;
-    bottom: 8px;
-    width: 61.7%;
+    right: 60.5%;
+    bottom: -190px;
+    width: 36.7%;
     color: #333333;
     opacity: 0;
     -webkit-transition: all 300ms ease-out;
@@ -372,13 +372,15 @@ nav a:hover {
 
 .stage-container,
 .permission-container {
+    margin-top: 20px;
     min-height: 300px;
 }
 
 /*Project Types styles*/
 
 .pt-info {
-    width: 330px;
+    width: 100%;
+    margin: 0 auto;
     height: 230px;
 }
 
@@ -504,8 +506,8 @@ nav a:hover {
     border-color: #929495;
     border-radius: 2px;
     background-color: #F9F9F9;
-    margin: 50px 10px 0 10px;
-    width: 30%;
+    margin: 25px auto;
+    width: 90%;
 }
 
 .stg-info-project.tiempo {
@@ -566,6 +568,7 @@ nav a:hover {
 
 .stg-info-inner {
     display: inline-block;
+    width: 90%;
 }
 
 .stg-info-inner * {
@@ -620,6 +623,10 @@ nav a:hover {
 
 .modal-field h6 {
     text-align: center;
+}
+
+.logged-icon {
+    display: block;
 }
 
 #id_employee-photo {
@@ -802,8 +809,37 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
 }
 
 .user-block img {
-    width: 120px;
-    height: 140px;
+    width: 175px;
+    height: 175px;
     float: left;
     margin-right: 20px;
+}
+
+.user-envelope {
+    display: inline-block;
+    width: 45%;
+}
+
+.pt-envelope {
+    display: inline-block;
+    width: 30%;
+}
+
+.permission-envelope {
+    display: inline-block;
+    width: 30%;
+}
+
+.permission-container .permission-info {
+    margin-left:5%;
+    margin-right: 5%;
+}
+
+.stages-envelope {
+    display: inline-block;
+    width: 30%;
+}
+
+.stg-outer-container .row {
+    margin-left: 10px;
 }
