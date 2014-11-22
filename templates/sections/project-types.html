@@ -27,7 +27,7 @@
                     <div class="row">
                 {% endif %}
 
-                    <div class="col-md-4 pt-info {{ project_type.name }}">
+                    <div class="pt-envelope"><div class="col-md-4 pt-info {{ project_type.name }}">
                         <div class="pt-info-inner">
                             <h5>{{ project_type.name }}</h5>
                             <hr>
@@ -35,7 +35,7 @@
                             <a href="/modal/edit/project_type/{{ project_type.id }}" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
                             <a href="#delete-project-type" class="modal-delete-summon" id="{{ project_type.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
                         </div>
-                    </div>
+                    </div></div>
 
                 {% if forloop.counter|divisibleby:3 or forloop.last %}
                     </div>

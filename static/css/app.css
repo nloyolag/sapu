@@ -351,13 +351,15 @@ nav a:hover {
 
 .stage-container,
 .permission-container {
+    margin-top: 20px;
     min-height: 300px;
 }
 
 /*Project Types styles*/
 
 .pt-info {
-    width: 330px;
+    width: 90%;
+    margin: 0 auto;
     height: 230px;
 }
 
@@ -479,8 +481,8 @@ nav a:hover {
     border-color: #929495;
     border-radius: 2px;
     background-color: #F9F9F9;
-    margin: 50px 10px 0 10px;
-    width: 30%;
+    margin: 25px auto;
+    width: 90%;
 }
 
 .stg-info-project.tiempo {
@@ -541,6 +543,7 @@ nav a:hover {
 
 .stg-info-inner {
     display: inline-block;
+    width: 90%;
 }
 
 .stg-info-inner * {
@@ -777,8 +780,37 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
 }
 
 .user-block img {
-    width: 120px;
-    height: 140px;
+    width: 175px;
+    height: 175px;
     float: left;
     margin-right: 20px;
+}
+
+.user-envelope {
+    display: inline-block;
+    width: 45%;
+}
+
+.pt-envelope {
+    display: inline-block;
+    width: 30%;
+}
+
+.permission-envelope {
+    display: inline-block;
+    width: 30%;
+}
+
+.permission-container .permission-info {
+    margin-left:5%;
+    margin-right: 5%;
+}
+
+.stages-envelope {
+    display: inline-block;
+    width: 30%;
+}
+
+.stg-outer-container .row {
+    margin-left: 10px;
 }

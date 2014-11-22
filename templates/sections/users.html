@@ -27,7 +27,7 @@
                     <div class="row">
                 {% endif %}
 
-                    <div class="col-md-6 pt-info user-info-outer {{ project_type.name }}">
+                    <div class="user-envelope"><div class="col-md-6 pt-info user-info-outer {{ project_type.name }}">
                         <div class="pt-info-inner user-block">
 
                             <div class="image-upload-container">
@@ -38,6 +38,7 @@
                             <div class="user-block-info">
                                 <h5>{{ employee.user.first_name }}</h5>
                                 <p>{{ employee.user.email }}</p>
+                                <p>{{ employee.user.groups.all.0 }}</p>
                                 {% if employee.logged %}
                                     <i class="fa fa-check fa-2x"></i>
                                 {% endif %}
@@ -45,7 +46,7 @@
                                 <a href="#delete-employee" class="modal-delete-summon" id="{{ employee.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
                             </div>
 
-                        </div>
+                        </div></div>
                     </div>
 
                 {% if forloop.counter|divisibleby:2 or forloop.last %}

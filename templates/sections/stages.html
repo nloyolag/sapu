@@ -12,7 +12,7 @@
         </ul>
     {% endif %}
 
-    <div class="stage-detail-container content container">
+    <div class="stage-detail-container stg-outer-container content container">
 
         <h1>Proyecto: {{ project.name }}</h1>
 
@@ -50,7 +50,7 @@
                     <div class="row">
                 {% endif %}
 
-                <div class="col-md-4 permission-info">
+                <div class="permission-envelope"><div class="col-md-4 permission-info">
                     <div class="stg-info-inner">
                         <h5>{{ permission.title }}</h5>
                         <hr>
@@ -60,7 +60,7 @@
                         <a href="/modal/edit/permission/{{ permission.id }}/project/{{ project.id }}/" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
                         <a href="#delete-permission" class="modal-delete-summon" id="{{ permission.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
                     </div>
-                </div>
+                </div></div>
 
                 {% if forloop.counter|divisibleby:3 or forloop.last %}
                     </div>
@@ -81,7 +81,7 @@
                     <div class="row">
                 {% endif %}
 
-                <div class="col-md-4 stg-info {{ stage.name }} {{ stage.state.name }}">
+                <div class="stages-envelope"><div class="col-md-4 stg-info {{ stage.name }} {{ stage.state.name }}">
                     <div class="stg-info-inner">
                         <a href="/proyectos/proyecto/{{ project.id }}/etapa/{{ stage.id }}">
                             <h5>{{ stage.number }} - {{ stage.name }}</h5>
@@ -92,7 +92,7 @@
                         <a href="/modal/edit/stage/{{ stage.id }}/project/{{ project.id }}/" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
                         <a href="#delete-stage" class="modal-delete-summon" id="{{ stage.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
                     </div>
-                </div>
+                </div></div>
 
                 {% if forloop.counter|divisibleby:3 or forloop.last %}
                     </div>
