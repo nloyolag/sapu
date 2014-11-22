@@ -17,7 +17,7 @@
         <div class="stage-info {{ stage.state.name }}">
             <div class="stage-info-inner">
                 <h2>{{ stage.number }} - {{ stage.name }}</h2>
-                <h5> <i class="fa fa-clock-o fa-lg"></i> - {{ stage.deadline }}</h5>
+                <h5> <i class="fa fa-clock-o fa-lg"></i> - {{ stage.deadline|date:"d/m/Y" }}</h5>
                 <h6>Proyecto: {{ stage.project }}</h6>
                 <p>{{ stage.description }}</p>
             </div>
@@ -37,9 +37,9 @@
 
         <div class="stage-dashboard">
 
-            <div class="row stage-dashboard-inner">
+            <div class="stage-dashboard-inner">
 
-                <div class="col-md-6 stage-tasks">
+                <div class="stage-tasks">
                     <h2>Tareas</h2>
                     <a href="/modal/add/task/stage/{{ stage.id }}/" class="btn btn-info modal-summon">Agregar Tarea</a>
                     {% for task in tasks %}
@@ -54,10 +54,10 @@
                             <div class="col-md-10 task-info">
 
                                 {% if task.is_complete %}
-                                    <i class="fa fa-check-square fa-2x"></i>
+                                    <a href="/check/{{ task.id }}"><i class="fa fa-check-square fa-2x check-click"></i></a>
 
                                 {% else %}
-                                    <i class="fa fa-square-o fa-2x"></i>
+                                    <a href="/check/{{ task.id }}"><i class="fa fa-square-o fa-2x check-click"></i></a>
 
                                 {% endif %}
 
@@ -68,7 +68,7 @@
 
                                     {% else %}
                                         <h5>{{ task.title }}</h5>
-                                        <p>Fecha límite: {{ task.deadline }}</p>
+                                        <p>Fecha límite: {{ task.deadline|date:"d/m/Y" }}</p>
 
                                     {% endif %}
                                     <a href="/modal/edit/task/{{ task.id }}/stage/{{ stage.id }}/" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
@@ -88,7 +88,7 @@
 
         <div class="stage-dashboard">
             <div class="stage-dashboard-inner">
-                <div class="col-md-6 stage-comments">
+                <div class="stage-comments">
                     <h2>Comentarios</h2>
                     <a href="/modal/add/comment/stage/{{ stage.id }}/" class="btn btn-info modal-summon">Agregar Comentario</a>
                     {% for comment in comments %}
@@ -123,7 +123,7 @@
 <div style="display:none">
     <div class="delete-modal" id="delete-task">
         <h6>¿Estás seguro de querer eliminar esta tarea?</h6>
-        <a href="#" onClick="parent.jQuery.fancybox.close();" class="radius btn btn-info">Cancelar</a>
+        <a href="#" class="radius btn btn-info">Cancelar</a>
         <a href="/delete/task/" class="btn btn-danger submit-delete">Eliminar</a>
     </div>
 </div>
@@ -131,7 +131,7 @@
 <div style="display:none">
     <div class="delete-modal" id="delete-comment">
         <h6>¿Estás seguro de querer eliminar este comentario?</h6>
-        <a href="#" onClick="parent.jQuery.fancybox.close();" class="radius btn btn-info">Cancelar</a>
+        <a href="#" class="radius btn btn-info">Cancelar</a>
         <a href="/delete/comment/" class="btn btn-danger submit-delete">Eliminar</a>
     </div>
 </div>

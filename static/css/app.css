@@ -75,7 +75,7 @@ header {
     width: 100%;
     position: fixed;
     color: #FFFFFF;
-    z-index: 99999;
+    z-index: 10;
 }
 
 nav h1 {
@@ -273,7 +273,7 @@ nav a:hover {
 }
 
 .stage-assignee {
-    width: 25%;
+    width: 16%;
     display: inline-block;
 }
 
@@ -289,9 +289,11 @@ nav a:hover {
     margin-bottom: 50px;
 }
 
-.task-employee img,
-.comment-employee img {
-    width: 60%;
+.stage-task img,
+.stage-comment img {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
 }
 
 .task-info i {
@@ -299,6 +301,7 @@ nav a:hover {
     vertical-align: middle;
     margin-bottom: 63px;
     margin-right: 4%;
+    color: #333333;
 }
 
 .task-info i:hover {
@@ -307,6 +310,11 @@ nav a:hover {
 
 .task-info-data {
     display: inline-block;
+}
+
+.stage-container,
+.permission-container {
+    min-height: 300px;
 }
 
 /*Project Types styles*/
@@ -397,6 +405,20 @@ nav a:hover {
 .stage-info-project img {
     display: inline-block;
     margin: 20px;
+}
+
+.stage-info-project form {
+    margin: 20px 0;
+}
+
+.stage-info-project .select2-container {
+    margin: 0 0 0 2.5%;
+    display: inline-block;
+}
+
+.stage-info-project label,
+.stage-info-project input {
+    margin-left: 2.5%;
 }
 
 .stage-info-project-inner,
@@ -492,6 +514,10 @@ nav a:hover {
     margin-top: 30px;
 }
 
+.view-header {
+    height: 100px;
+}
+
 
 /*Institutions styles*/
 
@@ -523,6 +549,11 @@ nav a:hover {
 
 .modal-title {
     text-align: center;
+}
+
+.modal-field input,
+.modal-field textarea {
+    width: 90%;
 }
 
 .modal-field h6 {
@@ -601,11 +632,30 @@ a .fa-upload, a .fa-pencil, a .fa-trash-o {
 
 
 .fancybox-overlay {
-    z-index: 200 !important;
+    z-index: 15;
+}
+
+.select2-container {
+    margin: 0 auto;
+    display: block;
+}
+
+span.field-error input,
+span.field-error textarea,
+span.field-error .select2-container {
+    border-color: #F78181;
+    border-style: solid;
+    border-width: 2px;
+}
+
+span.field-error .select2-container {
+    border-radius: 5px;
 }
 
 .form-error {
     background-color: #F78181;
+    text-align: center;
+    display: block;
 }
 
 div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
@@ -683,4 +733,8 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
 .delete-buttons {
     width: 170px;
     margin: 0 auto;
+}
+
+.select2-results {
+    z-index: 20;
 }

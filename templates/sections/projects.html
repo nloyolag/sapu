@@ -53,7 +53,7 @@
         <tr class="{{ project.state.name }}">
             <td> {{ project.state.name }}</td>
             <td>{{ project.creation_date }}</td>
-            <td><a href="/proyectos/{{ project.id }}">{{ project.name }}</a></td>
+            <td><a href="/proyectos/proyecto/{{ project.id }}">{{ project.name }}</a></td>
             <td>{{ project.id }}</td>
             <td>{{ project.project_type.name }}</td>
             <td>{{ project.description }}</td>
@@ -98,7 +98,7 @@
 <div style="display:none">
     <div class="delete-modal" id="delete-project">
         <h6>¿Estás seguro de querer eliminar este proyecto?</h6>
-        <a href="#" onClick="parent.jQuery.fancybox.close();" class="radius btn btn-info">Cancelar</a>
+        <a href="#" class="radius btn btn-info">Cancelar</a>
         <a href="/delete/project/" class="btn btn-danger submit-delete">Eliminar</a>
     </div>
 </div>

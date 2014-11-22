@@ -162,6 +162,8 @@ class Employee (django.db.models.Model):
                                         verbose_name=u"Foto",
                                         default="photos/users/default.jpg")
 
+    logged = django.db.models.BooleanField(default=False, verbose_name=u"¿Se conectó hoy?")
+
     class Meta:
 
         verbose_name = u"Empleado"
@@ -182,6 +184,7 @@ class Stage (django.db.models.Model):
 
     employee = django.db.models.ManyToManyField(Employee,
                                                 blank=True,
+                                                through="Assignment",
                                                 related_name="stage_employees",
                                                 verbose_name=u"Empleados")
 
@@ -203,6 +206,29 @@ class Stage (django.db.models.Model):
     def __unicode__(self):
 
         return unicode(self.name)
+
+
+class Assignment (django.db.models.Model):
+    stage = django.db.models.ForeignKey(Stage,
+                                        on_delete=django.db.models.PROTECT,
+                                        related_name="assignment_stage",
+                                        verbose_name=u"Etapa")
+
+    employee = django.db.models.ForeignKey(Employee,
+                                           on_delete=django.db.models.PROTECT,
+                                           related_name="assignment_employee",
+                                           verbose_name=u"Empleado")
+
+    completed = django.db.models.BooleanField(default=False, verbose_name=u"¿Completó la etapa?")
+
+    class Meta:
+
+        verbose_name = u"Asignación"
+        verbose_name_plural = u"Asignaciones"
+
+    def __unicode__(self):
+
+        return unicode(self.stage.name + " - " + self.employee.user.first_name)
 
 
 class Comment (django.db.models.Model):

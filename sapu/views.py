@@ -21,6 +21,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponse
+from django.utils import timezone
 
 # SAPU imports
 import settings
@@ -32,8 +33,6 @@ import modals
 
 # TODO Apply client corrections AURA and YAEL
 # TODO Show Create/Edit/Delete buttons only to appropiate groups AURA or YAEL
-
-# TODO Show dates in spanish NOE
 
 #TODO Deploy manual ALL
 #TODO final presentation ALL
@@ -74,6 +73,9 @@ def action_login(request):
 
                     # Login and redirect to projects view
                     django.contrib.auth.login(request, user)
+                    employee = models.Employee.objects.get(user=user)
+                    employee.logged = True
+                    employee.save()
 
                     redirect_url =\
                         request.POST.get('redirect_url',
@@ -146,6 +148,7 @@ def login_render_view(request):
 def projects_render_view(request):
 
     project_query = ''
+    delayed = False
 
     if request.method == "POST":
 
@@ -156,8 +159,6 @@ def projects_render_view(request):
 
     template_variables = {}
 
-    # TODO Order Projects By States, not deadlines AURA or YAEL
-    # TODO Add logic to change project state to delayed (Beware of it overriding finished or cancelled states) NOE
 
     if project_query:
 
@@ -191,6 +192,26 @@ def projects_render_view(request):
 
     template_variables['form_search_project'] = forms.FormSearchProject()
 
+    for project in projects:
+
+        stages = models.Stage.objects.filter(project=project)
+
+        for stage in stages:
+
+            if stage.state.number == 1:
+                delayed = True
+                break
+
+        if delayed and project.state.number == 2:
+            project.state = models.State.objects.get(number=1)
+            project.save()
+
+        elif not delayed and project.state.number == 1:
+            project.state = models.State.objects.get(number=2)
+            project.save()
+
+        delayed = False
+
     template_context =\
         django.template.context.RequestContext(request, template_variables)
 
@@ -204,7 +225,8 @@ def projects_render_view(request):
 def users_render_view(request):
     template_variables = {}
 
-    # TODO Check if user logged in at least once NOE
+
+    employees = None
 
     try:
         employees = models.Employee.objects.filter(user__is_active=True)
@@ -214,6 +236,11 @@ def users_render_view(request):
 
     except models.ProjectType.DoesNotExist as e:
         messages.error(request, e.messages)
+
+    if request.method == "POST":
+        for employee in employees:
+            employee.logged = False
+            employee.save()
 
     template_context =\
         django.template.context.RequestContext(request, template_variables)
@@ -305,10 +332,12 @@ def project_type_render_view(request):
 @login_required
 def stages_render_view(request, project_id):
 
-    # TODO Code button to declare project as complete NOE
-    # TODO Code button to cancel project NOE
 
     template_variables = {}
+    stages = None
+    delayed = False
+    can_complete = True
+    project = None
 
     try:
         project = models.Project.objects.get(pk=project_id)
@@ -323,6 +352,60 @@ def stages_render_view(request, project_id):
     except models.Stage.DoesNotExist as e:
         messages.error(request, e.messages)
 
+    # Check datetimes to set projects and stages to delayed or on time
+
+    for stage in stages:
+
+        if stage.state.number == 1:
+            delayed = True
+
+        if stage.deadline < timezone.now() and stage.state.number == 2:
+            stage.state = models.State.objects.get(number=1)
+            stage.save()
+
+        elif stage.deadline > timezone.now() and stage.state.number == 1:
+            stage.state = models.State.objects.get(number=2)
+            stage.save()
+
+    if delayed and project.state.number == 2:
+        project.state = models.State.objects.get(number=1)
+        project.save()
+
+    elif not delayed and project.state.number == 1:
+        project.state = models.State.objects.get(number=2)
+        project.save()
+
+    # Validate project state change form submission
+
+    if request.method == "POST":
+        form_stage_state = forms.ModelFormStageState(request.POST)
+
+        if form_stage_state.is_valid():
+            state = form_stage_state.cleaned_data['state']
+
+            if state.number == 5:  # Completed
+
+                for stage in stages:
+                    if stage.state.number != 5:
+                        can_complete = False
+                        break
+
+                if can_complete:
+                    project.state = models.State.objects.get(number=5)
+                    project.save()
+
+                else:
+                    messages.error(request, globals.ERROR__STAGES_ARE_NOT_COMPLETE)
+
+            else:
+                project.state = models.State.objects.get(number=state.number)
+                project.save()
+
+    else:
+        form_stage_state = forms.ModelFormStageState()
+
+    template_variables['form_stage_state'] = form_stage_state
+
     template_context =\
         django.template.context.RequestContext(request, template_variables)
 
@@ -335,9 +418,6 @@ def stages_render_view(request, project_id):
 @login_required
 def stage_detail_render_view(request, project_id, stage_id):
 
-    # TODO Add option to assign or unassign employees to stage CHARLES
-    # TODO Code checkbox to modify is_complete value AURA or YAEL or NOE
-    # TODO Code buttons for assignees to declare stage as finished AURA or YAEL or NOE
 
     template_variables = {}
 
@@ -365,6 +445,23 @@ def stage_detail_render_view(request, project_id, stage_id):
         globals.TEMPLATE__STAGE_DETAIL,
         template_context
     )
+
+
+@login_required
+def check_task_view(
+        request,
+        task_id
+):
+    task = models.Task.objects.get(pk=task_id)
+
+    if task.is_complete:
+        task.is_complete = False
+    else:
+        task.is_complete = True
+
+    task.save()
+
+    return HttpResponse('')
 
 
 @login_required

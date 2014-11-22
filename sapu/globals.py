@@ -16,6 +16,8 @@ ERROR__DUPLICATE = u"Ya existe un ítem con el mismo nombre"
 ERROR__INVALID_UPLOAD = u"Error al subir el archivo"
 ERROR__PASSWORDS_DONT_MATCH = u"Las contraseñas no coinciden"
 
+ERROR__STAGES_ARE_NOT_COMPLETE = u"El proyecto no se puede completar porque aun existen tareas sin completar"
+
 
 ################################################################################
 #

@@ -842,9 +842,16 @@ def modal_edit_stage_handler(
         try:
             # Save the new object or update it
             # auto fill project.
+
             stage.project = models.Project.objects.get(pk=project_id)
             stage.full_clean()
             stage.save()
+
+            employees = form_stage.cleaned_data['employee']
+
+            for employee in employees:
+                models.Assignment.objects.create(stage=stage,
+                                                 employee=employee)
 
             if not old_stage:
 

@@ -70,14 +70,17 @@ class ModelFormProject(django.forms.ModelForm):
             'deadline': {
                 'required': u"Necesitas asignarle una fecha límite al proyecto"
             },
-            'state': {
-                'required': u"Necesitas asignarle un estado al proyecto"
+            'folio': {
+                'required': u"Necesitas asignarle un folio de oficio de solicitud al proyecto"
             },
             'institution': {
                 'required': u"Necesitas asignarle un cliente al proyecto"
             },
             'project_type': {
                 'required': u"Necesitas asignarle un tipo de proyecto al proyecto"
+            },
+            'state': {
+                'required': u"Necesitas asignarle un estado al proyecto"
             }
         }
 
@@ -113,12 +116,12 @@ class ModelFormPermission(django.forms.ModelForm):
             'title': {
                 'required': u"Necesitas asignarle un título al permiso"
             },
-            'state': {
-                'required': u"Necesitas asignarle un estado al permiso"
-            },
             'institution': {
                 'required': u"Necesitas asignarle una institución al permiso"
-            }
+            },
+            'permission_state': {
+                'required': u"Necesitas asignarle un estado al permiso"
+            },
         }
 
 
@@ -151,8 +154,27 @@ class ModelFormStage(django.forms.ModelForm):
                 'required': u"Necesitas asignarle un número a la etapa"
             },
             'employee': {
-                'required': u"Necesitas asignarle un empleado a la etapa"
+                'required': u"Necesitas asignarle uno o más empleados a la etapa"
             },
+            'state': {
+                'required': u"Necesitas asignarle un estado a la etapa"
+            }
+        }
+
+
+class ModelFormStageState(django.forms.ModelForm):
+
+    class Meta:
+        model = models.Stage
+        fields = [
+            'state'
+        ]
+
+        labels = {
+            'state': u"Seleccionar estado para modificar"
+        }
+
+        error_messages = {
             'state': {
                 'required': u"Necesitas asignarle un estado a la etapa"
             }
@@ -198,7 +220,7 @@ class ModelFormComment(django.forms.ModelForm):
 
         error_messages = {
             'title': {
-                'required': u"Necesitas asignarle un nombre al comentario"
+                'required': u"Necesitas asignarle un título al comentario"
             }
         }
 
