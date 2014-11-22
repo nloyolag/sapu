@@ -162,7 +162,26 @@ class ModelFormStage(django.forms.ModelForm):
         }
 
 
-class ModelFormStageState(django.forms.ModelForm):
+class ModelFormStateProject(django.forms.ModelForm):
+
+    class Meta:
+        model = models.Project
+        fields = [
+            'state'
+        ]
+
+        labels = {
+            'state': u"Seleccionar estado para modificar"
+        }
+
+        error_messages = {
+            'state': {
+                'required': u"Necesitas asignarle un estado al proyecto"
+            }
+        }
+
+
+class ModelFormStateStage(django.forms.ModelForm):
 
     class Meta:
         model = models.Stage

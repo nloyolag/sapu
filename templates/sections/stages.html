@@ -31,10 +31,9 @@
 
             <form method="post" action="/proyectos/proyecto/{{ project.id }}/">
                 {% csrf_token %}
-                {{ form_stage_state }}
+                {{ form_state_project }}
                 <input type="submit" class="btn btn-info" value="Modificar Estado">
             </form>
-
 
         </div>
 
