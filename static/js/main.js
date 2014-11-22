@@ -172,4 +172,11 @@ $( document ).ready(function() {
         $(".stage-detail-container select").select2({width: "15%"});
     });
 
+    // Hover on image upload icon
+    $(".image-upload-container").hover(function() {
+        $(this).children("a").addClass("image-button-hover");
+    }, function() {
+        $(this).children("a").removeClass("image-button-hover");
+    });
+
 });

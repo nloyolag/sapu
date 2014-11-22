@@ -115,6 +115,8 @@ def modal_edit_project_photo(
         else:
             project_photo_form = forms.ModelFormProjectPhoto(prefix=globals.PREFIX__FORM_PROJECT_PHOTO)
 
+    project_photo_form.fields['photo'].widget.attrs['accept'] = 'image/*'
+
     project_modal_form = globals.ModalForm(
         title=globals.FIELD__PHOTO,
         form=project_photo_form
@@ -453,6 +455,8 @@ def modal_edit_employee_photo(
         # Create project
         else:
             employee_form = forms.ModelFormEmployee(prefix=globals.PREFIX__FORM_EMPLOYEE_PHOTO)
+
+    employee_form.fields['photo'].widget.attrs['accept'] = 'image/*'
 
     employee_modal_form = globals.ModalForm(
         title=globals.FIELD__PHOTO,

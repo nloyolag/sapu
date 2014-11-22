@@ -39,7 +39,7 @@
                 <tr class="{{ employee.user.username }}">
                     <td>{{ employee.user.username }}</td>
                     <td>{{ employee.user.email }}</td>
-                    <td>
+                    <td class="image-upload-container">
                         <img src="{{ employee.photo.url }}">
                         <a href="/modal/edit/employee_photo/{{ employee.id }}" class="modal-summon"><i class="fa fa-upload fa-2x"></i>Subir imagen</a>
                     </td>

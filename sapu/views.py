@@ -456,6 +456,7 @@ def check_task_view(
         task.is_complete = False
     else:
         task.is_complete = True
+        task.finished_date = datetime.datetime.now()
 
     task.save()
 
