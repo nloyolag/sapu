@@ -16,7 +16,9 @@
 
     <div class="projects-header view-header">
         <h1>Instituciones</h1>
+        {% if perms.sapu.add_institution %}
         <a href="/modal/add/institution" class="btn btn-info modal-summon">Agregar Institución</a>
+        {% endif %}
     </div>
 
     <form action="{% url 'views.institutions_render_view' %}" method="POST">
@@ -36,7 +38,9 @@
             <th>Contacto</th>
             <th>Telefono</th>
             <th>Es cliente</th>
+            {% if perms.sapu.change_institution %}
             <th>Acciones</th>
+            {% endif %}
         </thead>
 
     {% for institution in institutions %}
@@ -55,10 +59,14 @@
                 {% endif %}
 
             </td>
+            {% if perms.sapu.change_institution %}
             <td>
                 <a href="/modal/edit/institution/{{ institution.id }}" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
+                {% if perms.sapu.delete_institution %}
                 <a href="#delete-institution" class="modal-delete-summon" id="{{ institution.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
+                {% endif %}
             </td>
+            {% endif %}
         </tr>
     {% endfor  %}
 
@@ -69,7 +77,7 @@
 <div style="display:none">
     <div class="delete-modal" id="delete-institution">
         <h6>¿Estás seguro de querer eliminar esta institución?</h6>
-        <a href="#" class="radius btn btn-info">Cancelar</a>
+        <a href="#" class="radius btn btn-info cancel-action">Cancelar</a>
         <a href="/delete/institution/" class="btn btn-danger submit-delete">Eliminar</a>
     </div>
 </div>
