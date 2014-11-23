@@ -33,10 +33,10 @@ def create_permissions():
 
     # Permission
 
-    content_type = ContentType.objects.get_for_model(Permission)
-    permission_add_permission = Permission.objects.get(codename='add_permission', content_type=content_type)
-    permission_change_permission = Permission.objects.get(codename='change_permission', content_type=content_type)
-    permission_delete_permission = Permission.objects.get(codename='delete_permission', content_type=content_type)
+    content_type = ContentType.objects.get_for_model(sapu.models.Permission)
+    permission_add_permission = Permission.objects.get(codename='add_permission', content_type_id=content_type.id)
+    permission_change_permission = Permission.objects.get(codename='change_permission', content_type_id=content_type.id)
+    permission_delete_permission = Permission.objects.get(codename='delete_permission', content_type_id=content_type.id)
 
     # Employee
 
