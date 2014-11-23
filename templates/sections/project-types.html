@@ -16,7 +16,9 @@
 
         <div class="project-types-header view-header">
             <h1>Tipos de Proyecto</h1>
+            {% if perms.sapu.add_projecttype %}
             <a href="/modal/add/project_type" class="btn btn-info modal-summon">Agregar Tipo de Proyecto</a>
+            {% endif %}
         </div>
 
         <div id="list-content">
@@ -32,8 +34,12 @@
                             <h5>{{ project_type.name }}</h5>
                             <hr>
                             <p>{{ project_type.description }}</p>
+                            {% if perms.sapu.change_projecttype %}
                             <a href="/modal/edit/project_type/{{ project_type.id }}" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
+                            {% endif %}
+                            {% if perms.sapu.delete_projecttype %}
                             <a href="#delete-project-type" class="modal-delete-summon" id="{{ project_type.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
+                            {% endif %}
                         </div>
                     </div></div>
 
@@ -50,7 +56,7 @@
 <div style="display:none">
     <div class="delete-modal" id="delete-project-type">
         <h6>¿Estás seguro de querer eliminar este tipo de proyecto?</h6>
-        <a href="#" class="radius btn btn-info">Cancelar</a>
+        <a href="#" class="radius btn btn-info cancel-action">Cancelar</a>
         <a href="/delete/project_type/" class="btn btn-danger submit-delete">Eliminar</a>
     </div>
 </div>

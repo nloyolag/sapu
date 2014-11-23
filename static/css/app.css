@@ -836,7 +836,7 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
 }
 
 .user-info-outer {
-    height: 210px
+    height: 250px
 }
 
 .user-block {
@@ -845,7 +845,7 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
 
 .user-block img {
     width: 175px;
-    height: 175px;
+    height: 200px;
     float: left;
     margin-right: 20px;
 }
@@ -887,15 +887,16 @@ z-index: 300001;
 z-index: 300000;
 }
 
-.user-block-info a {
+.user-session-control {
     display: inline-block;
+    width: 20%;
+    margin-left: 100px;
 }
 
-.user-block-info p {
-    display: inline-block;
+.user-session-control .fa-check {
+    margin-left: 35px;
 }
 
-.user-login-check, .user-block-actions {
-    display: inline-block;
-    width: 25%;
+.cancel-action {
+
 }
