@@ -137,7 +137,6 @@ class ModelFormStage(django.forms.ModelForm):
         fields = [
             'name',
             'description',
-            'number',
             'deadline',
             'employee',
             'state'
@@ -149,9 +148,6 @@ class ModelFormStage(django.forms.ModelForm):
             },
             'deadline': {
                 'required': u"Necesitas asignarle una fecha límite a la etapa"
-            },
-            'number': {
-                'required': u"Necesitas asignarle un número a la etapa"
             },
             'employee': {
                 'required': u"Necesitas asignarle uno o más empleados a la etapa"

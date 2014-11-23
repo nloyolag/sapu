@@ -902,8 +902,12 @@ def modal_edit_stage_handler(
             # Save the new object or update it
             # auto fill project.
 
-            stage.project = models.Project.objects.get(pk=project_id)
+            project = models.Project.objects.get(pk=project_id)
+            stage.project = project
             stage.full_clean()
+
+            count = models.Stage.objects.filter(is_active=True, project=project).count()
+            stage.number = count + 1
             stage.save()
 
             employees = form_stage.cleaned_data['employee']

@@ -177,7 +177,7 @@ class Employee (django.db.models.Model):
 class Stage (django.db.models.Model):
     name = django.db.models.CharField(max_length=255, verbose_name=u"Nombre")
     description = django.db.models.TextField(verbose_name=u"Descripción", blank=True)
-    number = django.db.models.IntegerField(verbose_name=u"Número")
+    number = django.db.models.IntegerField(verbose_name=u"Número", blank=True)
     is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
     deadline = \
         django.db.models.DateTimeField(verbose_name=u"Fecha Límite")

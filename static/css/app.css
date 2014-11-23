@@ -67,6 +67,10 @@ h6 {
     margin: 0 auto 100px auto;
 }
 
+.ui-datepicker {
+    z-index: 100000 !important;
+}
+
 /* Header Styles
 ===============*/
 
@@ -713,7 +717,6 @@ a .fa-upload, a .fa-pencil, a .fa-trash-o {
 .select2-container {
     margin: 0 auto;
     display: block;
-    z-index: 9999;
 }
 
 span.field-error input,
