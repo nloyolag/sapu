@@ -854,15 +854,12 @@ z-index: 300001;
 z-index: 300000;
 }
 
-.user-block-info a {
+.user-session-control {
     display: inline-block;
+    width: 20%;
+    margin-left: 100px;
 }
 
-.user-block-info p {
-    display: inline-block;
-}
-
-.user-login-check, .user-block-actions {
-    display: inline-block;
-    width: 25%;
+.user-session-control .fa-check {
+    margin-left: 35px;
 }

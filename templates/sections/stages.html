@@ -29,17 +29,21 @@
                 </div>
             </div>
 
+            {% if perms.sapu.change_project %}
             <form method="post" action="/proyectos/proyecto/{{ project.id }}/">
                 {% csrf_token %}
                 {{ form_state_project }}
                 <input type="submit" class="btn btn-info" value="Modificar Estado">
             </form>
+            {% endif %}
 
         </div>
 
         <div class="view-header permissions-header">
             <h2 class="permissions-title">Permisos</h2>
+            {% if perms.sapu.add_permission %}
             <a href="/modal/add/permission/project/{{ project.id }}/" class="btn btn-info modal-summon">Agregar Permiso</a>
+            {% endif %}
         </div>
 
         <div class="permission-container">
@@ -56,8 +60,12 @@
                         <h6>Folio - {{ permission.folio }}</h6>
                         <h6>Institución - {{ permission.institution.name }}</h6>
                         <p>{{ permission.description }}</p>
+                        {% if perms.sapu.change_permission %}
                         <a href="/modal/edit/permission/{{ permission.id }}/project/{{ project.id }}/" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
+                        {% endif %}
+                        {% if perms.sapu.delete_permission %}
                         <a href="#delete-permission" class="modal-delete-summon" id="{{ permission.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
+                        {% endif %}
                     </div>
                 </div></div>
 
@@ -70,7 +78,9 @@
 
         <div class="view-header tasks-header">
             <h2 class="permissions-title">Etapas</h2>
+            {% if perms.sapu.add_stage %}
             <a href="/modal/add/stage/project/{{ project.id }}/" class="btn btn-info modal-summon">Agregar Etapa</a>
+            {% endif %}
         </div>
 
         <div class="stage-container">
@@ -88,8 +98,12 @@
                         <hr>
                         <h6> <i class="fa fa-clock-o fa-lg"></i> - {{ stage.deadline|date:"d/m/Y" }}</h6>
                         <p>{{ stage.description }}</p>
+                        {% if perms.sapu.change_stage %}
                         <a href="/modal/edit/stage/{{ stage.id }}/project/{{ project.id }}/" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
+                        {% endif %}
+                        {% if perms.sapu.delete_stage %}
                         <a href="#delete-stage" class="modal-delete-summon" id="{{ stage.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
+                        {% endif %}
                     </div>
                 </div></div>
 

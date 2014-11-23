@@ -16,12 +16,14 @@
 
         <div class="employee-header view-header">
             <h1>Usuarios</h1>
-            {% if perms.sapu.permission_add_employee %}
+            {% if perms.sapu.add_employee %}
             <a href="/modal/add/employee" class="btn btn-info modal-summon">Agregar Usuario</a>
             {% endif %}
             <form method="post" action="/usuarios/">
                 {% csrf_token %}
+                {% if perms.sapu.change_employee %}
                 <button type="submit" class="btn btn-danger">Reiniciar sesión de usuarios</button>
+                {% endif %}
             </form>
         </div>
 
@@ -44,19 +46,22 @@
                             <div class="user-block-info">
                                 <h5>Yeah de prueba{{ employee.user.first_name }}</h5>
                                 <p>{{ employee.user.email }}</p>
+                                {% if perms.sapu.change_employee %}
                                 <h6>{{ employee.user.groups.all.0 }}</h6>
-                                <div class="user-controllers">
-                                <div class="user-login-check">
-                                <p>¿Inició sesión?</p>
-                                {% if employee.logged %}
-                                    <i class="fa fa-check fa-2x logged-icon"></i>
-                                {% endif %}
-                                </div>
-                                <div class="user-block-actions">
-                                <p>Acciones</p>
                                 <a href="/modal/edit/employee/{{ employee.id }}" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
+                                {% endif %}
+                                {% if perms.sapu.delete_employee %}
                                 <a href="#delete-employee" class="modal-delete-summon" id="{{ employee.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
-                                </div>
+                                {% endif %}
+                                <div class="user-session-control">
+                                {% if perms.sapu.change_employee %}
+                                <p>¿Inició sesión?</p>
+                                {% endif %}
+                                {% if employee.logged %}
+                                    {% if perms.sapu.change_employee %}
+                                    <i class="fa fa-check fa-2x logged-icon"></i>
+                                    {% endif %}
+                                {% endif %}
                                 </div>
                             </div>
 
