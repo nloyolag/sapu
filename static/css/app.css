@@ -820,7 +820,7 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
 }
 
 .user-info-outer {
-    height: 210px
+    height: 250px
 }
 
 .user-block {
@@ -829,7 +829,7 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
 
 .user-block img {
     width: 175px;
-    height: 175px;
+    height: 200px;
     float: left;
     margin-right: 20px;
 }
