@@ -522,7 +522,7 @@ def check_task_view(
         task.is_complete = False
     else:
         task.is_complete = True
-        task.finished_date = datetime.datetime.now()
+        task.finished_date = timezone.now()
 
     task.save()
 
@@ -696,19 +696,28 @@ def delete_employee_view(request, employee_id):
 @permission_required('sapu.delete_stage')
 def delete_stage_view(request, stage_id):
 
-    try:
+    stage = models.Stage.objects.get(pk=stage_id)
+    deleted_stage_number = stage.number
+    project = stage.project
 
-        stage = models.Stage.objects.get(pk=stage_id)
-        stage.is_active = False
-        stage.save()
+    count = models.Stage.objects.filter(project=project, is_active=True).count()
+    stage.is_active = False
+    stage.save()
 
-        messages.success(request,
-                         u"La etapa " +
-                         unicode(stage.name) +
-                         u" ha sido eliminada.")
+    print deleted_stage_number
+    print count
+    for i in range(deleted_stage_number + 1, count + 1):
+        print "a"
+        current_stage = models.Stage.objects.get(project=project, number=i, is_active=True)
+        if current_stage is not None:
+            print "b"
+            current_stage.number = i - 1
+            current_stage.save()
 
-    except models.Stage.DoesNotExist as e:
-        messages.error(request, e.messages)
+    messages.success(request,
+                     u"La etapa " +
+                     unicode(stage.name) +
+                     u" ha sido eliminada.")
 
     return HttpResponse('')
 
@@ -749,6 +758,24 @@ def delete_comment_view(request, comment_id):
                          u" ha sido eliminada.")
 
     except models.Comment.DoesNotExist as e:
+
+        messages.error(request, e.messages)
+
+    return HttpResponse('')
+
+
+@django.contrib.auth.decorators.login_required
+def delete_assignment_view(request, assignment_id):
+
+    try:
+
+        assignment = models.Assignment.objects.get(pk=assignment_id)
+        assignment.delete()
+
+        messages.success(request,
+                         u"La asignación ha sido eliminada.")
+
+    except models.Assignment.DoesNotExist as e:
 
         messages.error(request, e.messages)
 

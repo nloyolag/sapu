@@ -5,7 +5,7 @@ $( document ).ready(function() {
         width: 500
     });
 
-    $(".stage-detail-container select").select2({width: "15%"});
+    $(".select-container select").select2({width: "15%"});
 
     // Selectors reutilized throughout the script
     var modalDeleteSummon = $(".modal-delete-summon");
@@ -56,7 +56,7 @@ $( document ).ready(function() {
             url + " #main-content > *",
             function() {
                 mainContent.prepend($messages);
-                $(".stage-detail-container select").select2({width: "15%"});
+                $(".select-container select").select2({width: "15%"});
                 $.fancybox.close();
             });
         });
@@ -70,7 +70,7 @@ $( document ).ready(function() {
         type: 'ajax',
         ajax: {
             complete: function() {
-                $("select").select2({width: "90%"});
+                $(".sapu-modal select").select2({width: "90%"});
                 $(".datetime-field").datepicker();
             }
         }
@@ -106,7 +106,7 @@ $( document ).ready(function() {
                     $modal.find('.modal-form').remove();
                     var $modal_forms = $(data).find('.modal-form');
                     $modal.find('.sapu-modal').append($modal_forms);
-                    $("select").select2({width: "90%"});
+                    $(".sapu-modal select").select2({width: "90%"});
                     $(".datetime-field").datepicker();
                 } else {
                     var url = document.URL;
@@ -115,7 +115,7 @@ $( document ).ready(function() {
                         url + " #main-content > *",
                         function() {
                             mainContent.prepend($messages);
-                            $(".stage-detail-container select").select2({width: "15%"});
+                            $(".select-container select").select2({width: "15%"});
                             $.fancybox.close();
                     });
                 }
@@ -169,7 +169,7 @@ $( document ).ready(function() {
         var _href = $(this).parent().attr("href");
 
         $(this).load(_href);
-        $(".stage-detail-container select").select2({width: "15%"});
+        $(".select-container select").select2({width: "15%"});
     });
 
     // Hover on image upload icon

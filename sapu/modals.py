@@ -8,6 +8,7 @@ import django.core.exceptions
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
+from django.utils import timezone
 
 # SAPU imports
 import forms
@@ -225,6 +226,60 @@ def modal_edit_stage(
         # Create stage
         else:
             stage_form = forms.ModelFormStage(prefix=globals.PREFIX__FORM_STAGE)
+
+    stage_modal_form = globals.ModalForm(
+        title=globals.FIELD__STAGE,
+        form=stage_form
+    )
+
+    main_forms = [stage_modal_form]
+
+    modal = globals.Modal(
+        name=modal_name,
+        action=modal_action,
+        main_forms=main_forms,
+        accept_button_text=action_text
+    )
+
+    return modal
+
+
+def modal_edit_stage_employees(
+        modal_name,
+        element_index=None,
+        modal_forms=None
+):
+    # Construct the modal
+    action_text = globals.MODAL_ACTION__CREATE
+    modal_action = globals.OPTION_NAME__MODAL_FORM_ADD
+
+    # Stage was already added/edited
+    if globals.PREFIX__FORM_STAGE_EMPLOYEE in modal_forms:
+        # Form was passed as a parameter
+        stage_form = modal_forms[globals.PREFIX__FORM_STAGE_EMPLOYEE]
+
+    else:
+        # Edit Stage
+        if element_index is not None:
+
+            try:
+                stage =\
+                    models.Stage.objects.get(pk=element_index)
+
+            except models.Stage.DoesNotExist:
+                return None
+
+            stage_form = forms.ModelFormStageEmployees(
+                prefix=globals.PREFIX__FORM_STAGE_EMPLOYEE,
+                instance=stage
+            )
+
+            action_text = globals.MODAL_ACTION__EDIT
+            modal_action = globals.OPTION_NAME__MODAL_FORM_EDIT
+
+        # Create stage
+        else:
+            stage_form = forms.ModelFormStageEmployees(prefix=globals.PREFIX__FORM_STAGE_EMPLOYEE)
 
     stage_modal_form = globals.ModalForm(
         title=globals.FIELD__STAGE,
@@ -631,7 +686,7 @@ def modal_edit_project_handler(
             # Save the new object or update it
 
             if not element_index:
-                project.creation_date = datetime.datetime.now()
+                project.creation_date = timezone.now()
 
             project.full_clean()
             project.save()
@@ -847,8 +902,12 @@ def modal_edit_stage_handler(
             # Save the new object or update it
             # auto fill project.
 
-            stage.project = models.Project.objects.get(pk=project_id)
+            project = models.Project.objects.get(pk=project_id)
+            stage.project = project
             stage.full_clean()
+
+            count = models.Stage.objects.filter(is_active=True, project=project).count()
+            stage.number = count + 1
             stage.save()
 
             employees = form_stage.cleaned_data['employee']
@@ -882,6 +941,99 @@ def modal_edit_stage_handler(
 
     forms_handler = {
         globals.PREFIX__FORM_STAGE: form_stage
+    }
+
+    return forms_handler
+
+
+def modal_edit_stage_employees_handler(
+        request,
+        element_index=None,
+        project_id=None,
+        stage_id=None
+):
+
+    old_stage = None
+    object_created = False
+
+    if element_index:
+
+        try:
+            old_stage = models.Stage.objects.get(pk=element_index)
+        except models.Stage.DoesNotExist:
+            messages.error(request, globals.ERROR__FORBIDDEN)
+            return None
+
+        # Get the form for instance element
+        form_stage = forms.ModelFormStageEmployees(
+            request.POST,
+            prefix=globals.PREFIX__FORM_STAGE_EMPLOYEE,
+            instance=old_stage
+        )
+
+    else:
+        # Get the form for new element
+        form_stage = forms.ModelFormStageEmployees(
+            request.POST,
+            prefix=globals.PREFIX__FORM_STAGE_EMPLOYEE
+        )
+
+    if form_stage.is_valid():
+
+        stage = form_stage.save(commit=False)
+
+        try:
+            # Save the new object or update it
+            # auto fill project.
+
+            stage.project = models.Project.objects.get(pk=project_id)
+            stage.full_clean()
+            stage.save()
+
+            employees = form_stage.cleaned_data['employee']
+
+            for employee in employees:
+                obj, created = models.Assignment.objects.get_or_create(stage=stage,
+                                                                       employee=employee)
+
+                if created:
+                    object_created = True
+
+            if object_created and stage.state.number == 5:
+
+                if timezone.now() > stage.deadline:
+                    stage.state = models.State.objects.get(number=1)
+                    stage.save()
+
+                else:
+                    stage.state = models.State.objects.get(number=2)
+                    stage.save()
+
+            if not old_stage:
+
+                messages.success(request, globals.MESSAGE__CREATION_SUCCESS_F.format(
+                    model_name=globals.MODEL_NAME__STAGE,
+                    item_name=stage.name
+                ))
+
+            else:
+
+                messages.success(request, globals.MESSAGE__EDIT_SUCCESS_F.format(
+                    model_name=globals.MODEL_NAME__STAGE,
+                    item_name=stage.name
+                ))
+
+        except models.Stage.DoesNotExist as e:
+            messages.error(request, e.messages)
+
+        except models.Project.DoesNotExist as e:
+            messages.error(request, e.messages)
+
+        except django.core.exceptions.ValidationError as e:
+            messages.error(request, e.messages)
+
+    forms_handler = {
+        globals.PREFIX__FORM_STAGE_EMPLOYEE: form_stage
     }
 
     return forms_handler
@@ -926,7 +1078,7 @@ def modal_edit_task_handler(
             # Save the new object or update it
             stage = models.Stage.objects.get(pk=stage_id)
             task.stage = stage
-            task.finished_date = datetime.datetime.now()
+            task.finished_date = timezone.now()
             task.full_clean()
             task.save()
 
@@ -1002,7 +1154,7 @@ def modal_edit_comment_handler(
             user = request.user
             employee = models.Employee.objects.get(user=user)
             comment.employee = employee
-            comment.date = datetime.datetime.now()
+            comment.date = timezone.now()
             comment.full_clean()
             comment.save()
 
@@ -1370,6 +1522,7 @@ MODAL__FUNCTIONS = {
     globals.MODAL_EDIT__PROJECT_PHOTO: modal_edit_project_photo,
     globals.MODAL_EDIT__PROJECT_TYPE: modal_edit_project_type,
     globals.MODAL_EDIT__STAGE: modal_edit_stage,
+    globals.MODAL_EDIT__STAGE_EMPLOYEES: modal_edit_stage_employees,
     globals.MODAL_EDIT__COMMENT: modal_edit_comment,
     globals.MODAL_EDIT__TASK: modal_edit_task,
     globals.MODAL_EDIT__EMPLOYEE: modal_edit_employee,
@@ -1383,6 +1536,7 @@ MODAL__HANDLER_FUNCTIONS = {
     globals.MODAL_EDIT__PROJECT_PHOTO: modal_edit_project_photo_handler,
     globals.MODAL_EDIT__PROJECT_TYPE: modal_edit_project_type_handler,
     globals.MODAL_EDIT__STAGE: modal_edit_stage_handler,
+    globals.MODAL_EDIT__STAGE_EMPLOYEES: modal_edit_stage_employees_handler,
     globals.MODAL_EDIT__COMMENT: modal_edit_comment_handler,
     globals.MODAL_EDIT__TASK: modal_edit_task_handler,
     globals.MODAL_EDIT__EMPLOYEE: modal_edit_employee_handler,

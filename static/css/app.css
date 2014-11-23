@@ -67,6 +67,10 @@ h6 {
     margin: 0 auto 100px auto;
 }
 
+.ui-datepicker {
+    z-index: 100000 !important;
+}
+
 /* Header Styles
 ===============*/
 
@@ -279,6 +283,10 @@ nav a:hover {
     margin: 50px auto 0 auto;
 }
 
+.stage-assignees .modal-summon {
+    float: none;
+}
+
 .stage-assignee {
     position: relative;
 }
@@ -287,16 +295,25 @@ nav a:hover {
     position: absolute;
     bottom: 0;
     z-index: 5;
-    right: 22%;
+    right: 8%;
 }
 
-.stage-assignee i:first-of-type {
+.stage-assignee .modal-delete-summon {
+    position: absolute;
+    right: -20%;
+}
+
+.stage-assignee i.fa-trash-o {
+    position: relative
+}
+
+.stage-assignee i.fa-circle {
     color: #333333;
 }
 
-.stage-assignee i:last-of-type {
+.stage-assignee i.fa-check {
     color: #1C9A71;
-    right: 24%;
+    right: 10%;
     bottom: 5%;
 }
 
@@ -332,11 +349,12 @@ nav a:hover {
 
 .stage-assignee {
     width: 16%;
+    margin-right: 3%;
     display: inline-block;
 }
 
 .stage-assignee img {
-    width: 80%;
+    width: 95%;
 }
 
 .stage-dashboard {
@@ -699,7 +717,6 @@ a .fa-upload, a .fa-pencil, a .fa-trash-o {
 .select2-container {
     margin: 0 auto;
     display: block;
-    z-index: 9999;
 }
 
 span.field-error input,

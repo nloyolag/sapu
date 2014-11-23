@@ -2922,8 +2922,8 @@ def populate():
     # REQUIRES: Stage, Employee
     # 50 Registers / 2 per stage (Los que alcancen)
 
-    datetime_test = datetime.date(2015, 1, 5)
-    datetime_now = datetime.datetime.now()
+    datetime_test = timezone.now()
+    datetime_now = timezone.now()
 
     #1
     add_task(

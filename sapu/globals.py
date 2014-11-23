@@ -28,8 +28,8 @@ ERROR__STAGES_ARE_NOT_COMPLETE = u"El proyecto no se puede completar porque aun 
 MESSAGE__CREATION_SUCCESS_M = u"{model_name} {item_name} creado"
 MESSAGE__EDIT_SUCCESS_M = u"{model_name} {item_name} modificado"
 
-MESSAGE__CREATION_SUCCESS_F = u"{model_name} {item_name} creado"
-MESSAGE__EDIT_SUCCESS_F = u"{model_name} {item_name} modificado"
+MESSAGE__CREATION_SUCCESS_F = u"{model_name} {item_name} creada"
+MESSAGE__EDIT_SUCCESS_F = u"{model_name} {item_name} modificada"
 
 
 ################################################################################
@@ -77,6 +77,7 @@ PREFIX__FORM_INSTITUTION = 'institution'
 PREFIX__FORM_PROJECT_TYPE = 'project_type'
 PREFIX__FORM_PROJECT = 'project'
 PREFIX__FORM_STAGE = 'stage'
+PREFIX__FORM_STAGE_EMPLOYEE = 'stage_employees'
 PREFIX__FORM_TASK = 'task'
 PREFIX__FORM_COMMENT = 'comment'
 PREFIX__FORM_EMPLOYEE = 'employee'
@@ -112,6 +113,7 @@ MODAL_EDIT__INSTITUTION = "institution"
 MODAL_EDIT__PROJECT = "project"
 MODAL_EDIT__PROJECT_TYPE = "project_type"
 MODAL_EDIT__STAGE = "stage"
+MODAL_EDIT__STAGE_EMPLOYEES = "stage_employees"
 MODAL_EDIT__COMMENT = "comment"
 MODAL_EDIT__TASK = "task"
 MODAL_EDIT__EMPLOYEE = "employee"
