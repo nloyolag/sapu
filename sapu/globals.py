@@ -28,8 +28,8 @@ ERROR__STAGES_ARE_NOT_COMPLETE = u"El proyecto no se puede completar porque aun 
 MESSAGE__CREATION_SUCCESS_M = u"{model_name} {item_name} creado"
 MESSAGE__EDIT_SUCCESS_M = u"{model_name} {item_name} modificado"
 
-MESSAGE__CREATION_SUCCESS_F = u"{model_name} {item_name} creado"
-MESSAGE__EDIT_SUCCESS_F = u"{model_name} {item_name} modificado"
+MESSAGE__CREATION_SUCCESS_F = u"{model_name} {item_name} creada"
+MESSAGE__EDIT_SUCCESS_F = u"{model_name} {item_name} modificada"
 
 
 ################################################################################

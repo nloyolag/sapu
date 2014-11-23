@@ -212,11 +212,13 @@ class Assignment (django.db.models.Model):
     stage = django.db.models.ForeignKey(Stage,
                                         on_delete=django.db.models.PROTECT,
                                         related_name="assignment_stage",
+                                        null=True,
                                         verbose_name=u"Etapa")
 
     employee = django.db.models.ForeignKey(Employee,
                                            on_delete=django.db.models.PROTECT,
                                            related_name="assignment_employee",
+                                           null=True,
                                            verbose_name=u"Empleado")
 
     completed = django.db.models.BooleanField(default=False, verbose_name=u"¿Completó la etapa?")

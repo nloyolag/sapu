@@ -36,10 +36,16 @@
 
                         {% for assignment in assignments %}
                             {% for each in employee.assignment_employee.all %}
+
+                                {% if each == assignment %}
+                                    <a href="#delete-assignment" class="modal-delete-summon" id="{{ assignment.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
+                                {% endif %}
+
                                 {% if each == assignment and assignment.completed %}
                                     <i class="fa fa-circle fa-3x"></i>
                                     <i class="fa fa-check fa-2x"></i>
                                 {% endif %}
+
                             {% endfor %}
                         {% endfor %}
 
@@ -47,7 +53,7 @@
 
                 {% endfor %}
 
-                <a href="/modal/edit/stage_employees/project/{{ stage.project.id }}/" class="btn btn-info modal-summon">Agregar Encargados</a>
+                <a href="/modal/edit/stage_employees/{{ stage.id }}/project/{{ stage.project.id }}/" class="btn btn-info modal-summon">Agregar Encargados</a>
 
             </div>
 
@@ -161,6 +167,14 @@
         <h6>¿Estás seguro de querer eliminar este comentario?</h6>
         <a href="#" class="radius btn btn-info">Cancelar</a>
         <a href="/delete/comment/" class="btn btn-danger submit-delete">Eliminar</a>
+    </div>
+</div>
+
+<div style="display:none">
+    <div class="delete-modal" id="delete-assignment">
+        <h6>¿Estás seguro de eliminar a este encargado de la etapa?</h6>
+        <a href="#" class="radius btn btn-info">Cancelar</a>
+        <a href="/delete/assignment/" class="btn btn-danger submit-delete">Eliminar</a>
     </div>
 </div>
 

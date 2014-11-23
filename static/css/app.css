@@ -291,16 +291,25 @@ nav a:hover {
     position: absolute;
     bottom: 0;
     z-index: 5;
-    right: 22%;
+    right: 8%;
 }
 
-.stage-assignee i:first-of-type {
+.stage-assignee .modal-delete-summon {
+    position: absolute;
+    right: -20%;
+}
+
+.stage-assignee i.fa-trash-o {
+    position: relative
+}
+
+.stage-assignee i.fa-circle {
     color: #333333;
 }
 
-.stage-assignee i:last-of-type {
+.stage-assignee i.fa-check {
     color: #1C9A71;
-    right: 24%;
+    right: 10%;
     bottom: 5%;
 }
 
@@ -336,7 +345,7 @@ nav a:hover {
 
 .stage-assignee {
     width: 16%;
-    margin-right: 5%;
+    margin-right: 3%;
     display: inline-block;
 }
 

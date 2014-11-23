@@ -8,6 +8,7 @@ import django.core.exceptions
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
+from django.utils import timezone
 
 # SAPU imports
 import forms
@@ -685,7 +686,7 @@ def modal_edit_project_handler(
             # Save the new object or update it
 
             if not element_index:
-                project.creation_date = datetime.datetime.now()
+                project.creation_date = timezone.now()
 
             project.full_clean()
             project.save()
@@ -949,6 +950,7 @@ def modal_edit_stage_employees_handler(
 ):
 
     old_stage = None
+    object_created = False
 
     if element_index:
 
@@ -987,8 +989,21 @@ def modal_edit_stage_employees_handler(
             employees = form_stage.cleaned_data['employee']
 
             for employee in employees:
-                models.Assignment.objects.create(stage=stage,
-                                                 employee=employee)
+                obj, created = models.Assignment.objects.get_or_create(stage=stage,
+                                                                       employee=employee)
+
+                if created:
+                    object_created = True
+
+            if object_created and stage.state.number == 5:
+
+                if timezone.now() > stage.deadline:
+                    stage.state = models.State.objects.get(number=1)
+                    stage.save()
+
+                else:
+                    stage.state = models.State.objects.get(number=2)
+                    stage.save()
 
             if not old_stage:
 
@@ -1059,7 +1074,7 @@ def modal_edit_task_handler(
             # Save the new object or update it
             stage = models.Stage.objects.get(pk=stage_id)
             task.stage = stage
-            task.finished_date = datetime.datetime.now()
+            task.finished_date = timezone.now()
             task.full_clean()
             task.save()
 
@@ -1135,7 +1150,7 @@ def modal_edit_comment_handler(
             user = request.user
             employee = models.Employee.objects.get(user=user)
             comment.employee = employee
-            comment.date = datetime.datetime.now()
+            comment.date = timezone.now()
             comment.full_clean()
             comment.save()
 

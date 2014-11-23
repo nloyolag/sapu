@@ -57,6 +57,11 @@ urlpatterns = patterns('',
     # Modals Delete
     #
 
+    # ex: /delete/assignment/3
+    url(r'^delete/assignment/(?P<assignment_id>\d*)/$',
+        views.delete_assignment_view,
+        name='delete-assignment'),
+
     # ex: /delete/institution/3
     url(r'^delete/institution/(?P<institution_id>\d*)/$',
         views.delete_institution_view,
@@ -115,7 +120,6 @@ urlpatterns = patterns('',
     url(r'^check/(?P<task_id>\d*)/$',
         views.check_task_view,
         name='check-task'),
-
 
     #
     # Views

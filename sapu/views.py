@@ -522,7 +522,7 @@ def check_task_view(
         task.is_complete = False
     else:
         task.is_complete = True
-        task.finished_date = datetime.datetime.now()
+        task.finished_date = timezone.now()
 
     task.save()
 
@@ -749,6 +749,24 @@ def delete_comment_view(request, comment_id):
                          u" ha sido eliminada.")
 
     except models.Comment.DoesNotExist as e:
+
+        messages.error(request, e.messages)
+
+    return HttpResponse('')
+
+
+@django.contrib.auth.decorators.login_required
+def delete_assignment_view(request, assignment_id):
+
+    try:
+
+        assignment = models.Assignment.objects.get(pk=assignment_id)
+        assignment.delete()
+
+        messages.success(request,
+                         u"La asignación ha sido eliminada.")
+
+    except models.Assignment.DoesNotExist as e:
 
         messages.error(request, e.messages)
 
