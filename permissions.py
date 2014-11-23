@@ -74,12 +74,15 @@ def create_permissions():
     administrator = Group(name='Administrador')
     administrator.save()
 
+    employee_permissions = [permission_add_comment,
+                            permission_change_comment,
+                            permission_delete_comment]
+
     supervisor_permissions = [permission_add_task,
                               permission_change_task,
-                              permission_delete_task,
-                              permission_add_comment,
-                              permission_change_comment,
-                              permission_delete_comment]
+                              permission_delete_task]
+
+    supervisor_permissions.extend(employee_permissions)
 
     project_manager_permissions = [permission_add_ptype,
                                    permission_change_ptype,
@@ -105,6 +108,7 @@ def create_permissions():
 
     administrator_permissions.extend(project_manager_permissions)
 
+    employee.permissions = employee_permissions
     supervisor.permissions = supervisor_permissions
     project_manager.permissions = project_manager_permissions
     administrator.permissions = administrator_permissions

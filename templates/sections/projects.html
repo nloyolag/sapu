@@ -52,12 +52,12 @@
     {% for project in projects %}
         <tr class="{{ project.state.name }}">
             <td> {{ project.state.name }}</td>
-            <td>{{ project.creation_date }}</td>
+            <td>{{ project.creation_date|date:"d/m/Y" }}</td>
             <td><a href="/proyectos/proyecto/{{ project.id }}">{{ project.name }}</a></td>
             <td>{{ project.id }}</td>
             <td>{{ project.project_type.name }}</td>
             <td>{{ project.description }}</td>
-            <td>{{ project.deadline }}</td>
+            <td>{{ project.deadline|date:"d/m/Y" }}</td>
             <td class="image-upload-container">
                 <img src="{{ project.photo.url }}">
                 <a href="/modal/edit/project_photo/{{ project.id }}" class="modal-summon"><i class="fa fa-upload fa-2x" style="margin-right: 10px;"></i>Subir imagen</a>

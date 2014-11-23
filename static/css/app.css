@@ -480,6 +480,22 @@ nav a:hover {
     border-left-color: #5CB85C;
 }
 
+.permission-info.Solicitado {
+    border-left-width: 12px;
+    border-left-color: #F3F163;
+}
+
+.permission-info.Negado {
+    border-left-width: 12px;
+    border-left-color: #D9534F;
+}
+
+.permission-info.Autorizado,
+.permission-info.competencia {
+    border-left-width: 12px;
+    border-left-color: #6CE6A5;
+}
+
 .stage-info-project img {
     display: inline-block;
     margin: 20px;
