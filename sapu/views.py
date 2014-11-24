@@ -163,7 +163,7 @@ def projects_render_view(request):
 
         projects = models.Project.objects\
             .filter(name__icontains=project_query, is_active=True)\
-            .order_by('-creation_date')
+            .order_by('state')
 
         template_variables['projects'] = projects
         template_variables['pagination'] = False

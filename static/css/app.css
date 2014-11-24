@@ -548,6 +548,11 @@ nav a:hover {
     border-left-color: #5CB85C;
 }
 
+.stg-info-project.Congelado {
+    border-left-width: 12px;
+    border-left-color: #0B2161;
+}
+
 .stage-assignees,
 .stage-dashboard {
     border-style: solid;
