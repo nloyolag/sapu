@@ -219,7 +219,7 @@ nav a:hover {
 .image-upload-container a {
     position: absolute;
     right: 60.5%;
-    bottom: -190px;
+    bottom: -215px;
     width: 36.7%;
     color: #333333;
     opacity: 0;
@@ -233,6 +233,7 @@ nav a:hover {
     width: 93%;
     right: 3.5%;
     margin-right: 0;
+    bottom: 9px;
 }
 
 .image-upload-container .image-button-hover {
@@ -641,6 +642,11 @@ nav a:hover {
 
 /* Users Styles
 =============== */
+
+.employee-header a {
+    margin-top: 0;
+}
+
 .modal-footer {
     width: 200px;
     margin-left: 130px;
