@@ -219,7 +219,7 @@ nav a:hover {
 .image-upload-container a {
     position: absolute;
     right: 60.5%;
-    bottom: -190px;
+    bottom: -215px;
     width: 36.7%;
     color: #333333;
     opacity: 0;
@@ -233,6 +233,7 @@ nav a:hover {
     width: 93%;
     right: 3.5%;
     margin-right: 0;
+    bottom: 9px;
 }
 
 .image-upload-container .image-button-hover {
@@ -480,6 +481,22 @@ nav a:hover {
     border-left-color: #5CB85C;
 }
 
+.permission-info.Solicitado {
+    border-left-width: 12px;
+    border-left-color: #F3F163;
+}
+
+.permission-info.Negado {
+    border-left-width: 12px;
+    border-left-color: #D9534F;
+}
+
+.permission-info.Autorizado,
+.permission-info.competencia {
+    border-left-width: 12px;
+    border-left-color: #6CE6A5;
+}
+
 .stage-info-project img {
     display: inline-block;
     margin: 20px;
@@ -630,6 +647,11 @@ nav a:hover {
 
 /* Users Styles
 =============== */
+
+.employee-header a {
+    margin-top: 0;
+}
+
 .modal-footer {
     width: 200px;
     margin-left: 130px;

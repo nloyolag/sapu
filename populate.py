@@ -345,36 +345,36 @@ def populate():
     #
     ###############################################################################
 
-    # sent
-    sent = add_permission_state(
+    # denied
+    denied = add_permission_state(
+        number=1,
+        name=u"Negado",
+        description=u"El permiso ha sido negado por la institución.",
+        color=u"#D9534F"
+    )
+
+    # applied_for
+    applied_for = add_permission_state(
         number=2,
         name=u"Solicitado",
-        description=u"El permiso ha sido enviado a la institución y se espera aprobación.",
-        color=u"#95C0FC"
-    )
-
-    # given
-    given = add_permission_state(
-        number=1,
-        name=u"Otorgado",
-        description=u"La institución ha otorgado el permiso.",
-        color=u"#6CE6A5"
-    )
-
-    # rejected
-    rejected = add_permission_state(
-        number=4,
-        name=u"Rechazado",
-        description=u"El permiso no fue otorgado por la institución",
+        description=u"Se ha solicitado el permiso y se espera su autorización.",
         color=u"#F3F163"
     )
 
-    # pending
-    pending = add_permission_state(
+    # authorized
+    authorized = add_permission_state(
         number=3,
-        name=u"Pendiente",
-        description=u"El permiso no se ha enviado para su aprobación.",
-        color=u"#E47F91"
+        name=u"Autorizado",
+        description=u"El permiso ha sido autorizado",
+        color=u"#6CE6A5"
+    )
+
+    # no_competence
+    no_competence = add_permission_state(
+        number=4,
+        name=u"No competencia",
+        description=u"El permiso fue autorizado bajo una categoría de no competencia.",
+        color=u"#6CE6A5"
     )
 
     ###############################################################################
@@ -1345,7 +1345,7 @@ def populate():
         title=u"Permiso INAH",
         description=u"Permiso emitido por el INAH",
         folio="0001",
-        permission_state=sent,
+        permission_state=denied,
         institution=institution1,
         project=project1
     )
@@ -1355,7 +1355,7 @@ def populate():
         title=u"Permiso CEA",
         description=u"Permiso emitido por el CEA",
         folio="0002",
-        permission_state=given,
+        permission_state=denied,
         institution=institution2,
         project=project1
     )
@@ -1365,7 +1365,7 @@ def populate():
         title=u"Permiso CFE",
         description=u"Permiso emitido por el CFE",
         folio="0003",
-        permission_state=rejected,
+        permission_state=authorized,
         institution=institution3,
         project=project1
     )
@@ -1375,7 +1375,7 @@ def populate():
         title=u"Permiso Municipio",
         description=u"Permiso emitido por el municipio",
         folio="0004",
-        permission_state=sent,
+        permission_state=denied,
         institution=institution4,
         project=project1
     )
@@ -1385,7 +1385,7 @@ def populate():
         title=u"Permiso Estado",
         description=u"Permiso emitido por el estado",
         folio="0005",
-        permission_state=given,
+        permission_state=applied_for,
         institution=institution5,
         project=project1
     )
@@ -1395,7 +1395,7 @@ def populate():
         title=u"Permiso Federal",
         description=u"Permiso emitido por la Federación",
         folio="0006",
-        permission_state=rejected,
+        permission_state=authorized,
         institution=institution6,
         project=project1
     )
@@ -1405,7 +1405,7 @@ def populate():
         title=u"Permiso Qbit",
         description=u"Permiso emitido por el Qbit",
         folio="0007",
-        permission_state=pending,
+        permission_state=no_competence,
         institution=institution7,
         project=project1
     )
@@ -1415,7 +1415,7 @@ def populate():
         title=u"Permiso Museo de la Ciudad",
         description=u"Permiso emitido por el Museo de la Ciudad",
         folio="0008",
-        permission_state=sent,
+        permission_state=denied,
         institution=institution8,
         project=project1
     )
@@ -1425,7 +1425,7 @@ def populate():
         title=u"Permiso ITESM",
         description=u"Permiso emitido por el ITESM",
         folio="0009",
-        permission_state=sent,
+        permission_state=denied,
         institution=institution9,
         project=project1
     )
@@ -1435,7 +1435,7 @@ def populate():
         title=u"Permiso ITAM",
         description=u"Permiso emitido por el ITAM",
         folio="0010",
-        permission_state=sent,
+        permission_state=denied,
         institution=institution10,
         project=project1
     )
@@ -1445,7 +1445,7 @@ def populate():
         title=u"Permiso INAH",
         description=u"Permiso emitido por el INAH",
         folio="0011",
-        permission_state=given,
+        permission_state=applied_for,
         institution=institution1,
         project=project2
     )
@@ -1455,7 +1455,7 @@ def populate():
         title=u"Permiso CEA",
         description=u"Permiso emitido por el CEA",
         folio="0012",
-        permission_state=given,
+        permission_state=applied_for,
         institution=institution2,
         project=project2
     )
@@ -1465,7 +1465,7 @@ def populate():
         title=u"Permiso CFE",
         description=u"Permiso emitido por el CFE",
         folio="0013",
-        permission_state=given,
+        permission_state=applied_for,
         institution=institution3,
         project=project2
     )
@@ -1475,7 +1475,7 @@ def populate():
         title=u"Permiso Municipio",
         description=u"Permiso emitido por el municipio",
         folio="0014",
-        permission_state=given,
+        permission_state=applied_for,
         institution=institution4,
         project=project2
     )
@@ -1485,7 +1485,7 @@ def populate():
         title=u"Permiso Estado",
         description=u"Permiso emitido por el estado",
         folio="0015",
-        permission_state=given,
+        permission_state=applied_for,
         institution=institution5,
         project=project2
     )
@@ -1495,7 +1495,7 @@ def populate():
         title=u"Permiso Federal",
         description=u"Permiso emitido por la Federación",
         folio="0016",
-        permission_state=given,
+        permission_state=applied_for,
         institution=institution6,
         project=project2
     )
@@ -1505,7 +1505,7 @@ def populate():
         title=u"Permiso Qbit",
         description=u"Permiso emitido por el Qbit",
         folio="0017",
-        permission_state=given,
+        permission_state=applied_for,
         institution=institution7,
         project=project2
     )
@@ -1515,7 +1515,7 @@ def populate():
         title=u"Permiso Museo de la Ciudad",
         description=u"Permiso emitido por el Museo de la Ciudad",
         folio="0018",
-        permission_state=given,
+        permission_state=applied_for,
         institution=institution8,
         project=project2
     )
@@ -1525,7 +1525,7 @@ def populate():
         title=u"Permiso ITESM",
         description=u"Permiso emitido por el ITESM",
         folio="0019",
-        permission_state=given,
+        permission_state=applied_for,
         institution=institution9,
         project=project2
     )
@@ -1535,7 +1535,7 @@ def populate():
         title=u"Permiso ITAM",
         description=u"Permiso emitido por el ITAM",
         folio="0020",
-        permission_state=rejected,
+        permission_state=authorized,
         institution=institution10,
         project=project2
     )
@@ -1545,7 +1545,7 @@ def populate():
         title=u"Permiso INAH",
         description=u"Permiso emitido por el INAH",
         folio="0021",
-        permission_state=rejected,
+        permission_state=authorized,
         institution=institution1,
         project=project3
     )
@@ -1555,7 +1555,7 @@ def populate():
         title=u"Permiso CEA",
         description=u"Permiso emitido por el CEA",
         folio="0022",
-        permission_state=rejected,
+        permission_state=authorized,
         institution=institution2,
         project=project3
     )
@@ -1565,7 +1565,7 @@ def populate():
         title=u"Permiso CFE",
         description=u"Permiso emitido por el CFE",
         folio="0023",
-        permission_state=rejected,
+        permission_state=authorized,
         institution=institution3,
         project=project3
     )
@@ -1575,7 +1575,7 @@ def populate():
         title=u"Permiso Municipio",
         description=u"Permiso emitido por el municipio",
         folio="0024",
-        permission_state=rejected,
+        permission_state=authorized,
         institution=institution4,
         project=project3
     )
@@ -1585,7 +1585,7 @@ def populate():
         title=u"Permiso Estado",
         description=u"Permiso emitido por el estado",
         folio="0025",
-        permission_state=rejected,
+        permission_state=authorized,
         institution=institution5,
         project=project3
     )
@@ -1595,7 +1595,7 @@ def populate():
         title=u"Permiso Federal",
         description=u"Permiso emitido por la Federación",
         folio="0026",
-        permission_state=rejected,
+        permission_state=authorized,
         institution=institution6,
         project=project3
     )
@@ -1605,7 +1605,7 @@ def populate():
         title=u"Permiso Qbit",
         description=u"Permiso emitido por el Qbit",
         folio="0027",
-        permission_state=pending,
+        permission_state=no_competence,
         institution=institution7,
         project=project3
     )
@@ -1615,7 +1615,7 @@ def populate():
         title=u"Permiso Museo de la Ciudad",
         description=u"Permiso emitido por el Museo de la Ciudad",
         folio="0028",
-        permission_state=pending,
+        permission_state=no_competence,
         institution=institution8,
         project=project3
     )
@@ -1625,7 +1625,7 @@ def populate():
         title=u"Permiso ITESM",
         description=u"Permiso emitido por el ITESM",
         folio="0029",
-        permission_state=pending,
+        permission_state=no_competence,
         institution=institution9,
         project=project3
     )
@@ -1635,7 +1635,7 @@ def populate():
         title=u"Permiso ITAM",
         description=u"Permiso emitido por el ITAM",
         folio="0030",
-        permission_state=pending,
+        permission_state=no_competence,
         institution=institution10,
         project=project3
     )
@@ -1645,7 +1645,7 @@ def populate():
         title=u"Permiso INAH",
         description=u"Permiso emitido por el INAH",
         folio="0031",
-        permission_state=pending,
+        permission_state=no_competence,
         institution=institution1,
         project=project4
     )
@@ -1655,7 +1655,7 @@ def populate():
         title=u"Permiso CEA",
         description=u"Permiso emitido por el CEA",
         folio="0032",
-        permission_state=pending,
+        permission_state=no_competence,
         institution=institution2,
         project=project4
     )
@@ -1665,7 +1665,7 @@ def populate():
         title=u"Permiso CFE",
         description=u"Permiso emitido por el CFE",
         folio="0033",
-        permission_state=pending,
+        permission_state=no_competence,
         institution=institution3,
         project=project4
     )
@@ -1675,7 +1675,7 @@ def populate():
         title=u"Permiso Municipio",
         description=u"Permiso emitido por el municipio",
         folio="0034",
-        permission_state=pending,
+        permission_state=no_competence,
         institution=institution4,
         project=project4
     )
@@ -1685,7 +1685,7 @@ def populate():
         title=u"Permiso Estado",
         description=u"Permiso emitido por el estado",
         folio="0035",
-        permission_state=pending,
+        permission_state=no_competence,
         institution=institution5,
         project=project4
     )
@@ -1695,7 +1695,7 @@ def populate():
         title=u"Permiso Federal",
         description=u"Permiso emitido por la Federación",
         folio="0036",
-        permission_state=pending,
+        permission_state=no_competence,
         institution=institution6,
         project=project4
     )
@@ -1705,7 +1705,7 @@ def populate():
         title=u"Permiso Qbit",
         description=u"Permiso emitido por el Qbit",
         folio="0037",
-        permission_state=pending,
+        permission_state=no_competence,
         institution=institution7,
         project=project4
     )
@@ -1715,7 +1715,7 @@ def populate():
         title=u"Permiso Museo de la Ciudad",
         description=u"Permiso emitido por el Museo de la Ciudad",
         folio="0038",
-        permission_state=rejected,
+        permission_state=authorized,
         institution=institution8,
         project=project4
     )
@@ -1725,7 +1725,7 @@ def populate():
         title=u"Permiso ITESM",
         description=u"Permiso emitido por el ITESM",
         folio="0039",
-        permission_state=rejected,
+        permission_state=authorized,
         institution=institution9,
         project=project4
     )
@@ -1735,7 +1735,7 @@ def populate():
         title=u"Permiso ITAM",
         description=u"Permiso emitido por el ITAM",
         folio="0040",
-        permission_state=rejected,
+        permission_state=authorized,
         institution=institution10,
         project=project4
     )
@@ -1745,7 +1745,7 @@ def populate():
         title=u"Permiso INAH",
         description=u"Permiso emitido por el INAH",
         folio="0041",
-        permission_state=rejected,
+        permission_state=authorized,
         institution=institution1,
         project=project5
     )
@@ -1755,7 +1755,7 @@ def populate():
         title=u"Permiso CEA",
         description=u"Permiso emitido por el CEA",
         folio="0042",
-        permission_state=sent,
+        permission_state=denied,
         institution=institution2,
         project=project5
     )
@@ -1765,7 +1765,7 @@ def populate():
         title=u"Permiso CFE",
         description=u"Permiso emitido por el CFE",
         folio="0043",
-        permission_state=sent,
+        permission_state=denied,
         institution=institution3,
         project=project5
     )
@@ -1775,7 +1775,7 @@ def populate():
         title=u"Permiso Municipio",
         description=u"Permiso emitido por el municipio",
         folio="0044",
-        permission_state=sent,
+        permission_state=denied,
         institution=institution4,
         project=project5
     )
@@ -1785,7 +1785,7 @@ def populate():
         title=u"Permiso Estado",
         description=u"Permiso emitido por el estado",
         folio="0045",
-        permission_state=sent,
+        permission_state=denied,
         institution=institution5,
         project=project5
     )
@@ -1795,7 +1795,7 @@ def populate():
         title=u"Permiso Federal",
         description=u"Permiso emitido por la Federación",
         folio="0046",
-        permission_state=sent,
+        permission_state=denied,
         institution=institution6,
         project=project5
     )
@@ -1805,7 +1805,7 @@ def populate():
         title=u"Permiso Qbit",
         description=u"Permiso emitido por el Qbit",
         folio="0047",
-        permission_state=sent,
+        permission_state=denied,
         institution=institution7,
         project=project5
     )
@@ -1815,7 +1815,7 @@ def populate():
         title=u"Permiso Museo de la Ciudad",
         description=u"Permiso emitido por el Museo de la Ciudad",
         folio="0048",
-        permission_state=sent,
+        permission_state=denied,
         institution=institution8,
         project=project5
     )
@@ -1825,7 +1825,7 @@ def populate():
         title=u"Permiso ITESM",
         description=u"Permiso emitido por el ITESM",
         folio="0049",
-        permission_state=sent,
+        permission_state=denied,
         institution=institution9,
         project=project5
     )
@@ -1835,7 +1835,7 @@ def populate():
         title=u"Permiso ITAM",
         description=u"Permiso emitido por el ITAM",
         folio="0050",
-        permission_state=sent,
+        permission_state=denied,
         institution=institution10,
         project=project5
     )
@@ -1847,12 +1847,12 @@ def populate():
     # REQUIRES: State, Project, Employee
     # 50 Registers / 5 per project (Los que alcancen)
 
-    datetime1 = datetime.date(2015, 1, 9)
-    datetime2 = datetime.date(2015, 2, 16)
-    datetime3 = datetime.date(2015, 3, 24)
-    datetime4 = datetime.date(2015, 4, 11)
-    datetime5 = datetime.date(2015, 6, 15)
-    datetime_late = datetime.date(2014, 11, 10)
+    datetime1 = timezone.now()
+    datetime2 = timezone.now()
+    datetime3 = timezone.now()
+    datetime4 = timezone.now()
+    datetime5 = timezone.now()
+    datetime_late = timezone.now()
 
     #1
     stage1_project1 = add_stage(

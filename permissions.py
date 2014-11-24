@@ -33,10 +33,10 @@ def create_permissions():
 
     # Permission
 
-    content_type = ContentType.objects.get_for_model(Permission)
-    permission_add_permission = Permission.objects.get(codename='add_permission', content_type=content_type)
-    permission_change_permission = Permission.objects.get(codename='change_permission', content_type=content_type)
-    permission_delete_permission = Permission.objects.get(codename='delete_permission', content_type=content_type)
+    content_type = ContentType.objects.get_for_model(sapu.models.Permission)
+    permission_add_permission = Permission.objects.get(codename='add_permission', content_type_id=content_type.id)
+    permission_change_permission = Permission.objects.get(codename='change_permission', content_type_id=content_type.id)
+    permission_delete_permission = Permission.objects.get(codename='delete_permission', content_type_id=content_type.id)
 
     # Employee
 
@@ -74,12 +74,15 @@ def create_permissions():
     administrator = Group(name='Administrador')
     administrator.save()
 
+    employee_permissions = [permission_add_comment,
+                            permission_change_comment,
+                            permission_delete_comment]
+
     supervisor_permissions = [permission_add_task,
                               permission_change_task,
-                              permission_delete_task,
-                              permission_add_comment,
-                              permission_change_comment,
-                              permission_delete_comment]
+                              permission_delete_task]
+
+    supervisor_permissions.extend(employee_permissions)
 
     project_manager_permissions = [permission_add_ptype,
                                    permission_change_ptype,
@@ -105,6 +108,7 @@ def create_permissions():
 
     administrator_permissions.extend(project_manager_permissions)
 
+    employee.permissions = employee_permissions
     supervisor.permissions = supervisor_permissions
     project_manager.permissions = project_manager_permissions
     administrator.permissions = administrator_permissions

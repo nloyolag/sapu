@@ -53,12 +53,13 @@
                     <div class="row">
                 {% endif %}
 
-                <div class="permission-envelope"><div class="col-md-4 permission-info">
+                <div class="permission-envelope"><div class="col-md-4 permission-info {{ permission.permission_state.name }}">
                     <div class="stg-info-inner">
                         <h5>{{ permission.title }}</h5>
                         <hr>
                         <h6>Folio - {{ permission.folio }}</h6>
                         <h6>Institución - {{ permission.institution.name }}</h6>
+                        <h6>Estado del permiso: {{ permission.permission_state.name }}</h6>
                         <p>{{ permission.description }}</p>
                         {% if perms.sapu.change_permission %}
                         <a href="/modal/edit/permission/{{ permission.id }}/project/{{ project.id }}/" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
