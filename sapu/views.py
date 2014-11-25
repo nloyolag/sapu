@@ -172,10 +172,10 @@ def projects_render_view(request):
 
         projects = models.Project.objects\
             .filter(is_active=True)\
-            .order_by('state')
+            .order_by('deadline')
 
         paginator = django.core.paginator.Paginator(projects, 10)
-        page = request.GET.get('page')
+        page = request.GET.get('deadline')
 
         try:
             requests_page = paginator.page(page)
