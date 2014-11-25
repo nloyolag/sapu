@@ -338,7 +338,9 @@ def stages_render_view(request, project_id):
 
     try:
         project = models.Project.objects.get(pk=project_id)
-        stages = models.Stage.objects.filter(project=project, is_active=True)
+        stages = models.Stage.objects\
+            .filter(project=project, is_active=True)\
+            .order_by('-creation_date')
         permissions = models.Permission.objects.filter(project=project, is_active=True)
         template_variables = {
             'stages': stages,

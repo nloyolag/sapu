@@ -97,7 +97,8 @@
                             <h5>{{ stage.number }} - {{ stage.name }}</h5>
                         </a>
                         <hr>
-                        <h6> <i class="fa fa-clock-o fa-lg"></i> - {{ stage.deadline|date:"d/m/Y" }}</h6>
+                        <h6><i class="fa fa-clock-o fa-lg"></i> Fecha de creación - {{ stage.creation_date|date:"d/m/Y" }}</h6>
+                        <h6><i class="fa fa-clock-o fa-lg"></i> Fecha límite - {{ stage.deadline|date:"d/m/Y" }}</h6>
                         <p>{{ stage.description }}</p>
                         {% if perms.sapu.change_stage %}
                         <a href="/modal/edit/stage/{{ stage.id }}/project/{{ project.id }}/" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>

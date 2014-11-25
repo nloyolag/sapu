@@ -212,6 +212,10 @@ nav a:hover {
     border-left-color: #5CB85C;
 }
 
+.project-table tr.Congelado td:first-of-type {
+    border-left-color: #0B2161;
+}
+
 .image-upload-container {
     position: relative;
 }
@@ -338,6 +342,11 @@ nav a:hover {
     border-left-color: #5CB85C;
 }
 
+.stage-info.Congelado {
+    border-left-width: 12px;
+    border-left-color: #0B2161;
+}
+
 .stage-info-inner,
 .stage-assignees-inner,
 .stage-dashboard-inner {
@@ -438,6 +447,12 @@ nav a:hover {
     border-left-color: #5CB85C;
 }
 
+
+.pt-info.Congelado {
+    border-left-width: 12px;
+    border-left-color: #0B2161;
+}
+
 .pt-info-inner,
 .stage-assignees-inner,
 .stage-dashboard-inner {
@@ -479,6 +494,11 @@ nav a:hover {
 .stage-info-project.Terminado {
     border-left-width: 12px;
     border-left-color: #5CB85C;
+}
+
+.stage-info-project.Congelado {
+    border-left-width: 12px;
+    border-left-color: #0B2161;
 }
 
 .permission-info.Solicitado {
@@ -908,6 +928,14 @@ z-index: 300000;
     margin-left: 35px;
 }
 
-.cancel-action {
+.project-name-column {
+    max-width: 150px !important;
+}
 
+.project-desc-column {
+    max-width: 208px !important;
+}
+
+#editors {
+    min-width: 101px;
 }

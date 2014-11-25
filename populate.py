@@ -1859,6 +1859,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=1,
+        creation_date=datetime1,
         deadline=datetime1,
         state=on_time,
         project=project1
@@ -1871,6 +1872,7 @@ def populate():
         name='Planos',
         description='Se dibujarán los planos de la estructura general',
         number=2,
+        creation_date=datetime1,
         deadline=datetime2,
         state=on_time,
         project=project1
@@ -1883,6 +1885,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=3,
+        creation_date=datetime1,
         deadline=datetime3,
         state=on_time,
         project=project1
@@ -1895,6 +1898,7 @@ def populate():
         name='Cimientos',
         description='Se construirán los cimientos',
         number=4,
+        creation_date=datetime1,
         deadline=datetime4,
         state=on_time,
         project=project1
@@ -1907,6 +1911,7 @@ def populate():
         name='Hidráulica',
         description='Se construirá la instalación hidráulica',
         number=5,
+        creation_date=datetime1,
         deadline=datetime5,
         state=on_time,
         project=project1
@@ -1919,6 +1924,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=1,
+        creation_date=datetime1,
         deadline=datetime1,
         state=on_time,
         project=project2
@@ -1931,6 +1937,7 @@ def populate():
         name='Planos',
         description='Se dibujarán los planos de la estructura general',
         number=2,
+        creation_date=datetime1,
         deadline=datetime2,
         state=on_time,
         project=project2
@@ -1943,6 +1950,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=3,
+        creation_date=datetime1,
         deadline=datetime3,
         state=on_time,
         project=project2
@@ -1955,6 +1963,7 @@ def populate():
         name='Cimientos',
         description='Se construirán los cimientos',
         number=4,
+        creation_date=datetime1,
         deadline=datetime4,
         state=on_time,
         project=project2
@@ -1967,6 +1976,7 @@ def populate():
         name='Hidráulica',
         description='Se construirá la instalación hidráulica',
         number=5,
+        creation_date=datetime1,
         deadline=datetime5,
         state=on_time,
         project=project2
@@ -1979,6 +1989,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=1,
+        creation_date=datetime1,
         deadline=datetime1,
         state=on_time,
         project=project3
@@ -1991,6 +2002,7 @@ def populate():
         name='Planos',
         description='Se dibujarán los planos de la estructura general',
         number=2,
+        creation_date=datetime1,
         deadline=datetime2,
         state=on_time,
         project=project3
@@ -2003,6 +2015,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=3,
+        creation_date=datetime1,
         deadline=datetime3,
         state=on_time,
         project=project3
@@ -2015,6 +2028,7 @@ def populate():
         name='Cimientos',
         description='Se construirán los cimientos',
         number=4,
+        creation_date=datetime1,
         deadline=datetime4,
         state=on_time,
         project=project3
@@ -2027,6 +2041,7 @@ def populate():
         name='Hidráulica',
         description='Se construirá la instalación hidráulica',
         number=5,
+        creation_date=datetime1,
         deadline=datetime5,
         state=on_time,
         project=project3
@@ -2039,6 +2054,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=1,
+        creation_date=datetime1,
         deadline=datetime1,
         state=on_time,
         project=project4
@@ -2051,6 +2067,7 @@ def populate():
         name='Planos',
         description='Se dibujarán los planos de la estructura general',
         number=2,
+        creation_date=datetime1,
         deadline=datetime2,
         state=on_time,
         project=project4
@@ -2063,6 +2080,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=3,
+        creation_date=datetime1,
         deadline=datetime3,
         state=on_time,
         project=project4
@@ -2075,6 +2093,7 @@ def populate():
         name='Cimientos',
         description='Se construirán los cimientos',
         number=4,
+        creation_date=datetime1,
         deadline=datetime4,
         state=on_time,
         project=project4
@@ -2087,6 +2106,7 @@ def populate():
         name='Hidráulica',
         description='Se construirá la instalación hidráulica',
         number=5,
+        creation_date=datetime1,
         deadline=datetime5,
         state=on_time,
         project=project4
@@ -2099,6 +2119,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=1,
+        creation_date=datetime1,
         deadline=datetime1,
         state=on_time,
         project=project5
@@ -2111,6 +2132,7 @@ def populate():
         name='Planos',
         description='Se dibujarán los planos de la estructura general',
         number=2,
+        creation_date=datetime1,
         deadline=datetime_late,
         state=delayed,
         project=project5
@@ -2123,6 +2145,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=3,
+        creation_date=datetime1,
         deadline=datetime_late,
         state=delayed,
         project=project5
@@ -2135,6 +2158,7 @@ def populate():
         name='Cimientos',
         description='Se construirán los cimientos',
         number=4,
+        creation_date=datetime1,
         deadline=datetime_late,
         state=delayed,
         project=project5
@@ -2147,6 +2171,7 @@ def populate():
         name='Hidráulica',
         description='Se construirá la instalación hidráulica',
         number=5,
+        creation_date=datetime1,
         deadline=datetime5,
         state=on_time,
         project=project5
@@ -2159,6 +2184,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=1,
+        creation_date=datetime1,
         deadline=datetime1,
         state=completed,
         project=project6
@@ -2171,6 +2197,7 @@ def populate():
         name='Planos',
         description='Se dibujarán los planos de la estructura general',
         number=2,
+        creation_date=datetime1,
         deadline=datetime2,
         state=completed,
         project=project6
@@ -2183,6 +2210,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=3,
+        creation_date=datetime1,
         deadline=datetime3,
         state=completed,
         project=project6
@@ -2195,6 +2223,7 @@ def populate():
         name='Cimientos',
         description='Se construirán los cimientos',
         number=4,
+        creation_date=datetime1,
         deadline=datetime4,
         state=completed,
         project=project6
@@ -2207,6 +2236,7 @@ def populate():
         name='Hidráulica',
         description='Se construirá la instalación hidráulica',
         number=5,
+        creation_date=datetime1,
         deadline=datetime5,
         state=completed,
         project=project6
@@ -2219,6 +2249,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=1,
+        creation_date=datetime1,
         deadline=datetime1,
         state=completed,
         project=project7
@@ -2231,6 +2262,7 @@ def populate():
         name='Planos',
         description='Se dibujarán los planos de la estructura general',
         number=2,
+        creation_date=datetime1,
         deadline=datetime2,
         state=completed,
         project=project7
@@ -2243,6 +2275,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=3,
+        creation_date=datetime1,
         deadline=datetime3,
         state=completed,
         project=project8
@@ -2255,6 +2288,7 @@ def populate():
         name='Cimientos',
         description='Se construirán los cimientos',
         number=4,
+        creation_date=datetime1,
         deadline=datetime4,
         state=completed,
         project=project8
@@ -2267,6 +2301,7 @@ def populate():
         name='Hidráulica',
         description='Se construirá la instalación hidráulica',
         number=5,
+        creation_date=datetime1,
         deadline=datetime3,
         state=completed,
         project=project8
@@ -2279,6 +2314,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=1,
+        creation_date=datetime1,
         deadline=datetime1,
         state=cancelled,
         project=project9
@@ -2291,6 +2327,7 @@ def populate():
         name='Planos',
         description='Se dibujarán los planos de la estructura general',
         number=2,
+        creation_date=datetime1,
         deadline=datetime2,
         state=cancelled,
         project=project9
@@ -2303,6 +2340,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=3,
+        creation_date=datetime1,
         deadline=datetime3,
         state=cancelled,
         project=project9
@@ -2315,6 +2353,7 @@ def populate():
         name='Cimientos',
         description='Se construirán los cimientos',
         number=4,
+        creation_date=datetime1,
         deadline=datetime4,
         state=cancelled,
         project=project4
@@ -2327,6 +2366,7 @@ def populate():
         name='Hidráulica',
         description='Se construirá la instalación hidráulica',
         number=5,
+        creation_date=datetime1,
         deadline=datetime5,
         state=cancelled,
         project=project9
@@ -2339,6 +2379,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=1,
+        creation_date=datetime1,
         deadline=datetime1,
         state=cancelled,
         project=project10
@@ -2351,6 +2392,7 @@ def populate():
         name='Planos',
         description='Se dibujarán los planos de la estructura general',
         number=2,
+        creation_date=datetime1,
         deadline=datetime2,
         state=cancelled,
         project=project10
@@ -2363,6 +2405,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=3,
+        creation_date=datetime1,
         deadline=datetime3,
         state=cancelled,
         project=project10
@@ -2375,6 +2418,7 @@ def populate():
         name='Cimientos',
         description='Se construirán los cimientos',
         number=4,
+        creation_date=datetime1,
         deadline=datetime4,
         state=cancelled,
         project=project10
@@ -2387,6 +2431,7 @@ def populate():
         name='Hidráulica',
         description='Se construirá la instalación hidráulica',
         number=5,
+        creation_date=datetime1,
         deadline=datetime3,
         state=cancelled,
         project=project10
@@ -2399,6 +2444,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=1,
+        creation_date=datetime1,
         deadline=datetime1,
         state=on_time,
         project=project11
@@ -2411,6 +2457,7 @@ def populate():
         name='Planos',
         description='Se dibujarán los planos de la estructura general',
         number=2,
+        creation_date=datetime1,
         deadline=datetime2,
         state=on_time,
         project=project11
@@ -2423,6 +2470,7 @@ def populate():
         name='Investigación',
         description='Se hará levantamiento de medidas en la localidad y se',
         number=3,
+        creation_date=datetime1,
         deadline=datetime3,
         state=on_time,
         project=project9
@@ -2435,6 +2483,7 @@ def populate():
         name='Cimientos',
         description='Se construirán los cimientos',
         number=4,
+        creation_date=datetime1,
         deadline=datetime4,
         state=on_time,
         project=project11
@@ -2447,6 +2496,7 @@ def populate():
         name='Hidráulica',
         description='Se construirá la instalación hidráulica',
         number=5,
+        creation_date=datetime1,
         deadline=datetime5,
         state=on_time,
         project=project11
@@ -3514,6 +3564,7 @@ def add_stage(
     name,
     description,
     number,
+    creation_date,
     deadline,
     state,
     project
@@ -3521,6 +3572,7 @@ def add_stage(
     s = Stage.objects.get_or_create(name=name,
                                     description=description,
                                     number=number,
+                                    creation_date=creation_date,
                                     deadline=deadline,
                                     state=state,
                                     project=project)[0]
