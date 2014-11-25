@@ -7,17 +7,89 @@ $( document ).ready(function() {
 
     $(".select-container select").select2({width: "15%"});
 
+    var options = {
+        valueNames: [
+            'table-state',
+            'table-creation',
+            'table-name',
+            'table-id',
+            'table-type',
+            'table-description',
+            'table-deadline',
+            'table-image',
+            'table-actions' ],
+        page: 10,
+        plugins: [ ListPagination({}) ]
+    };
+
+    var projectList = new List('projects-container', options);
+
+    $('#filter-ontime').click(function() {
+        projectList.filter(function(values) {
+            if(values.elm.className == "En tiempo") {
+                return true;
+            } else {
+                return false;
+            }
+        });
+        return false;
+    });
+
+    $('#filter-complete').click(function() {
+        projectList.filter(function(values) {
+            if(values.elm.className == "Terminado") {
+                return true;
+            } else {
+                return false;
+            }
+        });
+        return false;
+    });
+
+    $('#filter-late').click(function() {
+        projectList.filter(function(values) {
+            if(values.elm.className == "Retrasado") {
+                return true;
+            } else {
+                return false;
+            }
+        });
+        return false;
+    });
+
+    $('#filter-cancelled').click(function() {
+        projectList.filter(function(values) {
+            if(values.elm.className == "Cancelado") {
+                return true;
+            } else {
+                return false;
+            }
+        });
+        return false;
+    });
+
+    $('#filter-paused').click(function() {
+        projectList.filter(function(values) {
+            if(values.elm.className == "Congelado") {
+                return true;
+            } else {
+                return false;
+            }
+        });
+        return false;
+    });
+
     // Selectors reutilized throughout the script
     var modalDeleteSummon = $(".modal-delete-summon");
     var mainContent = $(".main-content");
     var listContent = $("#list-content");
 
     // Data Table creation on projects view
-    $('.project-table').DataTable( {
+    /*$('.project-table').DataTable( {
         paging: false,
         searching: false,
         infoCallback: function(){}
-    } );
+    } );*/
 
     // Changes delete button URL on click
     $(document).on("click", ".modal-delete-summon", function() {

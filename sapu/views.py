@@ -30,21 +30,8 @@ import forms
 import models
 import modals
 
-
-# TODO Apply client corrections AURA and YAEL
-# TODO Show Create/Edit/Delete buttons only to appropiate groups AURA or YAEL
-
-#TODO Deploy manual ALL
-#TODO final presentation ALL
-#TODO Corrected MER AURA
-#TODO Hosting and domain CHARLES
-#TODO Redesign user template
-#TODO Correct upload image positioning
-#TODO Correct alignment of modal forms
-#TODO Permission states
-#TODO Institutions: change is client column and simbology
-
 # Functions that render the views of the application
+
 
 def action_login(request):
 
@@ -147,49 +134,14 @@ def login_render_view(request):
 @login_required
 def projects_render_view(request):
 
-    project_query = ''
+    template_variables = {}
     delayed = False
 
-    if request.method == "POST":
+    projects = models.Project.objects\
+        .filter(is_active=True)\
+        .order_by('state')
 
-        form_search_project = forms.FormSearchProject(request.POST)
-        if form_search_project.is_valid():
-
-            project_query = form_search_project.cleaned_data['name']
-
-    template_variables = {}
-
-    if project_query:
-
-        projects = models.Project.objects\
-            .filter(name__icontains=project_query, is_active=True)\
-            .order_by('-creation_date')
-
-        template_variables['projects'] = projects
-        template_variables['pagination'] = False
-
-    else:
-
-        projects = models.Project.objects\
-            .filter(is_active=True)\
-            .order_by('state')
-
-        paginator = django.core.paginator.Paginator(projects, 10)
-        page = request.GET.get('page')
-
-        try:
-            requests_page = paginator.page(page)
-
-        except django.core.paginator.PageNotAnInteger:
-            requests_page = paginator.page(1)
-
-        except django.core.paginator.EmptyPage:
-            requests_page = paginator.page(paginator.num_pages)
-
-        template_variables['projects'] = requests_page
-        template_variables['pagination'] = True
-
-    template_variables['form_search_project'] = forms.FormSearchProject()
+    template_variables['projects'] = projects
 
     for project in projects:
 

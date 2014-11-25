@@ -12,29 +12,22 @@
     </ul>
 {% endif %}
 
-<div class="projects-container content container">
+<div class="projects-container content container" id="projects-container">
 
     <div class="projects-header view-header">
         <h1>PROYECTOS</h1>
         {% if perms.sapu.add_project %}
         <a href="/modal/add/project" class="btn btn-info modal-summon">Agregar Proyecto</a>
         {% endif %}
+        <input class="search-projects" placeholder="Buscar Proyectos" />
     </div>
 
-    <form action="{% url 'views.projects_render_view' %}" method="POST">
-        <div>
-            {% csrf_token %}
-            {{ form_search_project.name }}
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </div>
-    </form>
-
     <div class="color-guide">
-        <div class="color-in-time">A tiempo</div>
-        <div class="color-complete">Completado</div>
-        <div class="color-late">Retrasado</div>
-        <div class="color-canceled">Cancelado</div>
-        <div class="color-paused">Congelado</div>
+        <div class="color-in-time" id="filter-ontime">A tiempo</div>
+        <div class="color-complete" id="filter-complete">Completado</div>
+        <div class="color-late" id="filter-late">Retrasado</div>
+        <div class="color-canceled" id="filter-cancelled">Cancelado</div>
+        <div class="color-paused" id="filter-paused">Congelado</div>
     </div>
 
     <table class="table table-striped project-table">
@@ -42,10 +35,10 @@
         <thead>
             <th>Estado</th>
             <th>Fecha de Creación</th>
-            <th>Nombre</th>
-            <th>Código</th>
-            <th>Tipo de proyecto</th>
-            <th>Descripción</th>
+            <th class="sort" data-sort="table-name">Nombre</th>
+            <th class="sort" data-sort="table-id">Código</th>
+            <th class="sort" data-sort="table-type">Tipo de proyecto</th>
+            <th class="sort" data-sort="table-description">Descripción</th>
             <th>Fecha Límite</th>
             <th>Foto</th>
             {% if perms.sapu.change_project %}
@@ -53,53 +46,38 @@
             {% endif %}
         </thead>
 
-    {% for project in projects %}
-        <tr class="{{ project.state.name }}">
-            <td> {{ project.state.name }}</td>
-            <td>{{ project.creation_date|date:"d/m/Y" }}</td>
-            <td><a href="/proyectos/proyecto/{{ project.id }}">{{ project.name }}</a></td>
-            <td>{{ project.project_id }}</td>
-            <td>{{ project.project_type.name }}</td>
-            <td>{{ project.description }}</td>
-            <td>{{ project.deadline|date:"d/m/Y" }}</td>
-            <td class="image-upload-container">
-                <img src="{{ project.photo.url }}">
-                <a href="/modal/edit/project_photo/{{ project.id }}" class="modal-summon"><i class="fa fa-upload fa-2x" style="margin-right: 10px;"></i>Subir imagen</a>
-            </td>
-            {% if perms.sapu.change_project %}
-            <td id="editors">
-                <a href="/modal/edit/project/{{ project.id }}" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
-                {% if perms.sapu.delete_project %}
-                <a href="#delete-project" class="modal-delete-summon" id="{{ project.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
-                {% endif %}
-            </td>
-            {% endif %}
-        </tr>
-    {% endfor  %}
+        <tbody class="list">
 
+            {% for project in projects %}
+                <tr class="{{ project.state.name }}">
+                    <td class="table-state"> {{ project.state.name }}</td>
+                    <td class="table-creation">{{ project.creation_date|date:"d/m/Y" }}</td>
+                    <td class="table-name"><a href="/proyectos/proyecto/{{ project.id }}">{{ project.name }}</a></td>
+                    <td class="table-id">{{ project.project_id }}</td>
+                    <td class="table-type">{{ project.project_type.name }}</td>
+                    <td class="table-description">{{ project.description }}</td>
+                    <td class="table-deadline">{{ project.deadline|date:"d/m/Y" }}</td>
+                    <td class="image-upload-container table-image">
+                        <img src="{{ project.photo.url }}">
+                        <a href="/modal/edit/project_photo/{{ project.id }}" class="modal-summon"><i class="fa fa-upload fa-2x" style="margin-right: 10px;"></i>Subir imagen</a>
+                    </td>
+                    {% if perms.sapu.change_project %}
+                    <td id="editors" class="table-actions">
+                        <a href="/modal/edit/project/{{ project.id }}" class="modal-summon"><i class="fa fa-pencil fa-2x"></i></a>
+                        {% if perms.sapu.delete_project %}
+                        <a href="#delete-project" class="modal-delete-summon" id="{{ project.id }}"><i class="fa fa-trash-o fa-2x"></i></a>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor  %}
+
+        </tbody>
     </table>
 
-    {% if pagination %}
-        <div class="pagination-outer row">
-            <div class="pagination-inner col-md-4">
-                {% if projects.has_previous %}
-                    <a href="?page={{ projects.previous_page_number }}">
-                        <i class="fa fa-chevron-left fa-2x"></i>
-                    </a>
-                {% endif %}
-
-                <p>
-                    Página {{ projects.number }} de {{ projects.paginator.num_pages }}
-                </p>
-
-                {% if projects.has_next %}
-                    <a href="?page={{ projects.next_page_number }}">
-                        <i class="fa fa-chevron-right fa-2x"></i>
-                    </a>
-                {% endif %}
-            </div>
-        </div>
-    {% endif %}
+    <div class="list-pagination">
+        <ul class="pagination"></ul>
+    </div>
 
 </div> <!-- .projects-container -->
 

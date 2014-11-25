@@ -187,8 +187,23 @@ nav a:hover {
 /* Projects Styles
 =================*/
 
+.search-projects {
+    width: 20%;
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #DDDDDD;
+}
+
 .project-table img {
     max-width: 200px;
+}
+
+.project-table .sort {
+    cursor: pointer;
 }
 
 .project-table tr td:first-of-type {
@@ -210,6 +225,10 @@ nav a:hover {
 
 .project-table tr.Terminado td:first-of-type {
     border-left-color: #5CB85C;
+}
+
+.project-table tr.Congelado td:first-of-type {
+    border-left-color: #0B2161;
 }
 
 .image-upload-container {
@@ -248,6 +267,12 @@ nav a:hover {
 .image-upload-container i {
     margin-right: 5%;
     margin-left: 20%;
+}
+
+.list-pagination {
+    display: block;
+    margin: 0 auto;
+    width: 20%;
 }
 
 .pagination-outer {
@@ -336,6 +361,11 @@ nav a:hover {
 .stage-info.Terminado {
     border-left-width: 12px;
     border-left-color: #5CB85C;
+}
+
+.stage-info.Congelado {
+    border-left-color: #0B2161;
+    border-left-width: 12px;
 }
 
 .stage-info-inner,
@@ -438,6 +468,11 @@ nav a:hover {
     border-left-color: #5CB85C;
 }
 
+.pt-info.Congelado {
+    border-left-color: #0B2161;
+    border-left-width: 12px;
+}
+
 .pt-info-inner,
 .stage-assignees-inner,
 .stage-dashboard-inner {
@@ -479,6 +514,11 @@ nav a:hover {
 .stage-info-project.Terminado {
     border-left-width: 12px;
     border-left-color: #5CB85C;
+}
+
+.stage-info-project.Congelado {
+    border-left-color: #0B2161;
+    border-left-width: 12px;
 }
 
 .permission-info.Solicitado {
@@ -565,6 +605,11 @@ nav a:hover {
     border-left-color: #5CB85C;
 }
 
+.stg-info-project.Congelado {
+    border-left-width: 12px;
+    border-left-color: #0B2161;
+}
+
 .stage-assignees,
 .stage-dashboard {
     border-style: solid;
@@ -593,6 +638,11 @@ nav a:hover {
 .stg-info.Terminado {
     border-left-width: 12px;
     border-left-color: #5CB85C;
+}
+
+.stg-info.Congelado {
+    border-left-width: 12px;
+    border-left-color: #0B2161;
 }
 
 .stg-info-inner,
@@ -774,13 +824,13 @@ div.stage-task:nth-child(3), div.stage-comment:nth-child(3) {
 
 .color-guide {
     overflow: auto;
-
 }
 
 .color-in-time, .color-late, .color-complete, .color-canceled, .color-paused {
     display: inline-block;
     margin: 30px 0 10px 0;
-    padding: 0 45px 0 45px
+    padding: 0 45px 0 45px;
+    cursor: pointer;
 }
 
 .color-in-time {
