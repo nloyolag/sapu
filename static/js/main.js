@@ -24,7 +24,7 @@ $( document ).ready(function() {
 
     var projectList = new List('projects-container', options);
 
-    $('#filter-ontime').click(function() {
+    $(document).on("click", "#filter-ontime", function() {
         projectList.filter(function(values) {
             if(values.elm.className == "En tiempo") {
                 return true;
@@ -35,7 +35,7 @@ $( document ).ready(function() {
         return false;
     });
 
-    $('#filter-complete').click(function() {
+    $(document).on("click", "#filter-complete", function() {
         projectList.filter(function(values) {
             if(values.elm.className == "Terminado") {
                 return true;
@@ -46,7 +46,7 @@ $( document ).ready(function() {
         return false;
     });
 
-    $('#filter-late').click(function() {
+    $(document).on("click", "#filter-late", function() {
         projectList.filter(function(values) {
             if(values.elm.className == "Retrasado") {
                 return true;
@@ -57,7 +57,7 @@ $( document ).ready(function() {
         return false;
     });
 
-    $('#filter-cancelled').click(function() {
+    $(document).on("click", "#filter-cancelled", function() {
         projectList.filter(function(values) {
             if(values.elm.className == "Cancelado") {
                 return true;
@@ -68,7 +68,7 @@ $( document ).ready(function() {
         return false;
     });
 
-    $('#filter-paused').click(function() {
+    $(document).on("click", "#filter-paused", function() {
         projectList.filter(function(values) {
             if(values.elm.className == "Congelado") {
                 return true;
@@ -129,6 +129,7 @@ $( document ).ready(function() {
             function() {
                 mainContent.prepend($messages);
                 $(".select-container select").select2({width: "15%"});
+                projectList = new List('projects-container', options);
                 $.fancybox.close();
             });
         });
@@ -179,6 +180,7 @@ $( document ).ready(function() {
                     var $modal_forms = $(data).find('.modal-form');
                     $modal.find('.sapu-modal').append($modal_forms);
                     $(".sapu-modal select").select2({width: "90%"});
+                    projectList = new List('projects-container', options);
                     $(".datetime-field").datepicker();
                 } else {
                     var url = document.URL;
@@ -188,6 +190,7 @@ $( document ).ready(function() {
                         function() {
                             mainContent.prepend($messages);
                             $(".select-container select").select2({width: "15%"});
+                            projectList = new List('projects-container', options);
                             $.fancybox.close();
                     });
                 }

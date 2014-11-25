@@ -689,6 +689,18 @@ def modal_edit_project_handler(
                 project.creation_date = timezone.now()
 
             project.full_clean()
+
+            # Verify that stages are completed if setting project to completed
+
+            if project.state.number == 5 and old_project:
+                stages = models.Stage.objects.filter(project=project)
+
+                if stages:
+                    for stage in stages:
+                        if stage.state.number != 5:
+                            project.state = models.State.objects.get(number=2)
+                            break
+
             project.save()
 
             if not old_project:
