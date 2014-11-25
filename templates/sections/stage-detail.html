@@ -17,7 +17,8 @@
         <div class="stage-info {{ stage.state.name }}">
             <div class="stage-info-inner">
                 <h2>{{ stage.number }} - {{ stage.name }}</h2>
-                <h5> <i class="fa fa-clock-o fa-lg"></i> - {{ stage.deadline|date:"d/m/Y" }}</h5>
+                <h5><i class="fa fa-clock-o fa-lg"></i> Fecha de creación - {{ stage.creation_date|date:"d/m/Y" }}</h5>
+                <h5><i class="fa fa-clock-o fa-lg"></i> Fecha límite - {{ stage.deadline|date:"d/m/Y" }}</h5>
                 <h6>Proyecto: {{ stage.project }}</h6>
                 <p>{{ stage.description }}</p>
             </div>

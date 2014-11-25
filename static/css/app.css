@@ -953,6 +953,14 @@ z-index: 300000;
     margin-left: 35px;
 }
 
-.cancel-action {
+.project-name-column {
+    max-width: 150px !important;
+}
 
+.project-desc-column {
+    max-width: 208px !important;
+}
+
+#editors {
+    min-width: 101px;
 }

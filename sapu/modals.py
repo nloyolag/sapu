@@ -908,6 +908,7 @@ def modal_edit_stage_handler(
 
             count = models.Stage.objects.filter(is_active=True, project=project).count()
             stage.number = count + 1
+            stage.creation_date = timezone.now()
             stage.save()
 
             employees = form_stage.cleaned_data['employee']
