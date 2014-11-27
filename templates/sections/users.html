@@ -44,7 +44,7 @@
                             </div>
 
                             <div class="user-block-info">
-                                <h5>Yeah de prueba{{ employee.user.first_name }}</h5>
+                                <h5>{{ employee.user.first_name }}</h5>
                                 <p>{{ employee.user.email }}</p>
                                 {% if perms.sapu.change_employee %}
                                 <h6>{{ employee.user.groups.all.0 }}</h6>

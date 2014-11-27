@@ -160,7 +160,7 @@ class Employee (django.db.models.Model):
 
     photo = django.db.models.ImageField(upload_to="photos/users",
                                         verbose_name=u"Foto",
-                                        default="photos/users/default.jpg")
+                                        default="photos/users/default.png")
 
     logged = django.db.models.BooleanField(default=False, verbose_name=u"¿Se conectó hoy?")
 

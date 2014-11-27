@@ -139,7 +139,7 @@ def projects_render_view(request):
 
     projects = models.Project.objects\
         .filter(is_active=True)\
-        .order_by('state')
+        .order_by('state__number')
 
     template_variables['projects'] = projects
 
