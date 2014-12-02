@@ -59,7 +59,9 @@
                     <td class="table-deadline">{{ project.deadline|date:"d/m/Y" }}</td>
                     <td class="image-upload-container table-image">
                         <img src="{{ project.photo.url }}">
+                        {% if perms.sapu.change_project %}
                         <a href="/modal/edit/project_photo/{{ project.id }}" class="modal-summon"><i class="fa fa-upload fa-2x" style="margin-right: 10px;"></i>Subir imagen</a>
+                        {% endif %}
                     </td>
                     {% if perms.sapu.change_project %}
                     <td id="editors" class="table-actions">

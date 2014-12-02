@@ -40,7 +40,9 @@
 
                             <div class="image-upload-container">
                                 <img src="{{ employee.photo.url }}">
+                                {% if perms.sapu.change_employee %}
                                 <a href="/modal/edit/employee_photo/{{ employee.id }}" class="modal-summon"><i class="fa fa-upload fa-2x"></i>Subir imagen</a>
+                                {% endif %}
                             </div>
 
                             <div class="user-block-info">
