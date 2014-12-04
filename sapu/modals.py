@@ -884,6 +884,7 @@ def modal_edit_stage_handler(
 
     old_stage = None
     was_completed = False
+    object_created = False
 
     if element_index:
 
@@ -934,8 +935,21 @@ def modal_edit_stage_handler(
             employees = form_stage.cleaned_data['employee']
 
             for employee in employees:
-                models.Assignment.objects.get_or_create(stage=stage,
+                obj, created = models.Assignment.objects.get_or_create(stage=stage,
                                                         employee=employee)
+
+                if created:
+                    object_created = True
+
+            if object_created and stage.state.number == 5:
+
+                if timezone.now() > stage.deadline:
+                    stage.state = models.State.objects.get(number=1)
+                    stage.save()
+
+                else:
+                    stage.state = models.State.objects.get(number=2)
+                    stage.save()
 
             if not old_stage:
 
