@@ -7,12 +7,14 @@
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
             {% endfor %}
         </ul>
     {% endif %}
 
     <div class="stage-detail-container content container">
+
+        <a class="back-to-projects" href="/proyectos/proyecto/{{ stage.project.id }}/"><i class="fa fa-arrow-circle-left"></i> Volver al proyecto</a>
 
         <div class="stage-info {{ stage.state.name }}">
             <div class="stage-info-inner">

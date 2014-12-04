@@ -883,6 +883,7 @@ def modal_edit_stage_handler(
 ):
 
     old_stage = None
+    was_completed = False
 
     if element_index:
 
@@ -898,6 +899,9 @@ def modal_edit_stage_handler(
             prefix=globals.PREFIX__FORM_STAGE,
             instance=old_stage
         )
+
+        if old_stage.state.number == 5:
+            was_completed = True
 
     else:
         # Get the form for new element
@@ -921,13 +925,17 @@ def modal_edit_stage_handler(
             count = models.Stage.objects.filter(is_active=True, project=project).count()
             stage.number = count + 1
             stage.creation_date = timezone.now()
+
+            if was_completed:
+                stage.state = models.State.objects.get(number=5)
+
             stage.save()
 
             employees = form_stage.cleaned_data['employee']
 
             for employee in employees:
-                models.Assignment.objects.create(stage=stage,
-                                                 employee=employee)
+                models.Assignment.objects.get_or_create(stage=stage,
+                                                        employee=employee)
 
             if not old_stage:
 

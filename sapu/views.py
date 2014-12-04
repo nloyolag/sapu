@@ -658,13 +658,9 @@ def delete_stage_view(request, stage_id):
     stage.is_active = False
     stage.save()
 
-    print deleted_stage_number
-    print count
     for i in range(deleted_stage_number + 1, count + 1):
-        print "a"
         current_stage = models.Stage.objects.get(project=project, number=i, is_active=True)
         if current_stage is not None:
-            print "b"
             current_stage.number = i - 1
             current_stage.save()
 

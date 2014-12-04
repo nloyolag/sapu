@@ -179,7 +179,7 @@ class Stage (django.db.models.Model):
     description = django.db.models.TextField(verbose_name=u"Descripción", blank=True)
     number = django.db.models.IntegerField(verbose_name=u"Número", blank=True)
     is_active = django.db.models.BooleanField(default=True, verbose_name=u"¿Está activo?")
-    creation_date = django.db.models.DateTimeField(verbose_name=u"Fecha de creación")
+    creation_date = django.db.models.DateTimeField(verbose_name=u"Fecha de creación", blank=True)
     deadline = \
         django.db.models.DateTimeField(verbose_name=u"Fecha Límite")
 
